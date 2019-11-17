@@ -1,0 +1,70 @@
+diff -Naur cwiid-svn_history-old/lswm/Makefile.in cwiid-svn_history-new/lswm/Makefile.in
+--- cwiid-svn_history-old/lswm/Makefile.in	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/lswm/Makefile.in	2019-11-17 11:09:13.797958551 -0800
+@@ -8,7 +8,7 @@
+ 
+ CFLAGS += -I@top_builddir@/libcwiid
+ LDFLAGS += -L@top_builddir@/libcwiid
+-LDLIBS += -lcwiid
++LDLIBS += -lcwiid -lbluetooth
+ INST_DIR = @bindir@
+ 
+ include $(COMMON)/include/app.mak
+diff -Naur cwiid-svn_history-old/wmdemo/Makefile.in cwiid-svn_history-new/wmdemo/Makefile.in
+--- cwiid-svn_history-old/wmdemo/Makefile.in	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/wmdemo/Makefile.in	2019-11-17 11:09:13.797958551 -0800
+@@ -8,7 +8,7 @@
+ 
+ CFLAGS += -I@top_builddir@/libcwiid
+ LDFLAGS += -L@top_builddir@/libcwiid
+-LDLIBS += -lcwiid
++LDLIBS += -lcwiid -lbluetooth
+ INST_DIR = @bindir@
+ 
+ include $(COMMON)/include/app.mak
+diff -Naur cwiid-svn_history-old/wmgui/Makefile.in cwiid-svn_history-new/wmgui/Makefile.in
+--- cwiid-svn_history-old/wmgui/Makefile.in	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/wmgui/Makefile.in	2019-11-17 11:09:13.799959201 -0800
+@@ -8,7 +8,7 @@
+ 
+ CFLAGS += @GTK_CFLAGS@ -I@top_builddir@/libcwiid
+ LDFLAGS += -L@top_builddir@/libcwiid
+-LDLIBS += @GTK_LIBS@ -lm -lcwiid
++LDLIBS += @GTK_LIBS@ -lm -lcwiid -lbluetooth
+ INST_DIR = @bindir@
+ 
+ include $(COMMON)/include/app.mak
+diff -Naur cwiid-svn_history-old/wminput/Makefile.in cwiid-svn_history-new/wminput/Makefile.in
+--- cwiid-svn_history-old/wminput/Makefile.in	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/wminput/Makefile.in	2019-11-17 11:09:13.799959201 -0800
+@@ -14,7 +14,7 @@
+ 	-DWMINPUT_CONFIG_DIR=\"$(WMINPUT_CONFIG_DIR)\" \
+ 	-DCWIID_PLUGINS_DIR=\"$(CWIID_PLUGINS_DIR)\"
+ 
+-LDLIBS += -lcwiid -ldl
++LDLIBS += -lcwiid -lbluetooth -lpthread -ldl
+ LDFLAGS += -L@top_builddir@/libcwiid -rdynamic
+ INST_DIR = @bindir@
+ 
+diff -Naur cwiid-svn_history-old/wminput/plugins/ir_ptr/Makefile.in cwiid-svn_history-new/wminput/plugins/ir_ptr/Makefile.in
+--- cwiid-svn_history-old/wminput/plugins/ir_ptr/Makefile.in	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/wminput/plugins/ir_ptr/Makefile.in	2019-11-17 11:09:13.799959201 -0800
+@@ -5,6 +5,7 @@
+ PLUGIN_NAME = ir_ptr
+ SOURCES = ir_ptr.c
+ CFLAGS += -I@top_builddir@/wminput -I@top_builddir@/libcwiid
++LDLIBS += -lm
+ INST_DIR = $(CWIID_PLUGINS_DIR)
+ 
+ include $(COMMON)/include/plugin.mak
+diff -Naur cwiid-svn_history-old/wminput/plugins/led/Makefile.in cwiid-svn_history-new/wminput/plugins/led/Makefile.in
+--- cwiid-svn_history-old/wminput/plugins/led/Makefile.in	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/wminput/plugins/led/Makefile.in	2019-11-17 11:09:13.799959201 -0800
+@@ -5,6 +5,7 @@
+ PLUGIN_NAME = led
+ SOURCES = led.c
+ CFLAGS += -I@top_builddir@/wminput -I@top_builddir@/libcwiid
++LDLIBS += -lm
+ INST_DIR = $(CWIID_PLUGINS_DIR)
+ 
+ include $(COMMON)/include/plugin.mak

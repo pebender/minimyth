@@ -1,0 +1,12 @@
+diff -Naur cwiid-svn_history-old/wminput/main.c cwiid-svn_history-new/wminput/main.c
+--- cwiid-svn_history-old/wminput/main.c	2019-11-17 11:25:12.010959522 -0800
++++ cwiid-svn_history-new/wminput/main.c	2019-11-17 11:26:31.492003981 -0800
+@@ -289,7 +289,7 @@
+ 			}
+ 			/* TODO: avoid continuously calling cwiid_open */
+ 			cwiid_set_err(cwiid_err_connect);
+-			while (!(wiimote = cwiid_open(&current_bdaddr, CWIID_FLAG_MESG_IFC)));
++			while (!(wiimote = cwiid_open(&current_bdaddr, CWIID_FLAG_MESG_IFC))) sleep(1);
+ 			cwiid_set_err(cwiid_err_default);
+ 		}
+ 		else {

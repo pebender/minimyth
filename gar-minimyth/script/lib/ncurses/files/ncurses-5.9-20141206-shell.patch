@@ -1,0 +1,204 @@
+diff -Naur ncurses-5.9-old/Ada95/doc/Makefile.in ncurses-5.9-new/Ada95/doc/Makefile.in
+--- ncurses-5.9-old/Ada95/doc/Makefile.in	2019-11-17 09:48:26.191993482 -0800
++++ ncurses-5.9-new/Ada95/doc/Makefile.in	2019-11-17 09:50:25.911023129 -0800
+@@ -31,7 +31,7 @@
+ #
+ # Makefile for AdaCurses manual pages.
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ 
+ DESTDIR		= @DESTDIR@
+diff -Naur ncurses-5.9-old/Ada95/gen/Makefile.in ncurses-5.9-new/Ada95/gen/Makefile.in
+--- ncurses-5.9-old/Ada95/gen/Makefile.in	2019-11-17 09:48:26.191993482 -0800
++++ ncurses-5.9-new/Ada95/gen/Makefile.in	2019-11-17 09:50:25.913022766 -0800
+@@ -32,7 +32,7 @@
+ #
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/Ada95/include/Makefile.in ncurses-5.9-new/Ada95/include/Makefile.in
+--- ncurses-5.9-old/Ada95/include/Makefile.in	2019-11-17 09:39:55.964000002 -0800
++++ ncurses-5.9-new/Ada95/include/Makefile.in	2019-11-17 09:50:25.914022587 -0800
+@@ -39,7 +39,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/Ada95/Makefile.in ncurses-5.9-new/Ada95/Makefile.in
+--- ncurses-5.9-old/Ada95/Makefile.in	2019-11-17 09:39:55.964000002 -0800
++++ ncurses-5.9-new/Ada95/Makefile.in	2019-11-17 09:50:25.914022587 -0800
+@@ -32,7 +32,7 @@
+ #  Version Control
+ #  $Revision: 1.21 $
+ #
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/Ada95/samples/Makefile.in ncurses-5.9-new/Ada95/samples/Makefile.in
+--- ncurses-5.9-old/Ada95/samples/Makefile.in	2019-11-17 09:48:26.196993984 -0800
++++ ncurses-5.9-new/Ada95/samples/Makefile.in	2019-11-17 09:50:25.915022410 -0800
+@@ -32,7 +32,7 @@
+ #
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/Ada95/src/Makefile.in ncurses-5.9-new/Ada95/src/Makefile.in
+--- ncurses-5.9-old/Ada95/src/Makefile.in	2019-11-17 09:48:26.198994174 -0800
++++ ncurses-5.9-new/Ada95/src/Makefile.in	2019-11-17 09:50:25.916022235 -0800
+@@ -32,7 +32,7 @@
+ #
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/c++/Makefile.in ncurses-5.9-new/c++/Makefile.in
+--- ncurses-5.9-old/c++/Makefile.in	2019-11-17 09:48:26.214995500 -0800
++++ ncurses-5.9-new/c++/Makefile.in	2019-11-17 09:50:25.916022235 -0800
+@@ -34,7 +34,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ 
+ CF_MFLAGS 	= @cf_cv_makeflags@
+diff -Naur ncurses-5.9-old/form/Makefile.in ncurses-5.9-new/form/Makefile.in
+--- ncurses-5.9-old/form/Makefile.in	2019-11-17 09:48:26.353000011 -0800
++++ ncurses-5.9-new/form/Makefile.in	2019-11-17 09:50:25.917022061 -0800
+@@ -42,7 +42,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/include/Makefile.in ncurses-5.9-new/include/Makefile.in
+--- ncurses-5.9-old/include/Makefile.in	2019-11-17 09:48:26.362000010 -0800
++++ ncurses-5.9-new/include/Makefile.in	2019-11-17 09:50:25.917022061 -0800
+@@ -39,7 +39,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/Makefile.in ncurses-5.9-new/Makefile.in
+--- ncurses-5.9-old/Makefile.in	2019-11-17 09:48:26.205994798 -0800
++++ ncurses-5.9-new/Makefile.in	2019-11-17 09:50:25.917022061 -0800
+@@ -31,7 +31,7 @@
+ #
+ # Master Makefile for ncurses library.
+ 
+-SHELL = /bin/sh
++SHELL = @SHELL@
+ VPATH		= @srcdir@
+ 
+ DESTDIR=@DESTDIR@
+diff -Naur ncurses-5.9-old/man/Makefile.in ncurses-5.9-new/man/Makefile.in
+--- ncurses-5.9-old/man/Makefile.in	2019-11-17 09:48:26.366000011 -0800
++++ ncurses-5.9-new/man/Makefile.in	2019-11-17 09:50:25.917022061 -0800
+@@ -34,7 +34,7 @@
+ # NOTE: When you add or rename a man page, make sure you update both
+ # the top-level MANIFEST and any man/*.renames files!
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ 
+ DESTDIR		= @DESTDIR@
+diff -Naur ncurses-5.9-old/menu/Makefile.in ncurses-5.9-new/menu/Makefile.in
+--- ncurses-5.9-old/menu/Makefile.in	2019-11-17 09:48:26.379000010 -0800
++++ ncurses-5.9-new/menu/Makefile.in	2019-11-17 09:50:25.917022061 -0800
+@@ -42,7 +42,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/misc/Makefile.in ncurses-5.9-new/misc/Makefile.in
+--- ncurses-5.9-old/misc/Makefile.in	2019-11-17 09:48:26.381000011 -0800
++++ ncurses-5.9-new/misc/Makefile.in	2019-11-17 09:50:25.917022061 -0800
+@@ -42,7 +42,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES :
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/ncurses/Makefile.in ncurses-5.9-new/ncurses/Makefile.in
+--- ncurses-5.9-old/ncurses/Makefile.in	2019-11-17 09:48:26.411000012 -0800
++++ ncurses-5.9-new/ncurses/Makefile.in	2019-11-17 09:50:25.917022061 -0800
+@@ -45,7 +45,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/panel/Makefile.in ncurses-5.9-new/panel/Makefile.in
+--- ncurses-5.9-old/panel/Makefile.in	2019-11-17 09:48:26.456000009 -0800
++++ ncurses-5.9-new/panel/Makefile.in	2019-11-17 09:50:25.918021889 -0800
+@@ -42,7 +42,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/progs/Makefile.in ncurses-5.9-new/progs/Makefile.in
+--- ncurses-5.9-old/progs/Makefile.in	2019-11-17 09:48:26.457000010 -0800
++++ ncurses-5.9-new/progs/Makefile.in	2019-11-17 09:50:25.918021889 -0800
+@@ -42,7 +42,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ THIS		= Makefile
+ 
+diff -Naur ncurses-5.9-old/test/Makefile.in ncurses-5.9-new/test/Makefile.in
+--- ncurses-5.9-old/test/Makefile.in	2019-11-17 09:48:26.462000011 -0800
++++ ncurses-5.9-new/test/Makefile.in	2019-11-17 09:50:25.918021889 -0800
+@@ -34,7 +34,7 @@
+ # turn off _all_ suffix rules; we'll generate our own
+ .SUFFIXES:
+ 
+-SHELL		= /bin/sh
++SHELL		= @SHELL@
+ VPATH		= @srcdir@
+ 
+ @SET_MAKE@
