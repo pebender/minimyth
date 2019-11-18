@@ -1,7 +1,7 @@
 GARNAME = fribidi
 GARVERSION = 0.19.5
 CATEGORIES = lib
-MASTER_SITES = http://fribidi.org/download/
+MASTER_SITES = https://github.com/$(GARNAME)/$(GARNAME)/releases/download/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = LGPL2_1
 

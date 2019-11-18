@@ -1,11 +1,11 @@
 GARNAME = ncurses
 GARVERSION = $(NCURSES_VERSION)
 CATEGORIES = lib
-#MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
-MASTER_SITES = ftp://dickey.his.com/pub/ncurses/current/
-#DISTFILES = $(DISTNAME).tar.gz
-DISTFILES = $(DISTNAME).tgz
-PATCHFILES = $(DISTNAME)-shell.patch $(DISTNAME)-perl.patch.gar $(DISTNAME).patch.gar
+MASTER_SITES  = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/
+MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/$(word 1,$(subst -, ,$(GARVERSION)))/
+DISTFILES = $(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).tar.gz
+PATCHFILES = $(DISTNAME)-patch.sh.bz2 $(DISTNAME)-shell.patch $(DISTNAME)-perl.patch.gar $(DISTNAME).patch.gar
 LICENSE = MIT_Modified
 
 DESCRIPTION =
@@ -44,6 +44,15 @@ CONFIGURE_ARGS += \
 endif
 
 include ../../gar.mk
+
+post-extract:
+	mv $(WORKDIR)/$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))) $(WORKSRC)
+	@$(MAKECOOKIE)
+
+patch-$(DISTNAME)-patch.sh.bz2:
+	@tar jxf -C $(DOWNLOADDIR) $(WORKSRC)/$(DISTNAME)-patch.sh.bz2
+	@cd $(WORKSRC) ; sh $(DISTNAME)-patch.sh
+https://invisible-mirror.net/archives/ncurses/5.9/ncurses-5.9-20141206-patch.sh.bz2
 
 pre-configure:
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)

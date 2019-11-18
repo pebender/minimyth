@@ -1,5 +1,6 @@
-aad3d0ca19adfc129a779d0ade78b8d0  download/cwiid-201-ldlibs.patch
-192e7d7558e32f4b438a4d6e7db97c40  download/cwiid-201-rootdir.patch
-f1ff70b0be32a24bf88f2dbe0d3f789f  download/cwiid-201-ioctl_ui_set_phys.patch
-e472d56bf586dbac965a23b808fb0e43  download/cwiid-201-wait_forever_sleep.patch
-5891b9b28e2c75106a32a62d4dcfbc88  download/cwiid-201-abs_only.patch
+e1bc290504dc53f02581866eed0b85c3  download/svn_history.tar.gz
+a1d98d38f6fede3fbd2f2430a8484c91  download/cwiid-svn_history-ldlibs.patch
+ca9ccb73779d42a37470ad07cf66626e  download/cwiid-svn_history-rootdir.patch
+76e9e202f9419c9eabf8395b3a9b095e  download/cwiid-svn_history-ioctl_ui_set_phys.patch
+eab37f9bd991413c16ba6c99e3b171e6  download/cwiid-svn_history-wait_forever_sleep.patch
+d6b3a6fe44da89159be0a23809112065  download/cwiid-svn_history-abs_only.patch

@@ -1,7 +1,7 @@
 GARNAME = libftdi
 GARVERSION = 0.20
 CATEGORIES = lib
-MASTER_SITES = http://www.intra2net.com/de/produkte/opensource/ftdi/TGZ/
+MASTER_SITES = https://www.intra2net.com/en/developer/$(GARNAME)/download/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \

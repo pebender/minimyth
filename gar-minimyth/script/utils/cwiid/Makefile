@@ -1,11 +1,8 @@
 GARNAME = cwiid
-GARVERSION = 201
+GARVERSION = svn_history
 CATEGORIES = utils
-#MASTER_SITES = http://abstrakraft.org/cwiid/downloads/
-# The source has moved from svn to git. For now, the source from minimyth.org
-# will be used. Later, the source from git or the kernel driver may be used.
-#MASTER_SITES = svn://abstrakraft.org/cwiid/svn/trunk/
-DISTFILES = $(DISTNAME).tar.bz2
+MASTER_SITES = https://github.com/abstrakraft/$(GARNAME)/archive/
+DISTFILES = $(GARVERSION).tar.gz
 PATCHFILES = $(DISTNAME)-ldlibs.patch $(DISTNAME)-rootdir.patch $(DISTNAME)-ioctl_ui_set_phys.patch $(DISTNAME)-wait_forever_sleep.patch $(DISTNAME)-abs_only.patch
 LICENSE = GPL2
 

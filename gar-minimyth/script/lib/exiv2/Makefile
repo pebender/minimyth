@@ -1,7 +1,7 @@
 GARNAME = exiv2
 GARVERSION = 0.25
 CATEGORIES = lib
-MASTER_SITES = http://www.exiv2.org/
+MASTER_SITES = http://www.exiv2.org/releases/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = GPL2
 

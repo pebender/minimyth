@@ -1,5 +1,5 @@
 GARNAME = xscreensaver
-GARVERSION = 5.33
+GARVERSION = 5.43
 CATEGORIES = X11
 MASTER_SITES = http://www.jwz.org/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.gz

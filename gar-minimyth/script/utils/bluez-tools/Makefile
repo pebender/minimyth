@@ -1,9 +1,8 @@
 GARNAME = bluez-tools
-GARVERSION = 0.1.38-662e
+GARVERSION = 0.2.0~20140808
 CATEGORIES = system
-MASTER_SITES = http://bluez-tools.googlecode.com/files/
-DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = $(DISTNAME)-bluez_4.96_api.patch
+MASTER_SITES = http://ftp.debian.org/debian/pool/main/b/$(GARNAME)/
+DISTFILES = $(GARNAME)_$(GARVERSION).orig.tar.gz
 LICENSE = GPL2
 
 DESCRIPTION =

@@ -1,8 +1,8 @@
 GARNAME = lm_sensors
 GARVERSION = 3.4.0
 CATEGORIES = utils
-MASTER_SITES = http://dl.lm-sensors.org/lm-sensors/releases/
-DISTFILES   = $(DISTNAME).tar.bz2
+MASTER_SITES = http://deb.debian.org/debian/pool/main/l/lm-sensors/
+DISTFILES   = lm-sensors_$(GARVERSION).orig.tar.bz2
 PATCHFILES = $(DISTNAME)-perl.patch.gar
 LICENSE = GPL2/LGPL2_1
 
