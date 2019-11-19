@@ -7,11 +7,6 @@
 # The version of MiniMyth.
 mm_VERSION                ?= $(mm_VERSION_MYTH)-$(mm_VERSION_MINIMYTH)$(mm_VERSION_EXTRA)
 mm_VERSION_MYTH           ?= $(strip \
-                                $(if $(filter 0.22  ,$(mm_MYTH_VERSION)),0.22.0) \
-                                $(if $(filter 0.23  ,$(mm_MYTH_VERSION)),0.23.1) \
-                                $(if $(filter 0.24  ,$(mm_MYTH_VERSION)),0.24.3) \
-                                $(if $(filter 0.25  ,$(mm_MYTH_VERSION)),0.25.3) \
-                                $(if $(filter 0.26  ,$(mm_MYTH_VERSION)),0.26.2) \
                                 $(if $(filter 0.27  ,$(mm_MYTH_VERSION)),0.27.5) \
                                 $(if $(filter master,$(mm_MYTH_VERSION)),master) \
                               )
@@ -53,10 +48,8 @@ mm_SOFTWARE               ?= mythbrowser \
                              mythgallery \
                              mythgame \
                              mythmusic \
-                             $(if $(filter-out 0.22,$(mm_MYTH_VERSION)),mythnetvision) \
+                             mythnetvision \
                              mythnews \
-                             $(if $(filter 0.22 0.23 0.24,$(mm_MYTH_VERSION)),mythstream) \
-                             $(if $(filter 0.22 0.23 0.24,$(mm_MYTH_VERSION)),mythvideo) \
                              mythweather \
                              mythzoneminder \
                              $(if $(filter-out 0.22 0.23 0.24,$(mm_MYTH_VERSION)),airplay) \
@@ -103,7 +96,7 @@ mm_INSTALL_NFS_BOOT       ?= no
 # Valid values for mm_INSTALL_LATEST are 'yes' and 'no'.
 mm_INSTALL_LATEST         ?= no
 # Indicates the directory where the GAR MiniMyth build system is installed.
-mm_HOME                   ?= $(HOME)/svnroot/minimyth/gar-minimyth
+mm_HOME                   ?= $(HOME)/git/minimyth/gar-minimyth
 # Indicates the pxeboot TFTP directory.
 # The MiniMyth kernel, the MiniMyth file system image and MiniMyth themes are
 # installed in this directory. The files will be installed in a subdirectory
@@ -124,8 +117,8 @@ mm_KERNEL_VERSION         ?= 3.18
 # When not set, a built-in kernel configuration file will be used.
 mm_KERNEL_CONFIG          ?=
 # The version of Myth to use.
-# Valid values are '0.22', '0.23', '0.24', '0.25', '0.26', '0.27', 'master'.
-mm_MYTH_VERSION           ?= 0.24
+# Valid values are '0.27', 'master'.
+mm_MYTH_VERSION           ?= 0.27
 # The version of the NVIDIA driver.
 # Valid values are '304.125' (legacy), '340.76' (legacy), '352.21'.
 mm_NVIDIA_VERSION         ?= 304.125

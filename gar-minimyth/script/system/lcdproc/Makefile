@@ -33,13 +33,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-cvs//%/$(DISTNAME).tar.bz2:
-	@$(call FETCH_CVS, $*, $(GARNAME), $(GARVERSION), $(DISTNAME))
-	@$(MAKECOOKIE)
-
-checksum-$(DISTNAME).tar.bz2:
-	@$(MAKECOOKIE)
-
 pre-configure:
 	@$(call RUN_AUTOTOOLS)
 	@$(MAKECOOKIE)

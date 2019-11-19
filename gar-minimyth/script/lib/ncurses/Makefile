@@ -3,9 +3,10 @@ GARVERSION = $(NCURSES_VERSION)
 CATEGORIES = lib
 MASTER_SITES  = https://ftp.gnu.org/gnu/$(GARNAME)/
 MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/
-MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/$(word 1,$(subst -, ,$(GARVERSION)))/
-DISTFILES = $(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).tar.gz
-PATCHFILES = $(DISTNAME)-patch.sh.bz2 $(DISTNAME)-shell.patch $(DISTNAME)-perl.patch.gar $(DISTNAME).patch.gar
+MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/$(GARVERSION)/
+DISTFILES = $(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).tar.gz 
+PATCHFILES  = $(DISTNAME)-$(NCURSES_PATCH_VERSION)-patch.sh.bz2
+PATCHFILES += $(DISTNAME)-shell.patch $(DISTNAME)-perl.patch.gar $(DISTNAME).patch.gar
 LICENSE = MIT_Modified
 
 DESCRIPTION =
@@ -37,7 +38,10 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-rpath-hack \
 	--enable-overwrite \
 	--disable-widec \
-	--enable-termcap
+	--enable-termcap \
+	--enable-pc-files \
+	--with-pkg-config=$(build_DESTDIR)$(build_bindir)/pkg-config \
+	--with-pkg-config-libdir=$(DESTDIR)$(build_libdir)/pkg-config
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--without-progs
@@ -45,14 +49,12 @@ endif
 
 include ../../gar.mk
 
-post-extract:
-	mv $(WORKDIR)/$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))) $(WORKSRC)
+patch-%.sh.bz2:
+	echo " ==> Extracting $(DOWNLOADDIR)/$*"
+	mkdir -p $(WORKSRC)
+	cp $(DOWNLOADDIR)/$*.sh.bz2 $(WORKSRC)/$*.sh.bz2
+	cd $(WORKSRC) && bzip2 -df $*.sh.bz2 && sleep 1 && sh $*.sh
 	@$(MAKECOOKIE)
-
-patch-$(DISTNAME)-patch.sh.bz2:
-	@tar jxf -C $(DOWNLOADDIR) $(WORKSRC)/$(DISTNAME)-patch.sh.bz2
-	@cd $(WORKSRC) ; sh $(DISTNAME)-patch.sh
-https://invisible-mirror.net/archives/ncurses/5.9/ncurses-5.9-20141206-patch.sh.bz2
 
 pre-configure:
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)

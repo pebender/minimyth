@@ -4,7 +4,6 @@ build_system_bins = $(strip $(sort \
 	bison \
 	bzip2 \
 	coreutils \
-	cvs \
 	diffutils \
 	file \
 	findutils \
@@ -89,9 +88,6 @@ build_system_bins_coreutils = \
 # Once the described problem is fixed, it can be removed.
 build_system_bins_coreutils += \
 	chown
-
-build_system_bins_cvs = \
-	cvs
 
 # Overridden by binaries from package utils/diffutils.
 build_system_bins_diffutils = \

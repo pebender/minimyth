@@ -1,6 +1,5 @@
 8cb9c412e5f2d96bc6f459aa8c6282a1  download/ncurses-5.9.tar.gz
 5a294dcd49a16e369ba18989f9942113  download/ncurses-5.9-20141206-patch.sh.bz2
-dcaf5ab3eade0e41d1e18ee17cf9eab7  download/ncurses-5.9-20141206-shell.patch
-452e1f2ae79402951eac379b2a7f14b7  download/ncurses-5.9-20141206-perl.patch.gar
-f577bdfeb3bd643eb5b50061e28650af  download/ncurses-5.9-20141206.patch.gar
-5a294dcd49a16e369ba18989f9942113  download/ncurses-5.9-20141206-patch.sh.bz2
+dcaf5ab3eade0e41d1e18ee17cf9eab7  download/ncurses-5.9-shell.patch
+452e1f2ae79402951eac379b2a7f14b7  download/ncurses-5.9-perl.patch.gar
+f577bdfeb3bd643eb5b50061e28650af  download/ncurses-5.9.patch.gar
