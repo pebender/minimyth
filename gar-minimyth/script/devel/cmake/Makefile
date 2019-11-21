@@ -1,7 +1,7 @@
 GARNAME = cmake
-GARVERSION = 3.2.3
+GARVERSION = 3.15.5
 CATEGORIES = devel
-MASTER_SITES = http://www.cmake.org/files/v3.2/
+MASTER_SITES = https://github.com/Kitware/CMake/releases/download/v$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = BSD_3_Clause
 
@@ -17,14 +17,8 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = \
 	--verbose \
-	--parallel=1 \
+	--parallel=6 \
 	--no-system-libs \
-	--no-system-curl \
-	--no-system-expat \
-	--no-system-jsoncpp \
-	--no-system-zlib \
-	--no-system-bzip2 \
-	--no-system-libarchive \
 	--no-qt-gui \
 	--prefix="$(prefix)" \
 	--datadir="$(subst $(prefix),,$(datadir)/CMake)" \

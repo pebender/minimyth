@@ -1,16 +1,16 @@
 GARNAME = zlib
 GARVERSION = $(ZLIB_VERSION)
-CATEGORIES = lib
-MASTER_SITES  = http://downloads.sourceforge.net/project/libpng/$(GARNAME)/$(GARVERSION)/
-MASTER_SITES += http://zlib.net/
-DISTFILES  = $(DISTNAME).tar.xz
-DISTFILES += license
+CATEGORIES = devel
+SOURCEPKG = lib/zlib
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKDIR)/license
 
 DESCRIPTION =
 define BLURB
 endef
+
+DEPENDS   = lang/c
+BUILDDEPS = devel-tainted/devel-tainted devel/make
 
 DEPENDS = lang/c
 

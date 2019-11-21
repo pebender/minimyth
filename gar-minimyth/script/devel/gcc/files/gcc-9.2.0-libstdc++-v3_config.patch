@@ -1,8 +1,8 @@
-diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/config.h.in
---- gcc-5.2.0-old/libstdc++-v3/config.h.in	2015-07-19 18:20:53.430000005 -0700
-+++ gcc-5.2.0-new/libstdc++-v3/config.h.in	2015-07-19 18:22:07.578993333 -0700
-@@ -133,7 +133,7 @@
- #undef HAVE_FABSL
+diff -Naur gcc-9.2.0-old/libstdc++-v3/config.h.in gcc-9.2.0-new/libstdc++-v3/config.h.in
+--- gcc-9.2.0-old/libstdc++-v3/config.h.in	2019-11-19 10:17:19.968000007 -0800
++++ gcc-9.2.0-new/libstdc++-v3/config.h.in	2019-11-19 10:24:18.012058621 -0800
+@@ -151,7 +151,7 @@
+ #undef HAVE_FCNTL_H
  
  /* Define to 1 if you have the <fenv.h> header file. */
 -#undef HAVE_FENV_H
@@ -10,7 +10,7 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
  
  /* Define to 1 if you have the `finite' function. */
  #undef HAVE_FINITE
-@@ -187,7 +187,7 @@
+@@ -205,7 +205,7 @@
  #undef HAVE_HYPOTL
  
  /* Define if you have the iconv() function. */
@@ -19,7 +19,7 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
  
  /* Define to 1 if you have the <ieeefp.h> header file. */
  #undef HAVE_IEEEFP_H
-@@ -226,7 +226,7 @@
+@@ -244,7 +244,7 @@
  #undef HAVE_ISWBLANK
  
  /* Define if LC_MESSAGES is available in <locale.h>. */
@@ -28,8 +28,8 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
  
  /* Define to 1 if you have the `ldexpf' function. */
  #undef HAVE_LDEXPF
-@@ -310,7 +310,7 @@
- #undef HAVE_QUICK_EXIT
+@@ -364,7 +364,7 @@
+ #undef HAVE_READLINK
  
  /* Define to 1 if you have the `setenv' function. */
 -#undef HAVE_SETENV
@@ -37,7 +37,7 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
  
  /* Define to 1 if you have the `sincos' function. */
  #undef HAVE_SINCOS
-@@ -355,7 +355,7 @@
+@@ -412,7 +412,7 @@
  #undef HAVE_STDLIB_H
  
  /* Define if strerror_l is available in <string.h>. */
@@ -46,7 +46,7 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
  
  /* Define if strerror_r is available in <string.h>. */
  #undef HAVE_STRERROR_R
-@@ -386,7 +386,7 @@
+@@ -449,7 +449,7 @@
  #undef HAVE_SYS_IOCTL_H
  
  /* Define to 1 if you have the <sys/ipc.h> header file. */
@@ -55,7 +55,7 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
  
  /* Define to 1 if you have the <sys/isa_defs.h> header file. */
  #undef HAVE_SYS_ISA_DEFS_H
-@@ -398,13 +398,13 @@
+@@ -461,13 +461,13 @@
  #undef HAVE_SYS_PARAM_H
  
  /* Define to 1 if you have the <sys/resource.h> header file. */
@@ -69,9 +69,9 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
 -#undef HAVE_SYS_SEM_H
 +#define HAVE_SYS_SEM_H 1
  
- /* Define to 1 if you have the <sys/stat.h> header file. */
- #undef HAVE_SYS_STAT_H
-@@ -413,7 +413,7 @@
+ /* Define to 1 if you have the <sys/socket.h> header file. */
+ #undef HAVE_SYS_SOCKET_H
+@@ -482,7 +482,7 @@
  #undef HAVE_SYS_SYSINFO_H
  
  /* Define to 1 if you have the <sys/time.h> header file. */
@@ -80,16 +80,16 @@ diff -Naur gcc-5.2.0-old/libstdc++-v3/config.h.in gcc-5.2.0-new/libstdc++-v3/con
  
  /* Define to 1 if you have the <sys/types.h> header file. */
  #undef HAVE_SYS_TYPES_H
-@@ -443,7 +443,7 @@
- #undef HAVE_TGMATH_H
+@@ -515,7 +515,7 @@
+ #undef HAVE_TIMESPEC_GET
  
  /* Define to 1 if the target supports thread-local storage. */
 -#undef HAVE_TLS
 +#define HAVE_TLS 1
  
- /* Define to 1 if you have the <unistd.h> header file. */
- #undef HAVE_UNISTD_H
-@@ -665,7 +665,7 @@
+ /* Define if truncate is available in <unistd.h>. */
+ #undef HAVE_TRUNCATE
+@@ -755,7 +755,7 @@
  #undef HAVE___CXA_THREAD_ATEXIT_IMPL
  
  /* Define as const if the declaration of iconv() needs const. */

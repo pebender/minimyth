@@ -1,0 +1,14 @@
+diff -Naur llvm-9.0.0.src-old/CMakeLists.txt llvm-9.0.0.src-new/CMakeLists.txt
+--- llvm-9.0.0.src-old/CMakeLists.txt	2019-08-26 05:31:37.000000000 -0700
++++ llvm-9.0.0.src-new/CMakeLists.txt	2019-11-19 20:35:45.722003229 -0800
+@@ -650,8 +650,8 @@
+ Please install Python or specify the PYTHON_EXECUTABLE CMake variable.")
+ endif()
+ 
+-if( ${PYTHON_VERSION_STRING} VERSION_LESS 2.7 )
+-  message(FATAL_ERROR "Python 2.7 or newer is required")
++if( ${PYTHON_VERSION_STRING} VERSION_LESS 2.6 )
++  message(FATAL_ERROR "Python 2.6 or newer is required")
+ endif()
+ 
+ ######

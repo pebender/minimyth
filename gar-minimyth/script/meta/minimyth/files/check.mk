@@ -7,6 +7,8 @@ GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk devel/build-s
 include ../../gar.mk
 
 mm-all:
+
+x-mm-all:
 	@echo "checking ..."
 	@# Check build environment.
 	@echo "  checking for problematic binaries ..."

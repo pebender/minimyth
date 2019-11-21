@@ -1,10 +1,9 @@
 GARNAME = llvm
-GARVERSION = 3.6.2
+GARVERSION = 9.0.0
 CATEGORIES = devel
 MASTER_SITES = http://www.llvm.org/releases/$(GARVERSION)/
 DISTFILES = $(DISTNAME).src.tar.xz
 PATCHFILES = \
-	$(DISTNAME)-llvm-config-rpath.patch \
 	$(DISTNAME)-python_2.6.patch
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE.TXT
@@ -16,62 +15,46 @@ endef
 DEPENDS   = lang/c lang/cxx
 BUILDDEPS = python/python
 
+PWD := $(shell pwd)
+
 WORKSRC = $(WORKDIR)/$(DISTNAME).src
 WORKBLD = $(WORKSRC)_build
 
-CONFIGURE_SCRIPTS = custom
-BUILD_SCRIPTS     = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS   = $(WORKBLD)/Makefile
+CONFIGURE_SCRIPTS  = $(WORKBLD)/cmake
+BUILD_SCRIPTS      = $(WORKBLD)/Makefile
+INSTALL_SCRIPTS    = $(WORKBLD)/Makefile
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--enable-polly \
-	--enable-optimized \
-	--disable-profiling \
-	--disable-assertions \
-	--disable-expensive-checks \
-	--disable-debug-runtime \
-	--disable-debug-symbols \
-	--enable-jit \
-	--disable-docs \
-	--disable-doxygen \
-	--enable-threads \
-	--enable-pthreads \
-	--enable-pic \
-	--enable-shared \
-	--disable-embed-stdcxx \
-	--enable-timestamps \
-	--enable-targets="$(strip $(TARGETS_$(GARCH_FAMILY)))" \
-	--enable-bindings="no" \
-	--with-optimize-option="$(EXTRA_OPTIONS)" \
-	--with-extra-options="$(EXTRA_OPTIONS)" \
-	--with-extra-ld-options="$(EXTRA_LD_OPTIONS)"
-BUILD_ARGS     = \
-	VERBOSE="1"
-INSTALL_ARGS   = \
-	VERBOSE="1"
+CONFIGURE_ARGS  = \
+	-DCMAKE_FIND_ROOT_PATH="$(DESTDIR)$(prefix)" \
+	-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
+	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY="ONLY" \
+	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE="ONLY" \
+	-DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE="ONLY" \
+	-DCMAKE_C_COMPILER="$(build_DESTDIR)$(build_bindir)/$(CC)" \
+	-DCMAKE_CXX_COMPILER="$(build_DESTDIR)$(build_bindir)/$(CXX)" \
+	-DCMAKE_AR="$(build_DESTDIR)$(build_bindir)/$(AR)" \
+	-DCMAKE_LINKER="$(build_DESTDIR)$(build_bindir)/$(LD)" \
+	-DCMAKE_NM="$(build_DESTDIR)$(build_bindir)/$(NM)" \
+	-DCMAKE_OBJCOPY="$(build_DESTDIR)$(build_bindir)/$(OBJCOPY)" \
+	-DCMAKE_OBJDUMP="$(build_DESTDIR)$(build_bindir)/$(OBJDUMP)" \
+	-DCMAKE_RANLIB="$(build_DESTDIR)$(build_bindir)/$(RANLIB)" \
+	-DCMAKE_STRIP="$(build_DESTDIR)$(build_bindir)/$(STRIP)" \
+	-DCMAKE_INSTALL_PREFIX="$(DESTDIR)" \
+	-DCMAKE_STAGING_PREFIX="$(DESTDIR)" \
+	-DCMAKE_VERBOSE_MAKEFILE="ON" \
+	-DLLVM_TARGETS_TO_BUILD="X86;AMDGPU"
+ifneq ($(DESTIMG),build)
+CONFIGURE_ARGS += \
+	-DCMAKE_SYSTEM_NAME="Linux"
+endif
 
 include ../../gar.mk
 
-TARGETS_i386   := "x86,r600"
-TARGETS_x86_64 := "x86_64,r600"
-
-EXTRA_OPTIONS    := $(CFLAGS)
-EXTRA_LD_OPTIONS := $(LDFLAGS)
-
-# the configure script applies the host compiler flags when checking the build compiler.
-CFLAGS   :=
-CXXFLAGS :=
-LDFLAGS  :=
-
-pre-configure:
-	@cd $(WORKSRC)/autoconf ; aclocal  --force --verbose -I m4
-	@cd $(WORKSRC)/autoconf ; autoconf --force --verbose -I m4 -o ../configure
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
-configure-custom:
-	@mkdir -p $(WORKBLD)
-	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
+configure-%/cmake: 
+	@echo " ==> Running configure in $*"
+	@rm -rf $*
+	@mkdir -p $*
+	cd $* && $(CONFIGURE_ENV) cmake $(CONFIGURE_ARGS) ../$(patsubst %_build,%,$(notdir $*))
 	@$(MAKECOOKIE)
 
 post-install:

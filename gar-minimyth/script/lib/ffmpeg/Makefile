@@ -210,8 +210,8 @@ GAR_EXTRA_CONF += mediaplayers/mplayer-svn/package-api.mk
 include ../../gar.mk
 
 # ffmpeg 1.1.6 fails to compile with asm and gcc 5.2.0's link time optimization enabled.
-CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
-LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
+#CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
+#LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
 
 clean-all:
 	@$(MAKE) clean

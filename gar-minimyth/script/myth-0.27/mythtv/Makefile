@@ -177,9 +177,9 @@ CFLAGS   += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CXXFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 
 # mythtv 0.27 fails to compile with gcc 5.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
+#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
+#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
 
 # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63745>
 # <http://www.gossamer-threads.com/lists/mythtv/users/584449>
