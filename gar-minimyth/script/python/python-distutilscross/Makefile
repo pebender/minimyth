@@ -1,7 +1,7 @@
 GARNAME = python-distutilscross
 GARVERSION = 0.1
 CATEGORIES = python
-MASTER_SITES = http://pypi.python.org/packages/source/d/distutilscross/
+MASTER_SITES = https://pypi.python.org/packages/source/d/distutilscross/
 DISTFILES = $(patsubst python-%,%,$(GARNAME))-$(GARVERSION).tar.gz
 LICENSE =
 
