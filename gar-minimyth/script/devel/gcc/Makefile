@@ -96,11 +96,13 @@ post-install:
 	@rm -f $(CROSS_GCC_LIBDIR)/libssp.la
 	@rm -f $(CROSS_GCC_LIBDIR)/libssp_nonshared.la
 	@rm -f $(CROSS_GCC_LIBDIR)/libstdc++.la
+	@rm -f $(CROSS_GCC_LIBDIR)/libstdc++fs.la
 	@rm -f $(CROSS_GCC_LIBDIR)/libsupc++.la
 	@rm -f $(CROSS_GCC_LIBDIR)/libtsan.la
 	@rm -f $(CROSS_GCC_LIBDIR)/libubsan.la
 	@rm -f $(CROSS_GCC_LIBDIR)/libvtv.la
 	@rm -f $(CROSS_GCC_LIBDIR)/plugin/libcc1plugin.la
+	@rm -f $(CROSS_GCC_LIBDIR)/plugin/libcp1plugin.la
 	@rm -f $(CROSS_GCC_LIBEXECDIR)/liblto_plugin.la
 	@# Native compile.
 	@$(if $(filter     $(DESTIMG),$(CROSSIMG)), \
