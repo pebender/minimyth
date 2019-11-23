@@ -1,7 +1,7 @@
 GARNAME = fakeroot
 GARVERSION = 1.18.4
 CATEGORIES = devel
-MASTER_SITES = http://ftp.debian.org/debian/pool/main/f/$(GARNAME)/
+MASTER_SITES = https://mirrors.aliyun.com/oldubuntu-releases/ubuntu/pool/main/f/$(GARNAME)/
 DISTFILES = $(GARNAME)_$(GARVERSION).orig.tar.bz2
 LICENSE = GPL3
 
@@ -25,6 +25,8 @@ INSTALL_ARGS   = \
 	SUBDIRS="scripts test"
 
 include ../../gar.mk
+
+CFLAGS += -lcap-ng
 
 pre-configure:
 	@cd $(WORKSRC) ; mkdir -p build-aux
