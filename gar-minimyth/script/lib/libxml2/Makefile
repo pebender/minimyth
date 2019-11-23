@@ -33,6 +33,9 @@ CONFIGURE_ARGS += \
 	--without-python
 endif
 
+ifeq ($(DESTIMG),build)
+GAR_EXTRA_CONF += python/python/package-api.mk
+endif
 include ../../gar.mk
 
 pre-configure:
@@ -42,6 +45,7 @@ pre-configure:
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libxml2.la
+	@rm -f $(DESTDIR)$(PYTHON_libdir)/site-packages/libxml2mod.la
 	@sed -i 's%-L$${libdir}%-L$(DESTDIR)$${libdir}%g'         $(DESTDIR)$(bindir)/xml2-config
 	@sed -i 's%-I$${includedir}%-I$(DESTDIR)$${includedir}%g' $(DESTDIR)$(bindir)/xml2-config
 	@sed -i 's%-L${libdir}%-L$(DESTDIR)${libdir}%g'           $(DESTDIR)$(libdir)/xml2Conf.sh
