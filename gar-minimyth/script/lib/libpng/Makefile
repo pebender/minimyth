@@ -1,8 +1,9 @@
 GARNAME = libpng
-GARVERSION = 1.5.22
+GARVERSION = 1.5.30
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)15/$(GARVERSION)/
-DISTFILES  = $(DISTNAME).tar.bz2
+MASTER_SITES  = https://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)15/$(GARVERSION)/
+MASTER_SITES += https://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)15/older-releases/$(GARVERSION)/
+DISTFILES  = $(DISTNAME).tar.xz
 DISTFILES += config.cache.$(GARCH_FAMILY)
 PATCHFILES = \
 	$(DISTNAME).patch.gar

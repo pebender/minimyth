@@ -1,7 +1,7 @@
 GARNAME = pcre
-GARVERSION = 8.37
+GARVERSION = 8.43
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/
+MASTER_SITES = https://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES  = $(DISTNAME).patch.gar
 ifneq ($(DESTIMG),build)

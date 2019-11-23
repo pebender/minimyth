@@ -1,8 +1,8 @@
 GARNAME = libass
-GARVERSION = 0.10.1
+GARVERSION = 0.10.2
 CATEGORIES = lib
-MASTER_SITES = http://libass.googlecode.com/files/
-DISTFILES = $(DISTNAME).tar.gz
+MASTER_SITES = https://github.com/libass/libass/archive/
+DISTFILES = $(GARVERSION).tar.gz
 LICENSE = ISC
 
 DESCRIPTION =

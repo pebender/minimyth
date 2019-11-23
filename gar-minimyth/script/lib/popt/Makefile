@@ -1,7 +1,7 @@
 GARNAME = popt
 GARVERSION = 1.16
 CATEGORIES = lib
-MASTER_SITES = http://rpm5.org/files/$(GARNAME)/
+MASTER_SITES = https://fossies.org/linux/misc/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.12.patch \

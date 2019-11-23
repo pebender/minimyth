@@ -1,7 +1,7 @@
 GARNAME = attr
 GARVERSION = 2.4.46
 CATEGORIES = lib
-MASTER_SITES = http://download.savannah.gnu.org/releases-noredirect/attr/
+MASTER_SITES = http://download.savannah.gnu.org/releases/attr/
 DISTFILES = $(DISTNAME).src.tar.gz
 LICENSE = GPL2/LGPL2_1
 

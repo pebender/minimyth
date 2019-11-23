@@ -1,8 +1,8 @@
 GARNAME = libirman
-GARVERSION = 0.4.5
+GARVERSION = 0.4.6
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/lirc/$(GARNAME)/$(GARVERSION)/
-DISTFILES = $(DISTNAME).tar.bz2
+MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch
 LICENSE = GPL2/LGPL2
