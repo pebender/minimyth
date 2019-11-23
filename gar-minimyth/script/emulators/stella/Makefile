@@ -1,7 +1,7 @@
 GARNAME = stella
 GARVERSION = 3.9.3
 CATEGORIES = emulators
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://github.com/stella-emu/stella/releases/download/release-$(GARVERSION)/
 DISTFILES = $(DISTNAME)-src.tar.gz
 PATCHFILES = $(DISTNAME).patch
 LICENSE = GPL2

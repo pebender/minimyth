@@ -1,7 +1,7 @@
 GARNAME = sqlite
-GARVERSION = autoconf-3081002
+GARVERSION = autoconf-3300100
 CATEGORIES = db
-MASTER_SITES = http://www.sqlite.org/2015
+MASTER_SITES = http://www.sqlite.org/2019/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE =
 
@@ -17,6 +17,7 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
 	--enable-readline \

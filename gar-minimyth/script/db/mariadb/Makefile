@@ -1,5 +1,5 @@
 GARNAME = mariadb
-GARVERSION = 10.0.20
+GARVERSION = 10.0.38
 CATEGORIES = db
 MASTER_SITES = https://downloads.mariadb.org/interstitial/$(DISTNAME)/source/
 DISTFILES = $(DISTNAME).tar.gz

@@ -1,7 +1,7 @@
 GARNAME = eventlircd
-GARVERSION = 44
+GARVERSION = 20110816-8245391
 CATEGORIES = system
-MASTER_SITES = svn://eventlircd.googlecode.com/svn/trunk/
+MASTER_SITES = git://github.com/pebender/$(GARNAME).git/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = GPL2
 
@@ -20,8 +20,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-svn//%/$(DISTNAME).tar.bz2:
-	@$(call FETCH_SVN, http://$*, $(GARVERSION), $(DISTNAME))
+git//%$(DISTNAME).tar.bz2:
+	@$(call FETCH_GIT, $*, $(word 2,$(subst -, ,$(GARVERSION))), $(DISTNAME))
 	@$(MAKECOOKIE)
 
 checksum-$(DISTNAME).tar.bz2:

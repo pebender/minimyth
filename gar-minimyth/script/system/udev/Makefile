@@ -2,7 +2,7 @@ GARNAME = udev
 # updating requires switching to eudev <http://dev.gentoo.org/~blueness/eudev/>.
 GARVERSION = 182
 CATEGORIES = system
-MASTER_SITES = ftp://ftp.kernel.org/pub/linux/utils/kernel/hotplug/
+MASTER_SITES = https://www.kernel.org/pub/linux/utils/kernel/hotplug/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-remove_sd_is_mq.patch

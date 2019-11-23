@@ -1,7 +1,7 @@
 GARNAME = cifs-utils
 GARVERSION = 5.8
 CATEGORIES = net
-MASTER_SITES = http://download.samba.org/pub/linux-cifs/cifs-utils/
+MASTER_SITES = https://www.samba.org/ftp/linux-cifs/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = GPL3
 
