@@ -5,18 +5,15 @@ MASTER_SITES = git://github.com/MythTV/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES  =
 PATCHFILES += \
-	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-automake_1.13.patch \
-	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-zeromq_cross.patch.gar \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythmusic_button_list_quick_scroll.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-python_build.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-sysroot.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-hulu.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-networkcontrol.patch \
-	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-eject.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).patch.gar \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-init.patch \
-	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-minimyth.patch \
-	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-programid.patch
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-programid.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-wshadow.patch
 LICENSE = GPL2
 
 DESCRIPTION = 
@@ -35,29 +32,26 @@ DEPENDS = \
 	lib/lame \
 	lib/libass \
 	lib/libavc1394 \
+	lib/libbluray \
 	lib/libcdio \
 	lib/libcdio-paranoia \
 	lib/libcec \
 	lib/libiec61883 \
+	lib/libsamplerate \
+	lib/taglib \
 	lib/libxml2 \
 	lib/openssl \
 	lib/zlib \
 	python/python \
-	python/python-MySQL-python \
-	python/python-lxml \
-	python/python-urlgrabber \
-	qt/qt4 \
+	qt/qtbase \
+	qt/qtscript \
 	system/lirc \
 	system/udev \
 	X11/libva \
 	X11/libvdpau \
 	xorg/xorg
 BUILDDEPS = \
-	devel/yasm \
-	python/python-distutilscross \
-	python/python-MySQL-python \
-	python/python-lxml \
-	python/python-urlgrabber
+	devel/yasm
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 
@@ -91,11 +85,10 @@ CONFIGURE_ARGS = \
 	--cc="$(CC)" \
 	--cxx="$(CXX)" \
 	--ld="$(CC)" \
-	--qmake="$(DESTDIR)$(qt4bindir)/qmake" \
+	--qmake="$(build_DESTDIR)$(build_qt5bindir)/qmake" \
 	--host-cc="$(build_CC)" \
 	--host-cflags="$(build_CFLAGS)" \
 	--host-ldflags="$(build_LDFLAGS)" \
-	--host-libs="" \
 	--extra-cflags="$(CFLAGS)" \
 	--extra-cxxflags="$(CXXFLAGS)" \
 	--extra-ldflags="$(LDFLAGS)" \
@@ -115,7 +108,7 @@ CONFIGURE_ARGS = \
 	--enable-sse42 \
 	--enable-ssse3 \
 	--enable-avx \
-	--enable-yasm \
+	--enable-x86asm \
 	--enable-pic \
 	--disable-proc-opt \
 	--enable-audio-oss \
@@ -139,13 +132,12 @@ CONFIGURE_ARGS = \
 	--enable-x11 \
 	--x11-path="$(DESTDIR)$(includedir)" \
 	--enable-xrandr \
-	--enable-xv \
 	--enable-vdpau \
-	--disable-crystalhd \
 	--enable-vaapi \
+	--disable-nvdec \
 	--disable-dxva2 \
-	--enable-opengl-video \
-	--disable-quartz-video \
+	--disable-mediacodec \
+	--disable-mmal \
 	--enable-libass \
 	--disable-mac-bundle \
 	--enable-libxml2 \
@@ -156,10 +148,15 @@ CONFIGURE_ARGS = \
 	--without-bindings="php" \
 	--with-bindings="python" \
 	--disable-libmp3lame \
-	--disable-libfaac \
+	--disable-libx264 \
+	--disable-libx265 \
 	--disable-libvpx \
 	--disable-libxvid \
 	--disable-sdl
+BUILD_ARGS = \
+	Q="" \
+	V="1" \
+	VERBOSE="1"
 
 CONFIGURE_ENV  = $(MYTHTV_CONFIGURE_ENV)
 BUILD_ENV      = $(MYTHTV_BUILD_ENV)
@@ -176,10 +173,10 @@ CPPFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CFLAGS   += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CXXFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 
-# mythtv master fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+# mythtv master's ffmpeg fails to compile with gcc 9.2.0's link time optimization enabled.
+CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
 
 # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63745>
 # <http://www.gossamer-threads.com/lists/mythtv/users/584449>

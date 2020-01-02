@@ -1,6 +1,6 @@
 GARNAME           = perl-Class-Load
-GARVERSION        = 0.06
-MASTER_SITES      = http://www.cpan.org/authors/id/S/SA/SARTAK/
-#DEPENDS           = perl/perl-Class-Singleton perl/perl-Params-Validate
+GARVERSION        = 0.25
+MASTER_SITES      = https://cpan.metacpan.org/authors/id/E/ET/ETHER/
+DEPENDS           = perl/perl-Class-Singleton perl/perl-Params-Validate
 
 include ../../perl/perl/perl-module.mk

@@ -1,7 +1,7 @@
 GARNAME = libXi
-GARVERSION = 1.7.4
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 1.7.10
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/lib/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,17 +11,13 @@ define BLURB
 endef
 
 DEPENDS   = lang/c \
-	$(CATEGORY)/inputproto \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/libXfixes \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xproto
+	xorg/libX11 \
+	xorg/libXext \
+	xorg/libXfixes \
+	xorg/util-macros \
+	xorg/xorgproto
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -37,16 +33,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-xmlto \
 	--without-fop \
 	--without-xsltproc \
-	--without-asciidoc \
-	--with-gnu-ld
+	--without-asciidoc
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

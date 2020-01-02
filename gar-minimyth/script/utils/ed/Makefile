@@ -1,5 +1,5 @@
 GARNAME = ed
-GARVERSION = 1.12
+GARVERSION = 1.15
 CATEGORIES = utils
 MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.lz
@@ -25,7 +25,7 @@ CONFIGURE_ARGS = \
 	CC="$(CC)" \
 	CPPFLAGS="$(CPPFLAGS)" \
 	CCFLAGS="$(CCFLAGS)" \
-	LDFLAGS="$(LDFLAGS)" \
+	LDFLAGS="$(LDFLAGS) -fwhole-program" \
 	SHELL="$(SHELL)"
 BUILD_ARGS     = \
 	SHELL="$(SHELL)"

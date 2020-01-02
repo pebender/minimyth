@@ -1,7 +1,7 @@
 GARNAME = perl
 GARVERSION = $(PERL_VERSION)
 CATEGORIES = perl
-MASTER_SITES = http://www.cpan.org/src/
+MASTER_SITES = https://www.cpan.org/src/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES  = $(DISTNAME)-dash.patch $(DISTNAME)-perl.patch.gar $(DISTNAME)-path.patch $(DISTNAME)-perl5lib.patch
 ifneq ($(DESTIMG),build)

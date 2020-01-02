@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c gtk/dbus-glib gtk/glib lib/readline
+DEPENDS = lang/c lib/dbus-glib lib/glib lib/readline
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

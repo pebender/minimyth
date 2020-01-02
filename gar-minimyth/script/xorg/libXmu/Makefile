@@ -1,7 +1,7 @@
 GARNAME = libXmu
-GARVERSION = 1.1.2
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 1.1.3
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/lib/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,13 +11,11 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/libXt \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/xextproto
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/libX11 \
+	xorg/libXext \
+	xorg/libXt \
+	xorg/util-macros \
+	xorg/xorgproto
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -25,22 +23,18 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
-	--disable-docs \
 	--enable-shared \
 	--disable-static \
+	--disable-docs \
 	--enable-unix-transport \
 	--disable-tcp-transport \
 	--disable-ipv6 \
 	--disable-local-transport \
-	--with-gnu-ld
+	--without-xmlto \
+	--without-fop \
+	--without-xsltproc
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

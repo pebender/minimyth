@@ -1,7 +1,7 @@
 GARNAME = vdpauinfo
 GARVERSION = 1.0
 CATEGORIES = X11
-MASTER_SITES = http://people.freedesktop.org/~aplattner/vdpau/
+MASTER_SITES = https://people.freedesktop.org/~aplattner/vdpau/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = MIT
 
@@ -21,8 +21,3 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 include ../../gar.mk
 
 LDFLAGS := $(LDFLAGS) -fwhole-program
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)

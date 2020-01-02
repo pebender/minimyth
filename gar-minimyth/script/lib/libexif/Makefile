@@ -1,7 +1,7 @@
 GARNAME = libexif
 GARVERSION = 0.6.21
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/libexif/files/libexif/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = LGPL2_1
 
@@ -22,7 +22,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-internal-docs \
 	--enable-nls \
 	--disable-rpath \
-	--with-gnu-ld \
 	--with-doc-dir="$(docdir)"
 
 include ../../gar.mk

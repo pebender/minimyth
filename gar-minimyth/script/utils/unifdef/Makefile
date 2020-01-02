@@ -1,7 +1,7 @@
 GARNAME = unifdef
-GARVERSION = 1.0
+GARVERSION = 2.11
 CATEGORIES = utils
-MASTER_SITES = http://www.cs.cmu.edu/~ajw/public/dist/
+MASTER_SITES = https://dotat.at/prog/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME).patch
 LICENSE = GPL2

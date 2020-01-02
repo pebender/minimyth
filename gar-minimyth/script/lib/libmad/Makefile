@@ -1,7 +1,7 @@
 GARNAME = libmad
 GARVERSION = 0.15.1b
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/mad/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/mad/files/libmad/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
@@ -22,8 +22,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
-	--disable-debugging \
-	--with-gnu-ld
+	--disable-debugging
 
 include ../../gar.mk
 

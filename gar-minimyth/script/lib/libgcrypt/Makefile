@@ -21,8 +21,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--disable-asm \
-	--with-gnu-ld
+	--disable-asm
 
 include ../../gar.mk
 

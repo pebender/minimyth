@@ -21,7 +21,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--enable-portable-binary \
 	--enable-threads \
-	--with-gnu-ld \
 	--with-gcc-arch=$(GARCH)
 
 GAR_EXTRA_CONF += lib/fftw3/package-api.mk

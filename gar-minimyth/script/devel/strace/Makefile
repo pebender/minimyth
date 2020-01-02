@@ -1,7 +1,7 @@
 GARNAME = strace
 GARVERSION = 4.7
 CATEGORIES = devel
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://strace.io/files/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch

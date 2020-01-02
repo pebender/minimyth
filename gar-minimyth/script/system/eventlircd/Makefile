@@ -3,6 +3,7 @@ GARVERSION = 20110816-8245391
 CATEGORIES = system
 MASTER_SITES = git://github.com/pebender/$(GARNAME).git/
 DISTFILES = $(DISTNAME).tar.bz2
+PATCHFILES = $(DISTNAME)-missing_break.patch $(DISTNAME)-event_codes_header.patch
 LICENSE = GPL2
 
 DESCRIPTION =

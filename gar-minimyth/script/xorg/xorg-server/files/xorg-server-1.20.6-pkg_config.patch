@@ -1,0 +1,13 @@
+diff -Naur xorg-server-1.20.6-old/xorg-server.m4 xorg-server-1.20.6-new/xorg-server.m4
+--- xorg-server-1.20.6-old/xorg-server.m4	2019-11-22 15:44:19.000000000 -0800
++++ xorg-server-1.20.6-new/xorg-server.m4	2019-12-25 15:37:57.160965615 -0800
+@@ -31,7 +31,8 @@
+ AC_DEFUN([XORG_DRIVER_CHECK_EXT],[
+ 	AC_REQUIRE([PKG_PROG_PKG_CONFIG])
+ 	SAVE_CFLAGS="$CFLAGS"
+-	CFLAGS="$CFLAGS -I`$PKG_CONFIG --variable=sdkdir xorg-server`"
++	m4_pattern_allow([^PKG_CONFIG_SYSROOT_DIR$])
++	CFLAGS="$CFLAGS -I$PKG_CONFIG_SYSROOT_DIR`$PKG_CONFIG --variable=sdkdir xorg-server`"
+ 	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+ #include "xorg-server.h"
+ #if !defined $1

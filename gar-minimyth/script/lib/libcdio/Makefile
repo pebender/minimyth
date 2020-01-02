@@ -33,8 +33,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-cdda-player \
 	--without-cd-read \
 	--without-iso-info \
-	--without-iso-read \
-	--with-gnu-ld
+	--without-iso-read
 
 include ../../gar.mk
 

@@ -1,7 +1,7 @@
 GARNAME = acpid
-GARVERSION = 2.0.23
+GARVERSION = 2.0.32
 CATEGORIES = system
-MASTER_SITES = http://downloads.sourceforge.net/project/acpid2/
+MASTER_SITES = https://sourceforge.net/projects/acpid2/files/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2
 

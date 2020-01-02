@@ -1,8 +1,8 @@
 GARNAME = libpciaccess
-GARVERSION = 0.13.4
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
-DISTFILES = $(DISTNAME).tar.bz2
+GARVERSION = 0.16
+CATEGORIES = xorg
+MASTER_SITES = https://gitlab.freedesktop.org/xorg/lib/libpciaccess/-/archive/libpciaccess-$(GARVERSION)/
+DISTFILES = $(GARNAME)-$(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
 
@@ -11,9 +11,9 @@ define BLURB
 endef
 
 DEPENDS = lang/c lib/zlib \
-	$(CATEGORY)/util-macros
+	xorg/util-macros
 
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+WORKSRC = $(WORKDIR)/$(GARNAME)-$(DISTNAME)
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -23,16 +23,13 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--with-gnu-ld \
 	--with-pciids-path=$(datadir) \
 	--with-zlib
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:

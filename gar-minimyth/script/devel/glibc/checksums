@@ -4,3 +4,4 @@ eb15c16d23449fb12ba24999a4f53485  download/glibc-2.17-select_fd_type.patch
 de4055e88df14f7eda83f452bb052e94  download/glibc-2.17-perl.patch.gar
 0ef489c99f9201fba59688d0e9569412  download/glibc-2.17.patch
 7ec37523790da60a5c5d17953e128960  download/glibc-2.17-ldd.patch
+2b1dbdf27b28620752956c061d62f60c  download/glibc-2.30.tar.xz

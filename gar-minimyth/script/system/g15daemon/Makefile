@@ -1,7 +1,7 @@
 GARNAME = g15daemon
 GARVERSION = 1.9.5.3
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/G15Daemon%201.9x/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/G15Daemon%201.9x/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-dash.patch $(DISTNAME).patch
 LICENSE = LGPL2
@@ -18,8 +18,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
 include ../../gar.mk
 

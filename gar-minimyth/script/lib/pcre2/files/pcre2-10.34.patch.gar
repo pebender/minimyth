@@ -1,0 +1,44 @@
+diff -Naur pcre2-10.34-old/pcre2-config.in pcre2-10.34-new/pcre2-config.in
+--- pcre2-10.34-old/pcre2-config.in	2016-11-22 01:54:06.000000000 -0800
++++ pcre2-10.34-new/pcre2-config.in	2019-12-16 12:20:22.027013129 -0800
+@@ -30,16 +30,16 @@
+ libR=
+ case `uname -s` in
+   *SunOS*)
+-  libR=" -R@libdir@"
++  libR=" -R@GAR_DESTDIR@@libdir@"
+   ;;
+   *BSD*)
+-  libR=" -Wl,-R@libdir@"
++  libR=" -Wl,-R@GAR_DESTDIR@@libdir@"
+   ;;
+ esac
+ 
+ libS=
+-if test @libdir@ != /usr/lib ; then
+-  libS=-L@libdir@
++if test @GAR_DESTDIR@@libdir@ != @GAR_DESTDIR@@GAR_libdir@ ; then
++  libS=-L@GAR_DESTDIR@@libdir@
+ fi
+ 
+ while test $# -gt 0; do
+@@ -69,15 +69,15 @@
+       echo @PACKAGE_VERSION@
+       ;;
+     --cflags)
+-      if test @includedir@ != /usr/include ; then
+-        includes=-I@includedir@
++      if test @GAR_DESTDIR@@includedir@ != @GAR_DESTDIR@@GAR_includedir@ ; then
++        includes=-I@GAR_DESTDIR@@includedir@
+       fi
+       echo $includes @PCRE2_STATIC_CFLAG@
+       ;;
+     --cflags-posix)
+       if test @enable_pcre2_8@ = yes ; then
+-        if test @includedir@ != /usr/include ; then
+-          includes=-I@includedir@
++        if test @GAR_DESTDIR@@includedir@ != @GAR_DESTDIR@@GAR_includedir@ ; then
++          includes=-I@GAR_DESTDIR@@includedir@
+         fi
+         echo $includes @PCRE2_STATIC_CFLAG@
+       else

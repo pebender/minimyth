@@ -1,5 +1,5 @@
 GARNAME = gawk
-GARVERSION = 4.1.3
+GARVERSION = 5.0.1
 CATEGORIES = utils
 MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.xz
@@ -18,7 +18,19 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-nls \
+	--enable-lint \
+	--enable-builtin-intdiv0 \
+	--disable-mpfr \
+	--disable-nls \
 	--disable-rpath \
-	--with-gnu-ld
+	--without-libiconv-prefix \
+	--without-libintl-prefix \
+	--without-libsigsegv-prefix
+BUILD_ARGS = \
+	MANS="" \
+	INFO_DEPS=""
+INSTALL_ARGS = \
+	MANS="" \
+	INFO_DEPS=""
 
 include ../../gar.mk

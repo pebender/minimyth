@@ -1,8 +1,8 @@
 GARNAME = findutils
-GARVERSION = 4.4.2
+GARVERSION = 4.7.0
 CATEGORIES = utils
 MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.gz
+DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES= $(DISTNAME)-perl.patch.gar
 LICENSE = GPL3
 
@@ -17,8 +17,17 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--enable-silent-rules \
+	--disable-silent-rules \
+	--disable-largefile \
+	--enable-threads \
+	--enable-assert \
 	--disable-rpath \
-	--with-gnu-ld
+	--enable-nls \
+	--without-libpth-prefix \
+	--without-selinux \
+	--without-libiconv-prefix \
+	--without-libintl-prefix
 
 include ../../gar.mk
 

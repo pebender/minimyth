@@ -1,0 +1,18 @@
+diff -Naur ntp-4.2.8p13-old/include/ntp_syscall.h ntp-4.2.8p13-new/include/ntp_syscall.h
+--- ntp-4.2.8p13-old/include/ntp_syscall.h	2011-03-25 19:03:33.000000000 -0700
++++ ntp-4.2.8p13-new/include/ntp_syscall.h	2019-12-29 11:13:40.586008647 -0800
+@@ -10,6 +10,14 @@
+ # include <sys/timex.h>
+ #endif
+ 
++#if defined(ADJ_NANO) && !defined(MOD_NANO)
++#define MOD_NANO ADJ_NANO
++#endif
++
++#if defined(ADJ_TAI) && !defined(MOD_TAI)
++#define MOD_TAI ADJ_TAI
++#endif
++
+ #ifndef NTP_SYSCALLS_LIBC
+ # ifdef NTP_SYSCALLS_STD
+ #  define ntp_adjtime(t)	syscall(SYS_ntp_adjtime, (t))

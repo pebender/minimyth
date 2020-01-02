@@ -1,0 +1,52 @@
+diff -Naur mesa-18.2.8-old/configure.ac mesa-18.2.8-new/configure.ac
+--- mesa-18.2.8-old/configure.ac	2018-12-27 08:02:01.000000000 -0800
++++ mesa-18.2.8-new/configure.ac	2019-12-27 15:49:11.225995592 -0800
+@@ -2286,6 +2286,7 @@
+ if test -n "$with_gallium_drivers" -a "x$with_gallium_drivers" != xswrast; then
+     if test "x$enable_xvmc" = xauto -a "x$have_xvmc_platform" = xyes; then
+         PKG_CHECK_EXISTS([xvmc >= $XVMC_REQUIRED], [enable_xvmc=yes], [enable_xvmc=no])
++        PKG_CHECK_EXISTS([xv], [enable_xvmc=yes], [enable_xvmc=no])
+     fi
+ 
+     if test "x$enable_vdpau" = xauto -a "x$have_vdpau_platform" = xyes; then
+@@ -2332,6 +2333,7 @@
+         AC_MSG_ERROR([XVMC requires the x11 platforms])
+     fi
+     PKG_CHECK_MODULES([XVMC], [xvmc >= $XVMC_REQUIRED])
++    PKG_CHECK_MODULES([XV], [xv])
+     gallium_st="$gallium_st xvmc"
+ fi
+ AM_CONDITIONAL(HAVE_ST_XVMC, test "x$enable_xvmc" = xyes)
+diff -Naur mesa-18.2.8-old/src/gallium/state_trackers/xvmc/Makefile.am mesa-18.2.8-new/src/gallium/state_trackers/xvmc/Makefile.am
+--- mesa-18.2.8-old/src/gallium/state_trackers/xvmc/Makefile.am	2018-12-27 08:02:02.000000000 -0800
++++ mesa-18.2.8-new/src/gallium/state_trackers/xvmc/Makefile.am	2019-12-27 15:49:11.225995592 -0800
+@@ -29,7 +29,8 @@
+ 	$(VL_CFLAGS) \
+ 	$(X11_INCLUDES) \
+ 	$(XCB_DRI3_CFLAGS) \
+-	$(XVMC_CFLAGS)
++	$(XVMC_CFLAGS) \
++	$(XV_CFLAGS)
+ 
+ noinst_LTLIBRARIES = libxvmctracker.la
+ 
+@@ -47,7 +48,7 @@
+ 
+ noinst_HEADERS = tests/testlib.h
+ 
+-TEST_LIBS = $(XVMC_LIBS) -lXvMCW $(VL_LIBS) $(XCB_DRI3_LIBS)
++TEST_LIBS = $(XVMC_LIBS) -lXvMCW $(XV_LIBS) $(VL_LIBS) $(XCB_DRI3_LIBS)
+ tests_test_context_SOURCES = tests/test_context.c tests/testlib.c
+ tests_test_context_LDADD = $(TEST_LIBS)
+ tests_test_surface_SOURCES = tests/test_surface.c tests/testlib.c
+diff -Naur mesa-18.2.8-old/src/gallium/targets/xvmc/Makefile.am mesa-18.2.8-new/src/gallium/targets/xvmc/Makefile.am
+--- mesa-18.2.8-old/src/gallium/targets/xvmc/Makefile.am	2018-12-27 08:02:02.000000000 -0800
++++ mesa-18.2.8-new/src/gallium/targets/xvmc/Makefile.am	2019-12-27 15:50:50.965940977 -0800
+@@ -29,6 +29,7 @@
+ 	$(top_builddir)/src/gallium/auxiliary/libgallium.la \
+ 	$(top_builddir)/src/util/libmesautil.la \
+ 	$(XVMC_LIBS) \
++	$(XV_LIBS) \
+ 	$(VL_LIBS) \
+ 	$(XCB_DRI3_LIBS) \
+ 	$(LIBDRM_LIBS) \

@@ -1,9 +1,8 @@
 GARNAME = util-linux
-GARVERSION = 2.26.2
+GARVERSION = 2.34
 CATEGORIES = utils
-MASTER_SITES = https://www.kernel.org/pub/linux/utils/util-linux/v2.26/
+MASTER_SITES = https://www.kernel.org/pub/linux/utils/util-linux/v2.34/
 DISTFILES = $(DISTNAME).tar.xz
-PATCHFILES = $(DISTNAME)-agetty_2.19.1.patch
 LICENSE = GPL2
 
 DESCRIPTION =
@@ -27,12 +26,14 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-nls \
 	--disable-rpath \
 	--enable-tls \
+	--enable-widechar \
 	--enable-libuuid \
 	--enable-libblkid \
 	--enable-libmount \
-	--disable-libmount-force-mountinfo \
+	--disable-libmount-support-mtab \
 	--disable-libsmartcols \
 	--disable-libfdisk \
+	--disable-fdisks \
 	--enable-mount \
 	--disable-losetup \
 	--disable-zramctl \
@@ -44,7 +45,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-unshare \
 	--disable-nsenter \
 	--disable-setpriv \
-	--disable-eject \
+	--enable-hardlink \
+	--enable-eject \
 	--enable-agetty \
 	--enable-cramfs \
 	--disable-bfs \
@@ -63,7 +65,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-mesg \
 	--disable-raw \
 	--enable-rename \
-	--disable-reset \
 	--disable-vipw \
 	--disable-newgrp \
 	--disable-chfn-chsh-password \
@@ -91,13 +92,20 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-makeinstall-chown \
 	--disable-makeinstall-setuid \
 	--disable-colors-default \
-	--with-gnu-ld \
+	--without-util \
 	--without-selinux \
 	--without-audit \
 	--without-udev \
+	--with-ncursesw \
+	--without-ncurses \
 	--without-slang \
+	--without-tinfo \
+	--without-readline \
 	--without-utempter \
+	--without-cap-ng \
+	--with-libz \
 	--without-user \
+	--without-btrfs \
 	--without-systemd \
 	--without-systemdsystemunitdir \
 	--without-smack \

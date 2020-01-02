@@ -1,7 +1,7 @@
 GARNAME = libirman
 GARVERSION = 0.4.6
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/libirman/files/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch
@@ -20,8 +20,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
-	--disable-swtest \
-	--with-gnu-ld
+	--disable-swtest
 
 include ../../gar.mk
 

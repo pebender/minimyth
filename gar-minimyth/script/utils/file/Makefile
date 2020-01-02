@@ -1,7 +1,6 @@
 GARNAME = file
-GARVERSION = 5.12
+GARVERSION = 5.38
 CATEGORIES = utils
-# while there are newer versions the ftp server is down.
 MASTER_SITES  = ftp://ftp.astron.com/pub/$(GARNAME)/
 MASTER_SITES += ftp://ftp.gw.com/mirrors/pub/unix/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.gz
@@ -11,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lang/c lib/zlib
+DEPENDS    = lang/c lib/zlib utils/bzip2 utils/xz
 BUILDDEPS  =
 ifneq ($(DESTIMG),build)
 BUILDDEPS += utils/file
@@ -23,16 +22,18 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
-	--enable-shared \
+	--enable-elf \
+	--enable-elf-core \
+	--enable-zlib \
+	--enable-bzlib \
+	--enable-xzlib \
+	--disable-libseccomp \
+	--enable-fsect-man5 \
 	--disable-static \
-	--with-gnu-ld
+	--enable-shared \
+	--with-sysroot=$(DESTDIR)
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -rf $(DESTDIR)$(libdir)/libmagic.la

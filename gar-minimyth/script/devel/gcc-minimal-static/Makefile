@@ -15,10 +15,10 @@ IMGDEPS += $(CROSSIMG)
 ifneq ("$(DESTIMG)+$(CROSSIMG)","build+build")
 $(CROSSIMG)_DEPENDS = kernel-headers/linux-headers devel/glibc-headers
 DEPENDS  = lang/c devel/binutils
+BUILDDEPS =
 else
-DEPENDS  =
+$(error "cannot build devel/gcc-minimal-static with DESTIMG=$(DESTIMG) and CROSSIMG=$(CROSSIMG)")
 endif
-DEPENDS += devel/gmp devel/isl devel/libelf devel/mpc devel/mpfr
 
 WORKDIR   = $(WORKROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
 COOKIEDIR = $(COOKIEROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
@@ -33,38 +33,28 @@ INSTALL_SCRIPTS   = $(WORKBLD)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GARTARGET) \
 	--with-gnu-as \
-	--with-gnu-ld \
+	--with-newlib \
 	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir)) \
 	--enable-plugin \
+	--disable-gold \
+	--enable-ld=default \
 	--enable-__cxa_atexit \
 	--enable-clocale=gnu \
-	--enable-languages=c \
+	--enable-languages=c,c++ \
 	--disable-libatomic \
 	--disable-libgomp \
-	--enable-gold \
-	--enable-ld \
-	$(if $(filter 4.5.3,$(GCC_VERSION)),,--disable-libquadmath) \
-	$(if $(filter 4.5.3,$(GCC_VERSION)),,--disable-libquadmath-support) \
+	--disable-libquadmath \
+	--disable-libquadmath-support \
 	--disable-libada \
 	--disable-libssp \
+	--disable-libvtv \
+	--disable-libstdcxx \
 	--enable-lto \
 	--disable-multilib \
 	--disable-nls \
-	--disable-decimal-float \
 	--disable-shared \
 	--disable-host-shared \
 	--enable-threads=no \
-	--enable-version-specific-runtime-libs \
-	--with-mpc-include=$(DESTDIR)$(includedir) \
-	--with-mpc-lib=$(DESTDIR)$(libdir) \
-	--with-mpfr-include=$(DESTDIR)$(includedir) \
-	--with-mpfr-lib=$(DESTDIR)$(libdir) \
-	--with-gmp-include=$(DESTDIR)$(includedir) \
-	--with-gmp-lib=$(DESTDIR)$(libdir) \
-	--with-isl-include=$(DESTDIR)$(includedir) \
-	--with-isl-lib=$(DESTDIR)$(libdir) \
-	--with-libelf-include=$(DESTDIR)$(includedir) \
-	--with-libelf-lib=$(DESTDIR)$(libdir) \
 	--with-sysroot=$($(CROSSIMG)_DESTDIR)
 
 GAR_EXTRA_CONF += devel/gcc/package-api.mk
@@ -74,13 +64,6 @@ CPPFLAGS :=
 CFLAGS   :=
 CXXFLAGS :=
 LDFLAGS  :=
-
-# Do not link to libc.so, because it is not available yet.
-pre-configure:
-	@$(foreach file,$(wildcard $(WORKSRC)/libgcc/config/t-libunwind-elf  ), sed -i '/^SHLIB_LC = /s%-lc%%' $(file) ; )
-	@$(foreach file,$(wildcard $(WORKSRC)/libgcc/config/t-slibgcc        ), sed -i '/^SHLIB_LC = /s%-lc%%' $(file) ; )
-	@$(foreach file,$(wildcard $(WORKSRC)/libgcc/config/t-slibgcc-elf-ver), sed -i '/^SHLIB_LC = /s%-lc%%' $(file) ; )
-	@$(MAKECOOKIE)
 
 configure-custom:
 	@mkdir -p $(WORKBLD)

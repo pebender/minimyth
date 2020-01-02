@@ -1,3 +1,3 @@
-2e36b73f8a42143142dda8129f02e4e0  download/libX11-1.6.3.tar.bz2
-25ac59b816b5aa3074980e6cf5cbf8a5  download/libX11-1.6.3-pkg_config.patch
-d30607caecb38369beae6287dd8a2abe  download/libX11-1.6.3-disable_nls_tests.patch
+55adbfb6d4370ecac5e70598c4e7eed2  download/libX11-1.6.9.tar.bz2
+2b22d16db2fda3e3ff6dcbe725f442a1  download/libX11-1.6.9-pkg_config.patch
+9b3ff62877909ef2940adf3988d92f6d  download/libX11-1.6.9-disable_nls_tests.patch

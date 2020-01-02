@@ -1,4 +1,3 @@
-00df80a84ec9528fcfb09498075525bc  download/ntp-4.2.6p5.tar.gz
-5b35bfdd4b0e67137c51c5fd3bdf2050  download/ntp-4.2.6p5-automake_1.13.patch
-d1e16f674040a694da93f07253e45d4d  download/ntp-4.2.6p5-glibc_2.10.patch
-5bb9a8bc52989bf3b81006655d14775b  download/ntp-4.2.6p5-cross.patch
+ea040ab9b4ca656b5229b89d6b822f13  download/ntp-4.2.8p13.tar.gz
+d792480924a2d3826da0b216f8a191f5  download/ntp-4.2.8p13-glibc_2.10.patch
+d85d5f6d79a9742f7363ea40b72c3dc2  download/ntp-4.2.8p13-cross.patch

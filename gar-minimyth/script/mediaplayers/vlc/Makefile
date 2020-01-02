@@ -1,8 +1,7 @@
 GARNAME = vlc
 GARVERSION = 2.0.5
 CATEGORIES = mediaplayers
-MASTER_SITES  = http://download.videolan.org/pub/videolan/$(GARNAME)/$(GARVERSION)/
-MASTER_SITES += http://download.videolan.org/pub/videolan/testing/$(DISTNAME)/
+MASTER_SITES = https://download.videolan.org/pub/videolan/vlc/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
@@ -43,7 +42,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-contrib \
 	--disable-static \
 	--enable-shared \
-	--with-gnu-ld \
 	--enable-nls \
 	--disable-rpath \
 	--disable-non-utf8 \

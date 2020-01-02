@@ -1,7 +1,7 @@
 GARNAME = iputils
 GARVERSION = s20121221
 CATEGORIES = net
-MASTER_SITES = http://www.skbuff.net/$(GARNAME)/
+MASTER_SITES = http://www.skbuff.net/iputils/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME).patch
 LICENSE = BSD_4_Clause

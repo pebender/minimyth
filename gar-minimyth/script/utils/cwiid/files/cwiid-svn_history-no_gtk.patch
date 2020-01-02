@@ -1,0 +1,24 @@
+diff -Naur cwiid-svn_history-old/configure.ac cwiid-svn_history-new/configure.ac
+--- cwiid-svn_history-old/configure.ac	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/configure.ac	2019-12-22 18:36:06.583998967 -0800
+@@ -125,7 +125,7 @@
+ AC_SUBST(LDCONFIG)
+ 
+ pkg_modules="gtk+-2.0 >= 2.0.0 gthread-2.0"
+-PKG_CHECK_MODULES([GTK], [$pkg_modules])
++dnl PKG_CHECK_MODULES([GTK], [$pkg_modules])
+ AC_SUBST(GTK_CFLAGS)
+ AC_SUBST(GTK_LIBS)
+ 
+diff -Naur cwiid-svn_history-old/Makefile.in cwiid-svn_history-new/Makefile.in
+--- cwiid-svn_history-old/Makefile.in	2009-07-16 07:34:33.000000000 -0700
++++ cwiid-svn_history-new/Makefile.in	2019-12-22 18:36:14.348988711 -0800
+@@ -3,7 +3,7 @@
+ include @top_builddir@/defs.mak
+ 
+ LIB_DIRS = libcwiid
+-BIN_DIRS = wmgui wminput lswm
++BIN_DIRS = wminput lswm
+ DOC_DIRS = man doc
+ ifdef PYTHON
+ BIND_DIRS = python

@@ -1,0 +1,39 @@
+diff -Naur sysvinit-2.96-old/src/init.c sysvinit-2.96-new/src/init.c
+--- sysvinit-2.96-old/src/init.c	2019-09-11 10:43:12.000000000 -0700
++++ sysvinit-2.96-new/src/init.c	2019-12-17 22:22:46.041992796 -0800
+@@ -2582,7 +2582,7 @@
+ 			break;
+ 		default:
+ 			if (warn)
+-			  initlog(L_VB,
++			  initlog(L_SY,
+ 				"no more processes left in this runlevel");
+ 			warn = 0;
+ 			loglevel = -1;
+@@ -2591,7 +2591,7 @@
+ 			break;
+ 	}
+ 	if (loglevel > 0) {
+-		initlog(L_VB, "Entering runlevel: %c", runlevel);
++		initlog(L_SY, "Entering runlevel: %c", runlevel);
+ 		wrote_utmp_rlevel = 0;
+ 		wrote_wtmp_rlevel = 0;
+ 		write_utmp_wtmp("runlevel", "~~", runlevel + 256 * oldlevel, RUN_LVL, "~");
+@@ -2823,7 +2823,7 @@
+   	/*
+ 	 *	Say hello to the world
+ 	 */
+-  	initlog(L_CO, bootmsg, "booting");
++  	initlog(L_SY, bootmsg, "booting");
+ 
+   	/*
+ 	 *	See if we have to start an emergency shell.
+@@ -2849,7 +2849,7 @@
+ 	/*
+ 	 *	Restart: unblock signals and let the show go on
+ 	 */
+-	initlog(L_CO, bootmsg, "reloading");
++	initlog(L_SY, bootmsg, "reloading");
+ 	sigfillset(&sgt);
+ 	sigprocmask(SIG_UNBLOCK, &sgt, NULL);
+ 

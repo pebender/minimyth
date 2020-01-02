@@ -1,2 +1,3 @@
-c5ba432dd1514d858053ffe9f4737dd8  download/xtrans-1.3.5.tar.bz2
-f78c5bea0bfd8e8509d76d087255ebad  download/xtrans-1.3.5-abstract_only.patch
+ce2fb8100c6647ee81451ebe388b17ad  download/xtrans-1.4.0.tar.bz2
+78b3cbdcb51f35653cd3a9463a38d1db  download/xtrans-1.4.0-pkgconfig_dir.patch
+97d6d1d2b876d5c316aad8d95a575475  download/xtrans-1.4.0-abstract_only.patch

@@ -25,7 +25,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-fbcondecor \
 	--enable-helper \
 	--disable-misc \
-	--with-gnu-ld \
 	--without-gpm \
 	--with-mng \
 	--with-png \

@@ -1,5 +1,5 @@
 GARNAME = alsa-utils
-GARVERSION = 1.0.29
+GARVERSION = 1.2.1
 CATEGORIES = utils
 MASTER_SITES  = ftp://ftp.alsa-project.org/pub/utils/
 MASTER_SITES += ftp://ftp.alsa-project.org/pub/testing/
@@ -17,14 +17,18 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-nls \
 	--disable-rpath \
+	--enable-alsa-topology \
 	--disable-alsatest \
+	--disable-alsabat-backend-tiny \
+	--enable-bat \
 	--enable-alsamixer \
 	--enable-alsaconf \
 	--disable-xmlto \
+	--disable-rst2man \
 	--enable-largefile \
-	--with-gnu-ld \
 	--with-udev-rules-dir="$(libdir)/udev/rules.d" \
 	--with-curses=ncursesw
 

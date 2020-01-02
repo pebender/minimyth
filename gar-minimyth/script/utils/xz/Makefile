@@ -1,7 +1,7 @@
 GARNAME = xz
-GARVERSION = 5.2.1
+GARVERSION = 5.2.4
 CATEGORIES = utils
-MASTER_SITES = http://tukaani.org/$(GARNAME)/
+MASTER_SITES = https://tukaani.org/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = xz/Public_Domain/GPL2/LGPL2_1
 xz_LICENSE_TEXT = $(WORKSRC)/COPYING

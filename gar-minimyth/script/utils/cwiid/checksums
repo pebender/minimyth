@@ -1,4 +1,5 @@
 e1bc290504dc53f02581866eed0b85c3  download/svn_history.tar.gz
+e71777fa99e42ad5a1f949cc3ca14a5c  download/cwiid-svn_history-no_gtk.patch
 a1d98d38f6fede3fbd2f2430a8484c91  download/cwiid-svn_history-ldlibs.patch
 ca9ccb73779d42a37470ad07cf66626e  download/cwiid-svn_history-rootdir.patch
 76e9e202f9419c9eabf8395b3a9b095e  download/cwiid-svn_history-ioctl_ui_set_phys.patch

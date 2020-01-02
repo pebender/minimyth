@@ -1,18 +1,15 @@
-GARNAME = udev
-# updating requires switching to eudev <http://dev.gentoo.org/~blueness/eudev/>.
-GARVERSION = 182
+GARNAME = eudev
+GARVERSION = 3.2.9
 CATEGORIES = system
-MASTER_SITES = https://www.kernel.org/pub/linux/utils/kernel/hotplug/
-DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
-	$(DISTNAME)-remove_sd_is_mq.patch
+MASTER_SITES = https://dev.gentoo.org/~blueness/$(GARNAME)/
+DISTFILES = $(DISTNAME).tar.gz
 LICENSE = GPL2
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c gtk/glib lib/libxslt utils/kmod utils/pciutils utils/usbutils utils/util-linux
+DEPENDS   = lang/c lib/libxslt utils/kmod utils/util-linux
 BUILDDEPS = utils/gperf
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
@@ -23,26 +20,17 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--disable-static \
 	--enable-shared \
-	--disable-gtk-doc \
-	--disable-gtk-doc-html \
-	--disable-gtk-doc-pdf \
-	--disable-debug \
-	--enable-logging \
-	--enable-manpages \
-	--disable-gudev \
+	--disable-split-usr \
 	--disable-introspection \
-	--disable-keymap \
+	--disable-selinux \
+	--disable-manpages \
+	--disable-kmod \
+	--disable-hwdb \
 	--disable-rule_generator \
-	--disable-floppy \
-	--disable-action_modeswitch \
-	--with-gnu-ld \
+	--enable-mtd_probe \
 	--with-rootprefix=$(rootdir) \
 	--with-rootlibdir=$(libdir) \
-	--without-selinux \
-	--with-usb-ids-path=$(datadir)/usb.ids \
-	--with-pci-ids-path=$(datadir)/pci.ids \
-	--with-firmware-path=$(elibdir)/firmware \
-	--without-systemdsystemunitdir
+	--with-rootlibexecdir=$(libexecdir)
 
 include ../../gar.mk
 

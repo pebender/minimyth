@@ -18,3 +18,5 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
 
 include ../../gar.mk
+
+LDFLAGS := $(LDFLAGS) -fwhole-program

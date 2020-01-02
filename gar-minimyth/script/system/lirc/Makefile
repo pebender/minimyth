@@ -1,29 +1,16 @@
 GARNAME = lirc
-GARVERSION = 0.9.0
+GARVERSION = 0.10.0
 CATEGORIES = system
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/LIRC/$(GARVERSION)/
-#MASTER_SITES = http://www.lirc.org/software/snapshots/
-#MASTER_SITES = git://lirc.git.sourceforge.net/gitroot/lirc/lirc/
-DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
-	$(DISTNAME)-git_e0ab92be.patch \
-	$(DISTNAME)-automake_1.13.patch \
-	$(DISTNAME)-kernel_err.patch \
-	$(DISTNAME)-remove_asm_sytem_h.patch \
-	$(DISTNAME)-lirc_xbox.patch \
-	$(DISTNAME)-disable_lirc_i2c.patch \
-	$(DISTNAME)-ati_remote.patch \
-	$(DISTNAME)-remove_smp_lock_h.patch \
-	$(DISTNAME)-bit_le_fix.patch \
-	$(DISTNAME)-uinput_key_fix.patch \
-	$(DISTNAME)-input_map.patch.gar
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/LIRC/$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.gz
+PATCHFILES = $(DISTNAME)-disable_python35.patch
 LICENSE = GPL2
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c kernel/kernel lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat system/iguanair xorg/xorg
+DEPENDS = lang/c kernel/kernel lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python system/iguanair xorg/xorg
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -34,19 +21,16 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--x-libraries="$(DESTDIR)$(libdir)" \
 	--enable-shared \
 	--disable-static \
-	--enable-sandboxed \
-	--with-gnu-ld \
-	--with-x \
-	--with-kerneldir="$(DESTDIR)$(LINUX_SOURCEDIR)" \
-	--with-moduledir="$(LINUX_MODULESDIR)/misc/lirc" \
-	--with-driver=userspace \
-	--with-transmitter \
-	--with-syslog
+	--enable-uinput \
+	--enable-devinput \
+	--with-x
 BUILD_ARGS     = $(LINUX_MAKE_ARGS)
 INSTALL_ARGS   = $(LINUX_MAKE_ARGS)
 
-CONFIGURE_ENV = $(LINUX_MAKE_ENV)
-BUILD_ENV     = $(LINUX_MAKE_ENV)
+CONFIGURE_ENV = $(LINUX_MAKE_ENV) \
+	DEVINPUT_HEADER="$(DESTDIR)$(includedir)/linux/input-event-codes.h"
+BUILD_ENV     = $(LINUX_MAKE_ENV) \
+	HAVE_WORKING_POLL="1"
 INSTALL_ENV   = $(LINUX_MAKE_ENV)
 
 GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk
@@ -54,32 +38,40 @@ include ../../gar.mk
 
 PARALLELMFLAGS := -j1
 
-git//%$(DISTNAME).tar.bz2:
-	@$(call FETCH_GIT, $*, $(word 2,$(subst -, ,$(GARVERSION))), $(DISTNAME))
-	@$(MAKECOOKIE)
-
-x-checksum-$(DISTNAME).tar.bz2:
-	@$(MAKECOOKIE)
+# lirc 0.9.0 fails to compile with gcc 9.2.0's link time optimization enabled.
+CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
 
 pre-configure:
-	@mkdir -p $(WORKSRC)/m4
 	@$(call RUN_AUTOTOOLS)
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/liblirc_client.la
-	@depmod -b $(DESTDIR) -v $(LINUX_FULL_VERSION)
+	@rm -fv $(DESTDIR)$(libdir)/liblirc.la
+	@rm -fv $(DESTDIR)$(libdir)/liblirc_client.la
+	@rm -fv $(DESTDIR)$(libdir)/liblirc_driver.la
+	@rm -fv $(DESTDIR)$(libdir)/libirrecord.la
+	@rm -rf $(DESTDIR)$(libdir)/lirc/plugins/*.la
+	@rm -fv $(DESTDIR)$(libdir)/python3.8/site-packages/lirc/_client.*
 	@$(MAKECOOKIE)
 
 clean-all:
 	@$(MAKE) clean
-	@rm -rf $(DESTDIR)$(LINUX_MODULESDIR)/misc/lirc
-	@rm -rf $(DESTDIR)$(bindir)/lircrcd
-	@rm -rf $(DESTDIR)$(sbindir)/lircd
-	@rm -rf $(DESTDIR)$(sbindir)/lircmd
-	@rm -rf $(DESTDIR)$(includedir)/lirc
-	@rm -rf $(DESTDIR)$(libdir)/liblirc_client.*
-	@rm -rf $(DESTDIR)$(mandir)/man1/lircrcd.1
-	@rm -rf $(DESTDIR)$(mandir)/man8/lircd.8
-	@rm -rf $(DESTDIR)$(mandir)/man8/lircmd.8
+	@rm -rfv $(DESTDIR)$(libdir)/liblirc.*
+	@rm -rfv $(DESTDIR)$(libdir)/liblirc_client.*
+	@rm -rfv $(DESTDIR)$(libdir)/liblirc_driver.*
+	@rm -rfv $(DESTDIR)$(libdir)/libirrecord.*
+	@rm -rfv $(DESTDIR)$(libdir)/lirc/
+	@rm -rfv $(DESTDIR)$(libdir)/python3.8/site-packages/lirc/_client.*
+	@rm -rfv $(DESTDIR)$(sbindir)/lirc-lsplugins
+	@rm -rfv $(DESTDIR)$(sbindir)/lircd
+	@rm -rfv $(DESTDIR)$(sbindir)/lircd-setup
+	@rm -rfv $(DESTDIR)$(sbindir)/lircd-uinput
+	@rm -rfv $(DESTDIR)$(sbindir)/lircmd
+	@rm -rfv $(DESTDIR)$(includedir)/lirc
+	@rm -rfv $(DESTDIR)$(includedir)/lirc_*
+	@rm -rfv $(DESTDIR)$(mandir)/man1/lircrcd.1
+	@rm -rfv $(DESTDIR)$(mandir)/man8/lircd.8
+	@rm -rfv $(DESTDIR)$(mandir)/man8/lircmd.8

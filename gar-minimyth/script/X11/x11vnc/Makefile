@@ -1,38 +1,38 @@
 GARNAME = x11vnc
-GARVERSION = 0.9.13
+GARVERSION = 0.9.16
 CATEGORIES = X11
-MASTER_SITES = http://downloads.sourceforge.net/project/libvncserver/$(GARNAME)/$(GARVERSION)/
-DISTFILES = $(DISTNAME).tar.gz
+MASTER_SITES = https://github.com/LibVNC/x11vnc/archive/
+http://downloads.sourceforge.net/project/libvncserver/$(GARNAME)/$(GARVERSION)/
+DISTFILES = $(GARVERSION).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
-	$(DISTNAME)-ar.patch \
-	$(DISTNAME)-xlinker.patch
+	$(DISTNAME)-config_h.patch
 LICENSE = GPL2
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c xorg/xorg lib/libjpeg lib/zlib
+DEPENDS = lang/c lib/avahi lib/libjpeg lib/zlib X11/libvncserver xorg/xorg
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--x-includes=$(DESTDIR)$(includedir) \
 	--x-libraries=$(DESTDIR)$(libdir) \
-	--with-tightvnc-filetransfer \
-	--with-24bpp \
-	--without-ffmpeg \
+	--with-crypto \
+	--with-ssl \
+	--with-crypt \
 	--with-x \
-	--without-system-libvncserver \
-	--with-x11vnc \
 	--with-xkeyboard \
 	--with-xinerama \
 	--with-xrandr \
 	--with-xfixes \
 	--without-xdamage \
+	--with-xcomposite \
 	--without-xtrap \
 	--with-xrecord \
 	--without-fbpm \
@@ -41,18 +41,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-fbdev \
 	--with-uinput \
 	--without-macosx-native \
-	--without-crypt \
-	--without-crypto \
-	--without-ssl \
-	--without-avahi \
-	--with-jpeg \
-	--with-jpeg=$(DESTDIR)$(prefix) \
-	--with-zlib \
-	--with-zlib=$(DESTDIR)$(prefix) \
-	--with-pthread \
-	--without-gnutls \
-	--without-client-tls \
-	--without-ipv6
+	--without-colormultipointer \
+	--with-avahi
 
 CONFIGURE_ENV = \
 	ac_cv_func_fork_works=yes \
@@ -66,5 +56,5 @@ LDFLAGS := $(LDFLAGS) -fwhole-program
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
+	@#$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)

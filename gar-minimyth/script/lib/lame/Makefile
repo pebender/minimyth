@@ -1,21 +1,17 @@
 GARNAME = lame
-GARVERSION = 3.99.5
+GARVERSION = 3.100
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/3.99/
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
 DISTFILES  = $(DISTNAME).tar.gz
 DISTFILES += config.cache.$(GARCH_FAMILY)
-PATCHFILES = \
-	$(DISTNAME)-gcc_4.9.patch \
-	$(DISTNAME)-automake_1.12.patch \
-	$(DISTNAME)-am_path_gtk.patch
 LICENSE = LGPL2
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS   = lang/c lib/ncurses
-BUILDDEPS = devel/nasm gtk/gtk
+DEPENDS   = lang/c lib/ncursesw
+BUILDDEPS = devel/nasm
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -38,11 +34,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-dynamic-frontends \
 	--enable-expopt=no \
 	--enable-debug=no \
-	--with-gnu-ld \
 	--with-fileio=lame
-
-CONFIGURE_ENV = \
-	GTK_CONFIG='no'
 
 include ../../gar.mk
 
@@ -53,7 +45,7 @@ extract-config.cache.$(GARCH_FAMILY):
 	@$(MAKECOOKIE)
 
 pre-configure:
-	@$(call RUN_AUTOTOOLS)
+	@#$(call RUN_AUTOTOOLS)
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 

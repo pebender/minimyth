@@ -3,14 +3,14 @@ GARVERSION = svn_history
 CATEGORIES = utils
 MASTER_SITES = https://github.com/abstrakraft/$(GARNAME)/archive/
 DISTFILES = $(GARVERSION).tar.gz
-PATCHFILES = $(DISTNAME)-ldlibs.patch $(DISTNAME)-rootdir.patch $(DISTNAME)-ioctl_ui_set_phys.patch $(DISTNAME)-wait_forever_sleep.patch $(DISTNAME)-abs_only.patch
+PATCHFILES = $(DISTNAME)-no_gtk.patch $(DISTNAME)-ldlibs.patch $(DISTNAME)-rootdir.patch $(DISTNAME)-ioctl_ui_set_phys.patch $(DISTNAME)-wait_forever_sleep.patch $(DISTNAME)-abs_only.patch
 LICENSE = GPL2
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lib/bluez gtk/gtk
+DEPENDS = lib/bluez
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

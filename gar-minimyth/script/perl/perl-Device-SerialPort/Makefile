@@ -1,6 +1,6 @@
 GARNAME             = perl-Device-SerialPort
 GARVERSION          = 1.04
-MASTER_SITES        = http://www.cpan.org/authors/id/C/CO/COOK/
+MASTER_SITES        = https://cpan.metacpan.org/authors/id/C/CO/COOK/
 PERL_MODULE_PATCHES = configure_args.patch
 PERL_MODULE_SO      = true
 

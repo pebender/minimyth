@@ -1,0 +1,22 @@
+diff -Naur unifdef-2.11-old/Makefile unifdef-2.11-new/Makefile
+--- unifdef-2.11-old/Makefile	2015-12-03 04:12:04.000000000 -0800
++++ unifdef-2.11-new/Makefile	2019-12-01 14:38:04.156998137 -0800
+@@ -1,12 +1,12 @@
+ # Makefile for unifdef
+ 
+-prefix =	${HOME}
+-bindir =	${prefix}/bin
+-mandir =	${prefix}/share/man
+-man1dir=	${mandir}/man1
++prefix ?=	${HOME}
++bindir ?=	${prefix}/bin
++mandir ?=	${prefix}/share/man
++man1dir?=	${mandir}/man1
+ 
+-bindest=	${DESTDIR}${bindir}
+-man1dest=	${DESTDIR}${man1dir}
++bindest ?=	${DESTDIR}${bindir}
++man1dest?=	${DESTDIR}${man1dir}
+ 
+ all: unifdef
+ 

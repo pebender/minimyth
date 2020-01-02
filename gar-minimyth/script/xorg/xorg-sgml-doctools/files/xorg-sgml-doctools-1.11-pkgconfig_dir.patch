@@ -1,0 +1,24 @@
+diff -Naur xorg-sgml-doctools-1.11-old/Makefile.am xorg-sgml-doctools-1.11-new/Makefile.am
+--- xorg-sgml-doctools-1.11-old/Makefile.am	2012-06-04 21:44:04.000000000 -0700
++++ xorg-sgml-doctools-1.11-new/Makefile.am	2019-12-22 13:36:48.426995184 -0800
+@@ -28,7 +28,7 @@
+ 	xorg-chunk.xsl		\
+ 	xorg-fo.xsl
+ 
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xorg-sgml-doctools.pc
+ 
+ MAINTAINERCLEANFILES = ChangeLog INSTALL
+diff -Naur xorg-sgml-doctools-1.11-old/Makefile.in xorg-sgml-doctools-1.11-new/Makefile.in
+--- xorg-sgml-doctools-1.11-old/Makefile.in	2012-06-05 17:35:17.000000000 -0700
++++ xorg-sgml-doctools-1.11-new/Makefile.in	2019-12-22 13:36:38.940999698 -0800
+@@ -289,7 +289,7 @@
+ 	xorg-chunk.xsl		\
+ 	xorg-fo.xsl
+ 
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xorg-sgml-doctools.pc
+ MAINTAINERCLEANFILES = ChangeLog INSTALL
+ all: all-recursive

@@ -1,0 +1,9 @@
+diff -Naur make-4.0-old/tests/run_make_tests.pl make-4.0-new/tests/run_make_tests.pl
+--- make-4.0-old/tests/run_make_tests.pl	2013-10-05 16:12:24.000000000 -0700
++++ make-4.0-new/tests/run_make_tests.pl	2019-11-23 18:07:58.014000909 -0800
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!@GAR_build_DESTDIR@@GAR_build_bindir@/perl
+ # -*-perl-*-
+ 
+ # Test driver for the Make test suite

@@ -1,5 +1,5 @@
 GARNAME = bash
-GARVERSION = 4.3
+GARVERSION = 4.4
 CATEGORIES = utils
 MASTER_SITES  = https://ftp.gnu.org/gnu/$(GARNAME)/
 MASTER_SITES += https://ftp.gnu.org/gnu/$(GARNAME)/$(DISTNAME)-patches/
@@ -27,23 +27,7 @@ PATCHFILES  = \
 	$(GARNAME)$(subst .,,$(GARVERSION))-020 \
 	$(GARNAME)$(subst .,,$(GARVERSION))-021 \
 	$(GARNAME)$(subst .,,$(GARVERSION))-022 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-023 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-024 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-025 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-026 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-027 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-028 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-029 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-030 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-031 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-032 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-033 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-034 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-035 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-036 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-037 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-038 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-039
+	$(GARNAME)$(subst .,,$(GARVERSION))-023
 PATCHFILES += $(DISTNAME)-perl.patch.gar
 LICENSE = GPL3
 
@@ -59,8 +43,10 @@ CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--with-gnu-ld
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
+
+CONFIGURE_ENV = \
+	bash_cv_termcap_lib="gnutermcap"
 
 include ../../gar.mk
 
@@ -78,5 +64,5 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@ln -fs bash $(DESTDIR)$(bindir)/sh
+	@ln -sfv bash $(DESTDIR)$(bindir)/sh
 	@$(MAKECOOKIE)

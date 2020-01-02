@@ -1,7 +1,7 @@
 GARNAME = xine-ui
 GARVERSION = 0.99.9
 CATEGORIES = mediaplayers
-MASTER_SITES = http://downloads.sourceforge.net/project/xine/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/xine/files/xine-ui/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
@@ -37,7 +37,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-vdr-keys \
 	--disable-nvtvsimple \
 	--disable-debug \
-	--with-gnu-ld \
 	--with-x \
 	--without-readline \
 	--without-curl \

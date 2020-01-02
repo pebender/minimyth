@@ -50,6 +50,8 @@ CONFIGURE_ARGS += \
 	--with-tls \
 	--with-__thread
 endif
+BUILD_ARGS = \
+
 
 CONFIGURE_ENV = \
 	BUILD_CC="$(build_CC)" \
@@ -70,9 +72,9 @@ INSTALL_ENV   = \
 GAR_EXTRA_CONF += devel/glibc/package-api.mk
 include ../../gar.mk
  
-# glibc 2.17 fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
-#LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
+# glibc 2.30 fails to compile with gcc 9.2.0's link time optimization enabled.
+CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
+LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
 
 CFLAGS := $(filter-out -ffast-math, $(CFLAGS))
 CFLAGS := $(filter-out -O%, $(CFLAGS)) -O3

@@ -1,9 +1,9 @@
 GARNAME = bzip2
-GARVERSION = 1.0.6
+GARVERSION = 1.0.8
 CATEGORIES = utils
-MASTER_SITES = https://downloads.sourceforge.net/project/$(GARNAME)/
+MASTER_SITES = https://sourceware.org/pub/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = $(DISTNAME)-so.patch $(DISTNAME)-cflags.patch $(DISTNAME)-perl.patch.gar $(DISTNAME).patch
+PATCHFILES = $(DISTNAME)-perl.patch.gar $(DISTNAME).patch
 LICENSE = bzip2
 bzip2_LICENSE_TEXT = $(WORKSRC)/LICENSE
 

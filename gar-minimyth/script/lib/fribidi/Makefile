@@ -23,7 +23,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-deprecated \
 	--disable-malloc \
 	--enable-charsets \
-	--with-gnu-ld \
 	--without-glib
 
 include ../../gar.mk

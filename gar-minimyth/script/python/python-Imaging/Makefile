@@ -12,7 +12,6 @@ define BLURB
 endef
 
 DEPENDS   = lang/c lib/freetype lib/libjpeg lib/libtiff lib/zlib python/python
-BUILDDEPS = python/python-distutilscross
 
 WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 

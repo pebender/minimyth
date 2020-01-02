@@ -1,9 +1,9 @@
 GARNAME = xf86-video-sis
-GARVERSION = 0.10.7
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 0.12.0
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/driver/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
+xPATCHFILES = \
 	$(DISTNAME)-git_2014.11.11.patch \
 	$(DISTNAME)-pkg_config.patch
 LICENSE = $(GARNAME)
@@ -14,23 +14,13 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/fontsproto \
-	$(CATEGORY)/libdrm \
-	$(CATEGORY)/libpciaccess \
-	$(CATEGORY)/randrproto \
-	$(CATEGORY)/renderproto \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/videoproto \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xf86dgaproto \
-	$(CATEGORY)/xf86driproto \
-	$(CATEGORY)/xineramaproto \
-	$(CATEGORY)/xorg-server \
-	$(CATEGORY)/xproto
+	xorg/libdrm \
+	xorg/libpciaccess \
+	xorg/util-macros \
+	xorg/xorg-server \
+	xorg/xorgproto
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -39,10 +29,11 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--cache-file=config.cache \
 	--disable-silent-rules \
+	--disable-static \
+	--enable-shared \
 	--enable-dri \
-	--with-gnu-ld
+	--disable-xaa
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
 
 pre-configure:
@@ -55,5 +46,5 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/sis_drv.la
+	@rm -fv $(DESTDIR)$(libdir)/xorg/modules/drivers/sis_drv.la
 	@$(MAKECOOKIE)

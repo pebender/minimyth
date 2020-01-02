@@ -1,7 +1,7 @@
 GARNAME = lcdproc
-GARVERSION = 0.5.6
+GARVERSION = 0.5.7
 CATEGORIES = system
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-dm140_henlar_v0.2.patch
 LICENSE = GPL2
@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/libftdi lib/libg15render lib/libirman lib/ncurses lib/freetype lib/libpng lib/libusb lib/libusb-compat system/g15daemon system/lirc
+DEPENDS = lang/c lib/libftdi lib/libg15render lib/libirman lib/ncursesw lib/freetype lib/libpng lib/libusb lib/libusb-compat system/g15daemon system/lirc
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

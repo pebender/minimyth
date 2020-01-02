@@ -1,6 +1,6 @@
 GARNAME        = perl-XML-Parser
-GARVERSION     = 2.36
-MASTER_SITES   = http://www.cpan.org/authors/id/M/MS/MSERGEANT/
+GARVERSION     = 2.41
+MASTER_SITES   = https://cpan.metacpan.org/authors/id/T/TO/TODDR/
 DEPENDS        = lib/expat perl/perl-libwww-perl
 PERL_MODULE_SO = true
 

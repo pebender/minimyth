@@ -46,7 +46,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-alsatest \
 	--disable-jack \
 	--disable-sdltest \
-	--with-gnu-ld \
 	--without-libiconv-prefix \
 	--without-libpth-prefix \
 	--without-included-gettext \

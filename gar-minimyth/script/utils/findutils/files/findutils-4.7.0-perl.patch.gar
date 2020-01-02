@@ -1,0 +1,12 @@
+diff -Naur findutils-4.7.0-old/doc/find.texi findutils-4.7.0-new/doc/find.texi
+--- findutils-4.7.0-old/doc/find.texi	2019-06-23 02:00:40.000000000 -0700
++++ findutils-4.7.0-new/doc/find.texi	2019-12-17 09:31:23.813021749 -0800
+@@ -4889,7 +4889,7 @@
+ 
+ @smallexample
+ @verbatim
+-#! /usr/bin/perl -0
++#! @GAR_bindir@/perl -0
+ my @newest = ();
+ my $latest_stamp = undef;
+ while (<>) {

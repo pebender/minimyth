@@ -1,7 +1,7 @@
 GARNAME = SDL_net
 GARVERSION = 1.2.8
 CATEGORIES = lib
-MASTER_SITES = http://www.libsdl.org/projects/$(GARNAME)/release/
+MASTER_SITES = https://www.libsdl.org/projects/SDL_net/release/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-configure.patch
 LICENSE = $(GARNAME)
@@ -21,8 +21,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-sdltest \
-	--disable-gui \
-	--with-gnu-ld
+	--disable-gui
 
 CONFIGURE_ENV = \
 	SDL_CONFIG=$(DESTDIR)$(prefix)/bin-config/sdl-config

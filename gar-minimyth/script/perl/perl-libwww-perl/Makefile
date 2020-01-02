@@ -1,6 +1,6 @@
 GARNAME      = perl-libwww-perl
-GARVERSION   = 6.05
-MASTER_SITES = http://www.cpan.org/authors/id/G/GA/GAAS/
+GARVERSION   = 6.16
+MASTER_SITES = https://cpan.metacpan.org/authors/id/O/OA/OALDERS/
 DEPENDS      = perl/perl-HTML-Parser perl/perl-URI
 
 include ../../perl/perl/perl-module.mk

@@ -1,0 +1,12 @@
+diff -Naur xorg-server-1.20.6-old/hw/dmx/doxygen/doxygen.conf.in xorg-server-1.20.6-new/hw/dmx/doxygen/doxygen.conf.in
+--- xorg-server-1.20.6-old/hw/dmx/doxygen/doxygen.conf.in	2019-11-22 15:44:19.000000000 -0800
++++ xorg-server-1.20.6-new/hw/dmx/doxygen/doxygen.conf.in	2019-12-25 15:31:53.950981902 -0800
+@@ -2083,7 +2083,7 @@
+ # interpreter (i.e. the result of 'which perl').
+ # The default file (with absolute path) is: /usr/bin/perl.
+ 
+-PERL_PATH              = /usr/bin/perl
++PERL_PATH              = @GAR_DESTDIR@@GAR_bindir@/perl
+ 
+ #---------------------------------------------------------------------------
+ # Configuration options related to the dot tool

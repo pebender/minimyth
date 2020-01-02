@@ -1,7 +1,7 @@
 GARNAME = libaacs
 GARVERSION = 0.8.1
 CATEGORIES = extras
-MASTER_SITES = http://download.videolan.org/pub/videolan/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://download.videolan.org/pub/videolan/libaacs/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = LGPL2_1
 

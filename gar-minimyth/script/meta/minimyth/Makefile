@@ -24,7 +24,6 @@ DEPENDS = \
 	net/cifs-utils \
 	net/curl \
 	disk/e2fsprogs \
-	disk/eject \
 	utils/ethtool \
 	system/eventlircd \
 	utils/evtest \
@@ -131,9 +130,6 @@ DEPENDS = \
 	$(if $(filter airplay,$(mm_SOFTWARE)), \
 		lib/dbus \
 		lib/avahi) \
-	$(if $(filter flash,$(mm_SOFTWARE)), \
-		gtk/gtk \
-		lib/nss) \
 	$(if $(filter mplayer-new,$(mm_SOFTWARE)), \
 		mediaplayers/mplayer-new \
 		mediaplayers/mplayer-resumer) \

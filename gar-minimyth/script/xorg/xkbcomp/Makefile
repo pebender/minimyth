@@ -1,7 +1,7 @@
 GARNAME = xkbcomp
-GARVERSION = 1.3.0
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 1.4.2
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/app/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,11 +11,9 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libxkbfile \
-	$(CATEGORY)/xproto
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/libX11 \
+	xorg/libxkbfile \
+	xorg/xorgproto
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -24,5 +22,4 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk

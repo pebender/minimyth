@@ -1,8 +1,8 @@
 GARNAME = sysvinit
-GARVERSION = 2.88dsf
+GARVERSION = 2.96
 CATEGORIES = system
-MASTER_SITES = http://download.savannah.gnu.org/releases/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.bz2
+MASTER_SITES = https://download.savannah.gnu.org/releases/$(GARNAME)/
+DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = $(DISTNAME)-init_silent.patch $(DISTNAME)-makefile.patch $(DISTNAME)-halt.patch
 LICENSE = GPL2
 
@@ -35,4 +35,4 @@ include ../../gar.mk
 
 LDFLAGS := $(LDFLAGS) -fwhole-program
 
-LDFLAGS := $(CFLAGS) $(LDFLAGS)
+#LDFLAGS := $(CFLAGS) $(LDFLAGS)

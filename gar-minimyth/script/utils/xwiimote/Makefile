@@ -1,17 +1,19 @@
 GARNAME = xwiimote
-GARVERSION = 0.3
+GARVERSION = 2
 CATEGORIES = utils
-MASTER_SITES = http://github.com/downloads/dvdhrm/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
+MASTER_SITES = https://github.com/dvdhrm/$(GARNAME)/archive/
+DISTFILES = $(DISTNAME).tar.gz
+xPATCHFILES = \
 	$(DISTNAME)-am_prog_ar.patch
-LICENSE = BSD_2_Clause
+LICENSE = MIT
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/c lib/ncurses system/udev
+DEPENDS = lang/c lib/ncursesw system/udev
+
+WORKSRC = $(WORKDIR)/$(GARNAME)-$(DISTNAME)
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -21,12 +23,12 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--disable-debug \
-	--with-gnu-ld
+	--disable-debug
 
 include ../../gar.mk
 
 pre-configure:
+	@mkdir -pv $(WORKSRC)/m4
 	@$(call RUN_AUTOTOOLS)
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)

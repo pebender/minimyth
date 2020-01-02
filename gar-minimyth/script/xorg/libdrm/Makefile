@@ -1,7 +1,7 @@
 GARNAME = libdrm
-GARVERSION = 2.4.62
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = http://dri.freedesktop.org/libdrm/
+GARVERSION = 2.4.100
+CATEGORIES = xorg
+MASTER_SITES = https://dri.freedesktop.org/libdrm/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-o_cloexec.patch
 LICENSE = MIT
@@ -11,13 +11,11 @@ define BLURB
 endef
 
 DEPENDS  = lang/c \
-	$(CATEGORY)/libpciaccess \
-	$(CATEGORY)/libpthread-stubs
+	xorg/libpciaccess \
+	xorg/libpthread-stubs
 ifneq ($(DESTIMG),build)
 DEPENDS += system/udev
 endif
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -40,8 +38,7 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-install-test-programs \
 	--disable-cairo-tests \
 	--disable-manpages \
-	--disable-valgrind \
-	--with-gnu-ld
+	--disable-valgrind
 ifeq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--disable-udev
@@ -52,13 +49,9 @@ endif
 
 include ../../gar.mk
 
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
+	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_amdgpu.la
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_intel.la
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_nouveau.la
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_radeon.la

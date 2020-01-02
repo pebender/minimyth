@@ -1,7 +1,7 @@
 GARNAME = rpcbind
-GARVERSION = 0.2.3
+GARVERSION = 1.2.5
 CATEGORIES = net
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = BSD_3_Clause
 
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c devel/glibc-rpcsvc net/libtirpc
+DEPENDS = lang/c net/libtirpc
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

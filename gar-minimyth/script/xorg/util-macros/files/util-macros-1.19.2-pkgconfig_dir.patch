@@ -1,0 +1,24 @@
+diff -Naur util-macros-1.19.2-old/Makefile.am util-macros-1.19.2-new/Makefile.am
+--- util-macros-1.19.2-old/Makefile.am	2018-03-04 17:41:55.000000000 -0800
++++ util-macros-1.19.2-new/Makefile.am	2019-12-26 17:38:33.543999280 -0800
+@@ -29,7 +29,7 @@
+ install-data-hook:
+ 	rm -f $(DESTDIR)$(aclocaldir)/xorgversion.m4
+ 
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xorg-macros.pc
+ 
+ .PHONY: ChangeLog
+diff -Naur util-macros-1.19.2-old/Makefile.in util-macros-1.19.2-new/Makefile.in
+--- util-macros-1.19.2-old/Makefile.in	2018-03-04 17:41:58.000000000 -0800
++++ util-macros-1.19.2-new/Makefile.in	2019-12-26 17:39:31.109000051 -0800
+@@ -267,7 +267,7 @@
+ aclocaldir = $(datadir)/aclocal
+ aclocal_DATA = xorg-macros.m4
+ dist_pkgdata_DATA = INSTALL
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xorg-macros.pc
+ all: all-am
+ 

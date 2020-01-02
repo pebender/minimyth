@@ -1,7 +1,7 @@
 GARNAME = lighttpd
 GARVERSION = 1.4.36
 CATEGORIES = net
-MASTER_SITES = http://download.lighttpd.net/lighttpd/releases-1.4.x/
+MASTER_SITES = https://download.lighttpd.net/lighttpd/releases-1.4.x/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = BSD_3_Clause
 
@@ -22,7 +22,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-lfs \
 	--disable-ipv6 \
 	--disable-extra-warnings \
-	--with-gnu-ld \
 	--without-mysql \
 	--without-ldap \
 	--without-attr \

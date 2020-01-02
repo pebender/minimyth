@@ -1,14 +1,14 @@
 GARNAME = xf86-video-openchrome
 GARVERSION_TYPE = git
 GARVERSION = $(strip $(if $(filter git,$(GARVERSION_TYPE)) , \
-	20121211-0db1c3c, \
-	0.3.1 ))
-CATEGORIES = $(CATEGORY)
+	20191223-ad74ff0 , \
+	0.6.0 ))
+CATEGORIES = xorg
 MASTER_SITES = $(strip $(if $(filter git,$(GARVERSION_TYPE)) , \
-	git://anongit.freedesktop.org/git/openchrome/$(GARNAME)/ , \
-	$(XORG_MASTER_SITES) ))
+        git://cgit.freedesktop.org/openchrome/$(GARNAME)/ , \
+	https://www.x.org/releases/individual/driver/ ))
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
+xPATCHFILES = \
 	$(DISTNAME)-xorg_server_h.patch \
 	$(DISTNAME)-automake_1.13.patch
 LICENSE = MIT
@@ -18,22 +18,11 @@ define BLURB
 endef
 
 DEPENDS = lang/c system/udev \
-	$(CATEGORY)/fontsproto \
-	$(CATEGORY)/libdrm \
-	$(CATEGORY)/libpciaccess \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/libXvMC \
-	$(CATEGORY)/randrproto \
-	$(CATEGORY)/renderproto \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/videoproto \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xf86driproto \
-	$(CATEGORY)/xorg-server \
-	$(CATEGORY)/xproto
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/libdrm \
+	xorg/libpciaccess \
+	xorg/util-macros \
+	xorg/xorgproto \
+	xorg/xorg-server
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -45,8 +34,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-debug \
 	--disable-xv-debug \
-	--disable-viaregtool \
-	--with-gnu-ld
+	--disable-viaregtool
 
 include ../../gar.mk
 
@@ -63,7 +51,7 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/openchrome_drv.la
-	@rm -f $(DESTDIR)$(libdir)/libchromeXvMC.la
-	@rm -f $(DESTDIR)$(libdir)/libchromeXvMCPro.la
+	@rm -fv $(DESTDIR)$(libdir)/xorg/modules/drivers/openchrome_drv.la
+	@rm -fv $(DESTDIR)$(libdir)/libchromeXvMC.la
+	@rm -fv $(DESTDIR)$(libdir)/libchromeXvMCPro.la
 	@$(MAKECOOKIE)

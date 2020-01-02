@@ -1,7 +1,7 @@
 GARNAME = libcdaudio
 GARVERSION = 0.99.12p2
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/libcdaudio/files/libcdaudio/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.12.patch \
@@ -22,8 +22,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
-	--enable-threads \
-	--with-gnu-ld
+	--enable-threads
 
 include ../../gar.mk
 

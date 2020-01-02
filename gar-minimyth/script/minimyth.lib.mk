@@ -5,7 +5,7 @@
 # If the package is being built for the build environement, then hardcoding is not disabled,
 # since the build environment files are never relocated.
 FIX_LIBTOOL_HARDCODE = \
-	if [ ! "x$(DESTIMG)" = "xbuild" ] ; then                                                             \
+	if [ ! "x$(DESTIMG)" = "zxbuild" ] ; then                                                             \
 		if [ "x$(strip $(1))" = "x" ] ; then                                                         \
 			exit 1                                                                             ; \
 		fi                                                                                         ; \
@@ -29,9 +29,9 @@ FIX_LIBTOOL_HARDCODE = \
 			exit 1                                                                             ; \
 		fi                                                                                         ; \
 		for file_name in $${file_name_list} ; do                                                     \
-			sed -i 's%^hardcode_into_libs=.*%hardcode_into_libs=no%'             $${file_name} ; \
-			sed -i 's%^hardcode_libdir_flag_spec=.*%hardcode_libdir_flag_spec=%' $${file_name} ; \
-			sed -i 's%^runpath_var=.*%runpath_var=%'                             $${file_name} ; \
+			sed -i 's%^[ \t]*hardcode_into_libs=.*%hardcode_into_libs=no%'             $${file_name} ; \
+			sed -i 's%^[ \t]*hardcode_libdir_flag_spec=.*%hardcode_libdir_flag_spec=%' $${file_name} ; \
+			sed -i 's%^[ \t]*runpath_var=.*%runpath_var=%'                             $${file_name} ; \
 		done                                                                                       ; \
 	fi
 # $(call FIX_LIBTOOL_LIBPATH,<file_name>)
@@ -68,7 +68,7 @@ FIX_LIBTOOL_LIBPATH = \
 	libpath_r=""                                                                                                            ; \
 	libpath_r="$${libpath_r} $(elibdir)"                                                                                    ; \
 	libpath_r="$${libpath_r} $(libdir)"                                                                                     ; \
-	libpath_r="$${libpath_r} $(qt4libdir)"                                                                                  ; \
+	libpath_r="$${libpath_r} $(qt5libdir)"                                                                                  ; \
 	libpath_r="$${libpath_r} $(libdir)/mysql"                                                                               ; \
 	libpath_r="$${libpath_r} $(if $(filter build       ,$(DESTIMG))                ,/lib/$(GARBUILD) /usr/lib/$(GARBUILD))" ; \
 	libpath_r="$${libpath_r} $(if $(filter build+i386  ,$(DESTIMG)+$(GARCH_FAMILY)),/lib32 /usr/lib32 /lib /usr/lib)"       ; \
@@ -208,9 +208,12 @@ gar-patch-%:
 		| sed 's%@GAR_GARBUILD@%$(GARBUILD)%g' \
 		| sed 's%@GAR_GARHOST@%$(GARHOST)%g' \
 		| sed 's%@GAR_build_DESTDIR@%$(build_DESTDIR)%g' \
+		| sed 's%@GAR_build_prefix@%$(build_prefix)%g' \
 		| sed 's%@GAR_build_bindir@%$(build_bindir)%g' \
 		| sed 's%@GAR_build_includedir@%$(build_includedir)%g' \
-		| sed 's%@GAR_build_qt4bindir@%$(build_qt4bindir)%g' \
+		| sed 's%@GAR_build_qt5bindir@%$(build_qt5bindir)%g' \
+		| sed 's%@GAR_build_qt5libdir@%$(build_qt5libdir)%g' \
+		| sed 's%@GAR_build_qt5elibdir@%$(build_qt5elibdir)%g' \
 		| sed 's%@GAR_DESTDIR@%$(DESTDIR)%g' \
 		| sed 's%@GAR_rootdir@%$(rootdir)%g' \
 		| sed 's%@GAR_prefix@%$(prefix)%g' \
@@ -221,16 +224,21 @@ gar-patch-%:
 		| sed 's%@GAR_elibdir@%$(elibdir)%g' \
 		| sed 's%@GAR_esbindir@%$(esbindir)%g' \
 		| sed 's%@GAR_includedir@%$(includedir)%g' \
+		| sed 's%@GAR_infodir@%$(infodir)%g' \
 		| sed 's%@GAR_libdir@%$(libdir)%g' \
+		| sed 's%@GAR_libexecdir@%$(libexecdir)%g' \
 		| sed 's%@GAR_localstatedir@%$(localstatedir)%g' \
 		| sed 's%@GAR_mandir@%$(mandir)%g' \
 		| sed 's%@GAR_sbindir@%$(sbindir)%g' \
+		| sed 's%@GAR_sharedstatedir@%$(sharedstatedir)%g' \
 		| sed 's%@GAR_sourcedir@%$(sourcedir)%g' \
 		| sed 's%@GAR_sysconfdir@%$(sysconfdir)%g' \
-		| sed 's%@GAR_qt4prefix@%$(qt4prefix)%g' \
-		| sed 's%@GAR_qt4bindir@%$(qt4bindir)%g' \
-		| sed 's%@GAR_qt4includedir@%$(qt4includedir)%g' \
-		| sed 's%@GAR_qt4libdir@%$(qt4libdir)%g' \
+		| sed 's%@GAR_qt5prefix@%$(qt5prefix)%g' \
+		| sed 's%@GAR_qt5bindir@%$(qt5bindir)%g' \
+		| sed 's%@GAR_qt5includedir@%$(qt5includedir)%g' \
+		| sed 's%@GAR_qt5libdir@%$(qt5libdir)%g' \
+		| sed 's%@GAR_qt5elibdir@%$(qt5elibdir)%g' \
+		| sed 's%@GAR_GARCH@%$(GARCH)%g' \
 		| sed 's%@GAR_GARCH_FAMILY@%$(GARCH_FAMILY)%g' \
 		| sed 's%@GAR_CPP@%$(CPP)%g' \
 		| sed 's%@GAR_CC@%$(CC)%g' \
@@ -239,6 +247,7 @@ gar-patch-%:
 		| sed 's%@GAR_AS@%$(AS)%g' \
 		| sed 's%@GAR_AR@%$(AR)%g' \
 		| sed 's%@GAR_RANLIB@%$(RANLIB)%g' \
+		| sed 's%@GAR_OBJCOPY@%$(OBJCOPY)%g' \
 		| sed 's%@GAR_NM@%$(NM)%g' \
 		| sed 's%@GAR_STRIP@%$(STRIP)%g' \
 		| sed 's%@GAR_CPPLAGS@%$(CPPFLAGS)%g' \

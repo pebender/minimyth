@@ -1,6 +1,6 @@
 GARNAME      = perl-Task-Weaken
-GARVERSION   = 1.04
-MASTER_SITES = http://www.cpan.org/authors/id/A/AD/ADAMK/
+GARVERSION   = 1.05
+MASTER_SITES = https://cpan.metacpan.org/authors/id/E/ET/ETHER/
 DEPENDS      =
 
 include ../../perl/perl/perl-module.mk

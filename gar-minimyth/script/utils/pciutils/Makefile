@@ -1,23 +1,22 @@
 GARNAME = pciutils
-GARVERSION = 3.3.1
+GARVERSION = 3.6.2
 CATEGORIES = utils
 MASTER_SITES = https://www.kernel.org/pub/software/utils/pciutils/
 DISTFILES  = $(DISTNAME).tar.xz
-DISTFILES += pci.ids
 LICENSE = GPL2
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c data/pci.ids
 
 BUILD_SCRIPTS   = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 BUILD_ARGS   = \
 	OPT="$(CFLAGS)" \
-	HOST="$(GARCH_FAMILY)-dummy-linux" \
+	HOST="$(GARCH_FAMILY)-Linux" \
 	RELEASE="$(LINUX_VERSION)" \
 	CROSS_COMPILE="$(compiler_prefix)" \
 	ZLIB="no" \
@@ -62,13 +61,9 @@ INSTALL_ARGS = \
 GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk
 include ../../gar.mk
 
-CFLAGS  := $(CFLAGS)  -fPIC
-LDFLAGS := $(LDFLAGS) -fPIC
+#CFLAGS  := $(CFLAGS)  -fPIC
+#LDFLAGS := $(LDFLAGS) -fPIC
 
 # pciutils 3.3.1 fails to compile with gcc 5.2.0's link time optimization enabled.
 #CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
 #LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
-
-extract-pci.ids:
-	@cp -f $(DOWNLOADDIR)/pci.ids $(WORKSRC)/pci.ids
-	@$(MAKECOOKIE)

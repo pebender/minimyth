@@ -1,7 +1,7 @@
 GARNAME = libdca
 GARVERSION = 0.0.5
 CATEGORIES = lib
-MASTER_SITES = http://download.videolan.org/pub/videolan/libdca/$(GARVERSION)/
+MASTER_SITES = https://download.videolan.org/pub/videolan/libdca/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-configure_optimization.patch $(DISTNAME)-configure_c++.patch
 LICENSE = GPL2
@@ -27,8 +27,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-al-audio \
 	--disable-win \
 	--disable-warnings \
-	--disable-gprof \
-	--with-gnu-ld
+	--disable-gprof
 
 include ../../gar.mk
 

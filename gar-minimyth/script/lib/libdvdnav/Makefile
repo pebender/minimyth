@@ -1,8 +1,7 @@
 GARNAME = libdvdnav
 GARVERSION = 4.2.0
 CATEGORIES = lib
-MASTER_SITES = http://dvdnav.mplayerhq.hu/releases/
-#MASTER_SITES = svn://svn.mplayerhq.hu/dvdnav/trunk/$(GARNAME)/
+MASTER_SITES = https://download.videolan.org/pub/videolan/libdvdnav/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-destdir.patch
 LICENSE = GPL2
@@ -17,8 +16,7 @@ CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--with-gnu-ld
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
 
 include ../../gar.mk
 

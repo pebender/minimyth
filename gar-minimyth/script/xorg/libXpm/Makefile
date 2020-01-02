@@ -1,7 +1,7 @@
 GARNAME = libXpm
-GARVERSION = 3.5.11
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 3.5.13
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/lib/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,14 +11,11 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/libXt \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xproto
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/libX11 \
+	xorg/libXext \
+	xorg/libXt \
+	xorg/util-macros \
+	xorg/xorgproto
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -28,17 +25,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-silent-rules \
-	--enable-stat-zfile \
-	--with-gnu-ld
+	--enable-stat-zfile
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@rm -f $(WORKSRC)/acinclude.m4
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

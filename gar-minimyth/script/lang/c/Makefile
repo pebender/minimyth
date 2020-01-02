@@ -8,16 +8,23 @@ endef
 
 DEPENDS    = lib/libgcc
 BUILDDEPS  = lang/c
+DEPENDS   += \
+	devel/meson \
+	devel/pkg-config
 # Development tools often used when building c language programs.
 BUILDDEPS += \
 	utils/bash \
-	perl/perl \
 	utils/coreutils \
 	utils/lzip \
 	utils/ed \
 	utils/sed \
 	utils/gawk \
 	utils/grep \
+	perl/perl \
+	devel/pkg-config \
+	python/python \
+	devel/cmake \
+	devel/meson \
 	utils/m4 \
 	utils/diffutils \
 	utils/findutils \
@@ -29,7 +36,6 @@ BUILDDEPS += \
 	devel/automake \
 	devel/libtool \
 	devel/intltool \
-	devel/pkg-config \
 	devel/patch \
 	utils/which \
 	utils/file \
@@ -39,8 +45,7 @@ BUILDDEPS += \
 	utils/gzip \
 	utils/unzip \
 	doc/texinfo \
-	python/python \
-	devel/cmake
+	devel/ruby
 
 include ../../gar.mk
 

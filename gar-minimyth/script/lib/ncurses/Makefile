@@ -5,43 +5,50 @@ MASTER_SITES  = https://ftp.gnu.org/gnu/$(GARNAME)/
 MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/
 MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/$(GARVERSION)/
 DISTFILES = $(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).tar.gz 
-PATCHFILES  = $(DISTNAME)-$(NCURSES_PATCH_VERSION)-patch.sh.bz2
-PATCHFILES += $(DISTNAME)-shell.patch $(DISTNAME)-perl.patch.gar $(DISTNAME).patch.gar
+PATCHFILES = \
+	$(DISTNAME)-includesubdir.patch \
+	$(DISTNAME).patch.gar
 LICENSE = MIT_Modified
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c lang/cxx
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
-CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--without-ada \
+	--without-cxx \
 	--without-cxx-binding \
 	--without-ada \
 	--with-manpages \
 	--without-tests \
+	--with-pkg-config="$(build_DESTDIR)$(build_bindir)/pkg-config" \
+	--with-pkg-config-libdir="$(PKG_CONFIG_LIBDIR)" \
+	--enable-pc-files \
 	--with-build-cc="$(build_CC)" \
-	--with-build-cppflags="$(build_CPPFLAGS)" \
+	--with-build-cpp="$(build_CPP)" \
 	--with-build-cflags="$(build_CFLAGS)" \
+	--with-build-cppflags="$(build_CPPFLAGS)" \
 	--with-build-ldflags="$(build_LDFLAGS)" \
 	--with-build-libs="" \
 	--with-shared \
 	--without-normal \
 	--without-debug \
 	--without-profile \
+	--with-cxx-shared \
+	--with-termlib \
+	--with-ticlib \
 	--disable-rpath \
 	--disable-relink \
+	--disable-lib-suffixes \
 	--disable-rpath-hack \
 	--enable-overwrite \
-	--disable-widec \
-	--enable-termcap \
-	--enable-pc-files \
-	--with-pkg-config=$(build_DESTDIR)$(build_bindir)/pkg-config \
-	--with-pkg-config-libdir=$(DESTDIR)$(build_libdir)/pkg-config
+	--enable-widec
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--without-progs
@@ -49,22 +56,20 @@ endif
 
 include ../../gar.mk
 
-patch-%.sh.bz2:
-	echo " ==> Extracting $(DOWNLOADDIR)/$*"
-	mkdir -p $(WORKSRC)
-	cp $(DOWNLOADDIR)/$*.sh.bz2 $(WORKSRC)/$*.sh.bz2
-	cd $(WORKSRC) && bzip2 -df $*.sh.bz2 && sleep 1 && sh $*.sh
-	@$(MAKECOOKIE)
-
 pre-configure:
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:
-	@cd $(DESTDIR)$(libdir) && ln -sf libncurses.so libtermcap.so
-	@rm -f $(DESTDIR)$(bindir)-config/ncurses5-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses5-config
 	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/ncurses5-config $(DESTDIR)$(bindir)-config/ncurses5-config
-	@$(if $(compiler_prefix), ln -s ncurses5-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses5-config)
+	@rm -fv $(DESTDIR)$(bindir)-config/ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)-config/ncurses6-config
+	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses6-config
+	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)-config/ncurses6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)-config/ncursesw6-config
+	@$(if $(compiler_prefix), ln -sfv ncursesw6-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncursesw6-config)
+	@$(if $(compiler_prefix), ln -sfv ncurses6-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses6-config)
+	@$(foreach lib, ncurses form panel menu, ln -sfv ${lib}.pc $(PKG_CONFIG_LIBDIR)/${lib}w.pc;)
+	@$(foreach lib, ncurses form panel menu, rm -fv $(DESTDIR)$(libdir)/lib${lib}.a $(DESTDIR)$(libdir)/lib${lib}_g.a;)
 	@$(MAKECOOKIE)

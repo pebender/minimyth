@@ -1,0 +1,24 @@
+diff -Naur xkeyboard-config-2.28-old/Makefile.am xkeyboard-config-2.28-new/Makefile.am
+--- xkeyboard-config-2.28-old/Makefile.am	2019-10-19 13:52:38.000000000 -0700
++++ xkeyboard-config-2.28-new/Makefile.am	2019-12-26 20:39:54.577000281 -0800
+@@ -2,7 +2,7 @@
+ 
+ SUBDIRS = compat geometry keycodes po rules symbols types docs man
+ 
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xkeyboard-config.pc
+ 
+ EXTRA_DIST=config.rpath COPYING README \
+diff -Naur xkeyboard-config-2.28-old/Makefile.in xkeyboard-config-2.28-new/Makefile.in
+--- xkeyboard-config-2.28-old/Makefile.in	2019-10-19 13:52:43.000000000 -0700
++++ xkeyboard-config-2.28-new/Makefile.in	2019-12-26 20:39:54.579000273 -0800
+@@ -374,7 +374,7 @@
+ xkb_rules_symlink = @xkb_rules_symlink@
+ AUTOMAKE_OPTIONS = foreign
+ SUBDIRS = compat geometry keycodes po rules symbols types docs man
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xkeyboard-config.pc
+ EXTRA_DIST = config.rpath COPYING README \
+        autogen.sh \

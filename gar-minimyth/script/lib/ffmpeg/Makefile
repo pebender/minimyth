@@ -1,7 +1,7 @@
 GARNAME = ffmpeg
 GARVERSION = 1.1.16
 CATEGORIES = lib
-MASTER_SITES = http://ffmpeg.org/releases/
+MASTER_SITES = https://ffmpeg.org/releases/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-git_76d9012.patch \

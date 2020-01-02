@@ -1,7 +1,7 @@
 GARNAME = ratpoison
-GARVERSION = 1.4.8
+GARVERSION = 1.4.9
 CATEGORIES = X11
-MASTER_SITES = http://savannah.nongnu.org/download/$(GARNAME)/
+MASTER_SITES = https://download.savannah.gnu.org/releases/ratpoison/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-staticgravity.patch

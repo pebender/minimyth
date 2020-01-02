@@ -1,5 +1,5 @@
 GARNAME = alsa-lib
-GARVERSION = 1.0.29
+GARVERSION = 1.2.1.2
 CATEGORIES = lib
 MASTER_SITES  = ftp://ftp.alsa-project.org/pub/lib/
 MASTER_SITES += ftp://ftp.alsa-project.org/pub/testing/
@@ -21,6 +21,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--enable-shared \
 	--enable-symbolic-functions \
+	--disable-debug-assert \
 	--disable-resmgr \
 	--enable-aload \
 	--enable-mixer \
@@ -29,10 +30,14 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-hwdep \
 	--enable-seq \
 	--enable-ucm \
-	--enable-alisp \
+	--enable-topology \
+	--disable-alisp \
 	--disable-old-symbols \
+	--disable-mixer-modules \
+	--disable-mixer-pymods \
 	--disable-python \
-	--with-gnu-ld \
+	--disable-python2 \
+	--enable-thread-safety \
 	--with-versioned \
 	--without-debug \
 	--with-tmpdir="$(rootdir)/tmp" \
@@ -41,10 +46,10 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-# alsa-lib 1.0.29 fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+# alsa-lib 1.2.1.2 fails to compile with gcc 9.2.0's link time optimization enabled.
+CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)
@@ -53,7 +58,5 @@ pre-configure:
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libasound.la
-	@rm -f $(DESTDIR)$(libdir)/alsa-lib/smixer/smixer-sbase.la
-	@rm -f $(DESTDIR)$(libdir)/alsa-lib/smixer/smixer-ac97.la
-	@rm -f $(DESTDIR)$(libdir)/alsa-lib/smixer/smixer-hda.la
+	@rm -f $(DESTDIR)$(libdir)/libatopology.la
 	@$(MAKECOOKIE)

@@ -1,0 +1,24 @@
+diff -Naur xtrans-1.4.0-old/Makefile.am xtrans-1.4.0-new/Makefile.am
+--- xtrans-1.4.0-old/Makefile.am	2019-03-16 14:30:31.000000000 -0700
++++ xtrans-1.4.0-new/Makefile.am	2019-12-26 20:57:45.734010528 -0800
+@@ -13,7 +13,7 @@
+ aclocaldir = $(datadir)/aclocal
+ aclocal_DATA = xtrans.m4
+ 
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xtrans.pc
+ 
+ MAINTAINERCLEANFILES = ChangeLog INSTALL
+diff -Naur xtrans-1.4.0-old/Makefile.in xtrans-1.4.0-new/Makefile.in
+--- xtrans-1.4.0-old/Makefile.in	2019-03-16 14:30:35.000000000 -0700
++++ xtrans-1.4.0-new/Makefile.in	2019-12-26 20:57:45.735010367 -0800
+@@ -373,7 +373,7 @@
+ 
+ aclocaldir = $(datadir)/aclocal
+ aclocal_DATA = xtrans.m4
+-pkgconfigdir = $(datadir)/pkgconfig
++pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = xtrans.pc
+ MAINTAINERCLEANFILES = ChangeLog INSTALL
+ EXTRA_DIST = ${aclocal_DATA} README.md

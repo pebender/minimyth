@@ -1,7 +1,7 @@
 GARNAME = libXcursor
-GARVERSION = 1.1.14
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 1.2.0
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/lib/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,12 +11,10 @@ define BLURB
 endef
 
 DEPENDS   = lang/c \
-	$(CATEGORY)/fixesproto \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXfixes \
-	$(CATEGORY)/libXrender
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/libX11 \
+	xorg/libXfixes \
+	xorg/libXrender \
+	xorg/xorgproto
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -25,16 +23,9 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

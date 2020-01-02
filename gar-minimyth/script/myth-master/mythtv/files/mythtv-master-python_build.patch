@@ -1,26 +1,28 @@
-diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/configure mythtv-master-20141222-5b386a0-new/mythplugins/configure
---- mythtv-master-20141222-5b386a0-old/mythplugins/configure	2015-06-11 01:01:14.841000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythplugins/configure	2015-06-11 01:01:15.994000002 -0700
-@@ -464,10 +464,15 @@
+diff -Naur mythtv-master-20191230-bafc80d-old/mythplugins/configure mythtv-master-20191230-bafc80d-new/mythplugins/configure
+--- mythtv-master-20191230-bafc80d-old/mythplugins/configure	2019-12-30 16:03:25.254999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythplugins/configure	2019-12-30 16:03:27.067999975 -0800
+@@ -466,12 +466,15 @@
  check_py_lib(){
      log check_py_lib "$@"
      lib=${1}
 +if test "x${PYTHONXCPREFIX}" = "x" ; then
-+   py_prefix=${prefix}
++    py_prefix=${prefix}
 +else
-+   py_prefix=${PYTHONXCPREFIX}
++    py_prefix=${PYTHONXCPREFIX}
 +fi
      check_cmd $python <<EOF
  from distutils.sysconfig import get_python_lib
  import sys
--sys.path.append(get_python_lib(prefix='${prefix}'))
+-for mythroot in '${mythroot}'.split(':'):
+-    sys.path.append(get_python_lib(prefix=mythroot +'${prefix}'))
+-sys.path.append(get_python_lib(prefix='${sysroot}${prefix}'))
 +sys.path.append(get_python_lib(prefix='${py_prefix}'))
  try:
      import $lib
  except:
-diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/bindings/python/Makefile mythtv-master-20141222-5b386a0-new/mythtv/bindings/python/Makefile
---- mythtv-master-20141222-5b386a0-old/mythtv/bindings/python/Makefile	2015-06-11 01:01:14.552000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythtv/bindings/python/Makefile	2015-06-11 01:01:15.995000002 -0700
+diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/bindings/python/Makefile mythtv-master-20191230-bafc80d-new/mythtv/bindings/python/Makefile
+--- mythtv-master-20191230-bafc80d-old/mythtv/bindings/python/Makefile	2019-12-30 16:03:25.582999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythtv/bindings/python/Makefile	2019-12-30 16:03:27.067999975 -0800
 @@ -1,15 +1,15 @@
  include ../../config.mak
  
@@ -52,20 +54,3 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/bindings/python/Makefile my
  
  install: setup.py
  	$(PYTHON) setup.py install --skip-build $(ROOT_FLAGS) $(PREFIX_FLAGS)
-diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/bindings/python/setup.py mythtv-master-20141222-5b386a0-new/mythtv/bindings/python/setup.py
---- mythtv-master-20141222-5b386a0-old/mythtv/bindings/python/setup.py	2015-06-11 01:01:14.552000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythtv/bindings/python/setup.py	2015-06-11 01:01:15.995000002 -0700
-@@ -1,10 +1,10 @@
- #!/usr/bin/env python
- 
--from distutils.core import setup
--from distutils.cmd import Command
-+from setuptools import setup
-+from setuptools import Command
- from distutils.sysconfig import get_python_lib, project_base
- from distutils.command.install import INSTALL_SCHEMES
--from distutils.command.build import build as pybuild
-+from distutilscross.crosscompile import build as pybuild
- 
- import os
- import glob

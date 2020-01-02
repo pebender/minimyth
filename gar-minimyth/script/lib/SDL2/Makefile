@@ -1,7 +1,7 @@
 GARNAME = SDL2
 GARVERSION = 2.0.3
 CATEGORIES = lib
-MASTER_SITES = http://www.libsdl.org/release/
+MASTER_SITES = https://www.libsdl.org/release/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME).patch.gar
 LICENSE = zlib
@@ -95,7 +95,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-sdl-dlopen \
 	--disable-clock_gettime \
 	--disable-rpath \
-	--with-gnu-ld \
 	--with-x
 
 include ../../gar.mk

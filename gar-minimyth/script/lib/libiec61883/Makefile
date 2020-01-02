@@ -1,7 +1,7 @@
 GARNAME = libiec61883
 GARVERSION = 1.2.0
 CATEGORIES = lib
-MASTER_SITES = http://www.kernel.org/pub/linux/libs/ieee1394/
+MASTER_SITES = https://www.kernel.org/pub/linux/libs/ieee1394/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch
@@ -19,8 +19,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
 include ../../gar.mk
 

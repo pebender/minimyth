@@ -17,16 +17,13 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 BUILD_ARGS     = \
 	SUBDIRS="scripts test"
 INSTALL_ARGS   = \
 	SUBDIRS="scripts test"
 
 include ../../gar.mk
-
-CFLAGS += -lcap-ng
 
 pre-configure:
 	@cd $(WORKSRC) ; mkdir -p build-aux

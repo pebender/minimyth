@@ -105,8 +105,8 @@ x-mm-all:
 		echo "error: mm_HOME must be set to \"`cd $(GARDIR)/.. ; pwd`\" but has been set to \"$(mm_HOME)\"."; \
 		exit 1 ; \
 	fi
-	@if [ "$(firstword $(strip $(subst /, ,$(mm_HOME))))" = "$(firstword $(strip $(subst /, ,$(qt4prefix))))" ] ; then \
-		echo "error: MiniMyth cannot be built in a subdirectory of \"/$(firstword $(strip $(subst /, ,$(qt4prefix))))\"."; \
+	@if [ "$(firstword $(strip $(subst /, ,$(mm_HOME))))" = "$(firstword $(strip $(subst /, ,$(qt5prefix))))" ] ; then \
+		echo "error: MiniMyth cannot be built in a subdirectory of \"/$(firstword $(strip $(subst /, ,$(qt5prefix))))\"."; \
 		exit 1 ; \
 	fi
 	@echo "    mm_DEBUG"
@@ -166,43 +166,25 @@ x-mm-all:
 			echo "error: mm_SOFTWARE=\"$${software}\" is an invalid value." ; \
 			exit 1 ; \
 		fi ; \
-		if [ "$(mm_MYTH_VERSION)" = "0.22" ] ; then \
-			if [ "$${software}" = "mythnetvision" ] ; then \
-				echo "warning: mm_SOFTWARE=\"$${software}\" is an invalid value for mm_MYTH_VERSION=\"$(mm_MYTH_VERSION)\"." ; \
-			fi ; \
-		fi ; \
-		if [ ! "$(mm_MYTH_VERSION)" = "0.22" ] && \
-		   [ ! "$(mm_MYTH_VERSION)" = "0.23" ] && \
-		   [ ! "$(mm_MYTH_VERSION)" = "0.24" ] ; then \
-			if [ "$${software}" = "mythstream"  ] || \
-			   [ "$${software}" = "mythstvideo" ] ; then \
-				echo "warning: mm_SOFTWARE=\"$${software}\" is an invalid value for mm_MYTH_VERSION=\"$(mm_MYTH_VERSION)\"." ; \
-			fi ; \
-		fi ; \
 	done
 	@echo "    mm_KERNEL_HEADERS_VERSION"
-	@if [ ! "$(mm_KERNEL_HEADERS_VERSION)" = "3.18" ] ; then \
+	@if [ ! "$(mm_KERNEL_HEADERS_VERSION)" = "5.4" ] ; then \
 		echo "error: mm_KERNEL_HEADERS_VERSION=\"$(mm_KERNEL_HEADERS_VERSION)\" is an invalid value." ; \
 		exit 1 ; \
 	fi
 	@echo "    mm_KERNEL_VERSION"
-	@if [ ! "$(mm_KERNEL_VERSION)" = "3.18" ] ; then \
+	@if [ ! "$(mm_KERNEL_VERSION)" = "5.4" ] ; then \
 		echo "error: mm_KERNEL_VERSION=\"$(mm_KERNEL_VERSION)\" is an invalid value." ; \
 		exit 1 ; \
 	fi
 	@echo "    mm_KERNEL_VERSION >= mm_KERNEL_HEADERS_VERSION"
-	@if [ `echo ${mm_KERNEL_HEADERS_VERSION} | sed 's%3\.\(.*\)%\1%'` -gt \
-	      `echo ${mm_KERNEL_VERSION}         | sed 's%3\.\(.*\)%\1%'`     ] ; then \
+	@if [ `echo ${mm_KERNEL_HEADERS_VERSION} | sed 's%5\.\(.*\)%\1%'` -gt \
+	      `echo ${mm_KERNEL_VERSION}         | sed 's%5\.\(.*\)%\1%'`     ] ; then \
 		echo "error: mm_KERNEL_HEADERS_VERSION is greater than mm_KERNEL_VERSION." ; \
 		exit 1 ; \
 	fi
 	@echo "    mm_MYTH_VERSION"
-	@if [ ! "$(mm_MYTH_VERSION)" = "0.22"   ] && \
-	    [ ! "$(mm_MYTH_VERSION)" = "0.23"   ] && \
-	    [ ! "$(mm_MYTH_VERSION)" = "0.24"   ] && \
-	    [ ! "$(mm_MYTH_VERSION)" = "0.25"   ] && \
-	    [ ! "$(mm_MYTH_VERSION)" = "0.26"   ] && \
-	    [ ! "$(mm_MYTH_VERSION)" = "0.27"   ] && \
+	@if [ ! "$(mm_MYTH_VERSION)" = "0.30"   ] && \
 	    [ ! "$(mm_MYTH_VERSION)" = "master" ] ; then \
 		echo "error: mm_MYTH_VERSION=\"$(mm_MYTH_VERSION)\" is an invalid value." ; \
 		exit 1 ; \

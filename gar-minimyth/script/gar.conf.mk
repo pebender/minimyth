@@ -50,10 +50,11 @@ main_docdir = $(main_rootdir)/usr/share/doc
 main_sourcedir = $(main_rootdir)/usr/src
 main_licensedir = $(main_rootdir)/usr/licenses
 main_versiondir = $(main_rootdir)/usr/versions
-main_qt4prefix = $(main_libdir)/qt4
-main_qt4bindir = $(main_qt4prefix)/bin
-main_qt4includedir = $(main_qt4prefix)/include
-main_qt4libdir = $(main_qt4prefix)/lib
+main_qt5prefix = $(main_libdir)/qt5
+main_qt5bindir = $(main_qt5prefix)/bin
+main_qt5includedir = $(main_qt5prefix)/include
+main_qt5libdir = $(main_qt5prefix)/lib
+main_qt5elibdir = $(main_qt5prefix)/libexec
 
 # Directory config for the "build" image
 build_rootdir ?= $(mm_HOME)/images/build
@@ -80,10 +81,11 @@ build_docdir = $(build_rootdir)/usr/share/doc
 build_sourcedir = $(build_rootdir)/usr/src
 build_licensedir = $(build_rootdir)/usr/licenses
 build_versiondir = $(build_rootdir)/usr/versions
-build_qt4prefix = $(build_libdir)/qt4
-build_qt4bindir = $(build_qt4prefix)/bin
-build_qt4includedir = $(build_qt4prefix)/include
-build_qt4libdir = $(build_qt4prefix)/lib
+build_qt5prefix = $(build_libdir)/qt5
+build_qt5bindir = $(build_qt5prefix)/bin
+build_qt5includedir = $(build_qt5prefix)/include
+build_qt5libdir = $(build_qt5prefix)/lib
+build_qt5elibdir = $(build_qt5prefix)/libexec
 
 # the DESTDIR is used at INSTALL TIME ONLY to determine what the
 # filesystem root should be.  Each different DESTIMG has its own
@@ -94,16 +96,15 @@ build_chroot_DESTDIR ?= /tmp/chroot
 
 # allow us to link to libraries we installed
 main_CPPFLAGS += 
-main_CFLAGS += -pipe -flto
-main_CFLAGS += $(mm_CFLAGS)
-main_CXXFLAGS += $(main_CFLAGS)
-main_LDFLAGS += -Wl,--as-needed $(main_CFLAGS)
+main_CFLAGS += -pipe -flto $(mm_CFLAGS)
+main_CXXFLAGS += -pipe -flto $(mm_CFLAGS)
+main_LDFLAGS += -Wl,--as-needed
 
 # allow us to link to libraries we installed
 build_CPPFLAGS += 
 build_CFLAGS += -pipe -march=$(build_GARCH) -O2 $(if $(filter i386,$(build_GARCH_FAMILY)),-m32) $(if $(filter x86_64,$(build_GARCH_FAMILY)),-m64)
-build_CXXFLAGS += $(build_CFLAGS)
-build_LDFLAGS += $(build_CFLAGS)
+build_CXXFLAGS += -pipe -march=$(build_GARCH) -O2 $(if $(filter i386,$(build_GARCH_FAMILY)),-m32) $(if $(filter x86_64,$(build_GARCH_FAMILY)),-m64)
+build_LDFLAGS +=
 
 # Default main_CC to gcc, $(DESTIMG)_CC to main_CC and set CC based on $(DESTIMG)
 main_compiler_prefix ?= $(GARHOST)-
@@ -154,8 +155,8 @@ build_NODEPEND += kernel/linux-headers devel/glibc
 # This is for foo-config chaos
 SHELL = $(if $(wildcard $(build_DESTDIR)$(build_ebindir)/bash),$(build_DESTDIR)$(build_ebindir)/bash,/bin/sh)
 CONFIG_SHELL = $(SHELL)
-PKG_CONFIG_PATH = 
-PKG_CONFIG_LIBDIR = $(DESTDIR)$(libdir)/pkgconfig:$(DESTDIR)$(datadir)/pkgconfig:$(DESTDIR)$(qt4libdir)/pkgconfig
+PKG_CONFIG_PATH = $(DESTDIR)$(libdir)/pkgconfig:$(DESTDIR)$(datadir)/pkgconfig:$(DESTDIR)$(qt5libdir)/pkgconfig
+PKG_CONFIG_LIBDIR = $(DESTDIR)$(libdir)/pkgconfig
 PKG_CONFIG_SYSROOT_DIR = $(DESTDIR)
 PERLLIB = 
 PERL5LIB =

@@ -1,7 +1,7 @@
 GARNAME = libg15
 GARVERSION = 1.2.7
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/g15tools/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/g15tools/files/libg15/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-dash.patch
 LICENSE = LGPL2
@@ -18,8 +18,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
 include ../../gar.mk
 

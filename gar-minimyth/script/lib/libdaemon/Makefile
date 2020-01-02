@@ -1,7 +1,7 @@
 GARNAME = libdaemon
 GARVERSION = 0.14
 CATEGORIES = net
-MASTER_SITES = http://0pointer.de/lennart/projects/$(GARNAME)/
+MASTER_SITES = http://0pointer.de/lennart/projects/libdaemon/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = LGPL2_1
 
@@ -19,8 +19,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--disable-lynx \
-	--with-gnu-ld
+	--disable-lynx
 
 CONFIGURE_ENV = \
 	ac_cv_func_fork_works=yes \

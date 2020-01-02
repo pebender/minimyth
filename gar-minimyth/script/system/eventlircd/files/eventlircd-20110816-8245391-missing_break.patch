@@ -1,0 +1,11 @@
+diff -Naur eventlircd-20110816-8245391-old/src/main.c eventlircd-20110816-8245391-new/src/main.c
+--- eventlircd-20110816-8245391-old/src/main.c	2019-12-05 11:13:56.000000000 -0800
++++ eventlircd-20110816-8245391-new/src/main.c	2019-12-11 22:55:04.350001976 -0800
+@@ -106,6 +106,7 @@
+                 {
+                     syslog(LOG_WARNING, "the highest verbosity level is -vvv\n");
+                 }
++		break;
+             case 'f':
+                 foreground = true;
+                 break;

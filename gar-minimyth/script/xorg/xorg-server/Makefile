@@ -1,10 +1,9 @@
 GARNAME = xorg-server
-GARVERSION = 1.17.2
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 1.20.6
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/xserver/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
-	$(DISTNAME)-gcc_5.0.patch \
+xPATCHFILES = \
 	$(DISTNAME)-perl.patch.gar \
 	$(DISTNAME)-pkg_config.patch \
 	$(DISTNAME)-detect_radeon.patch
@@ -16,71 +15,48 @@ define BLURB
 endef
 
 DEPENDS  = lang/c lib/openssl \
-	$(CATEGORY)/bigreqsproto \
-	$(CATEGORY)/damageproto \
-	$(CATEGORY)/dri2proto \
-	$(CATEGORY)/dri3proto \
-	$(CATEGORY)/fixesproto \
-	$(CATEGORY)/font-util \
-	$(CATEGORY)/fontsproto \
-	$(CATEGORY)/glproto \
-	$(CATEGORY)/inputproto \
-	$(CATEGORY)/kbproto \
-	$(CATEGORY)/libdrm \
-	$(CATEGORY)/libpciaccess \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXau \
-	$(CATEGORY)/libXfont \
-	$(CATEGORY)/libxkbfile \
-	$(CATEGORY)/libxshmfence \
-	$(CATEGORY)/Mesa \
-	$(CATEGORY)/pixman \
-	$(CATEGORY)/presentproto \
-	$(CATEGORY)/randrproto \
-	$(CATEGORY)/recordproto \
-	$(CATEGORY)/renderproto \
-	$(CATEGORY)/resourceproto \
-	$(CATEGORY)/scrnsaverproto \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/videoproto \
-	$(CATEGORY)/xcmiscproto \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xf86bigfontproto \
-	$(CATEGORY)/xf86dgaproto \
-	$(CATEGORY)/xf86driproto \
-	$(CATEGORY)/xf86vidmodeproto \
-	$(CATEGORY)/xineramaproto \
-	$(CATEGORY)/xproto \
-	$(CATEGORY)/xtrans
+	xorg/font-util \
+	xorg/libdrm \
+	xorg/libX11 \
+	xorg/libXau \
+	xorg/libXfont2 \
+	xorg/libXi \
+	xorg/libXtst \
+	xorg/libpciaccess \
+	xorg/libxkbfile \
+	xorg/libepoxy \
+	xorg/libxshmfence \
+	xorg/Mesa \
+	xorg/pixman \
+	xorg/util-macros \
+	xorg/xorgproto \
+	xorg/xtrans
+
 ifneq ($(DESTIMG),build)
 DEPENDS += system/udev
 endif
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--enable-selective-werror \
-	--disable-strict-compilation \
 	--disable-silent-rules \
+	--disable-docs \
+	--disable-devel-docs \
+	--disable-unit-tests \
 	--disable-static \
 	--enable-shared \
-	--enable-largefile \
 	--disable-debug \
-	--disable-unit-tests \
-	--disable-sparkle \
-	--disable-install-libxf86config \
+	--disable-listen-tcp \
+	--enable-listen-unix \
+	--disable-listen-local \
 	--enable-visibility \
-	--enable-aiglx \
-	--disable-glx-tls \
-	--disable-composite \
+	--enable-composite \
 	--enable-mitshm \
-	--disable-xres \
+	--enable-xres \
 	--enable-record \
 	--enable-xv \
 	--enable-xvmc \
@@ -95,25 +71,28 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-present \
 	--enable-xinerama \
 	--enable-xf86vidmode \
-	--disable-xace \
+	--enable-xace \
 	--disable-xselinux \
 	--disable-xcsecurity \
-	--disable-tslib \
 	--enable-dbe \
-	--enable-xf86bigfont \
+	--disable-xf86bigfont \
 	--enable-dpms \
 	$(if $(filter build, $(DESTIMG)), --disable-config-udev, --enable-config-udev) \
 	$(if $(filter build, $(DESTIMG)), --disable-config-udev-kms, --enable-config-udev-kms) \
 	--disable-config-hal \
+	--disable-config-wscons \
 	--enable-xfree86-utils \
 	--enable-vgahw \
 	--enable-vbe \
 	--enable-int10-module \
 	--disable-windowswm \
+	--disable-windowsdri \
 	--enable-libdrm \
+	--enable-clientids \
+	--enable-pciaccess \
 	--enable-linux-acpi \
 	--enable-linux-apm \
-	--disable-systemd-logind  \
+	--disable-systemd-logind \
 	--disable-suid-wrapper \
 	--enable-xorg \
 	--disable-dmx \
@@ -121,12 +100,13 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-xnest \
 	--disable-xquartz \
 	--disable-xwayland \
+	--disable-xwayland-eglstream \
 	--disable-standalone-xpbproxy \
 	--disable-xwin \
+	--enable-glamor \
 	--disable-kdrive \
 	--disable-xephyr \
-	--disable-xfake \
-	--disable-xfbdev \
+	--disable-libunwind \
 	--enable-xshmfence \
 	--disable-install-setuid \
 	--enable-unix-transport \
@@ -134,8 +114,12 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-ipv6 \
 	--disable-local-transport \
 	--disable-secure-rpc \
-	--disable-devel-docs \
-	--with-gnu-ld \
+	--enable-input-thread \
+	--enable-xtrans-send-fds \
+	--without-doxygen \
+	--without-xmlto \
+	--without-fop \
+	--without-xsltproc \
 	--with-default-font-path="$(datadir)/fonts/X11/TTF,$(datadir)/fonts/X11/misc" \
 	--with-xkb-path="$(datadir)/X11/xkb" \
 	--with-xkb-output="$(datadir)/X11/xkb/compiled" \
@@ -147,13 +131,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 CONFIGURE_ENV = \
 	XORG_SGML_PATH="$(DESTDIR)$(includedir)/xorg"
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/modesetting_drv.la
@@ -161,6 +139,7 @@ post-install:
 	@rm -f $(DESTDIR)$(libdir)/xorg/modules/libexa.la
 	@rm -f $(DESTDIR)$(libdir)/xorg/modules/libfb.la
 	@rm -f $(DESTDIR)$(libdir)/xorg/modules/libfbdevhw.la
+	@rm -f $(DESTDIR)$(libdir)/xorg/modules/libglamoregl.la
 	@rm -f $(DESTDIR)$(libdir)/xorg/modules/libint10.la
 	@rm -f $(DESTDIR)$(libdir)/xorg/modules/libshadow.la
 	@rm -f $(DESTDIR)$(libdir)/xorg/modules/libshadowfb.la

@@ -81,7 +81,7 @@ bindirs_base := \
 	$(sbindir) \
 	$(bindir) \
 	$(libexecdir) \
-	$(qt4bindir)
+	$(qt5bindir)
 bindirs := \
 	$(bindirs_base) \
 	$(libexecdir)
@@ -91,7 +91,7 @@ libdirs_base := \
 	$(libdir) \
 	$(libexecdir) \
 	$(libdir)/mysql \
-	$(qt4libdir)
+	$(qt5libdir)
 libdirs := \
 	$(libdirs_base) \
 	$(libdir)/xorg/modules \
@@ -162,7 +162,7 @@ MM_CONFIG_VARS := $(sort \
 	OBJDUMP \
 	PERL_libdir \
 	PYTHON_libdir \
-	qt4prefix \
+	qt5prefix \
 	rootdir \
 	sharedirs \
 	sourcedir \

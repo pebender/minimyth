@@ -1,8 +1,8 @@
 GARNAME = gpxe
 GARVERSION = 1.0.1
 CATEGORIES = net
-MASTER_SITES = http://ftp.be.debian.org/pub/software/boot/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.bz2
+MASTER_SITES = https://github.com/etherboot/gpxe/archive/
+DISTFILES = v$(GARVERSION).tar.gz
 LICENSE = GPL2
 
 DESCRIPTION =
@@ -16,10 +16,24 @@ INSTALL_SCRIPTS = custom
 
 BUILD_ARGS = \
 	HOST_CC="$(build_CC)" \
+	CC="$(CC)" \
+	CPP="$(CC) -E" \
+	AS="$(AS)" \
+	LD="$(compiler_prefix)ld.bfd" \
+	SIZE="$(SIZE)" \
+	AR="$(AR)" \
+	RANLIB="$(RANLIB)" \
+	OBJCOPY="$(OBJCOPY)" \
+	NM="$(NM)" \
+	OBJDUMP="$(OBJDUMP)" \
 	PERL="$(build_DESTDIR)$(build_bindir)/perl" \
 	CROSS_COMPILE="$(compiler_prefix)" \
+	NO_WERROR="1" \
 	ARCH="$(GARCH_FAMILY)" \
-	Q=" " \
+	BINUTILS_DIR="$(prefix)" \
+	BFD_DIR="$(BINUTILS_DIR)" \
+	ZLIB_DIR="$(prefix)" \
+	V="1" \
 	NO_WERROR="1" \
 	bin/undionly.kpxe
 
@@ -29,6 +43,9 @@ CPPFLAGS :=
 CFLAGS   :=
 CXXFLAGS :=
 LDFLAGS  :=
+
+checksum-v$(GARVERSION).tar.gz:
+	@$(MAKECOOKIE)
 
 install-custom:
 	@mkdir -p $(DESTDIR)$(rootdir)/srv/tftpboot/minimyth

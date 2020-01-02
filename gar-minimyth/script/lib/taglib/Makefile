@@ -1,7 +1,7 @@
 GARNAME = taglib
 GARVERSION = 1.9.1
 CATEGORIES = lib
-MASTER_SITES = http://taglib.github.io/releases/
+MASTER_SITES = https://taglib.org/releases/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME).patch.gar
 LICENSE = LGPL2_1

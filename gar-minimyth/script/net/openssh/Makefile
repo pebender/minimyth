@@ -1,8 +1,8 @@
 GARNAME = openssh
-GARVERSION = 7.0p1
+GARVERSION = 8.1p1
 CATEGORIES = net
-MASTER_SITES  = http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/
-MASTER_SITES += http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/old/
+MASTER_SITES  = https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/
+MASTER_SITES += https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/old/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-abstract_socket.patch \

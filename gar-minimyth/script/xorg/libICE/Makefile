@@ -1,7 +1,7 @@
 GARNAME = libICE
-GARVERSION = 1.0.9
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 1.0.10
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/lib/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,11 +11,9 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/xproto \
-	$(CATEGORY)/xtrans
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/util-macros \
+	xorg/xorgproto \
+	xorg/xtrans
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -31,15 +29,11 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-tcp-transport \
 	--disable-ipv6 \
 	--disable-local-transport \
-	--with-gnu-ld
+	--without-xmlto \
+	--without-fop \
+	--without-xsltproc
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

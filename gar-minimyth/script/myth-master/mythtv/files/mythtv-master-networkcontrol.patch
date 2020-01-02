@@ -1,9 +1,9 @@
-diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/programs/mythfrontend/main.cpp mythtv-master-20141222-5b386a0-new/mythtv/programs/mythfrontend/main.cpp
---- mythtv-master-20141222-5b386a0-old/mythtv/programs/mythfrontend/main.cpp	2015-06-11 01:01:17.929000003 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythtv/programs/mythfrontend/main.cpp	2015-06-11 01:01:19.608000002 -0700
-@@ -1851,6 +1851,18 @@
-                 QString("NetworkControl failed to bind to port %1.")
+diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/programs/mythfrontend/main.cpp mythtv-master-20191230-bafc80d-new/mythtv/programs/mythfrontend/main.cpp
+--- mythtv-master-20191230-bafc80d-old/mythtv/programs/mythfrontend/main.cpp	2019-12-30 16:03:29.469999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythtv/programs/mythfrontend/main.cpp	2019-12-30 16:03:30.780999975 -0800
+@@ -2148,6 +2148,18 @@
                     .arg(port));
+         }
      }
 +    else
 +    {

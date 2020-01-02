@@ -1,7 +1,7 @@
 GARNAME = curl
 GARVERSION = 7.28.1
 CATEGORIES = net
-MASTER_SITES = http://curl.haxx.se/download/
+MASTER_SITES = https://curl.haxx.se/download/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
@@ -54,7 +54,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-tls-srp \
 	--enable-cookies \
 	--disable-soname-bump \
-	--with-gnu-ld \
 	--without-krb4 \
 	--without-spnego \
 	--without-gssapi \

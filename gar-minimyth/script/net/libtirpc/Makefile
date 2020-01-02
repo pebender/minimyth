@@ -1,17 +1,15 @@
 GARNAME = libtirpc
-GARVERSION = 0.3.2
+GARVERSION = 1.1.4
 CATEGORIES = net
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
-	$(DISTNAME)-api_fixes-1.patch
 LICENSE = BSD_3_Clause
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/c devel/glibc-rpcsvc
+DEPENDS = lang/c
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -22,8 +20,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-gssapi \
 	--disable-ipv6 \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
 include ../../gar.mk
 

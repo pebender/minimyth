@@ -1,8 +1,8 @@
-GARNAME = libusb-compat
+GARNAME = libusb-compat-0.1
 GARVERSION = 0.1.4
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/libusb/$(GARNAME)-0.1/$(DISTNAME)/
-DISTFILES = $(DISTNAME).tar.bz2
+MASTER_SITES = https://github.com/libusb/libusb-compat-0.1/archive/
+DISTFILES = $(GARVERSION).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
 	$(DISTNAME).patch.gar
@@ -23,8 +23,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--disable-log \
 	--disable-debug-log \
-	--disable-examples-build \
-	--with-gnu-ld
+	--disable-examples-build
 
 include ../../gar.mk
 

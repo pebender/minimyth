@@ -7,7 +7,7 @@
 # The version of MiniMyth.
 mm_VERSION                ?= $(mm_VERSION_MYTH)-$(mm_VERSION_MINIMYTH)$(mm_VERSION_EXTRA)
 mm_VERSION_MYTH           ?= $(strip \
-                                $(if $(filter 0.27  ,$(mm_MYTH_VERSION)),0.27.5) \
+                                $(if $(filter 0.30  ,$(mm_MYTH_VERSION)),0.30.0) \
                                 $(if $(filter master,$(mm_MYTH_VERSION)),master) \
                               )
 mm_VERSION_MINIMYTH       ?= 83
@@ -41,7 +41,7 @@ mm_GRAPHICS               ?= intel \
 # Lists the software to be supported.
 # Valid values for MM_SOFTWARE are zero or more of 'mythbrowser', 'mythgallery',
 # 'mythgame', 'mythmusic', 'mythnetvision', 'mythnews', 'mythstream',
-# 'mythvideo', 'mythweather', 'mythzoneminder', 'airplay', 'flash', 'hulu',
+# 'mythvideo', 'mythweather', 'mythzoneminder', 'airplay',
 # 'mplayer-new', 'mplayer-vld', 'vlc' 'xine', 'mame', 'ps3remote', 'wiimote',
 # 'cec', 'backend','python', 'debug'.
 mm_SOFTWARE               ?= mythbrowser \
@@ -52,17 +52,10 @@ mm_SOFTWARE               ?= mythbrowser \
                              mythnews \
                              mythweather \
                              mythzoneminder \
-                             $(if $(filter-out 0.22 0.23 0.24,$(mm_MYTH_VERSION)),airplay) \
-                             flash \
-                             hulu \
-                             $(if $(filter 0.22 0.23 0.24,$(mm_MYTH_VERSION)),mplayer-new) \
-                             $(if $(filter openchrome,$(mm_GRAPHICS)), \
-                                 $(if $(filter 0.22 0.23 0.24,$(mm_MYTH_VERSION)),mplayer-vld)) \
-                             $(if $(filter 0.22 0.23 0.24,$(mm_MYTH_VERSION)),vlc) \
-                             $(if $(filter 0.22 0.23 0.24,$(mm_MYTH_VERSION)),xine) \
+                             airplay \
                              ps3remote \
                              wiimote \
-                             $(if $(filter-out 0.22 0.23 0.24,$(mm_MYTH_VERSION)),cec) \
+                             cec \
                              backend \
                              python \
                              $(if $(filter yes,$(mm_DEBUG)),debug)
@@ -107,18 +100,18 @@ mm_TFTP_ROOT              ?= /var/tftpboot/minimyth
 # installed in a subdirectory named 'minimyth-$(mm_VERSION)'.
 mm_NFS_ROOT               ?= /home/public/minimyth
 # The version of kernel headers to use.
-# Valid values are '3.18'.
-mm_KERNEL_HEADERS_VERSION ?= 3.18
+# Valid values are '5.4'
+mm_KERNEL_HEADERS_VERSION ?= 5.4
 # The version of kernel to use.
-# Valid values are '3.18'.
-mm_KERNEL_VERSION         ?= 3.18
+# Valid values are '5.4'.
+mm_KERNEL_VERSION         ?= 5.4
 # The kernel configuration file to use.
 # When set, the kernel configuration file $(HOME)/.minimyth/$(mm_KERNEL_CONFIG) will be used.
 # When not set, a built-in kernel configuration file will be used.
 mm_KERNEL_CONFIG          ?=
 # The version of Myth to use.
-# Valid values are '0.27', 'master'.
-mm_MYTH_VERSION           ?= 0.27
+# Valid values are '0.30', 'master'.
+mm_MYTH_VERSION           ?= 0.30
 # The version of the NVIDIA driver.
 # Valid values are '304.125' (legacy), '340.76' (legacy), '352.21'.
 mm_NVIDIA_VERSION         ?= 304.125
@@ -126,7 +119,7 @@ mm_NVIDIA_VERSION         ?= 304.125
 # may no longer work. The version string format is:
 # master-<date>-<mythtv-git-commit>-<myththemes-git-commit>, where <date> has
 # the format YYYYMMDD.
-mm_MYTHTV_MASTER_VERSION  ?= master-20141222-5b386a0
+mm_MYTHTV_MASTER_VERSION  ?= master-20191230-bafc80d
 # Lists additional packages to build when minimyth is built.
 mm_USER_PACKAGES          ?=
 # Lists additional binaries to include in the MiniMyth image

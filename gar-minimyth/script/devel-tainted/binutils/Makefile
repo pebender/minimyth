@@ -29,20 +29,13 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GARTARGET) \
 	--enable-plugins \
 	--disable-gold \
-	--enable-ld=default \
+	--enable-ld \
+	--disable-libgomp \
 	--disable-libada \
 	--disable-libssp \
-	--disable-lto \
 	--disable-werror \
 	--disable-multilib \
 	--disable-nls \
-	--enable-version-specific-runtime-libs \
-	--without-mpc \
-	--without-mpfr \
-	--without-gmp \
-	--without-isl \
-	--without-cloog \
-	--without-libelf \
 	--with-sysroot=$($(CROSSIMG)_DESTDIR) \
 	--with-lib-path="=$($(CROSSIMG)_elibdir):=$($(CROSSIMG)_libdir):/lib/$(GARBUILD):/usr/lib/$(GARBUILD):$(strip $(if $(filter i386,$(GARCH_FAMILY)),:/lib32:/usr/lib32:/lib:/usr/lib) $(if $(filter x86_64,$(GARCH_FAMILY)),:/lib64:/usr/lib64:/lib:/usr/lib))"
 
@@ -55,8 +48,11 @@ CXXFLAGS :=
 LDFLAGS  :=
 
 post-install:
-	rm -f $(DESTDIR)$(libdir)/libbfd.la
-	rm -f $(DESTDIR)$(prefix)/$(GARHOST)/$(GARTARGET)/lib/libbfd.la
-	rm -f $(DESTDIR)$(libdir)/libopcodes.la
-	rm -f $(DESTDIR)$(prefix)/$(GARHOST)/$(GARTARGET)/lib/libopcodes.la
+	@$(if $(filter $(DESTIMG), $(CROSSIMG)), \
+		rm -f $(DESTDIR)$(libdir)/libbfd.la ; \
+		rm -f $(DESTDIR)$(libdir)/libopcodes.la ; \
+	, \
+		rm -f $(DESTDIR)$(prefix)/$(GARHOST)/$(GARTARGET)/lib/libbfd.la ; \
+		rm -f $(DESTDIR)$(prefix)/$(GARHOST)/$(GARTARGET)/lib/libopcodes.la ; \
+	)
 	@$(MAKECOOKIE)

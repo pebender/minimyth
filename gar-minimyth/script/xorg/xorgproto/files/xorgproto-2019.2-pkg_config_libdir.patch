@@ -1,0 +1,642 @@
+diff -Naur xorgproto-2019.2-old/Makefile.am xorgproto-2019.2-new/Makefile.am
+--- xorgproto-2019.2-old/Makefile.am	2019-10-17 09:02:34.000000000 -0700
++++ xorgproto-2019.2-new/Makefile.am	2019-12-25 14:57:58.143995541 -0800
+@@ -3,7 +3,7 @@
+         include/X11/extensions/applewmconst.h \
+ 	include/X11/extensions/applewmproto.h
+ 
+-applewmprotopkgconfigdir = $(datadir)/pkgconfig
++applewmprotopkgconfigdir = $(libdir)/pkgconfig
+ applewmprotopkgconfig_DATA = applewmproto.pc
+ 
+ bigreqsdir = $(includedir)/X11/extensions
+@@ -11,7 +11,7 @@
+ 	include/X11/extensions/bigreqsproto.h \
+ 	include/X11/extensions/bigreqstr.h
+ 
+-bigreqsprotopkgconfigdir = $(datadir)/pkgconfig
++bigreqsprotopkgconfigdir = $(libdir)/pkgconfig
+ bigreqsprotopkgconfig_DATA = bigreqsproto.pc
+ 
+ if LEGACY
+@@ -20,7 +20,7 @@
+ 	include/X11/extensions/xcalibrateproto.h \
+ 	include/X11/extensions/xcalibratewire.h
+ 
+-calibrateprotopkgconfigdir = $(datadir)/pkgconfig
++calibrateprotopkgconfigdir = $(libdir)/pkgconfig
+ calibrateprotopkgconfig_DATA = xcalibrateproto.pc
+ endif
+ 
+@@ -29,7 +29,7 @@
+ 	include/X11/extensions/composite.h \
+ 	include/X11/extensions/compositeproto.h
+ 
+-compositeprotopkgconfigdir = $(datadir)/pkgconfig
++compositeprotopkgconfigdir = $(libdir)/pkgconfig
+ compositeprotopkgconfig_DATA = compositeproto.pc
+ 
+ damagedir = $(includedir)/X11/extensions
+@@ -37,7 +37,7 @@
+ 	include/X11/extensions/damageproto.h \
+ 	include/X11/extensions/damagewire.h
+ 
+-damageprotopkgconfigdir = $(datadir)/pkgconfig
++damageprotopkgconfigdir = $(libdir)/pkgconfig
+ damageprotopkgconfig_DATA = damageproto.pc
+ 
+ dmxdir = $(includedir)/X11/extensions
+@@ -45,7 +45,7 @@
+ 	include/X11/extensions/dmx.h \
+ 	include/X11/extensions/dmxproto.h
+ 
+-dmxprotopkgconfigdir = $(datadir)/pkgconfig
++dmxprotopkgconfigdir = $(libdir)/pkgconfig
+ dmxprotopkgconfig_DATA = dmxproto.pc
+ 
+ dri2dir = $(includedir)/X11/extensions
+@@ -53,14 +53,14 @@
+ 	include/X11/extensions/dri2proto.h \
+ 	include/X11/extensions/dri2tokens.h
+ 
+-dri2protopkgconfigdir = $(datadir)/pkgconfig
++dri2protopkgconfigdir = $(libdir)/pkgconfig
+ dri2protopkgconfig_DATA = dri2proto.pc
+ 
+ dri3dir = $(includedir)/X11/extensions
+ dri3_HEADERS = \
+ 	include/X11/extensions/dri3proto.h
+ 
+-dri3protopkgconfigdir = $(datadir)/pkgconfig
++dri3protopkgconfigdir = $(libdir)/pkgconfig
+ dri3protopkgconfig_DATA = dri3proto.pc
+ 
+ if LEGACY
+@@ -69,7 +69,7 @@
+ 	include/X11/extensions/evieproto.h \
+ 	include/X11/extensions/Xeviestr.h
+ 
+-evieprotopkgconfigdir = $(datadir)/pkgconfig
++evieprotopkgconfigdir = $(libdir)/pkgconfig
+ evieprotopkgconfig_DATA = evieproto.pc
+ endif
+ 
+@@ -78,7 +78,7 @@
+ 	include/X11/extensions/xfixesproto.h \
+ 	include/X11/extensions/xfixeswire.h
+ 
+-fixesprotopkgconfigdir = $(datadir)/pkgconfig
++fixesprotopkgconfigdir = $(libdir)/pkgconfig
+ fixesprotopkgconfig_DATA = fixesproto.pc
+ 
+ if LEGACY
+@@ -88,7 +88,7 @@
+ 	include/X11/extensions/fontcacheP.h \
+ 	include/X11/extensions/fontcachstr.h
+ 
+-fontcacheprotopkgconfigdir = $(datadir)/pkgconfig
++fontcacheprotopkgconfigdir = $(libdir)/pkgconfig
+ fontcacheprotopkgconfig_DATA = fontcacheproto.pc
+ endif
+ 
+@@ -101,7 +101,7 @@
+ 	include/X11/fonts/fsmasks.h \
+ 	include/X11/fonts/FSproto.h
+ 
+-fontsprotopkgconfigdir = $(datadir)/pkgconfig
++fontsprotopkgconfigdir = $(libdir)/pkgconfig
+ fontsprotopkgconfig_DATA = fontsproto.pc
+ 
+ gldir = $(includedir)/GL
+@@ -115,7 +115,7 @@
+ glinternal_HEADERS = \
+ 	include/GL/internal/glcore.h
+ 
+-glprotopkgconfigdir = $(datadir)/pkgconfig
++glprotopkgconfigdir = $(libdir)/pkgconfig
+ glprotopkgconfig_DATA = glproto.pc
+ 
+ inputdir = $(includedir)/X11/extensions
+@@ -125,7 +125,7 @@
+ 	include/X11/extensions/XI2.h \
+ 	include/X11/extensions/XI2proto.h
+ 
+-inputprotopkgconfigdir = $(datadir)/pkgconfig
++inputprotopkgconfigdir = $(libdir)/pkgconfig
+ inputprotopkgconfig_DATA = inputproto.pc
+ 
+ kbdir = $(includedir)/X11/extensions
+@@ -138,7 +138,7 @@
+ kb_HEADERS += include/X11/extensions/XKBgeom.h
+ endif
+ 
+-kbprotopkgconfigdir = $(datadir)/pkgconfig
++kbprotopkgconfigdir = $(libdir)/pkgconfig
+ kbprotopkgconfig_DATA = kbproto.pc
+ 
+ if LEGACY
+@@ -146,7 +146,7 @@
+ lg3d_HEADERS = \
+ 	include/X11/extensions/lgewire.h
+ 
+-lg3dprotopkgconfigdir = $(datadir)/pkgconfig
++lg3dprotopkgconfigdir = $(libdir)/pkgconfig
+ lg3dprotopkgconfig_DATA = lg3dproto.pc
+ 
+ xproxymngdir = $(includedir)/X11/PM
+@@ -154,7 +154,7 @@
+ 	include/X11/PM/PM.h \
+ 	include/X11/PM/PMproto.h
+ 
+-pmprotopkgconfigdir = $(datadir)/pkgconfig
++pmprotopkgconfigdir = $(libdir)/pkgconfig
+ pmprotopkgconfig_DATA = xproxymngproto.pc
+ endif
+ 
+@@ -163,7 +163,7 @@
+ 	include/X11/extensions/presentproto.h \
+ 	include/X11/extensions/presenttokens.h
+ 
+-presentprotopkgconfigdir = $(datadir)/pkgconfig
++presentprotopkgconfigdir = $(libdir)/pkgconfig
+ presentprotopkgconfig_DATA = presentproto.pc
+ 
+ if LEGACY
+@@ -172,7 +172,7 @@
+ 	include/X11/extensions/Print.h \
+ 	include/X11/extensions/Printstr.h
+ 
+-printprotopkgconfigdir = $(datadir)/pkgconfig
++printprotopkgconfigdir = $(libdir)/pkgconfig
+ printprotopkgconfig_DATA = printproto.pc
+ 
+ miscmandir = $(MISC_MAN_DIR)
+@@ -206,7 +206,7 @@
+ 	include/X11/extensions/randr.h \
+ 	include/X11/extensions/randrproto.h
+ 
+-randrprotopkgconfigdir = $(datadir)/pkgconfig
++randrprotopkgconfigdir = $(libdir)/pkgconfig
+ randrprotopkgconfig_DATA = randrproto.pc
+ 
+ recorddir = $(includedir)/X11/extensions
+@@ -215,7 +215,7 @@
+ 	include/X11/extensions/recordproto.h \
+ 	include/X11/extensions/recordstr.h
+ 
+-recordprotopkgconfigdir = $(datadir)/pkgconfig
++recordprotopkgconfigdir = $(libdir)/pkgconfig
+ recordprotopkgconfig_DATA = recordproto.pc
+ 
+ renderdir = $(includedir)/X11/extensions
+@@ -223,14 +223,14 @@
+ 	include/X11/extensions/render.h \
+ 	include/X11/extensions/renderproto.h
+ 
+-renderprotopkgconfigdir = $(datadir)/pkgconfig
++renderprotopkgconfigdir = $(libdir)/pkgconfig
+ renderprotopkgconfig_DATA = renderproto.pc
+ 
+ resourcedir = $(includedir)/X11/extensions
+ resource_HEADERS = \
+ 	include/X11/extensions/XResproto.h
+ 
+-resourceprotopkgconfigdir = $(datadir)/pkgconfig
++resourceprotopkgconfigdir = $(libdir)/pkgconfig
+ resourceprotopkgconfig_DATA = resourceproto.pc
+ 
+ scrnsaverdir = $(includedir)/X11/extensions
+@@ -238,7 +238,7 @@
+ 	include/X11/extensions/saver.h \
+ 	include/X11/extensions/saverproto.h
+ 
+-scrnsaverprotopkgconfigdir = $(datadir)/pkgconfig
++scrnsaverprotopkgconfigdir = $(libdir)/pkgconfig
+ scrnsaverprotopkgconfig_DATA = scrnsaverproto.pc
+ 
+ if LEGACY
+@@ -252,7 +252,7 @@
+ 	include/X11/extensions/xtraplibp.h \
+ 	include/X11/extensions/xtrapproto.h
+ 
+-trapprotopkgconfigdir = $(datadir)/pkgconfig
++trapprotopkgconfigdir = $(libdir)/pkgconfig
+ trapprotopkgconfig_DATA = trapproto.pc
+ endif
+ 
+@@ -266,7 +266,7 @@
+ video_HEADERS += include/X11/extensions/vldXvMC.h
+ endif
+ 
+-videoprotopkgconfigdir = $(datadir)/pkgconfig
++videoprotopkgconfigdir = $(libdir)/pkgconfig
+ videoprotopkgconfig_DATA = videoproto.pc
+ 
+ if LEGACY
+@@ -275,7 +275,7 @@
+         include/X11/extensions/windowswm.h \
+ 	include/X11/extensions/windowswmstr.h
+ 
+-windowswmprotopkgconfigdir = $(datadir)/pkgconfig
++windowswmprotopkgconfigdir = $(libdir)/pkgconfig
+ windowswmprotopkgconfig_DATA = windowswmproto.pc
+ endif
+ 
+@@ -310,7 +310,7 @@
+ nodist_xproto_HEADERS = \
+ 	include/X11/Xpoll.h
+ 
+-x11protopkgconfigdir = $(datadir)/pkgconfig
++x11protopkgconfigdir = $(libdir)/pkgconfig
+ x11protopkgconfig_DATA = xproto.pc
+ 
+ xcmiscdir = $(includedir)/X11/extensions
+@@ -318,7 +318,7 @@
+ 	include/X11/extensions/xcmiscproto.h \
+ 	include/X11/extensions/xcmiscstr.h
+ 
+-xcmiscprotopkgconfigdir = $(datadir)/pkgconfig
++xcmiscprotopkgconfigdir = $(libdir)/pkgconfig
+ xcmiscprotopkgconfig_DATA = xcmiscproto.pc
+ 
+ xextdir = $(includedir)/X11/extensions
+@@ -360,7 +360,7 @@
+ 	include/X11/extensions/shmstr.h \
+ 	include/X11/extensions/syncstr.h
+ 
+-xextprotopkgconfigdir = $(datadir)/pkgconfig
++xextprotopkgconfigdir = $(libdir)/pkgconfig
+ xextprotopkgconfig_DATA = xextproto.pc
+ 
+ xf86bigfontdir = $(includedir)/X11/extensions
+@@ -369,7 +369,7 @@
+ 	include/X11/extensions/xf86bigfproto.h \
+ 	include/X11/extensions/xf86bigfstr.h
+ 
+-xf86bigfontprotopkgconfigdir = $(datadir)/pkgconfig
++xf86bigfontprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86bigfontprotopkgconfig_DATA = xf86bigfontproto.pc
+ 
+ xf86dgadir = $(includedir)/X11/extensions
+@@ -382,7 +382,7 @@
+ 	include/X11/extensions/xf86dgaproto.h \
+ 	include/X11/extensions/xf86dgastr.h
+ 
+-xf86dgaprotopkgconfigdir = $(datadir)/pkgconfig
++xf86dgaprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86dgaprotopkgconfig_DATA = xf86dgaproto.pc
+ 
+ xf86dridir = $(includedir)/X11/dri
+@@ -391,7 +391,7 @@
+ 	include/X11/dri/xf86dristr.h \
+ 	include/X11/dri/xf86driproto.h
+ 
+-xf86driprotopkgconfigdir = $(datadir)/pkgconfig
++xf86driprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86driprotopkgconfig_DATA = xf86driproto.pc
+ 
+ if LEGACY
+@@ -400,7 +400,7 @@
+ 	include/X11/extensions/xf86misc.h \
+ 	include/X11/extensions/xf86mscstr.h
+ 
+-xf86miscprotopkgconfigdir = $(datadir)/pkgconfig
++xf86miscprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86miscprotopkgconfig_DATA = xf86miscproto.pc
+ 
+ xf86rushdir = $(includedir)/X11/extensions
+@@ -408,7 +408,7 @@
+ 	include/X11/extensions/xf86rush.h \
+ 	include/X11/extensions/xf86rushstr.h
+ 
+-xf86rushprotopkgconfigdir = $(datadir)/pkgconfig
++xf86rushprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86rushprotopkgconfig_DATA = xf86rushproto.pc
+ endif
+ 
+@@ -418,14 +418,14 @@
+ 	include/X11/extensions/xf86vmproto.h \
+ 	include/X11/extensions/xf86vmstr.h
+ 
+-xf86vidmodeprotopkgconfigdir = $(datadir)/pkgconfig
++xf86vidmodeprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86vidmodeprotopkgconfig_DATA = xf86vidmodeproto.pc
+ 
+ xineramadir = $(includedir)/X11/extensions
+ xinerama_HEADERS = \
+ 	include/X11/extensions/panoramiXproto.h
+ 
+-xineramaprotopkgconfigdir = $(datadir)/pkgconfig
++xineramaprotopkgconfigdir = $(libdir)/pkgconfig
+ xineramaprotopkgconfig_DATA = xineramaproto.pc
+ 
+ SUBDIRS=specs
+diff -Naur xorgproto-2019.2-old/Makefile.in xorgproto-2019.2-new/Makefile.in
+--- xorgproto-2019.2-old/Makefile.in	2019-10-17 09:02:37.000000000 -0700
++++ xorgproto-2019.2-new/Makefile.in	2019-12-25 14:59:29.088002967 -0800
+@@ -542,69 +542,69 @@
+         include/X11/extensions/applewmconst.h \
+ 	include/X11/extensions/applewmproto.h
+ 
+-applewmprotopkgconfigdir = $(datadir)/pkgconfig
++applewmprotopkgconfigdir = $(libdir)/pkgconfig
+ applewmprotopkgconfig_DATA = applewmproto.pc
+ bigreqsdir = $(includedir)/X11/extensions
+ bigreqs_HEADERS = \
+ 	include/X11/extensions/bigreqsproto.h \
+ 	include/X11/extensions/bigreqstr.h
+ 
+-bigreqsprotopkgconfigdir = $(datadir)/pkgconfig
++bigreqsprotopkgconfigdir = $(libdir)/pkgconfig
+ bigreqsprotopkgconfig_DATA = bigreqsproto.pc
+ @LEGACY_TRUE@XCalibrateincludedir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@XCalibrateinclude_HEADERS = \
+ @LEGACY_TRUE@	include/X11/extensions/xcalibrateproto.h \
+ @LEGACY_TRUE@	include/X11/extensions/xcalibratewire.h
+ 
+-@LEGACY_TRUE@calibrateprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@calibrateprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@calibrateprotopkgconfig_DATA = xcalibrateproto.pc
+ compositedir = $(includedir)/X11/extensions
+ composite_HEADERS = \
+ 	include/X11/extensions/composite.h \
+ 	include/X11/extensions/compositeproto.h
+ 
+-compositeprotopkgconfigdir = $(datadir)/pkgconfig
++compositeprotopkgconfigdir = $(libdir)/pkgconfig
+ compositeprotopkgconfig_DATA = compositeproto.pc
+ damagedir = $(includedir)/X11/extensions
+ damage_HEADERS = \
+ 	include/X11/extensions/damageproto.h \
+ 	include/X11/extensions/damagewire.h
+ 
+-damageprotopkgconfigdir = $(datadir)/pkgconfig
++damageprotopkgconfigdir = $(libdir)/pkgconfig
+ damageprotopkgconfig_DATA = damageproto.pc
+ dmxdir = $(includedir)/X11/extensions
+ dmx_HEADERS = \
+ 	include/X11/extensions/dmx.h \
+ 	include/X11/extensions/dmxproto.h
+ 
+-dmxprotopkgconfigdir = $(datadir)/pkgconfig
++dmxprotopkgconfigdir = $(libdir)/pkgconfig
+ dmxprotopkgconfig_DATA = dmxproto.pc
+ dri2dir = $(includedir)/X11/extensions
+ dri2_HEADERS = \
+ 	include/X11/extensions/dri2proto.h \
+ 	include/X11/extensions/dri2tokens.h
+ 
+-dri2protopkgconfigdir = $(datadir)/pkgconfig
++dri2protopkgconfigdir = $(libdir)/pkgconfig
+ dri2protopkgconfig_DATA = dri2proto.pc
+ dri3dir = $(includedir)/X11/extensions
+ dri3_HEADERS = \
+ 	include/X11/extensions/dri3proto.h
+ 
+-dri3protopkgconfigdir = $(datadir)/pkgconfig
++dri3protopkgconfigdir = $(libdir)/pkgconfig
+ dri3protopkgconfig_DATA = dri3proto.pc
+ @LEGACY_TRUE@eviedir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@evie_HEADERS = \
+ @LEGACY_TRUE@	include/X11/extensions/evieproto.h \
+ @LEGACY_TRUE@	include/X11/extensions/Xeviestr.h
+ 
+-@LEGACY_TRUE@evieprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@evieprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@evieprotopkgconfig_DATA = evieproto.pc
+ fixesdir = $(includedir)/X11/extensions
+ fixes_HEADERS = \
+ 	include/X11/extensions/xfixesproto.h \
+ 	include/X11/extensions/xfixeswire.h
+ 
+-fixesprotopkgconfigdir = $(datadir)/pkgconfig
++fixesprotopkgconfigdir = $(libdir)/pkgconfig
+ fixesprotopkgconfig_DATA = fixesproto.pc
+ @LEGACY_TRUE@fontcachedir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@fontcache_HEADERS = \
+@@ -612,7 +612,7 @@
+ @LEGACY_TRUE@	include/X11/extensions/fontcacheP.h \
+ @LEGACY_TRUE@	include/X11/extensions/fontcachstr.h
+ 
+-@LEGACY_TRUE@fontcacheprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@fontcacheprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@fontcacheprotopkgconfig_DATA = fontcacheproto.pc
+ fontsdir = $(includedir)/X11/fonts
+ fonts_HEADERS = \
+@@ -623,7 +623,7 @@
+ 	include/X11/fonts/fsmasks.h \
+ 	include/X11/fonts/FSproto.h
+ 
+-fontsprotopkgconfigdir = $(datadir)/pkgconfig
++fontsprotopkgconfigdir = $(libdir)/pkgconfig
+ fontsprotopkgconfig_DATA = fontsproto.pc
+ gldir = $(includedir)/GL
+ gl_HEADERS = \
+@@ -636,7 +636,7 @@
+ glinternal_HEADERS = \
+ 	include/GL/internal/glcore.h
+ 
+-glprotopkgconfigdir = $(datadir)/pkgconfig
++glprotopkgconfigdir = $(libdir)/pkgconfig
+ glprotopkgconfig_DATA = glproto.pc
+ inputdir = $(includedir)/X11/extensions
+ input_HEADERS = \
+@@ -645,41 +645,41 @@
+ 	include/X11/extensions/XI2.h \
+ 	include/X11/extensions/XI2proto.h
+ 
+-inputprotopkgconfigdir = $(datadir)/pkgconfig
++inputprotopkgconfigdir = $(libdir)/pkgconfig
+ inputprotopkgconfig_DATA = inputproto.pc
+ kbdir = $(includedir)/X11/extensions
+ kb_HEADERS = include/X11/extensions/XKB.h \
+ 	include/X11/extensions/XKBproto.h \
+ 	include/X11/extensions/XKBsrv.h \
+ 	include/X11/extensions/XKBstr.h $(am__append_1)
+-kbprotopkgconfigdir = $(datadir)/pkgconfig
++kbprotopkgconfigdir = $(libdir)/pkgconfig
+ kbprotopkgconfig_DATA = kbproto.pc
+ @LEGACY_TRUE@lg3ddir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@lg3d_HEADERS = \
+ @LEGACY_TRUE@	include/X11/extensions/lgewire.h
+ 
+-@LEGACY_TRUE@lg3dprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@lg3dprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@lg3dprotopkgconfig_DATA = lg3dproto.pc
+ @LEGACY_TRUE@xproxymngdir = $(includedir)/X11/PM
+ @LEGACY_TRUE@xproxymng_HEADERS = \
+ @LEGACY_TRUE@	include/X11/PM/PM.h \
+ @LEGACY_TRUE@	include/X11/PM/PMproto.h
+ 
+-@LEGACY_TRUE@pmprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@pmprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@pmprotopkgconfig_DATA = xproxymngproto.pc
+ presentdir = $(includedir)/X11/extensions
+ present_HEADERS = \
+ 	include/X11/extensions/presentproto.h \
+ 	include/X11/extensions/presenttokens.h
+ 
+-presentprotopkgconfigdir = $(datadir)/pkgconfig
++presentprotopkgconfigdir = $(libdir)/pkgconfig
+ presentprotopkgconfig_DATA = presentproto.pc
+ @LEGACY_TRUE@printdir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@print_HEADERS = \
+ @LEGACY_TRUE@	include/X11/extensions/Print.h \
+ @LEGACY_TRUE@	include/X11/extensions/Printstr.h
+ 
+-@LEGACY_TRUE@printprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@printprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@printprotopkgconfig_DATA = printproto.pc
+ @LEGACY_TRUE@miscmandir = $(MISC_MAN_DIR)
+ @LEGACY_TRUE@miscman_DATA = man/Xprint.$(MISC_MAN_SUFFIX)
+@@ -692,7 +692,7 @@
+ 	include/X11/extensions/randr.h \
+ 	include/X11/extensions/randrproto.h
+ 
+-randrprotopkgconfigdir = $(datadir)/pkgconfig
++randrprotopkgconfigdir = $(libdir)/pkgconfig
+ randrprotopkgconfig_DATA = randrproto.pc
+ recorddir = $(includedir)/X11/extensions
+ record_HEADERS = \
+@@ -700,27 +700,27 @@
+ 	include/X11/extensions/recordproto.h \
+ 	include/X11/extensions/recordstr.h
+ 
+-recordprotopkgconfigdir = $(datadir)/pkgconfig
++recordprotopkgconfigdir = $(libdir)/pkgconfig
+ recordprotopkgconfig_DATA = recordproto.pc
+ renderdir = $(includedir)/X11/extensions
+ render_HEADERS = \
+ 	include/X11/extensions/render.h \
+ 	include/X11/extensions/renderproto.h
+ 
+-renderprotopkgconfigdir = $(datadir)/pkgconfig
++renderprotopkgconfigdir = $(libdir)/pkgconfig
+ renderprotopkgconfig_DATA = renderproto.pc
+ resourcedir = $(includedir)/X11/extensions
+ resource_HEADERS = \
+ 	include/X11/extensions/XResproto.h
+ 
+-resourceprotopkgconfigdir = $(datadir)/pkgconfig
++resourceprotopkgconfigdir = $(libdir)/pkgconfig
+ resourceprotopkgconfig_DATA = resourceproto.pc
+ scrnsaverdir = $(includedir)/X11/extensions
+ scrnsaver_HEADERS = \
+ 	include/X11/extensions/saver.h \
+ 	include/X11/extensions/saverproto.h
+ 
+-scrnsaverprotopkgconfigdir = $(datadir)/pkgconfig
++scrnsaverprotopkgconfigdir = $(libdir)/pkgconfig
+ scrnsaverprotopkgconfig_DATA = scrnsaverproto.pc
+ @LEGACY_TRUE@trapdir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@trap_HEADERS = \
+@@ -732,21 +732,21 @@
+ @LEGACY_TRUE@	include/X11/extensions/xtraplibp.h \
+ @LEGACY_TRUE@	include/X11/extensions/xtrapproto.h
+ 
+-@LEGACY_TRUE@trapprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@trapprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@trapprotopkgconfig_DATA = trapproto.pc
+ videodir = $(includedir)/X11/extensions
+ video_HEADERS = include/X11/extensions/Xv.h \
+ 	include/X11/extensions/XvMC.h \
+ 	include/X11/extensions/XvMCproto.h \
+ 	include/X11/extensions/Xvproto.h $(am__append_2)
+-videoprotopkgconfigdir = $(datadir)/pkgconfig
++videoprotopkgconfigdir = $(libdir)/pkgconfig
+ videoprotopkgconfig_DATA = videoproto.pc
+ @LEGACY_TRUE@windowswmdir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@windowswm_HEADERS = \
+ @LEGACY_TRUE@        include/X11/extensions/windowswm.h \
+ @LEGACY_TRUE@	include/X11/extensions/windowswmstr.h
+ 
+-@LEGACY_TRUE@windowswmprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@windowswmprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@windowswmprotopkgconfig_DATA = windowswmproto.pc
+ xprotodir = $(includedir)/X11
+ xproto_HEADERS = \
+@@ -779,14 +779,14 @@
+ nodist_xproto_HEADERS = \
+ 	include/X11/Xpoll.h
+ 
+-x11protopkgconfigdir = $(datadir)/pkgconfig
++x11protopkgconfigdir = $(libdir)/pkgconfig
+ x11protopkgconfig_DATA = xproto.pc
+ xcmiscdir = $(includedir)/X11/extensions
+ xcmisc_HEADERS = \
+ 	include/X11/extensions/xcmiscproto.h \
+ 	include/X11/extensions/xcmiscstr.h
+ 
+-xcmiscprotopkgconfigdir = $(datadir)/pkgconfig
++xcmiscprotopkgconfigdir = $(libdir)/pkgconfig
+ xcmiscprotopkgconfig_DATA = xcmiscproto.pc
+ xextdir = $(includedir)/X11/extensions
+ xext_HEADERS = \
+@@ -827,7 +827,7 @@
+ 	include/X11/extensions/shmstr.h \
+ 	include/X11/extensions/syncstr.h
+ 
+-xextprotopkgconfigdir = $(datadir)/pkgconfig
++xextprotopkgconfigdir = $(libdir)/pkgconfig
+ xextprotopkgconfig_DATA = xextproto.pc
+ xf86bigfontdir = $(includedir)/X11/extensions
+ xf86bigfont_HEADERS = \
+@@ -835,7 +835,7 @@
+ 	include/X11/extensions/xf86bigfproto.h \
+ 	include/X11/extensions/xf86bigfstr.h
+ 
+-xf86bigfontprotopkgconfigdir = $(datadir)/pkgconfig
++xf86bigfontprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86bigfontprotopkgconfig_DATA = xf86bigfontproto.pc
+ xf86dgadir = $(includedir)/X11/extensions
+ xf86dga_HEADERS = \
+@@ -847,7 +847,7 @@
+ 	include/X11/extensions/xf86dgaproto.h \
+ 	include/X11/extensions/xf86dgastr.h
+ 
+-xf86dgaprotopkgconfigdir = $(datadir)/pkgconfig
++xf86dgaprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86dgaprotopkgconfig_DATA = xf86dgaproto.pc
+ xf86dridir = $(includedir)/X11/dri
+ xf86dri_HEADERS = \
+@@ -855,21 +855,21 @@
+ 	include/X11/dri/xf86dristr.h \
+ 	include/X11/dri/xf86driproto.h
+ 
+-xf86driprotopkgconfigdir = $(datadir)/pkgconfig
++xf86driprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86driprotopkgconfig_DATA = xf86driproto.pc
+ @LEGACY_TRUE@xf86miscdir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@xf86misc_HEADERS = \
+ @LEGACY_TRUE@	include/X11/extensions/xf86misc.h \
+ @LEGACY_TRUE@	include/X11/extensions/xf86mscstr.h
+ 
+-@LEGACY_TRUE@xf86miscprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@xf86miscprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@xf86miscprotopkgconfig_DATA = xf86miscproto.pc
+ @LEGACY_TRUE@xf86rushdir = $(includedir)/X11/extensions
+ @LEGACY_TRUE@xf86rush_HEADERS = \
+ @LEGACY_TRUE@	include/X11/extensions/xf86rush.h \
+ @LEGACY_TRUE@	include/X11/extensions/xf86rushstr.h
+ 
+-@LEGACY_TRUE@xf86rushprotopkgconfigdir = $(datadir)/pkgconfig
++@LEGACY_TRUE@xf86rushprotopkgconfigdir = $(libdir)/pkgconfig
+ @LEGACY_TRUE@xf86rushprotopkgconfig_DATA = xf86rushproto.pc
+ xf86vidmodedir = $(includedir)/X11/extensions
+ xf86vidmode_HEADERS = \
+@@ -877,13 +877,13 @@
+ 	include/X11/extensions/xf86vmproto.h \
+ 	include/X11/extensions/xf86vmstr.h
+ 
+-xf86vidmodeprotopkgconfigdir = $(datadir)/pkgconfig
++xf86vidmodeprotopkgconfigdir = $(libdir)/pkgconfig
+ xf86vidmodeprotopkgconfig_DATA = xf86vidmodeproto.pc
+ xineramadir = $(includedir)/X11/extensions
+ xinerama_HEADERS = \
+ 	include/X11/extensions/panoramiXproto.h
+ 
+-xineramaprotopkgconfigdir = $(datadir)/pkgconfig
++xineramaprotopkgconfigdir = $(libdir)/pkgconfig
+ xineramaprotopkgconfig_DATA = xineramaproto.pc
+ SUBDIRS = specs
+ dist_doc_DATA = \

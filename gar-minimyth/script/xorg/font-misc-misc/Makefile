@@ -1,7 +1,7 @@
 GARNAME = font-misc-misc
 GARVERSION = 1.1.2
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/font/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-destdir.patch
 LICENSE = $(GARNAME)
@@ -12,14 +12,12 @@ define BLURB
 endef
 
 DEPENDS   = lang/c \
-	$(CATEGORY)/font-util \
-	$(CATEGORY)/util-macros
-BUILDDEPS = $(CATEGORY)/bdftopcf \
-	$(CATEGORY)/font-util \
-	$(CATEGORY)/mkfontdir \
-	$(CATEGORY)/mkfontscale
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/font-util \
+	xorg/util-macros
+BUILDDEPS = xorg/bdftopcf \
+	xorg/font-util \
+	xorg/mkfontdir \
+	xorg/mkfontscale
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -44,9 +42,4 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-koi8-r \
 	--disable-jisx0201
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(MAKECOOKIE)

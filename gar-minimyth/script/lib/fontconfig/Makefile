@@ -1,9 +1,8 @@
 GARNAME = fontconfig
-GARVERSION = 2.10.91
+GARVERSION = 2.13.1
 CATEGORIES = lib
-MASTER_SITES = http://www.fontconfig.org/release/
+MASTER_SITES = https://www.freedesktop.org/software/fontconfig/release/
 DISTFILES = $(DISTNAME).tar.gz
-#PATCHFILES = $(DISTNAME)-confdir.patch
 LICENSE = fontconfig
 fontconfig_LICENSE_TEXT = $(WORKSRC)/COPYING
 
@@ -11,8 +10,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lib/libxml2 lib/freetype
-BUILDDEPS = lib/freetype
+DEPENDS   = lang/c lib/freetype lib/libxml2
+BUILDDEPS = lib/freetype utils/gperf
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -25,8 +24,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-libxml2 \
 	--disable-docs \
 	--with-gnu-ld \
-	--with-arch=$(GARCH) \
-	--with-add-fonts=no
+	--with-arch=$(GARCH)
 
 DEFAULT_ENV   = \
 	CPP_FOR_BUILD="$(build_CPP)" \

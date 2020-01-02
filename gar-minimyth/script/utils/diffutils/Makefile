@@ -1,5 +1,5 @@
 GARNAME = diffutils
-GARVERSION = 3.3
+GARVERSION = 3.7
 CATEGORIES = utils
 MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.xz
@@ -18,7 +18,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--disable-rpath \
-	--with-gnu-ld
+	--enable-nls
 
 include ../../gar.mk
 

@@ -1,8 +1,7 @@
 GARNAME = zlib
 GARVERSION = $(ZLIB_VERSION)
 CATEGORIES = lib
-MASTER_SITES  = http://downloads.sourceforge.net/project/libpng/$(GARNAME)/$(GARVERSION)/
-MASTER_SITES += http://zlib.net/
+MASTER_SITES = https://sourceforge.net/projects/libpng/files/zlib/$(GARVERSION)/
 DISTFILES  = $(DISTNAME).tar.xz
 DISTFILES += license
 LICENSE = $(GARNAME)

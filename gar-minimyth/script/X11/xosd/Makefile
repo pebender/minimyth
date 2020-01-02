@@ -1,8 +1,7 @@
 GARNAME = xosd
 GARVERSION = 2.2.14
 CATEGORIES = X11
-MASTER_SITES = http://ignavus.net/
-MASTER_SITES = http://downloads.sourceforge.net/project/libxosd/libxosd/$(DISTNAME)/
+MASTER_SITES = https://sourceforge.net/projects/libxosd/files/libxosd/xosd-$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-destdir.patch $(DISTNAME)-dash.patch $(DISTNAME)-libxosd_m4.patch $(DISTNAME)-defaults.patch
 LICENSE = GPL2
@@ -28,7 +27,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-new-plugin \
 	--disable-beep_media_player_plugin \
 	--disable-old-plugin \
-	--with-gnu-ld \
 	--with-x
 
 CONFIGURE_ENV = \

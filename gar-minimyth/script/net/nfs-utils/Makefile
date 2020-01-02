@@ -1,7 +1,7 @@
 GARNAME = nfs-utils
 GARVERSION = 1.3.2
 CATEGORIES = net
-MASTER_SITES = http://downloads.sourceforge.net/project/nfs/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/nfs/files/nfs-utils/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-native_hack.patch
 LICENSE = GPL2
@@ -37,7 +37,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-rpcgen=$(build_DESTDIR)$(build_bindir)/rpcgen \
 	--with-tirpcinclude=$(DESTDIR)$(includedir)/tirpc \
 	--without-tcp-wrappers \
-	--with-gnu-ld \
 	--without-krb5
 CONFIGURE_ENV = \
 	CFLAGS_FOR_BUILD="$(build_CFLAGS)" \

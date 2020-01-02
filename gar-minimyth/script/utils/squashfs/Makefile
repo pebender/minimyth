@@ -1,8 +1,8 @@
-GARNAME = squashfs
-GARVERSION = 4.3
+GARNAME = squashfs-tools
+GARVERSION = 4.4
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARNAME)$(GARVERSION)/
-DISTFILES = $(GARNAME)$(GARVERSION).tar.gz
+MASTER_SITES = https://github.com/plougher/squashfs-tools/archive/
+DISTFILES = $(GARVERSION).tar.gz
 PATCHFILES = $(DISTNAME).patch.gar
 LICENSE = GPL2
 
@@ -11,8 +11,6 @@ define BLURB
 endef
 
 DEPENDS = lang/c lib/zlib utils/xz
-
-WORKSRC = $(WORKDIR)/$(GARNAME)$(GARVERSION)
 
 BUILD_SCRIPTS   = $(WORKSRC)/squashfs-tools/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/squashfs-tools/Makefile

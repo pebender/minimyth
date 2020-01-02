@@ -1,7 +1,7 @@
 GARNAME = libvorbis
 GARVERSION = 1.3.3
 CATEGORIES = lib
-MASTER_SITES = http://downloads.xiph.org/releases/vorbis/
+MASTER_SITES = https://downloads.xiph.org/releases/vorbis/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
@@ -23,8 +23,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-docs \
-	--disable-oggtest \
-	--with-gnu-ld
+	--disable-oggtest
 
 include ../../gar.mk
 

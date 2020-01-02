@@ -1,9 +1,9 @@
-diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/mytharchive/mytharchive/mytharchive.pro mythtv-master-20141222-5b386a0-new/mythplugins/mytharchive/mytharchive/mytharchive.pro
---- mythtv-master-20141222-5b386a0-old/mythplugins/mytharchive/mytharchive/mytharchive.pro	2015-06-11 01:01:15.935000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythplugins/mytharchive/mytharchive/mytharchive.pro	2015-06-11 01:01:17.354000003 -0700
-@@ -5,8 +5,8 @@
- QMAKE_COPY_DIR = sh ../../cpsvndir
- win32:QMAKE_COPY_DIR = sh ../../cpsimple
+diff -Naur mythtv-master-20191230-bafc80d-old/mythplugins/mytharchive/mytharchive/mytharchive.pro mythtv-master-20191230-bafc80d-new/mythplugins/mytharchive/mytharchive/mytharchive.pro
+--- mythtv-master-20191230-bafc80d-old/mythplugins/mytharchive/mytharchive/mytharchive.pro	2019-12-30 16:03:26.459999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythplugins/mytharchive/mytharchive/mytharchive.pro	2019-12-30 16:03:28.330999975 -0800
+@@ -2,8 +2,8 @@
+ include ( ../../settings.pro )
+ include ( ../../programs-libs.pro )
  
 -INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libavformat
 -INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libswscale
@@ -12,71 +12,53 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/mytharchive/mytharchiv
  DEPENDPATH *= $${INCLUDEPATH}
  
  LIBS += -lmythswscale
-@@ -38,28 +38,28 @@
- SOURCES += mythburn.cpp themeselector.cpp editmetadata.cpp thumbfinder.cpp
- SOURCES += exportnative.cpp importnative.cpp
- 
--burnuifiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/themes/default
-+burnuifiles.path = $${PREFIX}/share/mythtv/themes/default
- burnuifiles.files = mythburn-ui.xml
- 
--scriptfiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/mytharchive/scripts
-+scriptfiles.path = $${PREFIX}/share/mythtv/mytharchive/scripts
- scriptfiles.files = ../mythburn/scripts/*
- 
--introfiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/mytharchive/intro
-+introfiles.path = $${PREFIX}/share/mythtv/mytharchive/intro
- introfiles.files = ../mythburn/intro/*.mpg
- 
--musicfiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/mytharchive/music
-+musicfiles.path = $${PREFIX}/share/mythtv/mytharchive/music
- musicfiles.files = ../mythburn/music/*.ac3
- 
--imagefiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/mytharchive/images
-+imagefiles.path = $${PREFIX}/share/mythtv/mytharchive/images
- imagefiles.files = ../mythburn/images/*.png
- 
--themefiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/mytharchive/themes
-+themefiles.path = $${PREFIX}/share/mythtv/mytharchive/themes
- themefiles.files = ../mythburn/themes/*
- 
--profilefiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/mytharchive/encoder_profiles
-+profilefiles.path = $${PREFIX}/share/mythtv/mytharchive/encoder_profiles
- profilefiles.files = ../mythburn/encoder_profiles/*.xml
- 
--nativeuifiles.path = $${SYSROOT}$${PREFIX}/share/mythtv/themes/default
-+nativeuifiles.path = $${PREFIX}/share/mythtv/themes/default
- nativeuifiles.files = mythnative-ui.xml
- 
- INSTALLS +=  scriptfiles introfiles themefiles imagefiles musicfiles
-diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/mythmusic/mythmusic/mythmusic.pro mythtv-master-20141222-5b386a0-new/mythplugins/mythmusic/mythmusic/mythmusic.pro
---- mythtv-master-20141222-5b386a0-old/mythplugins/mythmusic/mythmusic/mythmusic.pro	2015-06-11 01:01:15.971000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythplugins/mythmusic/mythmusic/mythmusic.pro	2015-06-11 01:01:17.354000003 -0700
-@@ -17,7 +17,7 @@
+diff -Naur mythtv-master-20191230-bafc80d-old/mythplugins/mythmusic/mythmusic/mythmusic.pro mythtv-master-20191230-bafc80d-new/mythplugins/mythmusic/mythmusic/mythmusic.pro
+--- mythtv-master-20191230-bafc80d-old/mythplugins/mythmusic/mythmusic/mythmusic.pro	2019-12-30 16:03:26.483999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythplugins/mythmusic/mythmusic/mythmusic.pro	2019-12-30 16:03:28.330999975 -0800
+@@ -15,8 +15,8 @@
  target.path = $${LIBDIR}/mythtv/plugins
  INSTALLS += target
  
 -INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/metadata
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/goom
 +INCLUDEPATH += $${PREFIX}/include/mythtv/metadata
++INCLUDEPATH += $${PREFIX}/include/mythtv/goom
  INCLUDEPATH += $${CONFIG_TAGLIB_INCLUDES}
  
  LIBS += -lmythavformat
-diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/programs-libs.pro mythtv-master-20141222-5b386a0-new/mythplugins/programs-libs.pro
---- mythtv-master-20141222-5b386a0-old/mythplugins/programs-libs.pro	2015-06-11 01:01:15.935000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythplugins/programs-libs.pro	2015-06-11 01:01:17.354000003 -0700
-@@ -1,7 +1,7 @@
+@@ -64,8 +64,8 @@
+ SOURCES += lyricsview.cpp
+ 
+ cdio {
+-    INCLUDEPATH -= $${SYSROOT}/usr/include/cdda
+-    INCLUDEPATH *= $${SYSROOT}/usr/include/cdio
++    INCLUDEPATH -= /usr/include/cdda
++    INCLUDEPATH *= /usr/include/cdio
+     HEADERS += cddecoder.h cdrip.h cddb.h
+     SOURCES += cddecoder.cpp cdrip.cpp cddb.cpp
+     QT += network
+diff -Naur mythtv-master-20191230-bafc80d-old/mythplugins/programs-libs.pro mythtv-master-20191230-bafc80d-new/mythplugins/programs-libs.pro
+--- mythtv-master-20191230-bafc80d-old/mythplugins/programs-libs.pro	2019-12-30 16:03:26.473999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythplugins/programs-libs.pro	2019-12-30 16:03:28.330999975 -0800
+@@ -1,11 +1,11 @@
 -INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv
 -INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmythbase
 -INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmythui
 -INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmyth
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmythservicecontracts
 +INCLUDEPATH += $${PREFIX}/include/mythtv
 +INCLUDEPATH += $${PREFIX}/include/mythtv/libmythbase
 +INCLUDEPATH += $${PREFIX}/include/mythtv/libmythui
 +INCLUDEPATH += $${PREFIX}/include/mythtv/libmyth
++INCLUDEPATH += $${PREFIX}/include/mythtv/libmythservicecontracts
  DEPENDPATH *= $${INCLUDEPATH}
  
- LIBS += -L$${LIBDIR} $$EXTRA_LIBS -lmythbase-$$LIBVERSION
-@@ -13,7 +13,7 @@
+-LIBS += -L$${SYSROOT}$${LIBDIR} $$EXTRA_LIBS -lmythbase-$$LIBVERSION
++LIBS += -L$${LIBDIR} $$EXTRA_LIBS -lmythbase-$$LIBVERSION
+ LIBS += -lmyth-$$LIBVERSION -lmythui-$$LIBVERSION -lmythupnp-$$LIBVERSION
+ LIBS += -lmythservicecontracts-$$LIBVERSION
+ LIBS += -lmythavcodec
+@@ -14,7 +14,7 @@
  LIBS += -lmythswresample
  
  # On Windows, libs are stored with the binaries:
@@ -85,15 +67,19 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/programs-libs.pro myth
  
  # Trigger rebuilds if installed MythTV libs have changed
  include (targetdep.pro)
-diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/settings.pro mythtv-master-20141222-5b386a0-new/mythplugins/settings.pro
---- mythtv-master-20141222-5b386a0-old/mythplugins/settings.pro	2015-06-11 01:01:15.991000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythplugins/settings.pro	2015-06-11 01:01:17.355000003 -0700
-@@ -2,9 +2,9 @@
+diff -Naur mythtv-master-20191230-bafc80d-old/mythplugins/settings.pro mythtv-master-20191230-bafc80d-new/mythplugins/settings.pro
+--- mythtv-master-20191230-bafc80d-old/mythplugins/settings.pro	2019-12-30 16:03:26.453999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythplugins/settings.pro	2019-12-30 16:03:28.330999975 -0800
+@@ -4,12 +4,12 @@
  
- LIBVERSION = 0.28
+ LIBVERSION = 31
  
--INCLUDEPATH += $${SYSROOT}$${PREFIX}/include
-+INCLUDEPATH += $${PREFIX}/include
+-MY_INSTALL_INCLUDE = $${SYSROOT}$${PREFIX}/include
++MY_INSTALL_INCLUDE = $${PREFIX}/include
+ !contains(MY_INSTALL_INCLUDE, /usr/include$) {
+-    INCLUDEPATH += $${SYSROOT}$${PREFIX}/include
++    INCLUDEPATH += $${PREFIX}/include
+ }
  
 -LIBS *= -L$${SYSROOT}$${PREFIX}/$${LIBDIRNAME}
 +LIBS *= -L$${PREFIX}/$${LIBDIRNAME}

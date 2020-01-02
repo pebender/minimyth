@@ -1,0 +1,12 @@
+diff -Naur x11vnc-0.9.16-old/configure.ac x11vnc-0.9.16-new/configure.ac
+--- x11vnc-0.9.16-old/configure.ac	2019-01-05 05:22:11.000000000 -0800
++++ x11vnc-0.9.16-new/configure.ac	2019-12-16 17:56:50.451999021 -0800
+@@ -2,7 +2,7 @@
+ AC_INIT(x11vnc, 0.9.16, https://github.com/LibVNC/x11vnc)
+ AM_INIT_AUTOMAKE([subdir-objects])
+ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS(rfbconfig.h)
+ AC_CONFIG_MACRO_DIR([m4])
+ 
+ AM_MAINTAINER_MODE([enable])

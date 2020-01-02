@@ -1,12 +1,8 @@
 GARNAME = tiff
 GARVERSION = 4.0.3
 CATEGORIES = lib
-MASTER_SITES  = http://download.osgeo.org/libtiff/
-MASTER_SITES += http://download.osgeo.org/libtiff/old/
-MASTER_SITES += http://ftp.remotesensing.org/pub/libtiff/
-MASTER_SITES += http://ftp.remotesensing.org/pub/libtiff/old/
-MASTER_SITES += ftp://ftp.remotesensing.org/pub/libtiff/
-MASTER_SITES += ftp://ftp.remotesensing.org/pub/libtiff/old/
+MASTER_SITES  = https://download.osgeo.org/libtiff/
+MASTER_SITES += https://download.osgeo.org/libtiff/old/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = libtiff
 libtiff_LICENSE_TEXT = $(WORKSRC)/COPYRIGHT
@@ -24,7 +20,6 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
-	--with-gnu-ld \
 	--without-x
 
 include ../../gar.mk

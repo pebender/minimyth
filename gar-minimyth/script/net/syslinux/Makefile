@@ -1,8 +1,8 @@
 GARNAME = syslinux
-GARVERSION = 5.01
+GARVERSION = 6.03
 CATEGORIES = net
-MASTER_SITES = http://www.kernel.org/pub/linux/utils/boot/$(GARNAME)/5.xx/
-DISTFILES = $(DISTNAME).tar.bz2
+MASTER_SITES = https://www.kernel.org/pub/linux/utils/boot/syslinux/6.xx/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2
 
 DESCRIPTION =

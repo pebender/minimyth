@@ -1,6 +1,6 @@
 GARNAME = xorg
-GARVERSION = $(XORG_VERSION)
-CATEGORIES = $(CATEGORY)
+GARVERSION =
+CATEGORIES = xorg
 LICENSE =
 
 DESCRIPTION = 
@@ -8,57 +8,57 @@ define BLURB
 endef
 
 DEPENDS = \
-	$(CATEGORY)/font-alias \
-	$(CATEGORY)/font-bh-ttf \
-	$(CATEGORY)/font-cursor-misc \
-	$(CATEGORY)/font-misc-misc \
-	$(CATEGORY)/freeglut \
-	$(CATEGORY)/glew \
-	$(CATEGORY)/iceauth \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXdamage \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/libXfixes \
-	$(CATEGORY)/libXft \
-	$(CATEGORY)/libXinerama \
-	$(CATEGORY)/libXmu \
-	$(CATEGORY)/libXpm \
-	$(CATEGORY)/libXrandr \
-	$(CATEGORY)/libXrender \
-	$(CATEGORY)/libXres \
-	$(CATEGORY)/libXt \
-	$(CATEGORY)/libXtst \
-	$(CATEGORY)/Mesa \
-	$(CATEGORY)/mesa-demos \
-	$(CATEGORY)/mkfontdir \
-	$(CATEGORY)/mkfontscale \
-	$(CATEGORY)/rgb \
-	$(CATEGORY)/xcb-util-keysyms \
-	$(CATEGORY)/xdpyinfo \
-	$(CATEGORY)/xev \
+	xorg/font-alias \
+	xorg/font-bh-ttf \
+	xorg/font-cursor-misc \
+	xorg/font-misc-misc \
+	xorg/freeglut \
+	xorg/glew \
+	xorg/iceauth \
+	xorg/libX11 \
+	xorg/libXcomposite \
+	xorg/libXdamage \
+	xorg/libXext \
+	xorg/libXfixes \
+	xorg/libXft \
+	xorg/libXinerama \
+	xorg/libXmu \
+	xorg/libXpm \
+	xorg/libXrandr \
+	xorg/libXrender \
+	xorg/libXres \
+	xorg/libXt \
+	xorg/libXtst \
+	xorg/Mesa \
+	xorg/mkfontdir \
+	xorg/mkfontscale \
+	xorg/rgb \
+	xorg/xcb-util-image \
+	xorg/xcb-util-keysyms \
+	xorg/xcb-util-renderutil \
+	xorg/xcb-util-wm \
+	xorg/xdpyinfo \
+	xorg/xev \
 	$(if $(filter-out build, $(DESTIMG)), \
-		$(CATEGORY)/xf86-input-evdev \
-		$(CATEGORY)/xf86-input-void \
-		$(CATEGORY)/xf86-video-ati \
-		$(if $(filter i386  ,$(GARCH_FAMILY)), $(CATEGORY)/xf86-video-geode) \
-		$(CATEGORY)/xf86-video-intel \
-		$(CATEGORY)/xf86-video-nouveau \
-		$(CATEGORY)/xf86-video-openchrome \
-		$(CATEGORY)/xf86-video-savage \
-		$(CATEGORY)/xf86-video-sis \
-		$(CATEGORY)/xf86-video-vmware \
+		xorg/xf86-input-evdev \
+		xorg/xf86-input-void \
+		xorg/xf86-video-ati \
+		$(if $(filter i386  ,$(GARCH_FAMILY)), xorg/xf86-video-geode) \
+		xorg/xf86-video-nouveau \
+		xorg/xf86-video-openchrome \
+		xorg/xf86-video-savage \
+		xorg/xf86-video-sis \
+		xorg/xf86-video-vmware \
 	) \
-	$(CATEGORY)/xinit \
-	$(CATEGORY)/xkbcomp \
-	$(CATEGORY)/xkeyboard-config \
-	$(CATEGORY)/xlsclients \
-	$(CATEGORY)/xmodmap \
-	$(CATEGORY)/xorg-server \
-	$(CATEGORY)/xrandr \
-	$(CATEGORY)/xset \
-	$(CATEGORY)/xsetroot
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xinit \
+	xorg/xkbcomp \
+	xorg/xkeyboard-config \
+	xorg/xlsclients \
+	xorg/xmodmap \
+	xorg/xorg-server \
+	xorg/xrandr \
+	xorg/xset \
+	xorg/xsetroot
 
 include ../../gar.mk
 

@@ -1,12 +1,2 @@
-b232aef26f23fe33ea8305d276637086  download/lirc-0.9.0.tar.bz2
-d141f4af9775c62a5cbac280a02e2e14  download/lirc-0.9.0-git_e0ab92be.patch
-cb8fafdce0e1947af320baa222664cea  download/lirc-0.9.0-automake_1.13.patch
-6dc3b799d33984abd5ac25d049f394ab  download/lirc-0.9.0-kernel_err.patch
-27ec0ecc13a3b876505fbc8f703ac635  download/lirc-0.9.0-remove_asm_sytem_h.patch
-19d9095307d50ac39ee784c24b2a411c  download/lirc-0.9.0-lirc_xbox.patch
-0f98abbdc46d6724e9d58e9245444053  download/lirc-0.9.0-disable_lirc_i2c.patch
-69f5d9cbe5f7f744992d77dd1d13a983  download/lirc-0.9.0-ati_remote.patch
-84190423bb6bd573234f0412072d1cb5  download/lirc-0.9.0-remove_smp_lock_h.patch
-b53d167a3fcfbff273042cc05a73bba3  download/lirc-0.9.0-bit_le_fix.patch
-808c98aff68361cd618629da7611391c  download/lirc-0.9.0-uinput_key_fix.patch
-8451a6e3e8464b4dae348354ccf711bd  download/lirc-0.9.0-input_map.patch.gar
+afbc426382a84ecfbe18aeff5b3abe25  download/lirc-0.10.0.tar.gz
+ffdcdacb3473e9b8e781a024605d26f2  download/lirc-0.10.0-disable_python35.patch

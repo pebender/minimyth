@@ -1,7 +1,7 @@
 GARNAME = flac
 GARVERSION = 1.3.1
 CATEGORIES = lib
-MASTER_SITES = http://downloads.xiph.org/releases/$(GARNAME)/
+MASTER_SITES = https://downloads.xiph.org/releases/flac/
 DISTFILES = $(DISTNAME).tar.xz
 xiph_LICENSE_TEXT = $(WORKSRC)/COPYING.Xiph
 
@@ -25,7 +25,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-xmms-plugin \
 	--disable-oggtest \
 	--disable-rpath \
-	--with-gnu-ld \
 	--with-ogg-includes=$(DESTDIR)$(includedir) \
 	--with-ogg-libraries=$(DESTDIR)$(libdir)
 

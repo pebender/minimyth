@@ -1,7 +1,7 @@
 GARNAME = freeglut
-GARVERSION = 3.0.0
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+GARVERSION = 3.2.1
+CATEGORIES = xorg
+MASTER_SITES = https://sourceforge.net/projects/freeglut/files/freeglut/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = MIT
 
@@ -10,15 +10,12 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/libXi \
-	$(CATEGORY)/libXxf86vm \
-	$(CATEGORY)/glu \
-	$(CATEGORY)/Mesa
-
-PWD := $(shell pwd)
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/libX11 \
+	xorg/libXext \
+	xorg/libXi \
+	xorg/libXxf86vm \
+	xorg/glu \
+	xorg/Mesa
 
 WORKBLD = $(WORKSRC)_build
 
@@ -55,7 +52,6 @@ endif
 INSTALL_ARGS    = \
 	DESTDIR=""
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
 
 configure-%/cmake: 

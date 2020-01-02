@@ -1,7 +1,7 @@
 GARNAME = v4l-utils
-GARVERSION = 1.6.3
+GARVERSION = 1.18.0
 CATEGORIES = utils
-MASTER_SITES = http://linuxtv.org/downloads/$(GARNAME)/
+MASTER_SITES = https://linuxtv.org/downloads/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-rc_keymaps.patch
@@ -34,11 +34,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-rpath \
 	--disable-libdvbv5 \
 	--disable-libv4l \
-	--disable-v4l-utils \
 	--disable-qv4l2 \
-	--with-gnu-ld \
 	--without-jpeg \
-	--with-gnu-ld \
 	--with-udevdir="$(libdir)/udev"
 
 include ../../gar.mk

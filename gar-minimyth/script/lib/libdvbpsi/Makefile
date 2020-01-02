@@ -1,7 +1,7 @@
 GARNAME = libdvbpsi
 GARVERSION = 0.2.2
 CATEGORIES = lib
-MASTER_SITES = http://download.videolan.org/pub/libdvbpsi/$(GARVERSION)/
+MASTER_SITES = https://download.videolan.org/pub/videolan/libdvbpsi/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch
@@ -19,8 +19,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
 include ../../gar.mk
 

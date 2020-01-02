@@ -1,7 +1,7 @@
 GARNAME = SDL_ttf
 GARVERSION = 2.0.11
 CATEGORIES = lib
-MASTER_SITES = http://www.libsdl.org/projects/$(GARNAME)/release/
+MASTER_SITES = https://www.libsdl.org/projects/SDL_ttf/release/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-configure.patch
 LICENSE = $(GARNAME)
@@ -23,7 +23,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-sdltest \
-	--with-gnu-ld \
 	--with-x
 
 CONFIGURE_ENV = \

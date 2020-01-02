@@ -1,7 +1,7 @@
 GARNAME = xf86-input-evdev
-GARVERSION = 2.9.2
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 2.10.6
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/driver/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-pkg_config.patch
 LICENSE = $(GARNAME)
@@ -11,16 +11,13 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c system/udev \
-	$(CATEGORY)/inputproto \
-	$(CATEGORY)/libevdev \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/xorg-server \
-	$(CATEGORY)/xproto
+DEPENDS = lang/c lib/mtdev system/udev \
+	xorg/libevdev \
+	xorg/util-macros \
+	xorg/xorg-server \
+	xorg/xorgproto
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -29,10 +26,8 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--disable-static \
-	--enable-shared \
-	--with-gnu-ld
+	--enable-shared
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
 
 pre-configure:

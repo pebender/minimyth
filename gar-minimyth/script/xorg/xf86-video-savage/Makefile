@@ -1,9 +1,8 @@
 GARNAME = xf86-video-savage
-GARVERSION = 2.3.8
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 20190504-2ec88355
+CATEGORIES = xorg
+MASTER_SITES = git://cgit.freedesktop.org/xorg/driver/xf86-video-savage/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = $(DISTNAME)-pkg_config.patch
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
 
@@ -12,21 +11,13 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/fontsproto \
-	$(CATEGORY)/libdrm \
-	$(CATEGORY)/libpciaccess \
-	$(CATEGORY)/randrproto \
-	$(CATEGORY)/renderproto \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/videoproto \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xf86driproto \
-	$(CATEGORY)/xorg-server \
-	$(CATEGORY)/xproto
+	xorg/libdrm \
+	xorg/libpciaccess \
+	xorg/util-macros \
+	xorg/xorg-server \
+	xorg/xorgproto
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -35,21 +26,26 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--cache-file=config.cache \
 	--disable-silent-rules \
+	--disable-static \
+	--enable-shared \
 	--enable-dri \
-	--with-gnu-ld
+	--disable-xaa
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
+
+git//%$(DISTNAME).tar.bz2:
+	@$(call FETCH_GIT, $*, $(word 2,$(subst -, ,$(GARVERSION))), $(DISTNAME))
+	@$(MAKECOOKIE)
+
+checksum-$(DISTNAME).tar.bz2:
+	@$(MAKECOOKIE) 
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@rm -f $(WORKSRC)/config.cache
-	@echo "`echo ac_cv_file_$(DESTDIR)$(includedir)/xorg/dri.h | sed -e 's%[^a-zA-Z0-9]%_%g'`=yes"       >> $(WORKSRC)/config.cache
-	@echo "`echo ac_cv_file_$(DESTDIR)$(includedir)/xorg/dristruct.h | sed -e 's%[^a-zA-Z0-9]%_%g'`=yes" >> $(WORKSRC)/config.cache
-	@echo "`echo ac_cv_file_$(DESTDIR)$(includedir)/xorg/sarea.h | sed -e 's%[^a-zA-Z0-9]%_%g'`=yes"     >> $(WORKSRC)/config.cache
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/savage_drv.la
+	@rm -fv $(DESTDIR)$(libdir)/xorg/modules/drivers/savage_drv.la
 	@$(MAKECOOKIE)

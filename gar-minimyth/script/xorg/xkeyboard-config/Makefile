@@ -1,11 +1,10 @@
 GARNAME = xkeyboard-config
-GARVERSION = 2.15
-CATEGORIES = $(CATEGORY)
-MASTER_SITES  = http://xorg.freedesktop.org/releases/individual/data/$(GARNAME)/
-MASTER_SITES += http://xorg.freedesktop.org/releases/individual/data/
-MASTER_SITES += http://xlibs.freedesktop.org/xkbdesc/
-MASTER_SITES += http://people.freedesktop.org/~svu/
+GARVERSION = 2.28
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/data/xkeyboard-config/
 DISTFILES = $(DISTNAME).tar.bz2
+PATCHFILES = \
+	$(DISTNAME)-pkgconfig_dir.patch
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
 
@@ -14,13 +13,11 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/xproto
+	xorg/libX11 \
+	xorg/xorgproto
 BUILDDEPS = \
 	perl/perl-XML-Parser \
-	$(CATEGORY)/xkbcomp
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xkbcomp
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -32,14 +29,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-rpath \
 	--without-xsltproc \
 	--with-xkb-base="$(datadir)/X11/xkb" \
-	--without-xkb-rules-symlink \
-	--with-gnu-ld
+	--without-xkb-rules-symlink
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@#Broken intltoolize.
-	@#$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)

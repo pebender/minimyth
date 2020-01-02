@@ -1,6 +1,6 @@
 GARNAME           = perl-Params-Validate
 GARVERSION        = 1.18
-MASTER_SITES      = http://cpan.metacpan.org/authors/id/D/DR/DROLSKY/
+MASTER_SITES      = https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/
 PERL_MODULE_STYLE = Build.PL
 DEPENDS           = perl/perl-Module-Implementation
 

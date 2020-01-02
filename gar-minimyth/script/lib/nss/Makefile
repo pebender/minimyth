@@ -5,9 +5,9 @@ MASTER_SITES = https://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/$(s
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES  = $(DISTNAME).patch.gar
 ifneq ($(DESTIMG),build)
-PATCHFILES += $(DISTNAME)-cross.patch
+#PATCHFILES += $(DISTNAME)-cross.patch
 endif
-LICENSE = MPL1_1/GPL2/LGPL2_1
+LICENSE = MPL2
 
 DESCRIPTION = 
 define BLURB
@@ -16,7 +16,7 @@ endef
 DEPENDS    = lang/c db/sqlite lib/nspr lib/zlib
 BUILDDEPS  =
 ifneq ($(DESTIMG),build)
-BUILDDEPS += lib/nss
+#BUILDDEPS += lib/nss
 endif
 
 WORKSRC = $(WORKDIR)/$(shell echo $(DISTNAME) | sed -e 's/\.with\.ckbi\..*$$//')
@@ -24,7 +24,7 @@ WORKSRC = $(WORKDIR)/$(shell echo $(DISTNAME) | sed -e 's/\.with\.ckbi\..*$$//')
 BUILD_SCRIPTS    = $(WORKSRC)/nss/Makefile
 INSTALL_SCRIPTS  = custom
 ifeq ($(DESTIMG),build)
-INSTALL_SCRIPTS += shlibsign
+#INSTALL_SCRIPTS += shlibsign
 endif
 
 BUILD_ARGS = \

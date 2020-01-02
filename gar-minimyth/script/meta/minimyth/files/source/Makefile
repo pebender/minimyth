@@ -175,12 +175,12 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@# Copy shares.
 	@$(call COPY_FILES, "shares", "share", $(DESTDIR), $@~, $(sharedirs), $(MM_SHARES))
 	@# Copy the QT plugins needed by MythTV.
-	@rm -rf   $@~$(qt4prefix)/plugins
-	@mkdir -p $@~$(qt4prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt4prefix)/plugins/graphicssystems $@~$(qt4prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt4prefix)/plugins/iconengines     $@~$(qt4prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt4prefix)/plugins/imageformats    $@~$(qt4prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt4prefix)/plugins/sqldrivers      $@~$(qt4prefix)/plugins
+	@rm -rf   $@~$(qt5prefix)/plugins
+	@mkdir -p $@~$(qt5prefix)/plugins
+	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/graphicssystems $@~$(qt5prefix)/plugins
+	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/iconengines     $@~$(qt5prefix)/plugins
+	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/imageformats    $@~$(qt5prefix)/plugins
+	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/sqldrivers      $@~$(qt5prefix)/plugins
 	@# Copy HTML files.
 	@find $(top_source)/html -depth -type d \
 		| sed -e 's%^\$(top_source)/html%$@~/srv/www%' \

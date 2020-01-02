@@ -1,7 +1,7 @@
 GARNAME = kmod
-GARVERSION = 21
+GARVERSION = 26
 CATEGORIES = lib
-MASTER_SITES = https://www.kernel.org/pub/linux/utils/kernel/$(GARNAME)/
+MASTER_SITES = https://www.kernel.org/pub/linux/utils/kernel/kmod/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2/LGPL2_1
 
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c lib/openssl lib/zlib utils/xz
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -30,9 +30,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-gtk-doc \
 	--disable-gtk-doc-html \
 	--disable-gtk-doc-pdf \
-	--with-gnu-ld \
-	--without-xz \
-	--without-zlib
+	--with-xz \
+	--with-zlib
 
 include ../../gar.mk
 
@@ -42,18 +41,18 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 install-links:
-	@rm -f $(DESTDIR)$(esbindir)/depmod
-	@ln -s $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/depmod
-	@rm -f $(DESTDIR)$(esbindir)/insmod
-	@ln -s $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/insmod
-	@rm -f $(DESTDIR)$(esbindir)/lsmod
-	@ln -s $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/lsmod
-	@rm -f $(DESTDIR)$(esbindir)/modinfo
-	@ln -s $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/modinfo
-	@rm -f $(DESTDIR)$(esbindir)/modprobe
-	@ln -s $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/modprobe
-	@rm -f $(DESTDIR)$(esbindir)/rmmod
-	@ln -s $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/rmmod
+	@rm -fv $(DESTDIR)$(esbindir)/depmod
+	@ln -sfv $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/depmod
+	@rm -fv $(DESTDIR)$(esbindir)/insmod
+	@ln -sfv $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/insmod
+	@rm -fv $(DESTDIR)$(esbindir)/lsmod
+	@ln -sfv $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/lsmod
+	@rm -fv $(DESTDIR)$(esbindir)/modinfo
+	@ln -sfv $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/modinfo
+	@rm -fv $(DESTDIR)$(esbindir)/modprobe
+	@ln -sfv $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/modprobe
+	@rm -fv $(DESTDIR)$(esbindir)/rmmod
+	@ln -sfv $(patsubst /%,%,$(call DIRSTODOTS,$(esbindir)))$(bindir)/kmod $(DESTDIR)$(esbindir)/rmmod
 	@$(MAKECOOKIE)
 
 post-install:

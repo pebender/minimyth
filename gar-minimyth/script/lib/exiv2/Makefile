@@ -1,7 +1,7 @@
 GARNAME = exiv2
 GARVERSION = 0.25
 CATEGORIES = lib
-MASTER_SITES = http://www.exiv2.org/releases/
+MASTER_SITES = https://www.exiv2.org/releases/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = GPL2
 
@@ -23,7 +23,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-lensdata \
 	--disable-commercial \
 	--enable-xmp \
-	--with-gnu-ld \
 	--with-zlib=$(DESTDIR)$(prefix) \
 	--with-expat
 

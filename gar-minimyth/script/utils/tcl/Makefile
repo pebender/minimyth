@@ -1,7 +1,8 @@
 GARNAME = tcl
-GARVERSION = 8.6.4
+GARVERSION = 8.6.10
 CATEGORIES = utils
 MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/Tcl/$(GARVERSION)/
+               https://sourceforge.net/projects/$(GARVERSION)/files/Tcl/$(GARVERSION)/
 DISTFILES = $(GARNAME)$(GARVERSION)-src.tar.gz
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/../license.terms
@@ -43,9 +44,9 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/libtclstub8.6.a
-	@rm -f $(DESTDIR)$(libdir)/tdbc1.0.3/libtdbcstub1.0.3.a
-	@rm -f $(DESTDIR)$(libdir)/itcl4.0.3/libitclstub4.0.3.a
-	@rm -f $(DESTDIR)$(bindir)/tclsh
-	@ln -s tclsh$(word 1,$(subst ., ,$(GARVERSION))).$(word 2,$(subst ., ,$(GARVERSION))) $(DESTDIR)$(bindir)/tclsh
+	@rm -fv $(DESTDIR)$(libdir)/libtclstub8.6.a
+	@rm -fv $(DESTDIR)$(libdir)/itcl4.2.0/libitclstub4.2.0.a
+	@rm -fv $(DESTDIR)$(libdir)/tdbc1.1.1/libtdbcstub1.1.1.a
+	@rm -fv $(DESTDIR)$(bindir)/tclsh
+	@ln -sfv tclsh$(word 1,$(subst ., ,$(GARVERSION))).$(word 2,$(subst ., ,$(GARVERSION))) $(DESTDIR)$(bindir)/tclsh
 	@$(MAKECOOKIE)

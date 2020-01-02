@@ -1,0 +1,16 @@
+diff -Naur glib-2.63.3-old/glib/meson.build glib-2.63.3-new/glib/meson.build
+--- glib-2.63.3-old/glib/meson.build	2019-12-16 06:00:38.000000000 -0800
++++ glib-2.63.3-new/glib/meson.build	2019-12-22 19:42:04.577979037 -0800
+@@ -375,9 +375,9 @@
+   subdirs : ['glib-2.0'],
+   extra_cflags : ['-I${libdir}/glib-2.0/include'] + win32_cflags,
+   variables : ['bindir=' + join_paths('${prefix}', get_option('bindir')),
+-               'glib_genmarshal=' + join_paths('${bindir}', 'glib-genmarshal'),
+-               'gobject_query=' + join_paths('${bindir}', 'gobject-query'),
+-               'glib_mkenums=' + join_paths('${bindir}', 'glib-mkenums')],
++               'glib_genmarshal=' + join_paths('@GAR_build_DESTDIR@@GAR_build_bindir@', 'glib-genmarshal'),
++               'gobject_query=' + join_paths('@GAR_build_DESTDIR@@GAR_build_bindir@', 'gobject-query'),
++               'glib_mkenums=' + join_paths('@GAR_build_DESTDIR@@GAR_build_bindir@', 'glib-mkenums')],
+   version : glib_version,
+   install_dir : glib_pkgconfigreldir,
+   filebase : 'glib-2.0',

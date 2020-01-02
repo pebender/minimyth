@@ -1,7 +1,7 @@
 GARNAME = yasm
 GARVERSION = 1.3.0
 CATEGORIES = devel
-MASTER_SITES = http://www.tortall.net/projects/yasm/releases/
+MASTER_SITES = https://www.tortall.net/projects/yasm/releases/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = Artistic/BSD_2_Clause/BSD_3_Clause/LGPL2/GPL2
 
@@ -26,7 +26,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-nls \
 	--disable-rpath \
 	--without-dmalloc \
-	--with-gnu-ld \
 	--without-libiconv-prefix \
 	--without-libintl-prefix
 

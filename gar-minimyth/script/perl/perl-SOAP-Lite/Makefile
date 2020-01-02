@@ -1,6 +1,6 @@
 GARNAME      = perl-SOAP-Lite
-GARVERSION   = 0.69
-MASTER_SITES = http://www.cpan.org/authors/id/B/BY/BYRNE/
+GARVERSION   = 1.0
+MASTER_SITES = https://cpan.metacpan.org/authors/id/P/PH/PHRED/
 DEPENDS      = perl/perl-libwww-perl perl/perl-XML-Parser
 
 include ../../perl/perl/perl-module.mk

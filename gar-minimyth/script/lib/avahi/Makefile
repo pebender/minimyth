@@ -1,7 +1,7 @@
 GARNAME = avahi
 GARVERSION = 0.6.31
 CATEGORIES = lib
-MASTER_SITES = http://avahi.org/download/
+MASTER_SITES = https://avahi.org/download/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = LGPL2_1
 
@@ -52,7 +52,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-tests \
 	--enable-compat-libdns_sd \
 	--disable-compat-howl \
-	--with-gnu-ld \
 	--with-distro='none'
 
 include ../../gar.mk

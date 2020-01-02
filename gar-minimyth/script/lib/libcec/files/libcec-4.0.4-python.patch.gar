@@ -1,0 +1,9 @@
+diff -Naur libcec-libcec-4.0.4-old/src/pyCecClient/pyCecClient.py libcec-libcec-4.0.4-new/src/pyCecClient/pyCecClient.py
+--- libcec-libcec-4.0.4-old/src/pyCecClient/pyCecClient.py	2018-12-21 13:34:45.000000000 -0800
++++ libcec-libcec-4.0.4-new/src/pyCecClient/pyCecClient.py	2019-12-15 16:34:09.736000153 -0800
+@@ -1,4 +1,4 @@
+-#! /usr/bin/python3
++#! @GAR_bindir@/python
+ ## demo of the python-libcec API
+ 
+ # This file is part of the libCEC(R) library.

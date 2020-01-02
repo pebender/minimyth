@@ -1,7 +1,7 @@
 GARNAME = libxcb
-GARVERSION = 1.11
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = http://xcb.freedesktop.org/dist/
+GARVERSION = 1.13.1
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/xcb/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,14 +11,12 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/libpthread-stubs \
-	$(CATEGORY)/libXau \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/xcb-proto
+	xorg/libpthread-stubs \
+	xorg/libXau \
+	xorg/util-macros \
+	xorg/xcb-proto
 BUILDDEPS = \
 	lib/libxslt
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -29,12 +27,12 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-build-docs \
-	--enable-sendfds \
 	--enable-composite \
 	--enable-damage \
 	--enable-dpms \
 	--enable-dri2 \
 	--enable-dri3 \
+	--disable-ge \
 	--enable-glx \
 	--enable-present \
 	--enable-randr \
@@ -49,24 +47,18 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-xfixes \
 	--enable-xfree86-dri \
 	--enable-xinerama \
-	--disable-xinput \
+	--enable-xinput \
 	--enable-xkb \
 	--disable-xprint \
 	--disable-selinux \
 	--enable-xtest \
 	--enable-xv \
 	--enable-xvmc \
-	--with-gnu-ld \
 	--without-doxygen \
-	--without-launchd
+	--without-launchd \
+	--without-serverside-support
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
@@ -89,6 +81,7 @@ post-install:
 	@rm -f $(DESTDIR)$(libdir)/libxcb-xf86dri.la
 	@rm -f $(DESTDIR)$(libdir)/libxcb-xfixes.la
 	@rm -f $(DESTDIR)$(libdir)/libxcb-xinerama.la
+	@rm -f $(DESTDIR)$(libdir)/libxcb-xinput.la
 	@rm -f $(DESTDIR)$(libdir)/libxcb-xkb.la
 	@rm -f $(DESTDIR)$(libdir)/libxcb-xtest.la
 	@rm -f $(DESTDIR)$(libdir)/libxcb-xv.la

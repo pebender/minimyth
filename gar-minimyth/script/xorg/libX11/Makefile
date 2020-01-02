@@ -1,7 +1,7 @@
 GARNAME = libX11
-GARVERSION = 1.6.3
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 1.6.9
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/lib/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES  = \
 	$(DISTNAME)-pkg_config.patch \
@@ -14,18 +14,12 @@ define BLURB
 endef
 
 DEPENDS   = lang/c \
-	$(CATEGORY)/inputproto \
-	$(CATEGORY)/kbproto \
-	$(CATEGORY)/libxcb \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xf86bigfontproto \
-	$(CATEGORY)/xproto \
-	$(CATEGORY)/xtrans
+	xorg/libxcb \
+	xorg/util-macros \
+	xorg/xorgproto \
+	xorg/xtrans
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS  = $(WORKSRC)/configure
 BUILD_SCRIPTS      = $(WORKSRC)/Makefile
@@ -39,7 +33,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-tcp-transport \
 	--disable-ipv6 \
 	--disable-local-transport \
-	--disable-secure-rpc \
 	--disable-loadable-i18n \
 	--enable-loadable-xcursor \
 	--enable-xthreads \
@@ -52,7 +45,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-malloc0returnsnull \
 	--without-xmlto \
 	--without-fop \
-	--with-gnu-ld \
 	--without-launchd
 
 CONFIGURE_ENV = \
@@ -61,13 +53,7 @@ CONFIGURE_ENV = \
 	CFLAGS_FOR_BUILD="$(build_CFLAGS)" \
 	LDFLAGS_FOR_BUILD="$(build_LDFLAGS)"
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

@@ -1,7 +1,7 @@
 GARNAME = nasm
 GARVERSION = 2.11.08
 CATEGORIES = devel
-MASTER_SITES = http://www.nasm.us/pub/nasm/releasebuilds/$(GARVERSION)/
+MASTER_SITES = https://www.nasm.us/pub/nasm/releasebuilds/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = BSD_2_Clause
 

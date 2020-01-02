@@ -1,5 +1,5 @@
 GARNAME = libcec
-GARVERSION = 3.0.1
+GARVERSION = 4.0.4
 CATEGORIES = lib
 MASTER_SITES = https://github.com/Pulse-Eight/libcec/archive/
 DISTFILES = $(DISTNAME).tar.gz
@@ -12,7 +12,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/cxx lib/lockdev lib/platform system/udev xorg/xorg
+DEPENDS = lang/cxx lib/lockdev lib/p8-platform system/udev xorg/xorg
 
 WORKSRC = $(WORKDIR)/$(GARNAME)-$(DISTNAME)
 WORKBLD = $(WORKSRC)_build
@@ -24,7 +24,6 @@ INSTALL_SCRIPTS   = $(WORKBLD)/Makefile
 CONFIGURE_ARGS = \
 	-DCMAKE_INSTALL_PREFIX="$(prefix)" \
 	-DCMAKE_INSTALL_LIBDIR:PATH="$(patsubst $(prefix)/%,%,$(libdir))" \
-	-DCMAKE_INSTALL_LIBDIR_NOARCH:PATH="$(patsubst $(prefix)/%,%,$(libdir))" \
 	-DCMAKE_FIND_ROOT_PATH="$(DESTDIR)$(prefix)" \
 	-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
 	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY="ONLY" \
@@ -39,7 +38,8 @@ CONFIGURE_ARGS = \
 	-DCMAKE_OBJDUMP="$(build_DESTDIR)$(build_bindir)/$(OBJDUMP)" \
 	-DCMAKE_RANLIB="$(build_DESTDIR)$(build_bindir)/$(RANLIB)" \
 	-DCMAKE_STRIP="$(build_DESTDIR)$(build_bindir)/$(STRIP)" \
-	-DCMAKE_VERBOSE_MAKEFILE="1"
+	-DCMAKE_VERBOSE_MAKEFILE="1" \
+	-DSKIP_PYTHON_WRAPPER="1"
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	-DCMAKE_SYSTEM_NAME="Linux"

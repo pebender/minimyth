@@ -24,7 +24,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-hal \
-	--with-gnu-ld \
 	--with-media-dir="$(rootdir)/media/" \
 	--with-lock-dir="$(localstatedir)/lock/pmount" \
 	--with-whitelist="$(sysconfdir)/pmount.allow" \

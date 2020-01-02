@@ -1,7 +1,7 @@
 GARNAME = bluez
 GARVERSION = 4.101
 CATEGORIES = lib
-MASTER_SITES = http://www.kernel.org/pub/linux/bluetooth/
+MASTER_SITES = https://www.kernel.org/pub/linux/bluetooth/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch
@@ -11,7 +11,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS  = lang/c gtk/glib lib/alsa-lib lib/dbus lib/readline
+DEPENDS  = lang/c lib/glib lib/alsa-lib lib/dbus lib/readline
 ifneq ($(DESTIMG),build)
 DEPENDS += lib/libusb-compat system/udev
 endif
@@ -54,8 +54,7 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-dbusoob \
 	--enable-wiimote \
 	--disable-hal \
-	--disable-gatt \
-	--with-gnu-ld
+	--disable-gatt
 ifeq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--disable-usb \

@@ -1,5 +1,5 @@
 GARNAME      = perl-File-Temp
-GARVERSION   = 0.22
-MASTER_SITES = http://www.cpan.org/authors/id/T/TJ/TJENNESS/
+GARVERSION   = 0.2309
+MASTER_SITES = https://cpan.metacpan.org/authors/id/E/ET/ETHER/
 
 include ../../perl/perl/perl-module.mk

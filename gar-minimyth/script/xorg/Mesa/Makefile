@@ -1,107 +1,120 @@
 GARNAME = mesa
-GARVERSION = 10.6.3
-CATEGORIES = $(CATEGORY)
-MASTER_SITES  = ftp://ftp.freedesktop.org/pub/mesa/$(GARVERSION)/
-MASTER_SITES += ftp://ftp.freedesktop.org/pub/mesa/older-versions/10.x/$(GARVERSION)/
+GARVERSION = 18.2.8
+CATEGORIES = xorg
+MASTER_SITES  = https://mesa.freedesktop.org/archive/
+MASTER_SITES += https://mesa.freedesktop.org/archive/18.0.0/
 DISTFILES = $(DISTNAME).tar.xz
+PATCHFILES = \
+	$(DISTNAME)-disable_intel_tools.patch \
+	$(DISTNAME)-libxv.patch \
+	$(DISTNAME)-meson_libxv.patch
 LICENSE = LGPL2/MIT
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS    = lang/c lang/cxx devel/libelf devel/llvm lib/expat X11/libva-mini X11/libvdpau \
-	$(CATEGORY)/dri2proto \
-	$(CATEGORY)/dri3proto \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/glproto \
-	$(CATEGORY)/libdrm \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libxcb \
-	$(CATEGORY)/libXdamage \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/libXfixes \
-	$(CATEGORY)/libxshmfence \
-	$(CATEGORY)/libXxf86vm \
-	$(CATEGORY)/libXvMC \
-	$(CATEGORY)/presentproto
-ifneq ($(DESTIMG),build)
-DEPENDS   += system/udev
-endif
-BUILDDEPS  = lib/libxml2 python/python \
-	$(CATEGORY)/makedepend
+DEPENDS    = lang/c lang/cxx lib/expat lib/zlib utils/elfutils utils/lm_sensors X11/libva-mini X11/libvdpau \
+	xorg/libdrm \
+	xorg/libpthread-stubs \
+	xorg/libX11 \
+	xorg/libxcb \
+	xorg/libXdamage \
+	xorg/libXext \
+	xorg/libXfixes \
+	xorg/libXrandr \
+	xorg/libXv \
+	xorg/libXvMC \
+	xorg/libxshmfence \
+	xorg/libXxf86vm \
+	xorg/xorgproto
+BUILDDEPS  = lib/libxml2 python/python python2/python python2/python-mako \
+	xorg/makedepend
 
 PWD := $(shell pwd)
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile source
+WORKBLD = $(WORKSRC)_build
 
-CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--disable-silent-rules \
-	--disable-static \
-	--enable-shared \
-	--disable-debug \
-	--disable-mangling \
-	--disable-texture-float \
-	--enable-asm \
-	--disable-selinux \
-	--enable-opengl \
-	--disable-gles1 \
-	--disable-gles2 \
-	--enable-dri \
-	--enable-dri3 \
-	--enable-glx \
-	--disable-osmesa \
-	--disable-gallium-osmesa \
-	--enable-egl \
-	--disable-xa \
-	--enable-gbm \
-	--disable-nine \
-	--enable-xvmc \
-	--enable-vdpau \
-	--disable-omx \
-	--enable-va \
-	--disable-opencl \
-	--disable-opencl-icd \
-	--disable-xlib-glx \
-	--enable-r600-llvm-compiler \
-	--disable-gallium-tests \
-	--enable-shared-glapi \
-	--enable-driglx-direct \
-	--disable-glx-tls \
-	--enable-gallium-llvm \
-	--enable-llvm-shared-libs \
-	--with-gnu-ld \
-	--with-gallium-drivers="i915,nouveau,r300,r600,radeonsi,svga,swrast" \
-	--with-dri-driverdir="$(libdir)/dri" \
-	--with-dri-drivers="i915,i965,nouveau,r200,radeon,swrast" \
-	--with-egl-platforms="drm" \
-	--with-xvmc-libdir="$(libdir)" \
-	--with-vdpau-libdir="$(libdir)/vdpau" \
-	--with-va-libdir="$(libdir)/dri"
-ifeq ($(DESTIMG),build)
+CONFIGURE_SCRIPTS = $(WORKBLD)/meson
+BUILD_SCRIPTS     = $(WORKBLD)/ninja
+INSTALL_SCRIPTS   = $(WORKBLD)/ninja source
+
+CONFIGURE_ARGS  = \
+	$(filter-out --exec_prefix=% --oldincludedir=%, $(DIRPATHS)) \
+	--buildtype=release \
+	-Db_asneeded=true \
+	-Db_lto=false \
+	-Dplatforms='x11,drm' \
+	-Ddri3=true \
+	-Ddri-drivers='i965,nouveau,r200' \
+	-Dgallium-drivers='i915,nouveau,r600,svga,swrast' \
+	-Dgallium-vdpau=true \
+	-Dvdpau-libs-path='$(libdir)/vdpau' \
+	-Dgallium-xvmc=true \
+	-Dxvmc-libs-path='$(libdir)' \
+	-Dgallium-omx='disabled' \
+	-Dgallium-va=true \
+	-Dva-libs-path='$(libdir)/dri' \
+	-Dgallium-xa=false \
+	-Dgallium-nine=false \
+	-Dgallium-opencl='disabled' \
+	-Dvulkan-drivers='' \
+	-Dshader-cache=false \
+	-Dshared-glapi=true \
+	-Dgles1=false \
+	-Dgles2=false \
+	-Dopengl=true \
+	-Dgbm=true \
+	-Dglx=dri\
+	-Degl=true \
+	-Dglvnd=false \
+	-Dasm=true \
+	-Dglx-read-only-text=false \
+	-Dllvm=false \
+	-Dvalgrind=false \
+	-Dlibunwind=false \
+	-Dlmsensors=true \
+	-Dbuild-tests=false \
+	-Dselinux=false \
+	-Dosmesa='none' \
+	-Dtools='' \
+	-Dpower8=false \
+	-Dxlib-lease=false
+ifneq ("$(DESTIMG),"build)
 CONFIGURE_ARGS += \
-	--enable-sysfs
+	--cross-file $(GARHOST)
 endif
 
 include ../../gar.mk
 
-pre-configure:
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
+CONFIGURE_ENV := \
+	XDG_DATA_HOME=$(build_DESTDIR)$(build_datadir)
+
+# mesa 18.2.8 fails to compile with gcc 9.2.0's link time optimization enabled.
+CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+
+LDFLAGS  := $(LDFLAGS) -lXv
+LDFLAGS  := $(LDFLAGS) -lXv
+
+configure-%/meson:
+	@mkdir -pv $(WORKBLD)
+	@$(CONFIGURE_ENV) meson setup $(WORKSRC) $* $(CONFIGURE_ARGS)
+	@$(MAKECOOKIE)
+
+build-%/ninja:
+	@echo " ==> Running ninja in $*"
+	@$(BUILD_ENV) ninja -C $* -v $(BUILD_ARGS)
+	@$(MAKECOOKIE)
+
+install-%/ninja: 
+	@echo " ==> Running ninja install in $*"
+	@$(INSTALL_ENV) ninja -C $* -v install $(INSTALL_ARGS)
 	@$(MAKECOOKIE)
 
 install-source:
 	@mkdir -p $(DESTDIR)$(sourcedir)
 	@rm -f $(DESTDIR)$(sourcedir)/Mesa
 	@ln -sf $(PWD)/$(WORKSRC) $(DESTDIR)$(sourcedir)/Mesa
-	@$(MAKECOOKIE)
-
-post-install:
-	@rm -f $(DESTDIR)$(libdir)/dri/gallium_drv_video.la
-	@rm -f $(DESTDIR)$(libdir)/libEGL.la
-	@rm -f $(DESTDIR)$(libdir)/libgbm.la
-	@rm -f $(DESTDIR)$(libdir)/libGL.la
-	@rm -f $(DESTDIR)$(libdir)/libglapi.la
 	@$(MAKECOOKIE)

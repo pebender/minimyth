@@ -1,7 +1,7 @@
 GARNAME = SDL2_ttf
 GARVERSION = 2.0.12
 CATEGORIES = lib
-MASTER_SITES = http://www.libsdl.org/projects/SDL_ttf/release/
+MASTER_SITES = https://www.libsdl.org/projects/SDL_ttf/release/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-configure.patch
 LICENSE = zlib
@@ -23,7 +23,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--disable-silent-rules \
 	--disable-sdltest \
-	--with-gnu-ld \
 	--with-x
 
 CONFIGURE_ENV = \

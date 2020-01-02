@@ -1,0 +1,131 @@
+diff -Naur eventlircd-20110816-8245391-old/configure.ac eventlircd-20110816-8245391-new/configure.ac
+--- eventlircd-20110816-8245391-old/configure.ac	2019-12-05 11:13:56.000000000 -0800
++++ eventlircd-20110816-8245391-new/configure.ac	2019-12-13 11:55:20.928019924 -0800
+@@ -87,15 +87,21 @@
+ dnl libudev headers.
+ AC_CHECK_HEADER([libudev.h],[],[AC_MSG_ERROR([failed to find the required header file libudev.h])])
+ 
+-dnl The absolute path to the header file linux/input.h is needed by 
++dnl The absolute path to the header file containing the input event codes
++dnl (linux/input-event-codes.h or linux/input.h) is needed by 
+ dnl event_name_to_code.h.sh, evkey_code_to_name.h.sh and evkey_type.h.sh
+ dnl in order for them to generate the header files event_name_to_code.h,
+ dnl evkey_code_to_name.h and evkey_type.h respectively
+-AX_ABSOLUTE_HEADER(linux/input.h)
+-if test "x$gl_cv_absolute_linux_input_h" = "x" ; then
+-    AC_MSG_ERROR([failed to find the absolute path to header file linux/input.h])
++AX_ABSOLUTE_HEADER(linux/input-event-codes.h)
++if test "x$gl_cv_absolute_linux_input_event_codes_h" = "x" ; then
++    AX_ABSOLUTE_HEADER(linux/input.h)
++    if test "x$gl_cv_absolute_linux_input_h" = "x"; then
++    	AC_MSG_ERROR([failed to find the absolute path to header file linux/input.h])
++    fi
++    AC_SUBST(INPUT_EVENT_CODE_HEADER_FILE, $gl_cv_absolute_linux_input_h)
++else
++    AC_SUBST(INPUT_EVENT_CODE_HEADER_FILE, $gl_cv_absolute_linux_input_event_codes_h)
+ fi
+-AC_SUBST(ABSOLUTE_LINUX_INPUT_H, $gl_cv_absolute_linux_input_h)
+ 
+ PKG_CHECK_MODULES(LIBUDEV, [libudev >= 136])
+ 
+diff -Naur eventlircd-20110816-8245391-old/src/event_name_to_code.h.sh.in eventlircd-20110816-8245391-new/src/event_name_to_code.h.sh.in
+--- eventlircd-20110816-8245391-old/src/event_name_to_code.h.sh.in	2019-12-05 11:13:56.000000000 -0800
++++ eventlircd-20110816-8245391-new/src/event_name_to_code.h.sh.in	2019-12-13 11:56:12.538045898 -0800
+@@ -22,7 +22,7 @@
+ # linux/input.h header file.
+ #
+ 
+-ABSOLUTE_LINUX_INPUT_H=@ABSOLUTE_LINUX_INPUT_H@
++INPUT_EVENT_CODE_HEADER_FILE=@INPUT_EVENT_CODE_HEADER_FILE@
+ AWK=@AWK@
+ 
+ rm -f event_name_to_code.h
+@@ -31,7 +31,7 @@
+     BEGIN {
+       printf(\"#ifndef _EVENTLIRCD_EVENT_NAME_TO_CODE_H_\n\");
+       printf(\"#define _EVENTLIRCD_EVENT_NAME_TO_CODE_H_ 1\n\");
+-      printf(\"#include <${ABSOLUTE_LINUX_INPUT_H}>\n\");
++      printf(\"#include <${INPUT_EVENT_CODE_HEADER_FILE}>\n\");
+       printf(\"#include <linux/types.h>\n\");
+       printf(\"static const struct {\n\");
+       printf(\"\tconst char *name;\n\");
+@@ -105,4 +105,4 @@
+       printf(\"};\n\");
+       printf(\"#endif\n\");
+     };
+-    " < ${ABSOLUTE_LINUX_INPUT_H} >> event_name_to_code.h
++    " < ${INPUT_EVENT_CODE_HEADER_FILE} >> event_name_to_code.h
+diff -Naur eventlircd-20110816-8245391-old/src/evkey_code_to_name.h.sh.in eventlircd-20110816-8245391-new/src/evkey_code_to_name.h.sh.in
+--- eventlircd-20110816-8245391-old/src/evkey_code_to_name.h.sh.in	2019-12-05 11:13:56.000000000 -0800
++++ eventlircd-20110816-8245391-new/src/evkey_code_to_name.h.sh.in	2019-12-13 11:56:23.390007816 -0800
+@@ -29,7 +29,7 @@
+ # as a function of other evkey defines) can be ignored.
+ #
+ 
+-ABSOLUTE_LINUX_INPUT_H=@ABSOLUTE_LINUX_INPUT_H@
++INPUT_EVENT_CODE_HEADER_FILE=@INPUT_EVENT_CODE_HEADER_FILE@
+ AWK=@AWK@
+ 
+ rm -f evkey_code_to_name.h
+@@ -38,7 +38,7 @@
+     BEGIN {
+       printf(\"#ifndef _EVENTLIRCD_EVKEY_CODE_TO_NAME_H_\n\");
+       printf(\"#define _EVENTLIRCD_EVKEY_CODE_TO_NAME_H_ 1\n\");
+-      printf(\"#include <${ABSOLUTE_LINUX_INPUT_H}>\n\");
++      printf(\"#include <${INPUT_EVENT_CODE_HEADER_FILE}>\n\");
+       printf(\"static const char *evkey_code_to_name[KEY_MAX] = {\n\");
+       code_cur = -1;
+     };
+@@ -62,4 +62,4 @@
+       printf(\"};\n\");
+       printf(\"#endif\n\");
+     }
+-    " < ${ABSOLUTE_LINUX_INPUT_H} >> evkey_code_to_name.h
++    " < ${INPUT_EVENT_CODE_HEADER_FILE} >> evkey_code_to_name.h
+diff -Naur eventlircd-20110816-8245391-old/src/evkey_type.h.sh.in eventlircd-20110816-8245391-new/src/evkey_type.h.sh.in
+--- eventlircd-20110816-8245391-old/src/evkey_type.h.sh.in	2019-12-05 11:13:56.000000000 -0800
++++ eventlircd-20110816-8245391-new/src/evkey_type.h.sh.in	2019-12-13 11:56:32.959998442 -0800
+@@ -28,7 +28,7 @@
+ # as a function of other evkey defines) can be ignored.
+ #
+ 
+-ABSOLUTE_LINUX_INPUT_H=@ABSOLUTE_LINUX_INPUT_H@
++INPUT_EVENT_CODE_HEADER_FILE=@INPUT_EVENT_CODE_HEADER_FILE@
+ AWK=@AWK@
+ 
+ rm -f evkey_type.h
+@@ -37,7 +37,7 @@
+     BEGIN {
+       printf(\"#ifndef _EVENTLIRCD_EVKEY_TYPE_H_\n\");
+       printf(\"#define _EVENTLIRCD_EVKEY_TYPE_H_ 1\n\");
+-      printf(\"#include <${ABSOLUTE_LINUX_INPUT_H}>\n\");
++      printf(\"#include <${INPUT_EVENT_CODE_HEADER_FILE}>\n\");
+       printf(\"#define EVENTLIRCD_EVKEY_TYPE_NULL 0\n\");
+       printf(\"#define EVENTLIRCD_EVKEY_TYPE_KEY  1\n\");
+       printf(\"#define EVENTLIRCD_EVKEY_TYPE_BTN  2\n\");
+@@ -64,4 +64,4 @@
+       printf(\"};\n\");
+       printf(\"#endif\n\");
+     };
+-" < ${ABSOLUTE_LINUX_INPUT_H} >> evkey_type.h
++" < ${INPUT_EVENT_CODE_HEADER_FILE} >> evkey_type.h
+diff -Naur eventlircd-20110816-8245391-old/src/Makefile.am eventlircd-20110816-8245391-new/src/Makefile.am
+--- eventlircd-20110816-8245391-old/src/Makefile.am	2019-12-05 11:13:56.000000000 -0800
++++ eventlircd-20110816-8245391-new/src/Makefile.am	2019-12-13 11:56:45.013000225 -0800
+@@ -5,13 +5,13 @@
+ 
+ nodist_eventlircd_SOURCES = event_name_to_code.h evkey_code_to_name.h evkey_type.h
+ 
+-event_name_to_code.h: event_name_to_code.h.sh $(ABSOLUTE_LINUX_INPUT_H)
++event_name_to_code.h: event_name_to_code.h.sh $(INPUT_EVENT_CODE_HEADER_FILE)
+ 	sh event_name_to_code.h.sh
+ 
+-evkey_code_to_name.h: evkey_code_to_name.h.sh $(ABSOLUTE_LINUX_INPUT_H)
++evkey_code_to_name.h: evkey_code_to_name.h.sh $(INPUT_EVENT_CODE_HEADER_FILE)
+ 	sh evkey_code_to_name.h.sh
+ 
+-evkey_type.h: evkey_type.h.sh $(ABSOLUTE_LINUX_INPUT_H)
++evkey_type.h: evkey_type.h.sh $(INPUT_EVENT_CODE_HEADER_FILE)
+ 	sh evkey_type.h.sh
+ 
+ input.c: event_name_to_code.h evkey_code_to_name.h evkey_type.h

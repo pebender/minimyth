@@ -1,10 +1,8 @@
 GARNAME = libpng
-GARVERSION = 1.5.30
+GARVERSION = 1.6.37
 CATEGORIES = lib
-MASTER_SITES  = https://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)15/$(GARVERSION)/
-MASTER_SITES += https://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)15/older-releases/$(GARVERSION)/
-DISTFILES  = $(DISTNAME).tar.xz
-DISTFILES += config.cache.$(GARCH_FAMILY)
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)16/$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = \
 	$(DISTNAME).patch.gar
 LICENSE = $(GARNAME)
@@ -21,16 +19,21 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--cache-file=config.cache \
+	--config-cache \
+	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--disable-arm-neon \
-	--with-gnu-ld
+	--enable-unversioned-links \
+  	--enable-unversioned-libpng-pc \
+	--enable-unversioned-libpng-config \
+	--enable-hardware-optimizations
+CONFIGURE_ENV = \
+	ac_cv_func_strtod="yes"
 
 include ../../gar.mk
 
 extract-config.cache.$(GARCH_FAMILY):
-	@cp $(DOWNLOADDIR)/config.cache.$(GARCH_FAMILY) $(WORKSRC)/config.cache
+	@#cp $(DOWNLOADDIR)/config.cache.$(GARCH_FAMILY) $(WORKSRC)/config.cache
 	@$(MAKECOOKIE)
 
 pre-configure:
@@ -39,15 +42,15 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/libpng15.la
 	@rm -f $(DESTDIR)$(libdir)/libpng.la
-	@rm -f $(DESTDIR)$(bindir)-config/libpng15-config
+	@rm -f $(DESTDIR)$(libdir)/libpng16.la
 	@rm -f $(DESTDIR)$(bindir)-config/libpng-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)libpng15-config
+	@rm -f $(DESTDIR)$(bindir)-config/libpng16-config
 	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)libpng-config
+	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)libpng16-config
 	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/libpng15-config $(DESTDIR)$(bindir)-config/libpng15-config
-	@mv $(DESTDIR)$(bindir)/libpng-config $(DESTDIR)$(bindir)-config/libpng-config
-	@$(if $(compiler_prefix), ln -s libpng15-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)libpng15-config)
-	@$(if $(compiler_prefix), ln -s libpng-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)libpng-config)
+	@mv $(DESTDIR)$(bindir)/libpng-config   $(DESTDIR)$(bindir)-config/libpng-config
+	@mv $(DESTDIR)$(bindir)/libpng16-config $(DESTDIR)$(bindir)-config/libpng16-config
+	@$(if $(compiler_prefix), ln -s libpng-config   $(DESTDIR)$(bindir)-config/$(compiler_prefix)libpng-config)
+	@$(if $(compiler_prefix), ln -s libpng16-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)libpng16-config)
 	@$(MAKECOOKIE)

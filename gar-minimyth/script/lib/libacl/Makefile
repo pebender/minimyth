@@ -1,7 +1,7 @@
 GARNAME = acl
 GARVERSION = 2.2.51
 CATEGORIES = lib
-MASTER_SITES = http://download.savannah.gnu.org/releases/acl/
+MASTER_SITES = https://download.savannah.gnu.org/releases/acl/
 DISTFILES = $(DISTNAME).src.tar.gz
 LICENSE = GPL2/LGPL2_1
 
@@ -19,8 +19,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-gettext \
-	--disable-lib64 \
-	--with-gnu-ld
+	--disable-lib64
 BUILD_ARGS     = SHELL=$(CONFIG_SHELL)
 INSTALL_ARGS   = SHELL=$(CONFIG_SHELL) install-dev install-lib
 

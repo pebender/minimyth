@@ -1,7 +1,7 @@
 GARNAME = pixman
-GARVERSION = 0.32.6
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 0.38.4
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/lib/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,8 +11,6 @@ define BLURB
 endef
 
 DEPENDS = lang/c
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -26,7 +24,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-loongson-mmi \
 	--enable-mmx \
 	--enable-sse2 \
-	--enable-sse3 \
+	--enable-ssse3 \
 	--disable-vmx \
 	--disable-arm-simd \
 	--disable-arm-neon \
@@ -36,16 +34,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-gcc-inline-asm \
 	--disable-timers \
 	--disable-gtk \
-	--disable-libpng \
-	--with-gnu-ld
+	--disable-libpng
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libpixman-1.la

@@ -25,8 +25,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--disable-xml-test \
 	--without-cli-frontend \
-	--without-xml-frontend \
-	--with-gnu-ld
+	--without-xml-frontend
 
 include ../../gar.mk
 

@@ -1,7 +1,7 @@
 GARNAME = pcre
 GARVERSION = 8.43
 CATEGORIES = lib
-MASTER_SITES = https://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://ftp.pcre.org/pub/pcre/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES  = $(DISTNAME).patch.gar
 ifneq ($(DESTIMG),build)
@@ -30,8 +30,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--enable-utf8 \
-	--enable-unicode-properties \
-	--with-gnu-ld
+	--enable-unicode-properties
 
 include ../../gar.mk
 

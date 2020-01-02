@@ -1,0 +1,111 @@
+Usage: configure [options]
+Options: [defaults in brackets after descriptions]
+
+Standard options:
+  --help                   print this message
+  --previous               use previous configure parameters if possible
+  --compile-type=CTYPE     one of release, profile, debug [profile]
+                           NOTE: profile is for sampling profilers
+  --prefix=PREFIX          install in PREFIX []
+  --runprefix=PREFIX       prefix to be used at runtime (e.g. .. or /myth/latest)
+  --libdir-name=LIBNAME    search/install libraries in PREFIX/LIBNAME [lib]
+  --disable-ccache         disable compiler cache (ccache)
+  --disable-distcc         disable distributed compilation (distcc)
+
+Advanced options (experts only):
+  --cross-prefix=PREFIX    use PREFIX for compilation tools []
+  --enable-cross-compile   assume a cross-compiler is used
+  --sysroot=PATH           root of cross-build tree
+  --sysinclude=PATH        location of cross-build system headers
+  --cc=CC                  use C compiler CC [gcc]
+  --cxx=CXX                use C++ compiler CXX [g++]
+  --ld=LD                  use linker LD
+  --qmake=QMAKE            use specified qmake [qmake]
+  --qmakespecs=PATH        use specified mkspecs
+  --extra-cflags=ECFLAGS   add ECFLAGS to CFLAGS []
+  --extra-cxxflags=ECXFLAGS add ECXXFLAGS to list of flags for C++ compile
+  --extra-ldflags=ELDFLAGS add ELDFLAGS to LDFLAGS []
+  --disable-symbol-visibility disables symbol visibility options
+  --arch=ARCH              select architecture []
+  --tune=CPU               tune instruction usage for a particular CPU [generic]
+  --cpu=CPU                select the minimum required CPU (affects
+                           instruction selection, may crash on older CPUs)
+  --disable-altivec        disable AltiVec optimizations
+  --disable-amd3dnow       disable 3DNow! optimizations
+  --disable-amd3dnowext    disable 3DNow! extended optimizations
+  --disable-mmx            disable MMX optimizations
+  --disable-mmx2           disable MMX2 optimizations
+  --disable-sse            disable SSE optimizations
+  --disable-ssse3          disable SSSE3 optimizations
+  --disable-avx            disable AVX optimizations
+  --disable-yasm           disable use of yasm assembler
+  --enable-pic             build position-independent code
+  --enable-proc-opt        enable processor specific compilation
+
+  --disable-audio-oss      disable OSS audio support
+  --disable-audio-alsa     disable ALSA audio support
+  --disable-audio-jack     disable JACK audio support
+  --disable-audio-pulseoutput disable PulseAudio audio output support
+  --enable-valgrind        disables timeouts for valgrind memory debugging
+  --disable-lirc           disable lirc support (Infrared Remotes)
+  --disable-joystick-menu  disable joystick menu
+  --disable-libcec         disable libCEC device support
+  --libcec-path=HDRLOC     location of directory containing
+                           'libcec/cec.h', not the directory
+                           with 'cec.h' [/usr/include]
+  --firewire-sdk           specify location for mac FireWire SDK [mac only]
+  --disable-firewire       disable support for FireWire cable boxes
+  --disable-hdhomerun      disable support for HDHomeRun boxes
+  --disable-vbox           disable support for V@Box TV Gateway boxes
+  --disable-ceton          disable support for Ceton cards
+  --disable-v4l2           disable Video4Linux support
+  --disable-ivtv           disable ivtv support (PVR-x50) req. v4l2 support
+  --disable-hdpvr          disable HD-PVR support
+  --disable-dvb            disable DVB support
+  --dvb-path=HDRLOC        location of directory containing
+                           'linux/dvb/frontend.h', not the
+                           directory with frontend.h [/usr/include]
+  --disable-asi            disable support for DVEO ASI recorder
+  --disable-x11            disable X11 support
+  --x11-path=X11LOC        location of X11 include files [/usr/include/X11]
+  --disable-xnvctrl        disable xNVCtrl support
+  --disable-xrandr         disable X11 resolution switching
+  --disable-xv             disable XVideo   (X11 video output accel.)
+  --disable-vdpau          disable NVidia VDPAU hardware acceleration.
+  --disable-crystalhd      disable Broadcom CrystalHD hardware decoder support
+  --disable-vaapi          disable VAAPI hardware accelerated video decoding
+  --disable-vaapi2         disable VAAPI2 hardware accelerated video decoding
+  --disable-openmax        disable OpenMAX hardware accelerated video decoding
+  --disable-dxva2          disable hardware accelerated decoding on windows
+  --disable-mediacodec     disable hardware accelerated decoding on android
+  --disable-opengl-video   disable OpenGL based video display
+  --disable-opengl-themepainter disable OpenGL based theme painting
+  --disable-libass         disable libass SSA/ASS subtitle support
+  --disable-systemd_notify disable systemd notify support
+  --disable-systemd_journal disable systemd journal support
+
+  --enable-mac-bundle      produce standalone OS X apps (e.g. mythfrontend.app)
+
+  --disable-libxml2        disable libxml2 support (disc metadata)
+  --libxml2-path=HDRLOC    location of directory containing
+                           'libxml/parser.h', not the
+                           directory with parser.h [/usr/include/libxml2]
+  --disable-libdns-sd      disable DNS Service Discovery (Bonjour/Zeroconf/Avahi)
+  --disable-libcrypto      disable use of the OpenSSL cryptographic library
+
+  --with-bindings=LIST     install the bindings specified in the
+                           comma-separated list
+                           Supported bindings: perl, python, php
+                           comma-separated list
+  --python=PATH            Force a specific python executable to use [python]
+  --perl-config-opts=OPTS  Additional options to pass when generating
+                           Makefile.perl for building Perl bindings.
+  --enable-bdjava          Enable BD-J support for Blu-ray discs
+
+External codec library options (used for mythffmpeg and streaming transcode):
+  --enable-libmp3lame      enable MP3 encoding via libmp3lame [no]
+  --enable-libx264         enable H.264 encoding via x264 [no]
+  --enable-libx265         enable H.265 encoding via x265 [no]
+  --enable-libvpx          enable VP8 encoding via libvpx [no]
+  --enable-libxvid         enable Xvid encoding via xvidcore,
+                           native MPEG-4/Xvid encoder exists [no]

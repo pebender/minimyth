@@ -28,11 +28,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-glx \
 	--disable-egl \
 	--disable-wayland \
-	--disable-dummy-driver \
 	--disable-static \
 	--enable-shared \
-	--with-drivers-path="$(libdir)/dri" \
-	--with-gnu-ld
+	--with-drivers-path="$(libdir)/dri"
 
 GAR_EXTRA_CONF += X11/libva/package-api.mk
 include ../../gar.mk
@@ -40,7 +38,6 @@ include ../../gar.mk
 pre-configure:
 	@mkdir -p $(WORKSRC)/m4
 	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:

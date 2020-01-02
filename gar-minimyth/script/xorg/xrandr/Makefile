@@ -1,8 +1,8 @@
 GARNAME = xrandr
-GARVERSION = 1.4.3
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
-DISTFILES = $(DISTNAME).tar.bz2
+GARVERSION = 1.5.1
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/app/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
 
@@ -11,13 +11,11 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXrandr \
-	$(CATEGORY)/libXrender \
-	$(CATEGORY)/xproto
+	xorg/libX11 \
+	xorg/libXrandr \
+	xorg/libXrender \
+	xorg/xorgproto
 	
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
-
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
@@ -25,5 +23,4 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk

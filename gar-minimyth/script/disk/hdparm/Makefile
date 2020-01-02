@@ -1,7 +1,7 @@
 GARNAME = hdparm
-GARVERSION = 9.48
+GARVERSION = 9.58
 CATEGORIES = disk
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/
+MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = hdparm
 hdparm_LICENSE_TEXT = $(WORKSRC)/LICENSE.TXT

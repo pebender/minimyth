@@ -19,7 +19,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--with-gnu-ld \
 	--without-crypto \
 	--without-python
 

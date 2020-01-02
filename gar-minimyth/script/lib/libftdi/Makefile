@@ -23,7 +23,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--disable-libftdipp \
 	--disable-python-binding \
-	--with-gnu-ld \
 	--without-examples \
 	--without-boost \
 	--without-docs

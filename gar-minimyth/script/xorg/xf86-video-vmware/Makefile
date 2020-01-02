@@ -1,7 +1,7 @@
 GARNAME = xf86-video-vmware
-GARVERSION = 13.1.0
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 13.3.0
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/driver/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -10,22 +10,16 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c \
-	$(CATEGORY)/fontsproto \
-	$(CATEGORY)/libdrm \
-	$(CATEGORY)/libpciaccess \
-	$(CATEGORY)/randrproto \
-	$(CATEGORY)/renderproto \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/videoproto \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xineramaproto \
-	$(CATEGORY)/xorg-server \
-	$(CATEGORY)/xproto
+DEPENDS = lang/c xorg/libdrm \
+	xorg/libdrm \
+	xorg/libpciaccess \
+	xorg/libX11 \
+	xorg/libXext \
+	xorg/util-macros \
+	xorg/xorg-server \
+	xorg/xorgproto
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -34,18 +28,10 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--disable-static \
-	--enable-shared \
-	--with-gnu-ld
+	--enable-shared
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
 
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/vmware_drv.la
-	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/vmwlegacy_drv.la
+	@rm -fv $(DESTDIR)$(libdir)/xorg/modules/drivers/vmware_drv.la
 	@$(MAKECOOKIE)

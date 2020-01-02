@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lang/c lang/cxx lib/ncurses lib/openssl lib/readline lib/zlib
+DEPENDS    = lang/c lang/cxx lib/ncursesw lib/openssl lib/readline lib/zlib
 BUILDDEPS  = utils/procps
 ifneq ($(DESTIMG),build)
 BUILDDEPS += db/mariadb
@@ -58,7 +58,8 @@ CONFIGURE_ARGS  = \
 	-DINSTALL_SUPPORTFILESDIR="$(prefix)/support-files" \
 	-DINSTALL_SYSCONFDIR="$(sysconfdir)" \
 	-DINSTALL_UNIX_ADDRDIR="$(localstatedir)/lib/mysql/mysql.sock" \
-	-DWITHOUT_SERVER="ON"
+	-DWITHOUT_SERVER="ON" \
+	-DDISABLE_LIBMYSQLCLIENT_SYMBOL_VERSIONING="ON"
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	-DCMAKE_SYSTEM_NAME="Linux" \
@@ -70,11 +71,6 @@ GAR_EXTRA_CONF += devel/glibc/package-api.mk
 include ../../gar.mk
 
 IMPORT_EXECUTABLES := "$(PWD)/$(WORKROOTDIR)/build.d/$(DISTNAME)_build/import_executables.cmake"
-
-# mariadb 10.0.20 fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
 
 configure-%/cmake: 
 	@echo " ==> Running configure in $*"

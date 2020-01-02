@@ -1,7 +1,7 @@
 GARNAME = xf86-video-geode
-GARVERSION = 2.11.17
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+GARVERSION = 2.11.20
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/driver/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,19 +11,12 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/fontsproto \
-	$(CATEGORY)/libpciaccess \
-	$(CATEGORY)/randrproto \
-	$(CATEGORY)/renderproto \
-	$(CATEGORY)/util-macros \
-	$(CATEGORY)/videoproto \
-	$(CATEGORY)/xextproto \
-	$(CATEGORY)/xorg-server \
-	$(CATEGORY)/xproto
+	xorg/libpciaccess \
+	xorg/util-macros \
+	xorg/xorg-server \
+	xorg/xorgproto
 BUILDDEPS = \
-	$(CATEGORY)/xorg-sgml-doctools
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/xorg-sgml-doctools
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -34,18 +27,12 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
   	--enable-geodegx-panel \
-  	--disable-werror \
-  	--enable-visibility \
-	--with-gnu-ld
+	--enable-ztv \
+	--disable-xaa
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
 
-pre-configure:
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/geode_drv.la
-	@rm -f $(DESTDIR)$(libdir)/xorg/modules/drivers/ztv_drv.la
+	@rm -fv $(DESTDIR)$(libdir)/xorg/modules/drivers/geode_drv.la
+	@rm -fv $(DESTDIR)$(libdir)/xorg/modules/drivers/ztv_drv.la
 	@$(MAKECOOKIE)

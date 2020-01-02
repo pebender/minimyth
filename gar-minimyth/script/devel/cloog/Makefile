@@ -20,7 +20,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--with-gnu-ld \
 	--with-isl=system \
 	--with-isl-prefix=$(DESTDIR)$(prefix) \
  	--with-gmp=system \

@@ -1,7 +1,7 @@
 GARNAME = font-cursor-misc
 GARVERSION = 1.0.3
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = $(XORG_MASTER_SITES)
+CATEGORIES = xorg
+MASTER_SITES = https://www.x.org/releases/individual/font/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
@@ -11,14 +11,12 @@ define BLURB
 endef
 
 DEPENDS   = lang/c \
-	$(CATEGORY)/font-util \
-	$(CATEGORY)/util-macros
+	xorg/font-util \
+	xorg/util-macros
 BUILDDEPS = \
-	$(CATEGORY)/bdftopcf \
-	$(CATEGORY)/mkfontdir \
-	$(CATEGORY)/mkfontscale
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/bdftopcf \
+	xorg/mkfontdir \
+	xorg/mkfontscale
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -27,9 +25,4 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(MAKECOOKIE)

@@ -1,7 +1,7 @@
 GARNAME             = perl-List-MoreUtils
-GARVERSION          = 0.25_02
-MASTER_SITES        = http://www.cpan.org/authors/id/V/VP/VPARSEVAL/
-PERL_MODULE_PATCHES = gar.patch
+GARVERSION          = 0.428
+MASTER_SITES        = https://cpan.metacpan.org/authors/id/R/RE/REHSACK/
+#PERL_MODULE_PATCHES = gar.patch
 PERL_MODULE_SO      = true
 DEPENDS             =
 

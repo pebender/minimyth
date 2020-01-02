@@ -1,7 +1,7 @@
 GARNAME = flex
 GARVERSION = 2.5.37
 CATEGORIES = devel
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/
+MASTER_SITES = https://sourceforge.net/projects/flex/files/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = $(DISTNAME)-perl.patch.gar
 LICENSE = $(GARNAME)
@@ -18,8 +18,7 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--disable-rpath \
-	--with-gnu-ld
+	--disable-rpath
 
 include ../../gar.mk
 

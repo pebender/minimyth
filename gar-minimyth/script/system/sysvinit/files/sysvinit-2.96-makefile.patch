@@ -1,0 +1,50 @@
+diff -Naur sysvinit-2.96-old/src/Makefile sysvinit-2.96-new/src/Makefile
+--- sysvinit-2.96-old/src/Makefile	2019-12-17 22:22:24.476000367 -0800
++++ sysvinit-2.96-new/src/Makefile	2019-12-17 23:00:25.747017756 -0800
+@@ -77,6 +77,9 @@
+   INSTALL_DATA	= install -m 644
+ endif
+ INSTALL_DIR	= install -m 755 -d
++BINDIR          = /bin
++SBINDIR         = /sbin
++USRBINDIR       = /usr/bin
+ MANDIR		= /usr/share/man
+ 
+ ifeq ($(WITH_SELINUX),yes)
+@@ -189,25 +192,25 @@
+ distclean:	clobber
+ 
+ install:	all
+-		$(INSTALL_DIR) $(ROOT)/bin/ $(ROOT)/sbin/
+-		$(INSTALL_DIR) $(ROOT)/usr/bin/
++		$(INSTALL_DIR) $(ROOT)$(BINDIR)/ $(ROOT)$(SBINDIR)/
++		$(INSTALL_DIR) $(ROOT)$(USRBINDIR)/
+ 		for i in $(BIN); do \
+-			$(INSTALL_EXEC) $$i $(ROOT)/bin/ ; \
++			$(INSTALL_EXEC) $$i $(ROOT)$(BINDIR)/ ; \
+ 		done
+ 		for i in $(SBIN); do \
+-			$(INSTALL_EXEC) $$i $(ROOT)/sbin/ ; \
++			$(INSTALL_EXEC) $$i $(ROOT)$(SBINDIR)/ ; \
+ 		done
+ 		for i in $(USRBIN); do \
+-			$(INSTALL_EXEC) $$i $(ROOT)/usr/bin/ ; \
++			$(INSTALL_EXEC) $$i $(ROOT)$(USRBINDIR)/ ; \
+ 		done
+ 		# $(INSTALL_DIR) $(ROOT)/etc/
+ 		# $(INSTALL_EXEC) ../doc/initscript.sample $(ROOT)/etc/
+-		ln -sf halt $(ROOT)/sbin/reboot
+-		ln -sf halt $(ROOT)/sbin/poweroff
+-		ln -sf init $(ROOT)/sbin/telinit
+-		ln -sf /sbin/killall5 $(ROOT)/bin/pidof
+-		if [ ! -f $(ROOT)/usr/bin/lastb ]; then \
+-			ln -sf last $(ROOT)/usr/bin/lastb; \
++		ln -sf halt $(ROOT)$(SBINDIR)/reboot
++		ln -sf halt $(ROOT)$(SBINDIR)/poweroff
++		ln -sf init $(ROOT)$(SBINDIR)/telinit
++		ln -sf /sbin/killall5 $(ROOT)$(BINDIR)/pidof
++		if [ ! -f $(ROOT)$(USRBINDIR)/lastb ]; then \
++			ln -sf last $(ROOT)$(USRBINDIR)/lastb; \
+ 		fi
+ 		$(INSTALL_DIR) $(ROOT)/usr/include/
+ 		$(INSTALL_DATA) initreq.h $(ROOT)/usr/include/

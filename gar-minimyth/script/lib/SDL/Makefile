@@ -1,7 +1,7 @@
 GARNAME = SDL
 GARVERSION = 1.2.15
 CATEGORIES = lib
-MASTER_SITES = http://www.libsdl.org/release/
+MASTER_SITES = https://www.libsdl.org/release/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-const-xdata32.patch  $(DISTNAME)-configure.patch $(DISTNAME).patch.gar
 LICENSE = LGPL2_1
@@ -98,7 +98,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-atari-ldg \
 	--disable-clock_gettime \
 	--disable-rpath \
-	--with-gnu-ld \
 	--with-x
 
 include ../../gar.mk

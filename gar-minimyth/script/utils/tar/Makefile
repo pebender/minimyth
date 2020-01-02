@@ -1,5 +1,5 @@
 GARNAME = tar
-GARVERSION = 1.28
+GARVERSION = 1.32
 CATEGORIES = utils
 MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.xz
@@ -17,8 +17,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
-	--disable-rpath \
-	--with-gnu-ld
+	--disable-rpath
 
 include ../../gar.mk
 

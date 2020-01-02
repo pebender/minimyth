@@ -1,8 +1,9 @@
 GARNAME = rtmpdump
-GARVERSION = 2.3
+GARVERSION = c5f04a5
 CATEGORIES = net
-MASTER_SITES = http://rtmpdump.mplayerhq.hu/download/
-DISTFILES = $(DISTNAME).tgz
+MASTER_SITES = http://git.ffmpeg.org/gitweb/rtmpdump.git/snapshot/
+DISTFILES = $(GARVERSION).tar.gz
+PATCHFILES = $(DISTNAME)-openssl-1.1.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION = 

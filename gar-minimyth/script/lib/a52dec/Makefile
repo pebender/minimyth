@@ -28,8 +28,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-al-audio \
 	--disable-win \
 	--disable-warnings \
-	--disable-gprof \
-	--with-gnu-ld
+	--disable-gprof
 
 include ../../gar.mk
 

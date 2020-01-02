@@ -26,8 +26,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-external-libs \
 	--disable-test-coverage \
 	--enable-largefile \
-	--disable-shave \
-	--with-gnu-ld
+	--disable-shave
 
 include ../../gar.mk
 

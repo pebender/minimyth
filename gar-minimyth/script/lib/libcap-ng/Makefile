@@ -20,7 +20,6 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
-	--with-gnu-ld \
 	--without-debug \
 	--with-warn \
 	--without-python

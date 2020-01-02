@@ -1,8 +1,8 @@
 GARNAME = dbus
-GARVERSION = 1.9.16
+GARVERSION = 1.13.12
 CATEGORIES = lib
-MASTER_SITES = http://dbus.freedesktop.org/releases/dbus/
-DISTFILES = $(DISTNAME).tar.gz
+MASTER_SITES = https://dbus.freedesktop.org/releases/dbus/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2
 
 DESCRIPTION =
@@ -16,29 +16,26 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--cache-file=config.cache \
 	--x-includes="$(DESTDIR)$(includedir)" \
 	--x-libraries="$(DESTDIR)$(libdir)" \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--enable-verbose-mode \
-	--enable-asserts \
+	--disable-verbose-mode \
+	--disable-asserts \
 	--enable-checks \
 	--disable-xml-docs \
 	--disable-doxygen-docs \
+	--disable-ducktype-docs  \
 	--enable-abstract-sockets \
 	--disable-selinux \
 	--with-xml=expat \
-	--with-gnu-ld \
 	--with-x
 
-include ../../gar.mk
+CONFIGURE_ENV = \
+	dbus_cv_va_val_copy="no"
 
-pre-configure:
-	@rm -f $(WORKSRC)/config.cache
-	@echo "dbus_cv_va_val_copy=no" >> $(WORKSRC)/config.cache
-	@$(MAKECOOKIE)
+include ../../gar.mk
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libdbus-1.la

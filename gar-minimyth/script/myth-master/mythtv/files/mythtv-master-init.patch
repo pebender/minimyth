@@ -1,27 +1,6 @@
-diff -Naur mythtv-master-20141222-5b386a0-old/mythplugins/mythgallery/mythgallery/gallerysettings.cpp mythtv-master-20141222-5b386a0-new/mythplugins/mythgallery/mythgallery/gallerysettings.cpp
---- mythtv-master-20141222-5b386a0-old/mythplugins/mythgallery/mythgallery/gallerysettings.cpp	2015-06-11 01:01:21.922000003 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythplugins/mythgallery/mythgallery/gallerysettings.cpp	2015-06-11 01:01:23.028000003 -0700
-@@ -45,7 +45,7 @@
- #ifdef Q_OS_MAC
-     gc->setValue(QDir::homePath() + "/Pictures");
- #else
--    gc->setValue("/var/lib/pictures");
-+    gc->setValue("/mnt/gallery");
- #endif
-     gc->setHelpText(GallerySettings::tr("This directory must exist and "
-                                         "MythGallery needs to have read "
-@@ -107,7 +107,7 @@
- {
-     HostLineEdit *gc = new HostLineEdit("GalleryImportDirs");
-     gc->setLabel(GallerySettings::tr("Paths to import images from"));
--    gc->setValue("/mnt/cdrom:/mnt/camera");
-+    gc->setValue("");
-     gc->setHelpText(GallerySettings::tr("This is a colon separated list of "
-                     "paths. If the path in the list is a directory, its "
-                     "contents will be copied. If it is an executable, "
-diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/libs/libmythmetadata/globals.cpp mythtv-master-20141222-5b386a0-new/mythtv/libs/libmythmetadata/globals.cpp
---- mythtv-master-20141222-5b386a0-old/mythtv/libs/libmythmetadata/globals.cpp	2015-06-11 01:01:21.716000003 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythtv/libs/libmythmetadata/globals.cpp	2015-06-11 01:01:23.028000003 -0700
+diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/libs/libmythmetadata/globals.cpp mythtv-master-20191230-bafc80d-new/mythtv/libs/libmythmetadata/globals.cpp
+--- mythtv-master-20191230-bafc80d-old/mythtv/libs/libmythmetadata/globals.cpp	2019-12-30 16:03:31.844999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythtv/libs/libmythmetadata/globals.cpp	2019-12-30 16:03:33.261999975 -0800
 @@ -44,5 +44,5 @@
  #ifdef Q_OS_MAC
  const QString DEFAULT_VIDEOSTARTUP_DIR = QDir::homePath() + "/Movies";
@@ -29,10 +8,10 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/libs/libmythmetadata/global
 -const QString DEFAULT_VIDEOSTARTUP_DIR = "/share/Movies/dvd";
 +const QString DEFAULT_VIDEOSTARTUP_DIR = "/mnt/video";
  #endif
-diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/programs/mythfrontend/globalsettings.cpp mythtv-master-20141222-5b386a0-new/mythtv/programs/mythfrontend/globalsettings.cpp
---- mythtv-master-20141222-5b386a0-old/mythtv/programs/mythfrontend/globalsettings.cpp	2015-06-11 01:01:21.167000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythtv/programs/mythfrontend/globalsettings.cpp	2015-06-11 01:01:23.029000003 -0700
-@@ -1398,7 +1398,7 @@
+diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/programs/mythfrontend/globalsettings.cpp mythtv-master-20191230-bafc80d-new/mythtv/programs/mythfrontend/globalsettings.cpp
+--- mythtv-master-20191230-bafc80d-old/mythtv/programs/mythfrontend/globalsettings.cpp	2019-12-30 16:03:31.914999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythtv/programs/mythfrontend/globalsettings.cpp	2019-12-30 16:03:33.262999973 -0800
+@@ -1406,7 +1406,7 @@
      gc->addSelection(PlaybackSettings::tr("Record date"), "Date");
      gc->addSelection(PlaybackSettings::tr("Season/Episode"), "Season");
      gc->addSelection(PlaybackSettings::tr("Original air date"), "OrigAirDate");
@@ -41,7 +20,7 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/programs/mythfrontend/globa
  
      gc->setHelpText(PlaybackSettings::tr("Selects how to sort a show's "
                                           "episodes"));
-@@ -1686,7 +1686,7 @@
+@@ -1709,7 +1709,7 @@
      gc->setLabel(PlaybackSettings::tr("Action on playback exit"));
  
      gc->addSelection(PlaybackSettings::tr("Just exit"), "0");
@@ -50,7 +29,7 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/programs/mythfrontend/globa
      gc->addSelection(PlaybackSettings::tr("Always prompt (excluding Live TV)"),
                       "1");
      gc->addSelection(PlaybackSettings::tr("Always prompt (including Live TV)"),
-@@ -1708,7 +1708,7 @@
+@@ -1731,7 +1731,7 @@
  
      gc->setLabel(PlaybackSettings::tr("Prompt at end of recording"));
  
@@ -59,7 +38,7 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/programs/mythfrontend/globa
  
      gc->setHelpText(PlaybackSettings::tr("If enabled, a menu will be displayed "
                                           "allowing you to delete the recording "
-@@ -1789,7 +1789,7 @@
+@@ -1829,7 +1829,7 @@
  //
  //     gc->setLabel(PlaybackSettings::tr("Display live preview of recordings"));
  //

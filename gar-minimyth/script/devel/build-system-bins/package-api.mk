@@ -15,7 +15,6 @@ build_system_bins = $(strip $(sort \
 	glibc \
 	grep \
 	gzip \
-	mercurial \
 	m4 \
 	make \
 	patch \
@@ -126,7 +125,8 @@ build_system_bins_git = \
 build_system_bins_glibc = \
 	getconf \
 	iconv \
-	ldconfig
+	ldconfig \
+	ldd
 
 # Overridden by binaries from package utils/grep.
 build_system_bins_grep = \
@@ -146,9 +146,6 @@ build_system_bins_m4 = \
 # Overridden by binaries from package devel/make.
 build_system_bins_make = \
 	make
-
-build_system_bins_mercurial = \
-	hg
 
 # Overridden by binaries from package devel/patch.
 build_system_bins_patch = \

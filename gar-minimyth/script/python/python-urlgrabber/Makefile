@@ -12,7 +12,6 @@ define BLURB
 endef
 
 DEPENDS   = lang/c python/python python/python-pycurl
-BUILDDEPS = python/python-distutilscross
 
 WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 

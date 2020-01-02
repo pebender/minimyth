@@ -1,7 +1,7 @@
 GARNAME = xscreensaver
 GARVERSION = 5.43
 CATEGORIES = X11
-MASTER_SITES = http://www.jwz.org/$(GARNAME)/
+MASTER_SITES = https://www.jwz.org/xscreensaver/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-po_disable.patch \
@@ -13,7 +13,7 @@ define BLURB
 endef
 
 DEPENDS   = lang/c xorg/xorg lib/libjpeg lib/zlib
-BUILDDEPS = gtk/glib utils/bc
+BUILDDEPS = lib/glib utils/bc
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

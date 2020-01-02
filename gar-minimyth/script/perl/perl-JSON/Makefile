@@ -1,5 +1,5 @@
 GARNAME      = perl-JSON
-GARVERSION   = 2.53
-MASTER_SITES = http://www.cpan.org/authors/id/M/MA/MAKAMAKA/
+GARVERSION   = 4.02
+MASTER_SITES = https://cpan.metacpan.org/authors/id/I/IS/ISHIGAKI/
 
 include ../../perl/perl/perl-module.mk

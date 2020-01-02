@@ -1,5 +1,5 @@
 GARNAME = libxml2
-GARVERSION = 2.9.0
+GARVERSION = 2.9.7
 CATEGORIES = lib
 MASTER_SITES = ftp://xmlsoft.org/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.gz
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS  = lang/c lib/zlib
+DEPENDS  = lang/c lib/icu lib/zlib
 ifeq ($(DESTIMG),build)
 DEPENDS += python/python
 endif
@@ -22,7 +22,7 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--with-gnu-ld \
+	--with-icu \
 	--with-zlib \
 	--without-lzma
 ifeq ($(DESTIMG),build)

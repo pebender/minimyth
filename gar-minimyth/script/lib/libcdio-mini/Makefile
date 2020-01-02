@@ -32,8 +32,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-cdda-player \
 	--without-cd-read \
 	--without-iso-info \
-	--without-iso-read \
-	--with-gnu-ld
+	--without-iso-read
 
 GAR_EXTRA_CONF += lib/libcdio/package-api.mk
 include ../../gar.mk

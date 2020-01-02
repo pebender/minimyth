@@ -1,7 +1,7 @@
 GARNAME = libogg
 GARVERSION = 1.3.0
 CATEGORIES = lib
-MASTER_SITES = http://downloads.xiph.org/releases/ogg/
+MASTER_SITES = https://downloads.xiph.org/releases/ogg/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch
@@ -20,8 +20,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
 include ../../gar.mk
 

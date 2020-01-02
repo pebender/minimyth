@@ -8,12 +8,13 @@ DESCRIPTION =
 define BLURB
 endef
 
+BUILDDEPS = devel-tainted/coreutils
+
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--disable-rpath
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
 
 GAR_EXTRA_CONF += devel/make/package-api.mk
 include ../../gar.mk

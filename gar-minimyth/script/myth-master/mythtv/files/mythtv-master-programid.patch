@@ -1,7 +1,7 @@
-diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/themes/default-wide/recordings-ui.xml mythtv-master-20141222-5b386a0-new/mythtv/themes/default-wide/recordings-ui.xml
---- mythtv-master-20141222-5b386a0-old/mythtv/themes/default-wide/recordings-ui.xml	2015-06-11 01:01:23.980000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythtv/themes/default-wide/recordings-ui.xml	2015-06-11 01:01:25.308000003 -0700
-@@ -251,6 +251,10 @@
+diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/themes/default-wide/recordings-ui.xml mythtv-master-20191230-bafc80d-new/mythtv/themes/default-wide/recordings-ui.xml
+--- mythtv-master-20191230-bafc80d-old/mythtv/themes/default-wide/recordings-ui.xml	2019-12-30 16:03:33.132999974 -0800
++++ mythtv-master-20191230-bafc80d-new/mythtv/themes/default-wide/recordings-ui.xml	2019-12-30 16:03:34.501999975 -0800
+@@ -252,6 +252,10 @@
              <preserveaspect>true</preserveaspect>
          </imagetype>
  
@@ -12,10 +12,10 @@ diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/themes/default-wide/recordi
          <textarea name="norecordings">
              <area>20,75,760,300</area>
              <font>basemedium</font>
-diff -Naur mythtv-master-20141222-5b386a0-old/mythtv/themes/MythCenter-wide/recordings-ui.xml mythtv-master-20141222-5b386a0-new/mythtv/themes/MythCenter-wide/recordings-ui.xml
---- mythtv-master-20141222-5b386a0-old/mythtv/themes/MythCenter-wide/recordings-ui.xml	2015-06-11 01:01:23.977000002 -0700
-+++ mythtv-master-20141222-5b386a0-new/mythtv/themes/MythCenter-wide/recordings-ui.xml	2015-06-11 01:01:25.308000003 -0700
-@@ -418,6 +418,10 @@
+diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/themes/MythCenter-wide/recordings-ui.xml mythtv-master-20191230-bafc80d-new/mythtv/themes/MythCenter-wide/recordings-ui.xml
+--- mythtv-master-20191230-bafc80d-old/mythtv/themes/MythCenter-wide/recordings-ui.xml	2019-12-30 16:03:33.111999975 -0800
++++ mythtv-master-20191230-bafc80d-new/mythtv/themes/MythCenter-wide/recordings-ui.xml	2019-12-30 16:03:34.501999975 -0800
+@@ -431,6 +431,10 @@
              <preserveaspect>true</preserveaspect>
          </imagetype>
  

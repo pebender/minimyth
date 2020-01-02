@@ -1,7 +1,7 @@
 GARNAME = libg15render
 GARVERSION = 1.2
 CATEGORIES = lib
-MASTER_SITES = http://downloads.sourceforge.net/project/g15tools/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/g15tools/files/libg15render/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES =
 LICENSE = LGPL2
@@ -19,8 +19,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
-	--enable-ttf \
-	--with-gnu-ld
+	--enable-ttf
 
 include ../../gar.mk
 

@@ -1,0 +1,12 @@
+diff -Naur libX11-1.6.9-old/configure libX11-1.6.9-new/configure
+--- libX11-1.6.9-old/configure	2019-12-26 13:29:21.637011771 -0800
++++ libX11-1.6.9-new/configure	2019-12-26 13:35:01.528000526 -0800
+@@ -20900,7 +20900,7 @@
+ if test "${with_keysymdefdir+set}" = set; then :
+   withval=$with_keysymdefdir; KEYSYMDEFDIR=$withval
+ else
+-  KEYSYMDEFDIR=`$PKG_CONFIG --variable=includedir xproto`/X11
++  KEYSYMDEFDIR=$PKG_CONFIG_SYSROOT_DIR`$PKG_CONFIG --variable=includedir xproto`/X11
+ fi
+ 
+ 

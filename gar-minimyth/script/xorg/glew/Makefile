@@ -1,7 +1,7 @@
 GARNAME = glew
-GARVERSION = 1.12.0
-CATEGORIES = $(CATEGORY)
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/$(GARVERSION)/
+GARVERSION = 2.1.0
+CATEGORIES = xorg
+MASTER_SITES = https://sourceforge.net/projects/glew/files/glew/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tgz
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE.txt
@@ -11,14 +11,9 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
-	$(CATEGORY)/glu \
-	$(CATEGORY)/libX11 \
-	$(CATEGORY)/libXi \
-	$(CATEGORY)/libXmu \
-	$(CATEGORY)/libXext \
-	$(CATEGORY)/Mesa
-
-CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+	xorg/glu \
+	xorg/libX11 \
+	xorg/Mesa
 
 BUILD_SCRIPTS   = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile
@@ -48,7 +43,6 @@ INSTALL_ARGS = \
 	CFLAGS.EXTRA="$(CFLAGS)" \
 	LDFLAGS.EXTRA="$(LDFLAGS)"
 
-GAR_EXTRA_CONF += $(CATEGORY)/xorg/package-api.mk
 include ../../gar.mk
 
 CFLAGS  := $(CFLAGS)  -fPIC

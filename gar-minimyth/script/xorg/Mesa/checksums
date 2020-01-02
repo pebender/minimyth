@@ -1,1 +1,4 @@
-553e525d2f20ed48fca8f1ec3176fd83  download/mesa-10.6.3.tar.xz
+0b4162931d262646e0db71db003d4539  download/mesa-18.2.8.tar.xz
+62cf496304208658ba37c7ee61eeab49  download/mesa-18.2.8-disable_intel_tools.patch
+a806a4a68e7fb06e979536d4d6504d54  download/mesa-18.2.8-libxv.patch
+98153a370ceca08a5e7e0fdec625c9ad  download/mesa-18.2.8-meson_libxv.patch

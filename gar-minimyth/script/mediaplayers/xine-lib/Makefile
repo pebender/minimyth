@@ -1,7 +1,7 @@
 GARNAME = xine-lib
 GARVERSION = 1.2.6
 CATEGORIES = mediaplayers
-MASTER_SITES = http://downloads.sourceforge.net/project/xine/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/xine/files/xine-lib/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2/LGPL2
 
@@ -83,7 +83,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	$(if $(filter i386,$(GARCH_FAMILY)),--enable-w32dll,--disable-w32dll) \
 	--disable-vpx \
 	--disable-mmal \
-	--with-gnu-ld \
 	--without-libiconv-prefix \
 	--without-libintl-prefix \
 	--without-external-libxdg-basedir \

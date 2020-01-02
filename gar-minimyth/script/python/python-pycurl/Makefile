@@ -14,7 +14,6 @@ define BLURB
 endef
 
 DEPENDS   = lang/c lib/openssl net/curl
-BUILDDEPS = python/python-distutilscross
 
 WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 
