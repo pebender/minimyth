@@ -1,0 +1,66 @@
+diff -Naur ncurses-6.2-old/aclocal.m4 ncurses-6.2-new/aclocal.m4
+--- ncurses-6.2-old/aclocal.m4	2020-02-25 16:22:32.336183110 -0800
++++ ncurses-6.2-new/aclocal.m4	2020-02-25 16:23:49.505178794 -0800
+@@ -137,14 +137,14 @@
+ 	ACPPFLAGS="-I\${srcdir}/../../include $ACPPFLAGS"
+ fi
+ if test "$GCC" != yes; then
+-	ACPPFLAGS="$ACPPFLAGS -I\${includedir}"
++	ACPPFLAGS="$ACPPFLAGS -I\${DESTDIR}\${includedir}"
+ elif test "$includedir" != "/usr/include"; then
+ 	if test "$includedir" = '${prefix}/include' ; then
+ 		if test x$prefix != x/usr ; then
+-			ACPPFLAGS="$ACPPFLAGS -I\${includedir}"
++			ACPPFLAGS="$ACPPFLAGS -I\${DESTDIR}\${includedir}"
+ 		fi
+ 	else
+-		ACPPFLAGS="$ACPPFLAGS -I\${includedir}"
++		ACPPFLAGS="$ACPPFLAGS -I\${DESTDIR}\${includedir}"
+ 	fi
+ fi
+ AC_SUBST(ACPPFLAGS)
+diff -Naur ncurses-6.2-old/misc/ncurses-config.in ncurses-6.2-new/misc/ncurses-config.in
+--- ncurses-6.2-old/misc/ncurses-config.in	2020-02-25 16:22:46.360182326 -0800
++++ ncurses-6.2-new/misc/ncurses-config.in	2020-02-25 16:25:28.060173282 -0800
+@@ -36,15 +36,15 @@
+ LC_ALL=C;	export LC_ALL
+ LC_CTYPE=C;	export LC_CTYPE
+ 
+-prefix="@prefix@"
+-exec_prefix="@exec_prefix@"
++prefix="@DESTDIR@@prefix@"
++exec_prefix="@DESTDIR@@exec_prefix@"
+ 
+-bindir="@bindir@"
+-includedir="@includedir@@includesubdir@"
+-libdir="@libdir@"
+-datarootdir="@datarootdir@"
+-datadir="@datadir@"
+-mandir="@mandir@"
++bindir="@DESTDIR@@bindir@"
++includedir="@DESTDIR@@includedir@@includesubdir@"
++libdir="@DESTDIR@@libdir@"
++datarootdir="@DESTDIR@@datarootdir@"
++datadir="@DESTDIR@@datadir@"
++mandir="@DESTDIR@@mandir@"
+ 
+ THIS="@LIB_NAME@@USE_LIB_SUFFIX@"
+ TINFO_LIB="@TINFO_ARG_SUFFIX@"
+@@ -151,7 +151,7 @@
+ 		if [ "x@WITH_OVERWRITE@" = xno ]; then
+ 			INCS="$INCS -I${includesubdir}"
+ 		fi
+-		if [ "${includedir}" != /usr/include ]; then
++		if [ "${includedir}" != @GAR_DESTDIR@@GAR_includedir@ ]; then
+ 			INCS="$INCS -I${includedir}"
+ 		fi
+ 		sed -e 's,^[ ]*,,' -e 's, [ ]*, ,g' -e 's,[ ]*$,,' <<-ENDECHO
+@@ -229,7 +229,7 @@
+ 		INCS=
+ 		if [ "x@WITH_OVERWRITE@" = xno ]; then
+ 			INCS="${includesubdir}"
+-		elif [ "${includedir}" != /usr/include ]; then
++		elif [ "${includedir}" != @GAR_DESTDIR@@GAR_includedir@ ]; then
+ 			INCS="${includedir}"
+ 		fi
+ 		echo $INCS

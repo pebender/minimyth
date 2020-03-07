@@ -1,13 +1,15 @@
 GARNAME = cxx
-GARVERSION = none
 CATEGORIES = lang
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lib/libstdcxx
-BUILDDEPS = lang/cxx
+ifneq ($(GARHOST),$(GARBUILD))
+DEPENDS = lang/c lang/libcxx
+else
+DEPENDS = lang/c
+endif
 
 include ../../gar.mk
 

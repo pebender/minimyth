@@ -1,0 +1,13 @@
+diff -Naur llvm-9.0.1-old/projects/clang/lib/Driver/ToolChains/Gnu.cpp llvm-9.0.1-new/projects/clang/lib/Driver/ToolChains/Gnu.cpp
+--- llvm-9.0.1-old/projects/clang/lib/Driver/ToolChains/Gnu.cpp	2019-12-11 11:15:30.000000000 -0800
++++ llvm-9.0.1-new/projects/clang/lib/Driver/ToolChains/Gnu.cpp	2020-01-30 06:51:30.873928259 -0800
+@@ -566,6 +566,9 @@
+ 
+       AddRunTimeLibs(ToolChain, D, CmdArgs, Args);
+ 
++      if(ToolChain.GetRuntimeLibType(Args) == ToolChain::RLT_CompilerRT)
++        CmdArgs.push_back("-lm");
++
+       if (WantPthread && !isAndroid)
+         CmdArgs.push_back("-lpthread");
+ 

@@ -33,100 +33,90 @@ include $(GARDIR)/gar.conf.mk
 ####### Default values for variables which remain unconfigured. #######
 
 ##### Default image configuration #####
-
 # Default DESTIMG
 DESTIMG ?= main
 
 # Default image filesystem structure
-$(DESTIMG)_rootdir ?= $(main_rootdir)
-$(DESTIMG)_prefix ?= $(main_prefix)
-$(DESTIMG)_exec_prefix ?= $(main_exec_prefix)
-$(DESTIMG)_ebindir ?= $(main_ebindir)
-$(DESTIMG)_bindir ?= $(main_bindir)
-$(DESTIMG)_esbindir ?= $(main_esbindir)
-$(DESTIMG)_sbindir ?= $(main_sbindir)
-$(DESTIMG)_libexecdir ?= $(main_libexecdir)
-$(DESTIMG)_datadir ?= $(main_datadir)
-$(DESTIMG)_sysconfdir ?= $(main_sysconfdir)
-$(DESTIMG)_sharedstatedir ?= $(main_sharedstatedir)
-$(DESTIMG)_localstatedir ?= $(main_localstatedir)
-$(DESTIMG)_elibdir ?= $(main_elibdir)
-$(DESTIMG)_libdir ?= $(main_libdir)
-$(DESTIMG)_infodir ?= $(main_infodir)
-$(DESTIMG)_lispdir ?= $(main_lispdir)
-$(DESTIMG)_includedir ?= $(main_includedir)
-$(DESTIMG)_oldincludedir ?= $(main_oldincludedir)
-$(DESTIMG)_mandir ?= $(main_mandir)
-$(DESTIMG)_docdir ?= $(main_docdir)
-$(DESTIMG)_sourcedir ?= $(main_sourcedir)
-$(DESTIMG)_licensedir ?= $(main_licensedir)
-$(DESTIMG)_versiondir ?= $(main_versiondir)
-$(DESTIMG)_qt5prefix ?= $(main_qt5prefix)
-$(DESTIMG)_qt5bindir ?= $(main_qt5bindir)
-$(DESTIMG)_qt5includedir ?= $(main_qt5includedir)
-$(DESTIMG)_qt5libdir ?= $(main_qt5libdir)
-$(DESTIMG)_qt5elibdir ?= $(main_qt5elibdir)
-
-$(DESTIMG)_DESTDIR ?= $(main_DESTDIR)
+$(DESTIMG)_DESTDIR ?= $(mm_HOME)/images/$(DESTIMG)
+$(DESTIMG)_rootdir ?=
+$(DESTIMG)_prefix ?= $($(DESTIMG)_rootdir)/usr
+$(DESTIMG)_exec_prefix ?= $($(DESTIMG)_rootdir)/usr
+$(DESTIMG)_ebindir ?= $($(DESTIMG)_exec_prefix)/bin
+$(DESTIMG)_bindir ?= $($(DESTIMG)_prefix)/bin
+$(DESTIMG)_esbindir ?= $($(DESTIMG)_exec_prefix)/sbin
+$(DESTIMG)_sbindir ?= $($(DESTIMG)_prefix)/sbin
+$(DESTIMG)_libexecdir ?= $($(DESTIMG)_prefix)/libexec
+$(DESTIMG)_datadir ?= $($(DESTIMG)_prefix)/share
+$(DESTIMG)_sysconfdir ?= $($(DESTIMG)_rootdir)/etc
+$(DESTIMG)_sharedstatedir ?= $($(DESTIMG)_prefix)/share
+$(DESTIMG)_localstatedir ?= $($(DESTIMG)_rootdir)/var
+$(DESTIMG)_elibdir ?= $($(DESTIMG)_exec_prefix)/lib
+$(DESTIMG)_libdir ?= $($(DESTIMG)_prefix)/lib
+$(DESTIMG)_infodir ?= $($(DESTIMG)_prefix)/share/info
+$(DESTIMG)_lispdir ?= $($(DESTIMG)_prefix)/share/emacs/site-lisp
+$(DESTIMG)_includedir ?= $($(DESTIMG)_prefix)/include
+$(DESTIMG)_oldincludedir ?= $($(DESTIMG)_prefix)/include
+$(DESTIMG)_mandir ?= $($(DESTIMG)_prefix)/share/man
+$(DESTIMG)_docdir ?= $($(DESTIMG)_prefix)/share/doc
+$(DESTIMG)_sourcedir ?= $($(DESTIMG)_prefix)/src
+$(DESTIMG)_licensedir ?= $($(DESTIMG)_rootdir)/licenses
+$(DESTIMG)_versiondir ?= $($(DESTIMG)_rootdir)/versions
+$(DESTIMG)_qt5prefix ?= $($(DESTIMG)_libdir)/qt5
+$(DESTIMG)_qt5bindir ?= $($(DESTIMG)_qt5prefix)/bin
+$(DESTIMG)_qt5includedir ?= $($(DESTIMG)_qt5prefix)/include
+$(DESTIMG)_qt5libdir ?= $($(DESTIMG)_qt5prefix)/lib
+$(DESTIMG)_qt5elibdir ?= $($(DESTIMG)_qt5prefix)/lib
 
 # Default image architecture
 $(DESTIMG)_GARCH ?= $(main_GARCH)
 $(DESTIMG)_GARCH_FAMILY ?= $(main_GARCH_FAMILY)
 $(DESTIMG)_GARHOST ?= $(main_GARHOST)
 
-# Default image tools
-$(DESTIMG)_compiler_prefix ?= $(main_compiler_prefix)
-$(DESTIMG)_CC ?= $(main_CC)
-$(DESTIMG)_CXX ?= $(main_CXX)
-$(DESTIMG)_LD ?= $(main_LD)
-$(DESTIMG)_OBJDUMP ?= $(main_OBJDUMP)
-$(DESTIMG)_OBJCOPY ?= $(main_OBJCOPY)
-$(DESTIMG)_STRIP ?= $(main_STRIP)
-$(DESTIMG)_RANLIB ?= $(main_RANLIB)
-$(DESTIMG)_NM ?= $(main_NM)
-$(DESTIMG)_AS ?= $(main_AS)
-$(DESTIMG)_AR ?= $(main_AR)
-$(DESTIMG)_CPP ?= $(main_CPP)
-
-# Default image tool options
-$(DESTIMG)_CPPFLAGS ?= $(main_CPPFLAGS)
-$(DESTIMG)_CFLAGS ?= $(main_CFLAGS)
-$(DESTIMG)_CXXFLAGS ?= $(main_CXXFLAGS)
-$(DESTIMG)_LDFLAGS ?= $(main_LDFLAGS)
-
-##### Set upstream package control variables #####
+# Default compiler tools
+$(DESTIMG)_compiler_dir ?= $(mm_HOME)/images/toolchain
+$(DESTIMG)_CC ?= clang
+$(DESTIMG)_CXX ?= clang++
+$(DESTIMG)_LD ?= ld.lld
+$(DESTIMG)_OBJDUMP ?= llvm-objdump
+$(DESTIMG)_OBJCOPY ?= llvm-objcopy
+$(DESTIMG)_STRIP ?= llvm-strip
+$(DESTIMG)_RANLIB ?= llvm-ranlib
+$(DESTIMG)_READELF ?= llvm-readelf
+$(DESTIMG)_NM ?= llvm-nm
+$(DESTIMG)_AS ?= llvm-as
+$(DESTIMG)_AR ?= llvm-ar
+$(DESTIMG)_CPP ?= clang-cpp
 
 # Filesystem structure
-rootdir = $($(DESTIMG)_rootdir)
-prefix = $($(DESTIMG)_prefix)
-exec_prefix = $($(DESTIMG)_exec_prefix)
-ebindir = $($(DESTIMG)_ebindir)
-bindir = $($(DESTIMG)_bindir)
-esbindir = $($(DESTIMG)_esbindir)
-sbindir = $($(DESTIMG)_sbindir)
-libexecdir = $($(DESTIMG)_libexecdir)
-datadir = $($(DESTIMG)_datadir)
-sysconfdir = $($(DESTIMG)_sysconfdir)
-sharedstatedir = $($(DESTIMG)_sharedstatedir)
-localstatedir = $($(DESTIMG)_localstatedir)
-elibdir = $($(DESTIMG)_elibdir)
-libdir = $($(DESTIMG)_libdir)
-infodir = $($(DESTIMG)_infodir)
-lispdir = $($(DESTIMG)_lispdir)
-includedir = $($(DESTIMG)_includedir)
-oldincludedir = $($(DESTIMG)_oldincludedir)
-mandir = $($(DESTIMG)_mandir)
-docdir = $($(DESTIMG)_docdir)
-sourcedir = $($(DESTIMG)_sourcedir)
-licensedir = $($(DESTIMG)_licensedir)
-versiondir = $($(DESTIMG)_versiondir)
-qt5prefix = $($(DESTIMG)_qt5prefix)
-qt5bindir = $($(DESTIMG)_qt5bindir)
-qt5includedir = $($(DESTIMG)_qt5includedir)
-qt5libdir = $($(DESTIMG)_qt5libdir)
-qt5elibdir = $($(DESTIMG)_qt5elibdir)
-
-DESTDIR = $($(DESTIMG)_DESTDIR)
+DESTDIR ?= $($(DESTIMG)_DESTDIR)
+rootdir ?= $($(DESTIMG)_rootdir)
+prefix = $(rootdir)/usr
+exec_prefix = $(rootdir)/usr
+ebindir = $(exec_prefix)/bin
+bindir = $(prefix)/bin
+esbindir = $(exec_prefix)/sbin
+sbindir = $(prefix)/sbin
+libexecdir = $(prefix)/libexec
+datadir = $(prefix)/share
+sysconfdir = $(rootdir)/etc
+sharedstatedir = $(prefix)/share
+localstatedir = $(rootdir)/var
+elibdir = $(exec_prefix)/lib
+libdir = $(prefix)/lib
+infodir = $(prefix)/share/info
+lispdir = $(prefix)/share/emacs/site-lisp
+includedir = $(prefix)/include
+oldincludedir = $(prefix)/include
+mandir = $(prefix)/share/man
+docdir = $(prefix)/share/doc
+sourcedir = $(prefix)/src
+licensedir = $(prefix)/licenses
+versiondir = $(prefix)/versions
+qt5prefix = $(libdir)/qt5
+qt5bindir = $(qt5prefix)/bin
+qt5includedir = $(qt5prefix)/include
+qt5libdir = $(qt5prefix)/lib
+qt5elibdir = $(qt5prefix)/lib
 
 # Architecture
 GARCH = $($(DESTIMG)_GARCH)
@@ -140,7 +130,7 @@ GARHOST = $($(DESTIMG)_GARHOST)
 GARTARGET ?= $(GARHOST)
 
 # Tools
-compiler_prefix = $($(DESTIMG)_compiler_prefix)
+compiler_dir ?= $($(DESTIMG)_compiler_dir)
 CC = $($(DESTIMG)_CC)
 CXX = $($(DESTIMG)_CXX)
 LD = $($(DESTIMG)_LD)
@@ -148,10 +138,33 @@ OBJDUMP = $($(DESTIMG)_OBJDUMP)
 OBJCOPY = $($(DESTIMG)_OBJCOPY)
 STRIP = $($(DESTIMG)_STRIP)
 RANLIB = $($(DESTIMG)_RANLIB)
+READELF = $($(DESTIMG)_READELF)
 NM = $($(DESTIMG)_NM)
 AS = $($(DESTIMG)_AS)
 AR = $($(DESTIMG)_AR)
 CPP = $($(DESTIMG)_CPP)
+
+LINKER_OPTION = -Wl,
+# Add target to all clang compilers
+CPPFLAGS += $(if $(patsubst %/clang,,$(CC)),,-target $(GARHOST))
+CFLAGS += $(if $(patsubst %/clang,,$(CC)),,-target $(GARHOST))
+CXXFLAGS += $(if $(patsubst %/clang,,$(CC)),,-target $(GARHOST))
+
+# Add gcc toolchain root to all clang compilers
+CPPFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(build_DESTDIR)$(build_prefix)")
+CFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(build_DESTDIR)$(build_prefix)")
+CXXFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(build_DESTDIR)$(build_prefix)")
+
+# Add sysroot to all non-native compilers.
+CPPFLAGS += $(if $(patsubst %/cc,,$(CC)),--sysroot="$(DESTDIR)$(rootdir)")
+CFLAGS += $(if $(patsubst %/cc,,$(CC)),--sysroot="$(DESTDIR)$(rootdir)")
+CXXFLAGS += $(if $(patsubst %/cc,,$(CC)),--sysroot="$(DESTDIR)$(rootdir)")
+LDFLAGS += $(if $(patsubst %/ld,,$(LD)),--sysroot="$(DESTDIR)$(rootdir)" $(LINKER_OPTION)--sysroot="$(DESTDIR)$(rootdir)")
+
+CPPFLAGS += $(if $(patsubst %/cc,,$(CC)),)
+CFLAGS += $(if $(patsubst %/cc,,$(CC)),-pipe)
+CXXFLAGS += $(if $(patsubst %/cc,,$(CC)),-pipe)
+LDFLAGS += $(if $(patsubst %/ld,,$(LD)),$(LINKER_OPTION)--as-needed)
 
 # Tool options -- These are append-mode assignments so that packages may
 # provide additional tool options.
@@ -159,6 +172,9 @@ CPPFLAGS += $($(DESTIMG)_CPPFLAGS)
 CFLAGS += $($(DESTIMG)_CFLAGS)
 CXXFLAGS += $($(DESTIMG)_CXXFLAGS)
 LDFLAGS += $($(DESTIMG)_LDFLAGS)
+
+CFLAGS += $(CPPFLAGS)
+CXXFLAGS += $(CPPFLAGS)
 
 ####### Defaults for GAR target control variables #######
 DISTNAME ?= $(GARNAME)-$(GARVERSION)
@@ -179,11 +195,24 @@ STAGINGDIR ?= $(build_DESTDIR)$(build_prefix)/staging
 
 # allow us to use programs we just built
 BUILD_SYSTEM_PATH := $(if $(BUILD_SYSTEM_PATH),$(BUILD_SYSTEM_PATH),$(PATH))
-GAR_SYSTEM_PATH := $(DESTDIR)$(bindir)-config:$(build_DESTDIR)$(build_esbindir):$(build_DESTDIR)$(build_ebindir):$(build_DESTDIR)$(build_sbindir):$(build_DESTDIR)$(build_bindir):$(build_DESTDIR)$(build_rootdir)/bin-build-system
-PATH := $(if $(wildcard $(build_DESTDIR)$(build_rootdir)/bin-build-system),$(GAR_SYSTEM_PATH),$(GAR_SYSTEM_PATH):$(BUILD_SYSTEM_PATH))
-# this causes pain for all involved once glibc is built.
-LIBRARY_PATH = $(build_DESTDIR)$(build_elibdir):$(build_DESTDIR)$(build_libdir):$(build_DESTDIR)$(build_qt5libdir):$(build_DESTDIR)$(build_libdir)/mysql:/lib/$(GARBUILD):/usr/lib/$(GARBUILD)$(strip $(if $(filter i386,$(build_GARCH_FAMILY)),:/lib32:/usr/lib32:/lib:/usr/lib) $(if $(filter x86_64,$(build_GARCH_FAMILY)),:/lib64:/usr/lib64:/lib:/usr/lib))
-LD_LIBRARY_PATH = $(build_DESTDIR)$(build_elibdir):$(build_DESTDIR)$(build_libdir):$(build_DESTDIR)$(build_qt5libdir):$(build_DESTDIR)$(build_libdir)/mysql
+GAR_SYSTEM_PATH = $(ccache_DESTDIR)$(ccache_bindir)$(strip \
+	:$(DESTDIR)$(bindir)/config)$(strip \
+	:$(build_DESTDIR)$(build_esbindir):$(build_DESTDIR)$(build_ebindir):$(build_DESTDIR)$(build_sbindir):$(build_DESTDIR)$(build_bindir))$(strip \
+	:$(compiler_dir))$(strip \
+	:$(native_DESTDIR)/$(native_bindir))
+NATIVE_LINKTIME_PATH = /lib/$(GARBUILD):/usr/lib/$(GARBUILD)$(strip \
+	$(if $(filter i386,$(GARCH_FAMILY)), \
+		:/lib32:/usr/lib32 \
+	))$(strip \
+	$(if $(filter x86_64,$(GARCH_FAMILY)), \
+		:/lib64:/usr/lib64 \
+	))$(strip \
+	:/lib:/usr/lib)
+TARGET_LINKTIME_PATH = $(DESTDIR)$(elibdir):$(DESTDIR)$(libdir):$(DESTDIR)$(qt5libdir):$(DESTDIR)$(libdir)/mysql
+
+PATH = $(if $(wildcard $(native_DESTDIR)$(native_bindir)/true),$(GAR_SYSTEM_PATH),$(GAR_SYSTEM_PATH):$(BUILD_SYSTEM_PATH))
+LIBRARY_PATH = $(TARGET_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)
+#LD_LIBRARY_PATH = $(TARGET_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)
 # or at least it did before we had DESTDIR and fully-munged
 # builddeps.  The following may be more of a hindrance than a
 # help nowadays:
@@ -200,6 +229,15 @@ export CCACHE_DISABLE=foo
 else
 DO_BUILD_CLEAN =
 endif
+
+CCACHE_BASEDIR =
+export CCACHE_BASEDIR
+CCACHE_COMPILERCHECK = content
+export CCACHE_COMPILERCHECK
+CCACHE_DIR = $(mm_HOME)/ccache
+export CCACHE_DIR
+CCACHE_MAXSIZE = $(mm_CCACHE_MAXSIZE)
+export CCACHE_MAXSIZE
 
 PARALLELMFLAGS ?= $(MFLAGS)
 export PARALLELMFLAGS

@@ -1,0 +1,12 @@
+diff -Naur make-4.0-old/glob/glob.c make-4.0-new/glob/glob.c
+--- make-4.0-old/glob/glob.c	2013-10-05 16:12:18.000000000 -0700
++++ make-4.0-new/glob/glob.c	2020-01-14 09:55:48.137064984 -0800
+@@ -208,7 +208,7 @@
+ #endif /* __GNU_LIBRARY__ || __DJGPP__ */
+ 
+ 
+-#if !defined __alloca && !defined __GNU_LIBRARY__
++#if !defined __alloca && defined __GNU_LIBRARY__
+ 
+ # ifdef	__GNUC__
+ #  undef alloca

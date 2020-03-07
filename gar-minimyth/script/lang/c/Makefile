@@ -1,51 +1,21 @@
 GARNAME = c
-GARVERSION = none
 CATEGORIES = lang
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lib/libgcc
-BUILDDEPS  = lang/c
-DEPENDS   += \
-	devel/meson \
-	devel/pkg-config
-# Development tools often used when building c language programs.
-BUILDDEPS += \
-	utils/bash \
-	utils/coreutils \
-	utils/lzip \
-	utils/ed \
-	utils/sed \
-	utils/gawk \
-	utils/grep \
-	perl/perl \
-	devel/pkg-config \
-	python/python \
-	devel/cmake \
-	devel/meson \
-	utils/m4 \
-	utils/diffutils \
-	utils/findutils \
-	devel/bison \
-	devel/flex \
-	devel/gettext \
-	devel/autoconf \
-	devel/autoconf-archive \
-	devel/automake \
-	devel/libtool \
-	devel/intltool \
-	devel/patch \
-	utils/which \
-	utils/file \
-	utils/tar \
-	utils/xz \
-	utils/bzip2 \
-	utils/gzip \
-	utils/unzip \
-	doc/texinfo \
-	devel/ruby
+DEPENDS = \
+	lang/c-build \
+	lang/musl \
+	lang/libunwind \
+	build-tool/make \
+	build-tool/ninja \
+	build-tool/autotools \
+	build-tool/cmake \
+	build-tool/meson \
+	build-tool/qmake \
+	build-tool/meson
 
 include ../../gar.mk
 

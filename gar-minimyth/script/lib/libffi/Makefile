@@ -1,5 +1,5 @@
 GARNAME = libffi
-GARVERSION = 3.3
+GARVERSION = $(LIBFFI_VERSION)
 CATEGORIES = lib
 MASTER_SITES = https://github.com/libffi/libffi/releases/download/v$(GARVERSION)/
 DISTFILES  = $(DISTNAME).tar.gz
@@ -9,13 +9,14 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c build-tool/make
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
 	--disable-docs \
@@ -28,6 +29,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-post-install:
-	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
+post-install: post-install-lib-wrappers
+
+post-install-lib-wrappers::
+	@rm -f $(DESTDIR)$(libdir)/libffi.la
 	@$(MAKECOOKIE)

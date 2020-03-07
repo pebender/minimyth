@@ -208,8 +208,12 @@ gar-patch-%:
 		| sed 's%@GAR_GARBUILD@%$(GARBUILD)%g' \
 		| sed 's%@GAR_GARHOST@%$(GARHOST)%g' \
 		| sed 's%@GAR_build_DESTDIR@%$(build_DESTDIR)%g' \
+		| sed 's%@GAR_build_rootdir@%$(build_rootdir)%g' \
 		| sed 's%@GAR_build_prefix@%$(build_prefix)%g' \
 		| sed 's%@GAR_build_bindir@%$(build_bindir)%g' \
+		| sed 's%@GAR_build_ebindir@%$(build_ebindir)%g' \
+		| sed 's%@GAR_build_elibdir@%$(build_elibdir)%g' \
+		| sed 's%@GAR_build_esbindir@%$(build_esbindir)%g' \
 		| sed 's%@GAR_build_includedir@%$(build_includedir)%g' \
 		| sed 's%@GAR_build_qt5bindir@%$(build_qt5bindir)%g' \
 		| sed 's%@GAR_build_qt5libdir@%$(build_qt5libdir)%g' \

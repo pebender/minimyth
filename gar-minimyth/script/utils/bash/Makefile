@@ -1,5 +1,5 @@
 GARNAME = bash
-GARVERSION = 4.4
+GARVERSION = $(BASH_VERSION)
 CATEGORIES = utils
 MASTER_SITES  = https://ftp.gnu.org/gnu/$(GARNAME)/
 MASTER_SITES += https://ftp.gnu.org/gnu/$(GARNAME)/$(DISTNAME)-patches/
@@ -55,12 +55,6 @@ bindir  := $(ebindir)
 sbindir := $(esbindir)
 
 patch-%: normal-patch-%
-	@$(MAKECOOKIE)
-
-pre-configure:
-	@# Running autotools fails.
-	@#$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:

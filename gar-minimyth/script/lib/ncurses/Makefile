@@ -61,15 +61,15 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@rm -fv $(DESTDIR)$(bindir)-config/ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)-config/ncurses6-config
-	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses6-config
-	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)-config/ncurses6-config
-	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)-config/ncursesw6-config
-	@$(if $(compiler_prefix), ln -sfv ncursesw6-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncursesw6-config)
-	@$(if $(compiler_prefix), ln -sfv ncurses6-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses6-config)
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@rm -fv $(DESTDIR)$(bindir)/config/ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config/ncurses6-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
+	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)/config/ncurses6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/ncursesw6-config
+	@ln -sfv ncursesw6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
 	@$(foreach lib, ncurses form panel menu, ln -sfv ${lib}.pc $(PKG_CONFIG_LIBDIR)/${lib}w.pc;)
 	@$(foreach lib, ncurses form panel menu, rm -fv $(DESTDIR)$(libdir)/lib${lib}.a $(DESTDIR)$(libdir)/lib${lib}_g.a;)
 	@$(MAKECOOKIE)

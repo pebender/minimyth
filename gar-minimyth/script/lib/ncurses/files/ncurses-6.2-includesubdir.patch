@@ -1,0 +1,12 @@
+diff -Naur ncurses-6.2-old/misc/ncurses-config.in ncurses-6.2-new/misc/ncurses-config.in
+--- ncurses-6.2-old/misc/ncurses-config.in	2020-02-02 15:34:34.000000000 -0800
++++ ncurses-6.2-new/misc/ncurses-config.in	2020-02-25 16:22:46.360182326 -0800
+@@ -40,7 +40,7 @@
+ exec_prefix="@exec_prefix@"
+ 
+ bindir="@bindir@"
+-includedir="@includedir@"
++includedir="@includedir@@includesubdir@"
+ libdir="@libdir@"
+ datarootdir="@datarootdir@"
+ datadir="@datadir@"

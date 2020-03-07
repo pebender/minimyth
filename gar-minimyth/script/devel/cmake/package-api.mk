@@ -1,0 +1,71 @@
+CMAKE_VERSION = 3.16.4
+
+CMAKE_CONFIGURE_ARGS = $(if $(filter $(GARBUILD),$(GARHOST)), \
+	$(if $(filter ON,$(CMAKE_USE_SYSROOT)), \
+		-DCMAKE_SYSROOT="$(DESTDIR)" \
+		-DCMAKE_INSTALL_PREFIX="$(prefix)" \
+		-DCMAKE_STAGING_PREFIX="$(DESTDIR)$(prefix)" \
+	, \
+		-DCMAKE_INSTALL_PREFIX="$(prefix)" \
+		-DCMAKE_STAGING_PREFIX="$(DESTDIR)$(prefix)" \
+	), \
+	-DCMAKE_INSTALL_PREFIX="$(prefix)" \
+	-DCMAKE_STAGING_PREFIX="$(DESTDIR)$(prefix)" \
+)
+CMAKE_DESTDIR ?= $(if $(filter $(GARBUILD),$(GARHOST)), \
+	$(if $(filter ON,$(CMAKE_USE_SYSROOT)), \
+	, \
+		$(DESTDIR) \
+	), \
+	$(DESTDIR) \
+)
+CMAKE_CONFIGURE_ARGS += \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_INSTALL_LIBDIR="lib" \
+	-DCMAKE_C_COMPILER="$(CC)" \
+	-DCMAKE_CXX_COMPILER="$(CXX)" \
+	-DCMAKE_ASM_COMPILER="$(CC)" \
+	-DCMAKE_C_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_CXX_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_ASM_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_LINKER="$(LD)" \
+	-DCMAKE_C_FLAGS="$(CPPFLAGS) $(CFLAGS)" \
+	-DCMAKE_CXX_FLAGS="$(CPPFLAGS) $(CXXFLAGS)" \
+	-DCMAKE_EXE_LINKER_FLAGS="$(LDFLAGS)" \
+	-DCMAKE_SHARED_LINKER_FLAGS="$(LDFLAGS)" \
+	-DCMAKE_AR="$(AR)" \
+	-DCMAKE_AS="$(AS)" \
+	-DCMAKE_NM="$(NM)" \
+	-DCMAKE_OBJCOPY="$(OBJCOPY)" \
+	-DCMAKE_OBJDUMP="$(OBJDUMP)" \
+	-DCMAKE_RANLIB="$(RANLIB)" \
+	-DCMAKE_STRIP="$(STRIP)"
+CMAKE_CONFIGURE_ARGS += $(if $(filter-out $(GARBUILD),$(GARHOST)), \
+	-DCMAKE_CROSSCOMPILING=ON \
+	-DCMAKE_SYSTEM_NAME="Linux" \
+, \
+)
+CMAKE_BUILD_ARGS =
+CMAKE_INSTALL_ARGS =
+
+CMAKE_CONFIGURE_ENV =
+CMAKE_BUILD_ENV =
+CMAKE_INSTALL_ENV =
+
+configure-%/cmake: 
+	echo `which cmake`
+	@echo " ==> Running configure in $*"
+	@rm -rfv $*_build
+	@mkdir -pv $*_build
+	@$(CMAKE_CONFIGURE_ENV) $(CONFIGURE_ENV) DESTDIR=$(CMAKE_DESTDIR) cmake $(CMAKE_CONFIGURE_ARGS) $(CONFIGURE_ARGS) -G Ninja -S $* -B $*_build
+	@$(MAKECOOKIE)
+
+build-%/cmake:
+	@echo " ==> Running build in $*_build"
+	@$(CMAKE_BUILD_ENV) $(BUILD_ENV) DESTDIR=$(CMAKE_DESTDIR) cmake --build $*_build $(CMAKE_BUILD_ARGS) $(BUILD_ARGS)
+	@$(MAKECOOKIE)
+
+install-%/cmake: 
+	@echo " ==> Running install in $*_build"
+	@$(CMAKE_INSTALL_ENV) $(INSTALL_ENV) DESTDIR=$(CMAKE_DESTDIR) cmake --install $*_build $(CMAKE_INSTALL_ARGS) $(INSTALL_ARGS)
+	@$(MAKECOOKIE)

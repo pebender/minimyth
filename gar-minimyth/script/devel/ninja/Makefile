@@ -1,6 +1,6 @@
 GARNAME = ninja
-GARVERSION = 1.9.0
-CATEGORIES = python
+GARVERSION = $(NINJA_VERSION)
+CATEGORIES = devel
 MASTER_SITES = https://github.com/ninja-build/$(GARNAME)/archive/
 DISTFILES = v$(GARVERSION).tar.gz
 xPATCHFILES = \
@@ -11,23 +11,28 @@ DESCRIPTION =
 define BLURB
 endef
 
+ifeq ($(GARHOST),$(GARBUILD))
 DEPENDS   = lang/cxx
-BUILDDEPS = python2/python python/python
+BUILDDEPS = python/python
+else
+BUILDDEPS = devel/ninja
+endif
 
-WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
-
-BUILD_SCRIPTS   = $(WORKSRC)/configure.py
+ifeq ($(DESTIMG),build)
+BUILD_SCRIPTS = $(WORKSRC)/configure.py
 INSTALL_SCRIPTS = custom
+endif
 
 BUILD_ARGS = \
 	--bootstrap \
 	--verbose
 
+GAR_EXTRA_CONF += devel/ninja/package-api.mk
 include ../../gar.mk
 
 build-%/configure.py:
 	@echo " ==> Running configure.y in in $*"
-	@cd $* && $(BUILD_ENV) python3 configure.py $(BUILD_ARGS)
+	@cd $* && $(BUILD_ENV) $(build_DESTDIR)$(build_bindir)/python configure.py $(BUILD_ARGS)
 	@$(MAKECOOKIE)
 
 install-custom: 
