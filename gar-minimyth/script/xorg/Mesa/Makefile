@@ -14,7 +14,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lang/c lang/cxx lib/expat lib/zlib utils/elfutils utils/lm_sensors X11/libva-mini X11/libvdpau \
+DEPENDS = lang/c lang/cxx build-tool/meson devel-target-llvm/llvm lib/expat lib/libelf lib/zlib utils/lm_sensors X11/libva-mini X11/libvdpau \
 	xorg/libdrm \
 	xorg/libpthread-stubs \
 	xorg/libX11 \
@@ -28,7 +28,7 @@ DEPENDS    = lang/c lang/cxx lib/expat lib/zlib utils/elfutils utils/lm_sensors 
 	xorg/libxshmfence \
 	xorg/libXxf86vm \
 	xorg/xorgproto
-BUILDDEPS  = lib/libxml2 python/python python2/python python2/python-mako \
+BUILDDEPS = lib/libxml2 \
 	xorg/makedepend
 
 PWD := $(shell pwd)
@@ -39,6 +39,8 @@ CONFIGURE_SCRIPTS = $(WORKBLD)/meson
 BUILD_SCRIPTS     = $(WORKBLD)/ninja
 INSTALL_SCRIPTS   = $(WORKBLD)/ninja source
 
+LDFLAGS := $(LDFLAGS) -lLLVv
+
 CONFIGURE_ARGS  = \
 	$(filter-out --exec_prefix=% --oldincludedir=%, $(DIRPATHS)) \
 	--buildtype=release \
@@ -46,8 +48,8 @@ CONFIGURE_ARGS  = \
 	-Db_lto=false \
 	-Dplatforms='x11,drm' \
 	-Ddri3=true \
-	-Ddri-drivers='i965,nouveau,r200' \
-	-Dgallium-drivers='i915,nouveau,r600,svga,swrast' \
+	-Ddri-drivers='i915,i965,nouveau,r100,,r200' \
+	-Dgallium-drivers='radeonsi,r300,r600,nouveau,swrast,svga' \
 	-Dgallium-vdpau=true \
 	-Dvdpau-libs-path='$(libdir)/vdpau' \
 	-Dgallium-xvmc=true \
@@ -70,7 +72,6 @@ CONFIGURE_ARGS  = \
 	-Dglvnd=false \
 	-Dasm=true \
 	-Dglx-read-only-text=false \
-	-Dllvm=false \
 	-Dvalgrind=false \
 	-Dlibunwind=false \
 	-Dlmsensors=true \
@@ -80,7 +81,7 @@ CONFIGURE_ARGS  = \
 	-Dtools='' \
 	-Dpower8=false \
 	-Dxlib-lease=false
-ifneq ("$(DESTIMG),"build)
+ifneq ($(GARHOST),$(GARBUILD))
 CONFIGURE_ARGS += \
 	--cross-file $(GARHOST)
 endif
@@ -91,9 +92,9 @@ CONFIGURE_ENV := \
 	XDG_DATA_HOME=$(build_DESTDIR)$(build_datadir)
 
 # mesa 18.2.8 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+CFLAGS   := $(filter-out -flto, $(CFLAGS))
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
 
 LDFLAGS  := $(LDFLAGS) -lXv
 LDFLAGS  := $(LDFLAGS) -lXv
