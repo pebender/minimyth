@@ -1,9 +1,9 @@
 GARNAME = xorg-server
-GARVERSION = 1.20.6
+GARVERSION = 1.20.7
 CATEGORIES = xorg
 MASTER_SITES = https://www.x.org/releases/individual/xserver/
 DISTFILES = $(DISTNAME).tar.bz2
-xPATCHFILES = \
+PATCHFILES = \
 	$(DISTNAME)-perl.patch.gar \
 	$(DISTNAME)-pkg_config.patch \
 	$(DISTNAME)-detect_radeon.patch
@@ -32,7 +32,7 @@ DEPENDS  = lang/c lib/openssl \
 	xorg/xorgproto \
 	xorg/xtrans
 
-ifneq ($(DESTIMG),build)
+ifneq ($(GARHOST),$(GARBUILD))
 DEPENDS += system/udev
 endif
 BUILDDEPS = \
@@ -77,8 +77,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-dbe \
 	--disable-xf86bigfont \
 	--enable-dpms \
-	$(if $(filter build, $(DESTIMG)), --disable-config-udev, --enable-config-udev) \
-	$(if $(filter build, $(DESTIMG)), --disable-config-udev-kms, --enable-config-udev-kms) \
+	$(if $(filter $(GARBUILD),$(GARHOST)), --disable-config-udev, --enable-config-udev) \
+	$(if $(filter $(GARBUILD),$(GARHOST)), --disable-config-udev-kms, --enable-config-udev-kms) \
 	--disable-config-hal \
 	--disable-config-wscons \
 	--enable-xfree86-utils \

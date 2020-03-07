@@ -1,6 +1,6 @@
-diff -Naur xorg-server-1.20.6-old/xorg-server.m4 xorg-server-1.20.6-new/xorg-server.m4
---- xorg-server-1.20.6-old/xorg-server.m4	2019-11-22 15:44:19.000000000 -0800
-+++ xorg-server-1.20.6-new/xorg-server.m4	2019-12-25 15:37:57.160965615 -0800
+diff -Naur xorg-server-1.20.7-old/xorg-server.m4 xorg-server-1.20.7-new/xorg-server.m4
+--- xorg-server-1.20.7-old/xorg-server.m4	2020-01-31 10:10:09.698890467 -0800
++++ xorg-server-1.20.7-new/xorg-server.m4	2020-01-31 10:11:10.370891061 -0800
 @@ -31,7 +31,8 @@
  AC_DEFUN([XORG_DRIVER_CHECK_EXT],[
  	AC_REQUIRE([PKG_PROG_PKG_CONFIG])
