@@ -1,0 +1,22 @@
+diff -Naur vcdimager-2.0.1-old/configure.ac vcdimager-2.0.1-new/configure.ac
+--- vcdimager-2.0.1-old/configure.ac	2018-01-07 16:45:05.000000000 -0800
++++ vcdimager-2.0.1-new/configure.ac	2020-03-16 21:13:53.077278484 -0700
+@@ -37,8 +37,8 @@
+ AC_SUBST(SPEC_VERSION)
+ 
+ dnl AM_ACLOCAL_INCLUDE(.)
+-dnl AM_CONFIG_HEADER(include/libvcd/acconfig.h)
+-AM_CONFIG_HEADER(config.h)
++dnl AC_CONFIG_HEADERS(include/libvcd/acconfig.h)
++AC_CONFIG_HEADERS(config.h)
+ 
+ LIBVCD_VERSION_NUM=$(echo RELEASE_NUM | sed 's/git|rc.$//')
+ AC_SUBST(LIBVCD_VERSION_NUM)
+@@ -139,7 +139,6 @@
+ fi
+ 
+ AC_PROG_CPP
+-AM_PROG_CC_STDC
+ AC_PROG_AWK
+ dnl AM_PROG_LIBTOOL tests whether we have GNU ld
+ dnl this must come before checking --with-versioned-libs

@@ -73,7 +73,6 @@ $(DESTIMG)_GARCH_FAMILY ?= $(main_GARCH_FAMILY)
 $(DESTIMG)_GARHOST ?= $(main_GARHOST)
 
 # Default compiler tools
-$(DESTIMG)_compiler_dir ?= $(mm_HOME)/images/toolchain
 $(DESTIMG)_CC ?= clang
 $(DESTIMG)_CXX ?= clang++
 $(DESTIMG)_LD ?= ld.lld
@@ -130,7 +129,6 @@ GARHOST = $($(DESTIMG)_GARHOST)
 GARTARGET ?= $(GARHOST)
 
 # Tools
-compiler_dir ?= $($(DESTIMG)_compiler_dir)
 CC = $($(DESTIMG)_CC)
 CXX = $($(DESTIMG)_CXX)
 LD = $($(DESTIMG)_LD)
@@ -144,28 +142,6 @@ AS = $($(DESTIMG)_AS)
 AR = $($(DESTIMG)_AR)
 CPP = $($(DESTIMG)_CPP)
 
-LINKER_OPTION = -Wl,
-# Add target to all clang compilers
-CPPFLAGS += $(if $(patsubst %/clang,,$(CC)),,-target $(GARHOST))
-CFLAGS += $(if $(patsubst %/clang,,$(CC)),,-target $(GARHOST))
-CXXFLAGS += $(if $(patsubst %/clang,,$(CC)),,-target $(GARHOST))
-
-# Add gcc toolchain root to all clang compilers
-CPPFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(build_DESTDIR)$(build_prefix)")
-CFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(build_DESTDIR)$(build_prefix)")
-CXXFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(build_DESTDIR)$(build_prefix)")
-
-# Add sysroot to all non-native compilers.
-CPPFLAGS += $(if $(patsubst %/cc,,$(CC)),--sysroot="$(DESTDIR)$(rootdir)")
-CFLAGS += $(if $(patsubst %/cc,,$(CC)),--sysroot="$(DESTDIR)$(rootdir)")
-CXXFLAGS += $(if $(patsubst %/cc,,$(CC)),--sysroot="$(DESTDIR)$(rootdir)")
-LDFLAGS += $(if $(patsubst %/ld,,$(LD)),--sysroot="$(DESTDIR)$(rootdir)" $(LINKER_OPTION)--sysroot="$(DESTDIR)$(rootdir)")
-
-CPPFLAGS += $(if $(patsubst %/cc,,$(CC)),)
-CFLAGS += $(if $(patsubst %/cc,,$(CC)),-pipe)
-CXXFLAGS += $(if $(patsubst %/cc,,$(CC)),-pipe)
-LDFLAGS += $(if $(patsubst %/ld,,$(LD)),$(LINKER_OPTION)--as-needed)
-
 # Tool options -- These are append-mode assignments so that packages may
 # provide additional tool options.
 CPPFLAGS += $($(DESTIMG)_CPPFLAGS)
@@ -173,6 +149,7 @@ CFLAGS += $($(DESTIMG)_CFLAGS)
 CXXFLAGS += $($(DESTIMG)_CXXFLAGS)
 LDFLAGS += $($(DESTIMG)_LDFLAGS)
 
+# So many packages ignore CPPFLAGS what it is easier just to add them to CFLAGS and CXXFLAGS
 CFLAGS += $(CPPFLAGS)
 CXXFLAGS += $(CPPFLAGS)
 
@@ -198,21 +175,23 @@ BUILD_SYSTEM_PATH := $(if $(BUILD_SYSTEM_PATH),$(BUILD_SYSTEM_PATH),$(PATH))
 GAR_SYSTEM_PATH = $(ccache_DESTDIR)$(ccache_bindir)$(strip \
 	:$(DESTDIR)$(bindir)/config)$(strip \
 	:$(build_DESTDIR)$(build_esbindir):$(build_DESTDIR)$(build_ebindir):$(build_DESTDIR)$(build_sbindir):$(build_DESTDIR)$(build_bindir))$(strip \
-	:$(compiler_dir))$(strip \
 	:$(native_DESTDIR)/$(native_bindir))
 NATIVE_LINKTIME_PATH = /lib/$(GARBUILD):/usr/lib/$(GARBUILD)$(strip \
-	$(if $(filter i386,$(GARCH_FAMILY)), \
+	$(if $(filter i386,$(build_GARCH_FAMILY)), \
 		:/lib32:/usr/lib32 \
 	))$(strip \
-	$(if $(filter x86_64,$(GARCH_FAMILY)), \
+	$(if $(filter x86_64,$(build_GARCH_FAMILY)), \
 		:/lib64:/usr/lib64 \
 	))$(strip \
 	:/lib:/usr/lib)
+BUILD_LINKTIME_PATH = $(build_DESTDIR)$(build_libdir):$(build_DESTDIR)$(build_qt5libdir):$(build_DESTDIR)$(build_libdir)/mysql
 TARGET_LINKTIME_PATH = $(DESTDIR)$(elibdir):$(DESTDIR)$(libdir):$(DESTDIR)$(qt5libdir):$(DESTDIR)$(libdir)/mysql
 
 PATH = $(if $(wildcard $(native_DESTDIR)$(native_bindir)/true),$(GAR_SYSTEM_PATH),$(GAR_SYSTEM_PATH):$(BUILD_SYSTEM_PATH))
-LIBRARY_PATH = $(TARGET_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)
-#LD_LIBRARY_PATH = $(TARGET_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)
+LIBRARY_PATH = $(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)
+LD_LIBRARY_PATH = $(BUILD_LINKTIME_PATH)
+#LIBRARY_PATH =
+#LD_LIBRARY_PATH =
 # or at least it did before we had DESTDIR and fully-munged
 # builddeps.  The following may be more of a hindrance than a
 # help nowadays:

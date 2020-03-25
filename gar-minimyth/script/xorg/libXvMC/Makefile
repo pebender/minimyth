@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c \
+DEPENDS = lang/c build-tool/make \
 	xorg/libX11 \
 	xorg/libXext \
 	xorg/libXv \
@@ -18,8 +18,8 @@ DEPENDS = lang/c \
 	xorg/xorgproto
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -27,6 +27,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--enable-malloc0returnsnull
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 sysconfdir := $(subst //,/,$(sysconfdir))

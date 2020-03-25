@@ -1,5 +1,5 @@
 GARNAME = avahi
-GARVERSION = 0.6.31
+GARVERSION = 0.7
 CATEGORIES = lib
 MASTER_SITES = https://avahi.org/download/
 DISTFILES = $(DISTNAME).tar.gz
@@ -9,11 +9,12 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/dbus lib/expat lib/libdaemon
+DEPENDS = lang/c build-tool/make lib/dbus lib/expat lib/libdaemon
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -55,11 +56,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-distro='none'
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libavahi-common.la

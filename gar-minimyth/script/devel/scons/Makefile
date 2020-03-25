@@ -1,7 +1,7 @@
 GARNAME = scons
-GARVERSION = 3.1.1
+GARVERSION = 3.1.2
 CATEGORIES = lib
-MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/scons/files/scons/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = MIT
 
@@ -11,7 +11,7 @@ endef
 
 DEPENDS = lang/c python/python
 
-BUILD_SCRIPTS   = $(WORKSRC)/setup.py
+BUILD_SCRIPTS = $(WORKSRC)/setup.py
 INSTALL_SCRIPTS = $(WORKSRC)/setup.py
 
 CONFIGURE_ARGS =

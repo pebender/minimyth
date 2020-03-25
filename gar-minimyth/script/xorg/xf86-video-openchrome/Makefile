@@ -23,6 +23,7 @@ DEPENDS = lang/c system/udev \
 	xorg/util-macros \
 	xorg/xorgproto \
 	xorg/xorg-server
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -36,6 +37,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-xv-debug \
 	--disable-viaregtool
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 git//%$(DISTNAME).tar.bz2:

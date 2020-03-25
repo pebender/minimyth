@@ -39,7 +39,7 @@ DEPENDS = \
 	xorg/xcb-util-wm \
 	xorg/xdpyinfo \
 	xorg/xev \
-	$(if $(filter-out build, $(DESTIMG)), \
+	$(if $(filter-out $(GARBUILD), $(GARHOST)), \
 		xorg/xf86-input-evdev \
 		xorg/xf86-input-void \
 		xorg/xf86-video-ati \
@@ -60,6 +60,7 @@ DEPENDS = \
 	xorg/xset \
 	xorg/xsetroot
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 post-install:

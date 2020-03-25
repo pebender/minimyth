@@ -29,6 +29,7 @@ DEPENDS = lang/c lang/cxx \
 	system/lirc \
 	X11/libvdpau \
 	xorg/xorg
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

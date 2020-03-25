@@ -1,9 +1,8 @@
 GARNAME = findutils
 GARVERSION = 4.7.0
 CATEGORIES = utils
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/findutils/
 DISTFILES = $(DISTNAME).tar.xz
-PATCHFILES= $(DISTNAME)-perl.patch.gar
 LICENSE = GPL3
 
 DESCRIPTION = 
@@ -30,8 +29,3 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-libintl-prefix
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
-	@$(MAKECOOKIE)

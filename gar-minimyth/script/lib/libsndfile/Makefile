@@ -1,9 +1,9 @@
 GARNAME = libsndfile
-GARVERSION = 1.0.25
+GARVERSION = 1.0.28
 CATEGORIES = lib
 MASTER_SITES = http://www.mega-nerd.com/libsndfile/files/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = $(DISTNAME)-configure.patch
+#PATCHFILES = $(DISTNAME)-configure.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION = 
@@ -21,19 +21,17 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-experimental \
+	--disable-werror \
+	--disable-stack-smash-protection \
 	--disable-sqlite \
 	--enable-alsa \
 	--disable-external-libs \
+	--disable-octave \
+	--enable-full-suite \
 	--disable-test-coverage \
-	--enable-largefile \
 	--disable-shave
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libsndfile.la

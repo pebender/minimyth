@@ -50,7 +50,7 @@ DEPENDS = \
 	X11/libva \
 	X11/libvdpau \
 	xorg/xorg
-xBUILDDEPS = \
+BUILDDEPS = \
 	devel/yasm \
 	python/python-MySQL-python \
 	python/python-lxml \
@@ -78,7 +78,7 @@ CONFIGURE_ARGS = \
 	--incdir="$(DESTDIR)$(includedir)/mythtv" \
 	--mandir="$(DESTDIR)$(mandir)" \
 	$(if $(filter -Os,$(CFLAGS)),--enable-small) \
-	--cross-prefix="$(compiler_prefix)" \
+	--cross-prefix="$(GARHOST)-" \
 	--enable-cross-compile \
 	--sysroot="$(DESTDIR)" \
 	--sysinclude="$(DESTDIR)$(includedir)" \
@@ -163,7 +163,7 @@ CONFIGURE_ENV  = $(MYTHTV_CONFIGURE_ENV)
 BUILD_ENV      = $(MYTHTV_BUILD_ENV)
 INSTALL_ENV    = $(MYTHTV_INSTALL_ENV)
 
-CONFIGURE_ENV += pkg_config=$(compiler_prefix)pkg-config
+CONFIGURE_ENV += pkg_config=pkg-config
 BUILD_ENV     += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 INSTALL_ENV   += PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
 
@@ -176,9 +176,9 @@ CFLAGS   += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CXXFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 
 # mythtv 0.30's ffmpeg fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+CFLAGS   := $(filter-out -flto, $(CFLAGS))
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
 
 # <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63745>
 # <http://www.gossamer-threads.com/lists/mythtv/users/584449>

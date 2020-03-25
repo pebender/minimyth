@@ -1,5 +1,5 @@
 GARNAME = taglib
-GARVERSION = 1.9.1
+GARVERSION = 1.11.1
 CATEGORIES = lib
 MASTER_SITES = https://taglib.org/releases/
 DISTFILES = $(DISTNAME).tar.gz
@@ -12,54 +12,51 @@ endef
 
 DEPENDS = lang/cxx lib/zlib
 
-WORKBLD = $(WORKSRC)_build
-
-CONFIGURE_SCRIPTS = $(WORKBLD)/cmake
-BUILD_SCRIPTS     = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS   = $(WORKBLD)/Makefile
-
-CONFIGURE_ARGS = \
-	-DCMAKE_INSTALL_PREFIX="$(prefix)" \
-	-DCMAKE_INSTALL_LIBDIR="lib" \
-	-DCMAKE_FIND_ROOT_PATH="$(DESTDIR)$(prefix)" \
-	-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
-	-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY="ONLY" \
-	-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE="ONLY" \
-	-DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE="ONLY" \
-	-DCMAKE_C_COMPILER="$(build_DESTDIR)$(build_bindir)/$(CC)" \
-	-DCMAKE_CXX_COMPILER="$(build_DESTDIR)$(build_bindir)/$(CXX)" \
-	-DCMAKE_AR="$(build_DESTDIR)$(build_bindir)/$(AR)" \
-	-DCMAKE_LINKER="$(build_DESTDIR)$(build_bindir)/$(LD)" \
-	-DCMAKE_NM="$(build_DESTDIR)$(build_bindir)/$(NM)" \
-	-DCMAKE_OBJCOPY="$(build_DESTDIR)$(build_bindir)/$(OBJCOPY)" \
-	-DCMAKE_OBJDUMP="$(build_DESTDIR)$(build_bindir)/$(OBJDUMP)" \
-	-DCMAKE_RANLIB="$(build_DESTDIR)$(build_bindir)/$(RANLIB)" \
-	-DCMAKE_STRIP="$(build_DESTDIR)$(build_bindir)/$(STRIP)" \
-	-DCMAKE_VERBOSE_MAKEFILE="1" \
-	-DENABLE_STATIC="OFF" \
-	-DBUILD_TESTS="OFF" \
-	-DBUILD_EXAMPLES="OFF" \
-	-DNO_ITUNES_HACKS="OFF" \
-	-DWITH_ASF="ON" \
-	-DWITH_MP4="ON"
-ifneq ($(DESTIMG),build)
-CONFIGURE_ARGS += \
-	-DCMAKE_SYSTEM_NAME="Linux"
+ifeq ($(DESTIMG),build)
+build_DESTDIR = $(build_DESTDIR_swapped)
+build_rootdir = $(build_rootdir_swapped)
+DESTIDR = $(build_DESTDIR_swapped)
+rootdir = $(build_rootdir_swapped)
 endif
 
+CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
+BUILD_SCRIPTS = $(WORKSRC)/cmake
+INSTALL_SCRIPTS = $(WORKSRC)/cmake
+
+CONFIGURE_ARGS = \
+	-DCMAKE_BUILD_TYPE=RELEASE \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_SYSROOT="$(DESTDIR)" \
+	-DCMAKE_INSTALL_PREFIX="$(DESTDIR)$(prefix)" \
+	-DCMAKE_C_COMPILER="$(CC)" \
+	-DCMAKE_CXX_COMPILER="$(CXX)" \
+	-DCMAKE_C_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_CXX_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_LINKER="$(LD)" \
+	-DCMAKE_C_FLAGS="$(CFLAGS)" \
+	-DCMAKE_CXX_FLAGS="$(CXXFLAGS)" \
+	-DCMAKE_EXE_LINKER_FLAGS="$(LDFLAGS)" \
+	-DCMAKE_SHARED_LINKER_FLAGS="$(LDFLAGS)" \
+	-DCMAKE_AR="$(AR)" \
+	-DCMAKE_NM="$(NM)" \
+	-DCMAKE_OBJCOPY="$(OBJCOPY)" \
+	-DCMAKE_OBJDUMP="$(OBJDUMP)" \
+	-DCMAKE_RANLIB="$(RANLIB)" \
+	-DCMAKE_STRIP="$(STRIP)" \
+	-DENABLE_STATIC=OFF \
+	-DBUILD_TESTS=OFF \
+	-DBUILD_EXAMPLES=OFF \
+	-DNO_ITUNES_HACKS=OFF \
+	-DWITH_ASF=ON \
+	-DWITH_MP4=ON
+
+GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk
 
-configure-%/cmake: 
-	@echo " ==> Running configure in $*"
-	@rm -rf $*
-	@mkdir -p $*
-	@cd $* && $(CONFIGURE_ENV) cmake $(CONFIGURE_ARGS) ../$(DISTNAME)
-	@$(MAKECOOKIE)
-
 post-install:
-	@rm -f $(DESTDIR)$(bindir)-config/taglib-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)taglib-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/taglib-config $(DESTDIR)$(bindir)-config/taglib-config
-	@$(if $(compiler_prefix), ln -s taglib-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)taglib-config)
+	@rm -f $(DESTDIR)$(bindir)/config/taglib-config
+	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-taglib-config
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/taglib-config $(DESTDIR)$(bindir)/config/taglib-config
+	@ln -s taglib-config $(DESTDIR)$(bindir)/config/$(GARHOST)-taglib-config
 	@$(MAKECOOKIE)

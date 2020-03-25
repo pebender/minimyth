@@ -81,11 +81,12 @@ CONFIGURE_ARGS  = \
 	-Dtools='' \
 	-Dpower8=false \
 	-Dxlib-lease=false
-ifneq ($(GARHOST),$(GARBUILD))
+ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--cross-file $(GARHOST)
 endif
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 CONFIGURE_ENV := \

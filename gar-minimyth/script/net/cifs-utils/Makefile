@@ -1,8 +1,10 @@
 GARNAME = cifs-utils
-GARVERSION = 5.8
+GARVERSION = 6.10
 CATEGORIES = net
-MASTER_SITES = https://www.samba.org/ftp/linux-cifs/$(GARNAME)/
+MASTER_SITES = https://www.samba.org/ftp/linux-cifs/cifs-utils/
 DISTFILES = $(DISTNAME).tar.bz2
+PATCHFILES = \
+	$(DISTNAME)-destdir.patch
 LICENSE = GPL3
 
 DESCRIPTION = 
@@ -22,9 +24,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-cifscreds \
 	--disable-cifsidmap \
 	--disable-cifsacl \
-	--disable-systemd \
-	--with-libcap-ng \
-	--without-libcap
+	--disable-systemd
 
 CONFIGURE_ENV = \
 	ac_cv_func_malloc_0_nonnull=yes \
@@ -32,8 +32,8 @@ CONFIGURE_ENV = \
 
 include ../../gar.mk
 
-CFLAGS  := $(CFLAGS) -fPIC
-LDFLAGS := $(LDFLAGS) -fPIC
+xCFLAGS := $(CFLAGS) -fPIC
+xLDFLAGS := $(LDFLAGS) -fPIC
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)

@@ -9,7 +9,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx lib/alsa-lib lib/libsndfile lib/SDL lib/SDL_net
+DEPENDS = lang/c lang/cxx build-tool/make lib/alsa-lib lib/libsndfile lib/SDL lib/SDL_net
+BUILDDEPS =
 
 WORKSRC = $(WORKDIR)/$(GARNAME)
 
@@ -53,14 +54,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-libsndfile
 
 CONFIGURE_ENV = \
-	SDL_CONFIG=$(DESTDIR)$(prefix)/bin-config/sdl-config
+	SDL_CONFIG=$(DESTDIR)$(bindir)/config/sdl-config
 
 include ../../gar.mk
 
 LDFLAGS := $(LDFLAGS) -fwhole-program
-
-pre-configure:
-	@cd $(WORKSRC) ; rm -f acinclude.m4
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)

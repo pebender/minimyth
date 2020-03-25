@@ -1,5 +1,5 @@
 GARNAME = tiff
-GARVERSION = 4.0.3
+GARVERSION = 4.1.0
 CATEGORIES = lib
 MASTER_SITES  = https://download.osgeo.org/libtiff/
 MASTER_SITES += https://download.osgeo.org/libtiff/old/
@@ -18,16 +18,13 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-ld-version-script \
 	--enable-shared \
 	--disable-static \
+	--disable-rpath \
 	--without-x
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libtiff.la

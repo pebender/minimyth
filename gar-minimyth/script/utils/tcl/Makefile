@@ -1,8 +1,7 @@
 GARNAME = tcl
 GARVERSION = 8.6.10
 CATEGORIES = utils
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/Tcl/$(GARVERSION)/
-               https://sourceforge.net/projects/$(GARVERSION)/files/Tcl/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/tcl/files/Tcl/$(GARVERSION)/
 DISTFILES = $(GARNAME)$(GARVERSION)-src.tar.gz
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/../license.terms

@@ -1,1 +1,2 @@
 509dc27107c21bcd9fbf2f95f5669563  download/libdaemon-0.14.tar.gz
+204d5ca4009da8a0dfde126a37501518  download/libdaemon-0.14-testd-use-unistd-h-instead-of-sys-unistd-h.patch

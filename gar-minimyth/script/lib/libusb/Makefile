@@ -1,10 +1,8 @@
 GARNAME = libusb
 GARVERSION = 1.0.23
 CATEGORIES = lib
-MASTER_SITES = https://github.com/$(GARNAME)/$(GARNAME)/archive/
+MASTER_SITES = https://github.com/libusb/libusb/archive/
 DISTFILES = v$(GARVERSION).tar.gz
-xPATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION = 
@@ -12,7 +10,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c
-ifneq ($(DESTIMG),"build")
+ifneq ($(DESTIMG),build)
 DEPENDS += system/udev
 endif
 
@@ -27,8 +25,9 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-timerfd \
 	--disable-log \
 	--disable-debug-log \
+	--enable-system-log \
 	--disable-examples-build
-ifeq ($(DESTIMG),"build")
+ifeq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--disable-udev
 else
@@ -37,7 +36,7 @@ CONFIGURE_ARGS += \
 endif
 
 include ../../gar.mk
-
+ 
 pre-configure:
 	@mkdir -pv $(WORKSRC)/m4
 	@$(call RUN_AUTOTOOLS)

@@ -25,21 +25,12 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-#CFLAGS   += -std=gnu89
-#CXXFLAGS += -std=gnu89
-#LDFLAGS  += -std=gnu89
-
-pre-configure:
-	@#$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
-	@rm -f $(DESTDIR)$(bindir)-config/libgcrypt-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)libgcrypt-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/libgcrypt-config $(DESTDIR)$(bindir)-config/libgcrypt-config
-	@$(if $(compiler_prefix), ln -sf libgcrypt-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)libgcrypt-config)
+	@rm -f $(DESTDIR)$(bindir)/config/libgcrypt-config
+	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-libgcrypt-config
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/libgcrypt-config $(DESTDIR)$(bindir)/config/libgcrypt-config
+	@ln -sf libgcrypt-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libgcrypt-config
 	@$(MAKECOOKIE)
 	@$(MAKECOOKIE)

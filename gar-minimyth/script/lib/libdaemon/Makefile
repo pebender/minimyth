@@ -3,6 +3,7 @@ GARVERSION = 0.14
 CATEGORIES = net
 MASTER_SITES = http://0pointer.de/lennart/projects/libdaemon/
 DISTFILES = $(DISTNAME).tar.gz
+PATCHFILES = $(DISTNAME)-testd-use-unistd-h-instead-of-sys-unistd-h.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION =

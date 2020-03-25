@@ -1,5 +1,5 @@
 GARNAME = lighttpd
-GARVERSION = 1.4.36
+GARVERSION = 1.4.55
 CATEGORIES = net
 MASTER_SITES = https://download.lighttpd.net/lighttpd/releases-1.4.x/
 DISTFILES = $(DISTNAME).tar.xz

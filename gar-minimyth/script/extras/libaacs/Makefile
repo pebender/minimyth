@@ -1,5 +1,5 @@
 GARNAME = libaacs
-GARVERSION = 0.8.1
+GARVERSION = 0.9.0
 CATEGORIES = extras
 MASTER_SITES = https://download.videolan.org/pub/videolan/libaacs/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
@@ -9,7 +9,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/libgpg-error lib/libgcrypt
+DEPENDS = lang/c build-tool/make lib/libgpg-error lib/libgcrypt
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -18,15 +19,10 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
-	--disable-static \
-	--with-gnu-ld
+	--disable-static
 
 include ../../gar.mk
 include ../extras.mk
-
-pre-configure:
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(extras_libdir)/$(GARNAME).la

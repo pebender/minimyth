@@ -1,5 +1,5 @@
 GARNAME = Python
-GARVERSION =  $(PYTHON2_VERSION)
+GARVERSION = $(PYTHON2_VERSION)
 CATEGORIES = python2
 MASTER_SITES = https://www.python.org/ftp/python/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
@@ -11,8 +11,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lang/c lib/ncursesw lib/openssl lib/readline lib/zlib
-BUILDDEPS  = devel/autoconf devel/automake
+DEPENDS    = lang/c lang/cxx lib/ncursesw lib/openssl lib/readline lib/zlib
+BUILDDEPS  =
 ifneq ($(DESTIMG),build)
 DEPENDS   += lib/bluez
 BUILDDEPS += python2/python
@@ -46,23 +46,18 @@ include ../../gar.mk
 # Needed so that Python 2.6 can find the correct libpython shared library.
 LDFLAGS := $(LDFLAGS) -L$(PWD)/$(WORKSRC)
 
-pre-configure:
-	@cd $(WORKSRC) ; autoreconf --verbose --install --force
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)/config/libpython$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR).a
-	@rm -fv $(DESTDIR)$(bindir)-config/python$(PYTHON2_VERSION_MAJOR)-config
-	@rm -fv $(DESTDIR)$(bindir)-config/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
-	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)python$(PYTHON2_VERSION_MAJOR)-config
-	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
-	@mkdir -pv $(DESTDIR)$(bindir)-config
+	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON2_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON2_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config
 	@rm -fv $(DESTDIR)$(bindir)/python-config
-	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON2_VERSION_MAJOR)-config $(DESTDIR)$(bindir)-config/python$(PYTHON2_VERSION_MAJOR)-config
-	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config $(DESTDIR)$(bindir)-config/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
-	@$(if $(compiler_prefix), ln -sfv python$(PYTHON2_VERSION_MAJOR)-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)python-config)
-	@$(if $(compiler_prefix), ln -sfv python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config)
+	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON2_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config/python$(PYTHON2_VERSION_MAJOR)-config
+	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config $(DESTDIR)$(bindir)/config/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
+	@ln -sfv python$(PYTHON2_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config/$(GARHOST)-python-config
+	@ln -sfv python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
 	@$(MAKECOOKIE)
 
 clean-all:
@@ -72,8 +67,8 @@ clean-all:
 	@rm -fv $(DESTDIR)$(bindir)/pydoc$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)
 	@rm -fv $(DESTDIR)$(bindir)/python$(PYTHON2_VERSION_MAJOR)
 	@rm -fv $(DESTDIR)$(bindir)/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)
-	@rm -fv $(DESTDIR)$(bindir)-config/python$(PYTHON2_VERSION_MAJOR)-config
-	@rm -fv $(DESTDIR)$(bindir)-config/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
-	@$(if $(compiler_prefix), rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)python$(PYTHON2_VERSION_MAJOR)-config)
-	@$(if $(compiler_prefix), rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config)
+	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON2_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config
+	@$(if $(compiler_prefix), rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON2_VERSION_MAJOR)-config)
+	@$(if $(compiler_prefix), rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON2_VERSION_MAJOR).$(PYTHON2_VERSION_MINOR)-config)
 	@$(MAKE) clean-image

@@ -1,15 +1,15 @@
 GARNAME = nasm
-GARVERSION = 2.11.08
+GARVERSION = 2.14.02
 CATEGORIES = devel
 MASTER_SITES = https://www.nasm.us/pub/nasm/releasebuilds/$(GARVERSION)/
-DISTFILES = $(DISTNAME).tar.bz2
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = BSD_2_Clause
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c build-tool/make
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

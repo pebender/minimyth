@@ -1,0 +1,12 @@
+diff -Naur libdaemon-0.14-old/examples/testd.c libdaemon-0.14-new/examples/testd.c
+--- libdaemon-0.14-old/examples/testd.c	2009-10-17 19:20:19.000000000 -0700
++++ libdaemon-0.14-new/examples/testd.c	2020-03-24 21:42:04.639507436 -0700
+@@ -23,7 +23,7 @@
+ #include <string.h>
+ #include <sys/types.h>
+ #include <sys/time.h>
+-#include <sys/unistd.h>
++#include <unistd.h>
+ #include <sys/select.h>
+ 
+ #include <libdaemon/dfork.h>

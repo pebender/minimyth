@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c \
+DEPENDS = lang/c build-tool/make \
 	xorg/font-util \
 	xorg/util-macros
 BUILDDEPS = \
@@ -19,10 +19,11 @@ BUILDDEPS = \
 	xorg/mkfontscale
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

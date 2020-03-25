@@ -42,8 +42,13 @@ BUILD_SCRIPTS     = $(if $(filter-out $(PERL_NOT_NEEDED),$(PERL_VERSION)),$(WORK
 INSTALL_SCRIPTS   = $(if $(filter-out $(PERL_NOT_NEEDED),$(PERL_VERSION)),$(WORKSRC)/Makefile.pure_install,)
 
 CONFIGURE_ARGS =
+ifeq ($(DESTIMG),build)
 BUILD_ARGS     = DESTDIR="$(DESTDIR)"
 INSTALL_ARGS   = DESTDIR="$(DESTDIR)"
+else
+BUILD_ARGS     = DESTDIR="$(DESTDIR)"
+INSTALL_ARGS   = DESTDIR="$(DESTDIR)"
+endif
 
 CONFIGURE_ENV = PERL5LIB="$(PERL_PERL5LIB)"
 BUILD_ENV     = PERL5LIB="$(PERL_PERL5LIB)"
@@ -75,11 +80,11 @@ LDFLAGS  := $(PERL_LDFLAGS)
 configure-%/Makefile.PL:
 	echo " ==> Running 'perl Makefile.PL' in $*"
 	cd $* ; $(CONFIGURE_ENV) perl Makefile.PL $(CONFIGURE_ARGS)
-	for file in `find $* -name Makefile` ; do \
-		sed -i 's%^PERL_INC *= *%PERL_INC = $$(DESTDIR)%' $${file} ; \
-		sed -i 's%^PERL_ARCHLIB *= *%PERL_ARCHLIB = $$(DESTDIR)%' $${file} ; \
-		sed -i 's% \($(PERL_privlib)/ExtUtils/typemap\)% $$(DESTDIR)\1%' $${file} ; \
-	 done
+	#for file in `find $* -name Makefile` ; do \
+	#	sed -i 's%^PERL_INC *= *%PERL_INC = $$(DESTDIR)%' $${file} ; \
+	#	sed -i 's%^PERL_ARCHLIB *= *%PERL_ARCHLIB = $$(DESTDIR)%' $${file} ; \
+	#	sed -i 's% \($(PERL_privlib)/ExtUtils/typemap\)% $$(DESTDIR)\1%' $${file} ; \
+	#done
 	@$(MAKECOOKIE)
 
 configure-%/Build.PL:

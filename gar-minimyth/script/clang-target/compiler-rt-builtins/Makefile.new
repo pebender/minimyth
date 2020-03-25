@@ -1,0 +1,86 @@
+GARNAME = compiler-rt
+GARVERSION = $(LLVM_VERSION)
+CATEGORIES = llvm
+MASTER_SITES = https://www.llvm.org/releases/$(GARVERSION)/
+MASTER_SITES += https://github.com/llvm/llvm-project/releases/download/llvmorg-$(GARVERSION)/
+DISTFILES = $(DISTNAME).src.tar.xz
+LICENSE = $(GARNAME)
+$(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE.TXT
+
+DESCRIPTION = 
+
+WORKSRC = $(WORKDIR)/$(DISTNAME).src
+
+CONFIGURE_SCRIPTS = $(WORKSRC)/cmake-x
+BUILD_SCRIPTS = $(WORKSRC)/cmake-x
+INSTALL_SCRIPTS = $(WORKSRC)/cmake-x
+
+CONFIGURE_ARGS = \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_PREFIX="$(toolchain_libdir)/clang/$(LLVM_VERSION)" \
+	-DCMAKE_INSTALL_PREFIX="$(toolchain_DESTDIR)$(toolchain_libdir)/clang/$(LLVM_VERSION)" \
+	-DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY \
+	-DCMAKE_C_COMPILER_ID="Clang" \
+	-DCMAKE_C_COMPILER_ID_RUN=ON \
+	-DCMAKE_CXX_COMPILER_ID="Clang" \
+	-DCMAKE_CXX_COMPILER_ID_RUN=ON \
+	-DCMAKE_ASM_COMPILER_ID="Clang" \
+	-DCMAKE_ASM_COMPILER_ID_RUN=ON \
+	-DLLVM_CONFIG_PATH="$(toolchain_DESTDIR)$(toolchain_bindir)/config/llvm-config" \
+	-DLIBCXX_HAS_MUSL_LIBC=ON \
+	-DCOMPILER_RT_HAS_LIBC=OFF \
+	-DCOMPILER_RT_USE_LIBCXX=OFF \
+	-DCOMPILER_RT_BUILD_BUILTINS=ON \
+	-DCOMPILER_RT_BUILD_SANITIZERS=OFF \
+	-DCOMPILER_RT_BUILD_XRAY=OFF \
+	-DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
+	-DCOMPILER_RT_BUILD_PROFILE=OFF \
+	-DCOMPILER_RT_BUILD_WITH_MUSL=ON \
+	-DCOMPILER_RT_CAN_EXECUTE_TESTS=OFF \
+	-DCOMPILER_RT_EXCLUDE_ATOMIC_BUILTIN=OFF \
+	-DCOMPILER_RT_HAS_ATOMIC_KEYWORD=ON \
+	-DCMAKE_C_COMPILER="$(CC)" \
+	-DCMAKE_CXX_COMPILER="$(CXX)" \
+	-DCMAKE_ASM_COMPILER="$(CC)" \
+	-DCMAKE_AR="$(AR)" \
+	-DCMAKE_NM="$(NM)" \
+	-DCMAKE_RANLIB="$(RANLIB)" \
+	-DCMAKE_EXE_LINKER_FLAGS="$(LDFLAGS)" \
+	-DCMAKE_C_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_ASM_COMPILER_TARGET="$(GARHOST)" \
+	-DCOMPILER_RT_DEFAULT_TARGET_TRIPLE="$(GARHOST)" \
+	-DCMAKE_C_FLAGS="$(CPPFLAGS) $(CFLAGS)" \
+	-DCMAKE_ASM_FLAGS="$(CPPFLAGS) $(CFLAGS)" \
+	$(if $(filter i386,$(GARCH_FAMILY)),-DCMAKE_SIZEOF_VOID_P=4) \
+	$(if $(filter x86_64,$(GARCH_FAMILY)),-DCMAKE_SIZEOF_VOID_P=8)
+
+GAR_EXTRA_CONF += llvm/llvm/package-api.mk
+GAR_EXTRA_CONF += compiler/compiler/toolchain.mk
+include ../../gar.mk
+
+#CPPFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(clang_DESTDIR)$(clang_prefix)")
+#CFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(clang_DESTDIR)$(clang_prefix)")
+#CXXFLAGS += $(if $(patsubst %/clang,,$(CC)),,--gcc-toolchain="$(clang_DESTDIR)$(clang_prefix)")
+
+CPPFLAGS :=
+#CFLAGS :=
+#CXXFLAGS :=
+#LDFLAGS :=
+
+configure-%/cmake-x:
+	echo `which cmake`
+	@echo " ==> Running configure in $*"
+	@rm -rfv $*_build
+	@mkdir -pv $*_build
+	@$(CONFIGURE_ENV) DESTDIR=$(CMAKE_DESTDIR) cmake $(CONFIGURE_ARGS) -G Ninja -S $* -B $*_build
+	@$(MAKECOOKIE)
+
+build-%/cmake-x:
+	@echo " ==> Running build in $*_build"
+	@$(BUILD_ENV) DESTDIR=$(CMAKE_DESTDIR) cmake --build $*_build $(BUILD_ARGS)
+	@$(MAKECOOKIE)
+
+install-%/cmake-x: 
+	@echo " ==> Running install in $*_build"
+	@$(INSTALL_ENV) DESTDIR=$(CMAKE_DESTDIR) cmake --install $*_build $(INSTALL_ARGS)
+	@$(MAKECOOKIE)

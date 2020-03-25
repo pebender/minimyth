@@ -10,18 +10,18 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c \
+DEPENDS = lang/c build-tool/make \
 	xorg/libX11 \
 	xorg/libXext \
 	xorg/libXfixes \
 	xorg/util-macros \
-	xorg/xorgproto
-BUILDDEPS = \
+	xorg/xorgproto \
 	xorg/xorg-sgml-doctools
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
@@ -35,6 +35,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-xsltproc \
 	--without-asciidoc
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 post-install:

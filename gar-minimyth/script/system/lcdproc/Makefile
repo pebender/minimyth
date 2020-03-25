@@ -1,7 +1,7 @@
 GARNAME = lcdproc
 GARVERSION = 0.5.7
 CATEGORIES = system
-MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/lcdproc/files/lcdproc/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-dm140_henlar_v0.2.patch
 LICENSE = GPL2

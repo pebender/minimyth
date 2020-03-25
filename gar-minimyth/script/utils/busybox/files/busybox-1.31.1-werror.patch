@@ -1,0 +1,25 @@
+diff -Naur busybox-1.31.1-old/Makefile.flags busybox-1.31.1-new/Makefile.flags
+--- busybox-1.31.1-old/Makefile.flags	2019-06-10 03:50:53.000000000 -0700
++++ busybox-1.31.1-new/Makefile.flags	2020-03-18 12:20:29.203603376 -0700
+@@ -25,7 +25,10 @@
+ CFLAGS += $(call cc-option,-Wunused -Wunused-parameter,)
+ CFLAGS += $(call cc-option,-Wunused-function -Wunused-value,)
+ CFLAGS += $(call cc-option,-Wmissing-prototypes -Wmissing-declarations,)
++CFLAGS += $(call cc-option,-Wno-constant-logical-operand,)
+ CFLAGS += $(call cc-option,-Wno-format-security,)
++CFLAGS += $(call cc-option,-Wno-ignored-attributes,)
++CFLAGS += $(call cc-option,-Wno-string-plus-int,)
+ # warn about C99 declaration after statement
+ CFLAGS += $(call cc-option,-Wdeclaration-after-statement,)
+ # If you want to add more -Wsomething above, make sure that it is
+@@ -33,6 +36,10 @@
+ 
+ ifeq ($(CONFIG_WERROR),y)
+ CFLAGS += $(call cc-option,-Werror,)
++CFLAGS += $(call cc-option,-Wno-constant-logical-operand,)
++CFLAGS += $(call cc-option,-Wno-format-security,)
++CFLAGS += $(call cc-option,-Wno-ignored-attributes,)
++CFLAGS += $(call cc-option,-Wno-string-plus-int,)
+ ## TODO:
+ ## gcc version 4.4.0 20090506 (Red Hat 4.4.0-4) (GCC) is a PITA:
+ ## const char *ptr; ... off_t v = *(off_t*)ptr; -> BOOM

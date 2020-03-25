@@ -31,4 +31,5 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-xkb-base="$(datadir)/X11/xkb" \
 	--without-xkb-rules-symlink
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

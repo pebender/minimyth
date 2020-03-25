@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c \
+DEPENDS = lang/c build-tool/make \
 	xorg/glu \
 	xorg/libX11 \
 	xorg/Mesa
@@ -43,6 +43,7 @@ INSTALL_ARGS = \
 	CFLAGS.EXTRA="$(CFLAGS)" \
 	LDFLAGS.EXTRA="$(LDFLAGS)"
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 CFLAGS  := $(CFLAGS)  -fPIC

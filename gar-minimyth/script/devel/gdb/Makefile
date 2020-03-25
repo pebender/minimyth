@@ -1,15 +1,15 @@
 GARNAME = gdb
-GARVERSION = 7.5.1
+GARVERSION = 9.1
 CATEGORIES = devel
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.bz2
-LICENSE = GPL2/LGPL2
+MASTER_SITES = https://ftp.gnu.org/gnu/gdb/
+DISTFILES = $(DISTNAME).tar.xz
+LICENSE = GPL2/LGPL2/GPL3/LGPL3
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/ncursesw
+DEPENDS = lang/c build-tool/make lib/ncursesw
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -17,7 +17,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-werror \
-	--with-build-sysroot=$(BUILD_DESTDIR)
+	--with-build-sysroot=$(DESTDIR)$(rootdir)
 
 include ../../gar.mk
 

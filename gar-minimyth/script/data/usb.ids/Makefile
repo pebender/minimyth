@@ -1,5 +1,5 @@
 GARNAME = usb.ids
-GARVERSION = 20191105
+GARVERSION = 20200307
 CATEGORIES = data
 MASTER_SITES = http://www.linux-usb.org/
 DISTFILES = usb.ids
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS =
 
 INSTALL_SCRIPTS = usb.ids
 

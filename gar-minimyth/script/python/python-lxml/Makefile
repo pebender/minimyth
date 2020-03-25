@@ -18,7 +18,7 @@ INSTALL_SCRIPTS = $(WORKSRC)/setup.py
 
 CONFIGURE_ARGS =
 BUILD_ARGS     =
-INSTALL_ARGS   = \
+xINSTALL_ARGS   = \
 	--prefix=$(DESTDIR)$(prefix)
 CONFIGURE_ENV  =
 BUILD_ENV      =

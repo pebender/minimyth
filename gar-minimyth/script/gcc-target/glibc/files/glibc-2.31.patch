@@ -1,0 +1,22 @@
+diff -Naur glibc-2.31-old/configure glibc-2.31-new/configure
+--- glibc-2.31-old/configure	2020-02-01 03:52:50.000000000 -0800
++++ glibc-2.31-new/configure	2020-03-16 18:20:57.303844090 -0700
+@@ -4499,13 +4499,13 @@
+     path_binutils=`(cd $path_binutils; pwd) | sed 's%/*$%/%'`
+     CC="$CC -B$path_binutils"
+ fi
+-AS=`$CC -print-prog-name=as`
+-LD=`$CC -print-prog-name=ld`
+-AR=`$CC -print-prog-name=ar`
++AS=${AR}
++LD=${LD}
++AR=${AR}
+ 
+-OBJDUMP=`$CC -print-prog-name=objdump`
++OBJDUMP=${OBJDUMP}
+ 
+-OBJCOPY=`$CC -print-prog-name=objcopy`
++OBJCOPY=${OBJCOPY}
+ 
+ GPROF=`$CC -print-prog-name=gprof`
+ 

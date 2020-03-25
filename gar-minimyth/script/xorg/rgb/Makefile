@@ -19,4 +19,5 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

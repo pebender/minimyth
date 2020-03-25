@@ -13,11 +13,12 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c build-tool/autotools
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
@@ -33,9 +34,9 @@ pre-configure:
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libcdaudio.la
-	@rm -f $(DESTDIR)$(bindir)-config/libcdaudio-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)libcdaudio-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/libcdaudio-config $(DESTDIR)$(bindir)-config/libcdaudio-config
-	@$(if $(compiler_prefix), ln -s libcdaudio-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)libcdaudio-config)
+	@rm -f $(DESTDIR)$(bindir)/config/libcdaudio-config
+	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-libcdaudio-config
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/libcdaudio-config $(DESTDIR)$(bindir)/config/libcdaudio-config
+	@ln -s libcdaudio-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libcdaudio-config
 	@$(MAKECOOKIE)

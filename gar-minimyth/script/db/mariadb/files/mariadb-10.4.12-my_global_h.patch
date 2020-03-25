@@ -1,0 +1,3846 @@
+diff -Naur mariadb-10.4.12-old/client/client_priv.h mariadb-10.4.12-new/client/client_priv.h
+--- mariadb-10.4.12-old/client/client_priv.h	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/client/client_priv.h	2020-02-03 13:59:30.437561826 -0800
+@@ -18,7 +18,7 @@
+ 
+ /* Common defines for all clients */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include <mysql.h>
+diff -Naur mariadb-10.4.12-old/client/completion_hash.cc mariadb-10.4.12-new/client/completion_hash.cc
+--- mariadb-10.4.12-old/client/completion_hash.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/client/completion_hash.cc	2020-02-03 13:59:30.437561826 -0800
+@@ -20,7 +20,7 @@
+  * Small portability changes by Monty. Changed also to use my_malloc/my_free
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <my_sys.h>
+ #include "completion_hash.h"
+diff -Naur mariadb-10.4.12-old/client/mysqldump.c mariadb-10.4.12-new/client/mysqldump.c
+--- mariadb-10.4.12-old/client/mysqldump.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/client/mysqldump.c	2020-02-03 13:59:30.436561826 -0800
+@@ -41,7 +41,7 @@
+ 
+ #define DUMP_VERSION "10.17"
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_user.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/client/mysql_plugin.c mariadb-10.4.12-new/client/mysql_plugin.c
+--- mariadb-10.4.12-old/client/mysql_plugin.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/client/mysql_plugin.c	2020-02-03 13:59:30.428561826 -0800
+@@ -15,7 +15,7 @@
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335  USA
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <mysql.h>
+ #include <my_getopt.h>
+diff -Naur mariadb-10.4.12-old/client/readline.cc mariadb-10.4.12-new/client/readline.cc
+--- mariadb-10.4.12-old/client/readline.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/client/readline.cc	2020-02-03 13:59:30.426561826 -0800
+@@ -17,7 +17,7 @@
+ 
+ /* readline for batch mode */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include <my_dir.h>
+diff -Naur mariadb-10.4.12-old/client/sql_string.cc.dontuse mariadb-10.4.12-new/client/sql_string.cc.dontuse
+--- mariadb-10.4.12-old/client/sql_string.cc.dontuse	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/client/sql_string.cc.dontuse	2020-02-03 13:59:30.425561826 -0800
+@@ -21,7 +21,7 @@
+ #pragma implementation				// gcc: Class implementation
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include <m_ctype.h>
+diff -Naur mariadb-10.4.12-old/CMakeLists.txt mariadb-10.4.12-new/CMakeLists.txt
+--- mariadb-10.4.12-old/CMakeLists.txt	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/CMakeLists.txt	2020-02-03 14:08:40.072567205 -0800
+@@ -355,6 +355,7 @@
+   ADD_DEFINITIONS(-D_FILE_OFFSET_BITS=${_FILE_OFFSET_BITS})
+ ENDIF()
+ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR}/include)
++INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include)
+ 
+ # Add bundled or system zlib.
+ MYSQL_CHECK_ZLIB_WITH_COMPRESS()
+diff -Naur mariadb-10.4.12-old/dbug/dbug.c mariadb-10.4.12-new/dbug/dbug.c
+--- mariadb-10.4.12-old/dbug/dbug.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/dbug/dbug.c	2020-02-03 13:59:30.828561830 -0800
+@@ -81,7 +81,7 @@
+   in pthread_mutex_lock
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #undef SAFE_MUTEX
+ #include <m_string.h>
+ #include <errno.h>
+diff -Naur mariadb-10.4.12-old/dbug/factorial.c mariadb-10.4.12-new/dbug/factorial.c
+--- mariadb-10.4.12-old/dbug/factorial.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/dbug/factorial.c	2020-02-03 13:59:30.825561830 -0800
+@@ -1,4 +1,4 @@
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ int factorial (
+ register int value)
+diff -Naur mariadb-10.4.12-old/dbug/my_main.c mariadb-10.4.12-new/dbug/my_main.c
+--- mariadb-10.4.12-old/dbug/my_main.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/dbug/my_main.c	2020-02-03 13:59:30.828561830 -0800
+@@ -3,7 +3,7 @@
+   fixed so that it could compile and run in MySQL source tree
+ */
+ 
+-#include <my_global.h>	/* This includes dbug.h */
++#include "my_global.h"	/* This includes dbug.h */
+ #include <my_sys.h>
+ #include <my_pthread.h>
+ 
+diff -Naur mariadb-10.4.12-old/dbug/tests.c mariadb-10.4.12-new/dbug/tests.c
+--- mariadb-10.4.12-old/dbug/tests.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/dbug/tests.c	2020-02-03 13:59:30.828561830 -0800
+@@ -4,7 +4,7 @@
+ 
+ char *push1=0;
+ 
+-#include <my_global.h>  /* This includes dbug.h */
++#include "my_global.h"  /* This includes dbug.h */
+ #include <my_sys.h>
+ #include <my_pthread.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/extra/charset2html.c mariadb-10.4.12-new/extra/charset2html.c
+--- mariadb-10.4.12-old/extra/charset2html.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/charset2html.c	2020-02-03 13:59:30.832561830 -0800
+@@ -20,7 +20,7 @@
+   a charset is in your favorite web browser
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_sys.h>
+ #include <mysql_version.h>
+diff -Naur mariadb-10.4.12-old/extra/comp_err.c mariadb-10.4.12-new/extra/comp_err.c
+--- mariadb-10.4.12-old/extra/comp_err.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/comp_err.c	2020-02-03 13:59:30.865561830 -0800
+@@ -25,7 +25,7 @@
+   multi-language text file.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/extra/innochecksum.cc mariadb-10.4.12-new/extra/innochecksum.cc
+--- mariadb-10.4.12-old/extra/innochecksum.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/innochecksum.cc	2020-02-03 13:59:30.835561830 -0800
+@@ -26,7 +26,7 @@
+   Published with a permission.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <time.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/backup_copy.cc mariadb-10.4.12-new/extra/mariabackup/backup_copy.cc
+--- mariadb-10.4.12-old/extra/mariabackup/backup_copy.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/backup_copy.cc	2020-02-03 13:59:30.848561830 -0800
+@@ -40,7 +40,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <os0file.h>
+ #include <my_dir.h>
+ #include <ut0mem.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/backup_copy.h mariadb-10.4.12-new/extra/mariabackup/backup_copy.h
+--- mariadb-10.4.12-old/extra/mariabackup/backup_copy.h	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/backup_copy.h	2020-02-03 13:59:30.845561830 -0800
+@@ -2,7 +2,7 @@
+ #ifndef XTRABACKUP_BACKUP_COPY_H
+ #define XTRABACKUP_BACKUP_COPY_H
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "datasink.h"
+ 
+ /* special files */
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/backup_mysql.cc mariadb-10.4.12-new/extra/mariabackup/backup_mysql.cc
+--- mariadb-10.4.12-old/extra/mariabackup/backup_mysql.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/backup_mysql.cc	2020-02-03 13:59:30.838561830 -0800
+@@ -40,7 +40,7 @@
+ *******************************************************/
+ #define MYSQL_CLIENT
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql.h>
+ #include <mysqld.h>
+ #include <my_sys.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/common.h mariadb-10.4.12-new/extra/mariabackup/common.h
+--- mariadb-10.4.12-old/extra/mariabackup/common.h	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/common.h	2020-02-03 13:59:30.841561830 -0800
+@@ -21,7 +21,7 @@
+ #ifndef XB_COMMON_H
+ #define XB_COMMON_H
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_version.h>
+ #include <fcntl.h>
+ #include <stdarg.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/datasink.cc mariadb-10.4.12-new/extra/mariabackup/datasink.cc
+--- mariadb-10.4.12-old/extra/mariabackup/datasink.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/datasink.cc	2020-02-03 13:59:30.843561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include "common.h"
+ #include "datasink.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/datasink.h mariadb-10.4.12-new/extra/mariabackup/datasink.h
+--- mariadb-10.4.12-old/extra/mariabackup/datasink.h	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/datasink.h	2020-02-03 13:59:30.838561830 -0800
+@@ -21,7 +21,7 @@
+ #ifndef XB_DATASINK_H
+ #define XB_DATASINK_H
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_dir.h>
+ 
+ #ifdef __cplusplus
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/ds_archive.cc mariadb-10.4.12-new/extra/mariabackup/ds_archive.cc
+--- mariadb-10.4.12-old/extra/mariabackup/ds_archive.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/ds_archive.cc	2020-02-03 13:59:30.845561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <archive.h>
+ #include <archive_entry.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/ds_buffer.cc mariadb-10.4.12-new/extra/mariabackup/ds_buffer.cc
+--- mariadb-10.4.12-old/extra/mariabackup/ds_buffer.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/ds_buffer.cc	2020-02-03 13:59:30.840561830 -0800
+@@ -23,7 +23,7 @@
+ specified buffer size (DS_DEFAULT_BUFFER_SIZE by default), with the only
+ exception for the last write for a file. */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include "ds_buffer.h"
+ #include "common.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/ds_compress.cc mariadb-10.4.12-new/extra/mariabackup/ds_compress.cc
+--- mariadb-10.4.12-old/extra/mariabackup/ds_compress.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/ds_compress.cc	2020-02-03 13:59:30.843561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_version.h>
+ #include <my_base.h>
+ #include <quicklz.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/ds_local.cc mariadb-10.4.12-new/extra/mariabackup/ds_local.cc
+--- mariadb-10.4.12-old/extra/mariabackup/ds_local.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/ds_local.cc	2020-02-03 13:59:30.849561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <mysys_err.h>
+ #include "common.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/ds_stdout.cc mariadb-10.4.12-new/extra/mariabackup/ds_stdout.cc
+--- mariadb-10.4.12-old/extra/mariabackup/ds_stdout.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/ds_stdout.cc	2020-02-03 13:59:30.841561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <mysys_err.h>
+ #include "common.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/ds_tmpfile.cc mariadb-10.4.12-new/extra/mariabackup/ds_tmpfile.cc
+--- mariadb-10.4.12-old/extra/mariabackup/ds_tmpfile.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/ds_tmpfile.cc	2020-02-03 13:59:30.863561830 -0800
+@@ -21,7 +21,7 @@
+ /* Do all writes to temporary files first, then pipe them to the specified
+ datasink in a serialized way in deinit(). */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include "common.h"
+ #include "datasink.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/ds_xbstream.cc mariadb-10.4.12-new/extra/mariabackup/ds_xbstream.cc
+--- mariadb-10.4.12-old/extra/mariabackup/ds_xbstream.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/ds_xbstream.cc	2020-02-03 13:59:30.840561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include "common.h"
+ #include "datasink.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/encryption_plugin.cc mariadb-10.4.12-new/extra/mariabackup/encryption_plugin.cc
+--- mariadb-10.4.12-old/extra/mariabackup/encryption_plugin.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/encryption_plugin.cc	2020-02-03 13:59:30.839561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysqld.h>
+ #include <mysql.h>
+ #include <xtrabackup.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/fil_cur.cc mariadb-10.4.12-new/extra/mariabackup/fil_cur.cc
+--- mariadb-10.4.12-old/extra/mariabackup/fil_cur.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/fil_cur.cc	2020-02-03 13:59:30.842561830 -0800
+@@ -22,7 +22,7 @@
+ 
+ /* Source file cursor implementation */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <fil0fil.h>
+ #include <fsp0fsp.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/innobackupex.cc mariadb-10.4.12-new/extra/mariabackup/innobackupex.cc
+--- mariadb-10.4.12-old/extra/mariabackup/innobackupex.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/innobackupex.cc	2020-02-03 13:59:30.844561830 -0800
+@@ -39,7 +39,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <stdio.h>
+ #include <string.h>
+ #include <mysql.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/write_filt.cc mariadb-10.4.12-new/extra/mariabackup/write_filt.cc
+--- mariadb-10.4.12-old/extra/mariabackup/write_filt.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/write_filt.cc	2020-02-03 13:59:30.862561830 -0800
+@@ -22,7 +22,7 @@
+ 
+ /* Page write filters implementation */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include "common.h"
+ #include "write_filt.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/wsrep.cc mariadb-10.4.12-new/extra/mariabackup/wsrep.cc
+--- mariadb-10.4.12-old/extra/mariabackup/wsrep.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/wsrep.cc	2020-02-03 13:59:30.838561830 -0800
+@@ -40,7 +40,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <handler.h>
+ #include <trx0rseg.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/xbcloud.cc mariadb-10.4.12-new/extra/mariabackup/xbcloud.cc
+--- mariadb-10.4.12-old/extra/mariabackup/xbcloud.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/xbcloud.cc	2020-02-03 13:59:30.862561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_default.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/xbstream.cc mariadb-10.4.12-new/extra/mariabackup/xbstream.cc
+--- mariadb-10.4.12-old/extra/mariabackup/xbstream.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/xbstream.cc	2020-02-03 13:59:30.839561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <my_getopt.h>
+ #include <hash.h>
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/xbstream_read.cc mariadb-10.4.12-new/extra/mariabackup/xbstream_read.cc
+--- mariadb-10.4.12-old/extra/mariabackup/xbstream_read.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/xbstream_read.cc	2020-02-03 13:59:30.858561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <zlib.h>
+ #include "common.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/xbstream_write.cc mariadb-10.4.12-new/extra/mariabackup/xbstream_write.cc
+--- mariadb-10.4.12-old/extra/mariabackup/xbstream_write.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/xbstream_write.cc	2020-02-03 13:59:30.841561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ *******************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <zlib.h>
+ #include "common.h"
+diff -Naur mariadb-10.4.12-old/extra/mariabackup/xtrabackup.cc mariadb-10.4.12-new/extra/mariabackup/xtrabackup.cc
+--- mariadb-10.4.12-old/extra/mariabackup/xtrabackup.cc	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mariabackup/xtrabackup.cc	2020-02-03 13:59:30.858561830 -0800
+@@ -43,7 +43,7 @@
+ 
+ //#define XTRABACKUP_TARGET_IS_PLUGIN
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_config.h>
+ #include <unireg.h>
+ #include <mysql_version.h>
+diff -Naur mariadb-10.4.12-old/extra/my_print_defaults.c mariadb-10.4.12-new/extra/my_print_defaults.c
+--- mariadb-10.4.12-old/extra/my_print_defaults.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/my_print_defaults.c	2020-02-03 13:59:30.835561830 -0800
+@@ -22,7 +22,7 @@
+ **  Written by Monty
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include <my_getopt.h>
+diff -Naur mariadb-10.4.12-old/extra/mysqld_safe_helper.c mariadb-10.4.12-new/extra/mysqld_safe_helper.c
+--- mariadb-10.4.12-old/extra/mysqld_safe_helper.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mysqld_safe_helper.c	2020-02-03 13:59:30.829561830 -0800
+@@ -1,4 +1,4 @@
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <my_sys.h>
+ #include <my_pthread.h>
+diff -Naur mariadb-10.4.12-old/extra/mysql_waitpid.c mariadb-10.4.12-new/extra/mysql_waitpid.c
+--- mariadb-10.4.12-old/extra/mysql_waitpid.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/mysql_waitpid.c	2020-02-03 13:59:30.863561830 -0800
+@@ -16,7 +16,7 @@
+ 
+ /* Wait until a program dies */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <my_sys.h>
+ #include <my_getopt.h>
+diff -Naur mariadb-10.4.12-old/extra/perror.c mariadb-10.4.12-new/extra/perror.c
+--- mariadb-10.4.12-old/extra/perror.c	2020-01-26 12:43:49.000000000 -0800
++++ mariadb-10.4.12-new/extra/perror.c	2020-02-03 13:59:30.830561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ #define PERROR_VERSION "2.11"
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include <errno.h>
+diff -Naur mariadb-10.4.12-old/extra/replace.c mariadb-10.4.12-new/extra/replace.c
+--- mariadb-10.4.12-old/extra/replace.c	2020-01-26 12:43:50.000000000 -0800
++++ mariadb-10.4.12-new/extra/replace.c	2020-02-03 13:59:30.831561830 -0800
+@@ -42,7 +42,7 @@
+   fill_buffer_retaining() is taken from gnu-grep and modified.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/extra/resolveip.c mariadb-10.4.12-new/extra/resolveip.c
+--- mariadb-10.4.12-old/extra/resolveip.c	2020-01-26 12:43:50.000000000 -0800
++++ mariadb-10.4.12-new/extra/resolveip.c	2020-02-03 13:59:30.835561830 -0800
+@@ -18,7 +18,7 @@
+ 
+ #define RESOLVE_VERSION "2.3"
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/extra/resolve_stack_dump.c mariadb-10.4.12-new/extra/resolve_stack_dump.c
+--- mariadb-10.4.12-old/extra/resolve_stack_dump.c	2020-01-26 12:43:50.000000000 -0800
++++ mariadb-10.4.12-new/extra/resolve_stack_dump.c	2020-02-03 13:59:30.829561830 -0800
+@@ -18,7 +18,7 @@
+    versions into symbolic names. By Sasha Pachev <sasha@mysql.com>
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/libmariadb/client/ma_plugin_info.c mariadb-10.4.12-new/libmariadb/client/ma_plugin_info.c
+--- mariadb-10.4.12-old/libmariadb/client/ma_plugin_info.c	2020-01-26 12:43:50.000000000 -0800
++++ mariadb-10.4.12-new/libmariadb/client/ma_plugin_info.c	2020-02-03 13:59:30.825561830 -0800
+@@ -1,5 +1,5 @@
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <mysql.h>
+ #include <mysql/client_plugin.h>
+diff -Naur mariadb-10.4.12-old/libmysqld/libmysql.c mariadb-10.4.12-new/libmysqld/libmysql.c
+--- mariadb-10.4.12-old/libmysqld/libmysql.c	2020-01-26 12:43:50.000000000 -0800
++++ mariadb-10.4.12-new/libmysqld/libmysql.c	2020-02-03 13:59:30.449561826 -0800
+@@ -18,7 +18,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_time.h>
+ #include <mysys_err.h>
+diff -Naur mariadb-10.4.12-old/libmysqld/libmysqld.c mariadb-10.4.12-new/libmysqld/libmysqld.c
+--- mariadb-10.4.12-old/libmysqld/libmysqld.c	2020-01-26 12:43:50.000000000 -0800
++++ mariadb-10.4.12-new/libmysqld/libmysqld.c	2020-02-03 13:59:30.449561826 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql.h>
+ #include <mysqld_error.h>
+ #include <my_pthread.h>
+diff -Naur mariadb-10.4.12-old/mysys/base64.c mariadb-10.4.12-new/mysys/base64.c
+--- mariadb-10.4.12-old/mysys/base64.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/base64.c	2020-02-03 13:59:30.876561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>  /* strchr() */
+ #include <m_ctype.h>  /* my_isspace() */
+ 
+diff -Naur mariadb-10.4.12-old/mysys/checksum.c mariadb-10.4.12-new/mysys/checksum.c
+--- mariadb-10.4.12-old/mysys/checksum.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/checksum.c	2020-02-03 13:59:30.874561830 -0800
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <zlib.h>
+ 
+diff -Naur mariadb-10.4.12-old/mysys/get_password.c mariadb-10.4.12-new/mysys/get_password.c
+--- mariadb-10.4.12-old/mysys/get_password.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/get_password.c	2020-02-03 13:59:30.871561830 -0800
+@@ -18,7 +18,7 @@
+ ** Ask for a password from tty
+ ** This is an own file to avoid conflicts with curses
+ */
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include "mysql.h"
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/mysys/lf_alloc-pin.c mariadb-10.4.12-new/mysys/lf_alloc-pin.c
+--- mariadb-10.4.12-old/mysys/lf_alloc-pin.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/lf_alloc-pin.c	2020-02-03 13:59:30.881561831 -0800
+@@ -99,7 +99,7 @@
+   between THD's (LF_PINS::stack_ends_here being a primary reason
+   for this limitation).
+ */
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <lf.h>
+ 
+diff -Naur mariadb-10.4.12-old/mysys/lf_dynarray.c mariadb-10.4.12-new/mysys/lf_dynarray.c
+--- mariadb-10.4.12-old/mysys/lf_dynarray.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/lf_dynarray.c	2020-02-03 13:59:30.878561830 -0800
+@@ -35,7 +35,7 @@
+   Actually, it's wait-free, not lock-free ;-)
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <my_sys.h>
+ #include <lf.h>
+diff -Naur mariadb-10.4.12-old/mysys/lf_hash.c mariadb-10.4.12-new/mysys/lf_hash.c
+--- mariadb-10.4.12-old/mysys/lf_hash.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/lf_hash.c	2020-02-03 13:59:30.869561830 -0800
+@@ -22,7 +22,7 @@
+      for non-unique hash, count only _distinct_ values
+      (but how to do it in lf_hash_delete ?)
+ */
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <my_sys.h>
+ #include <mysys_err.h>
+diff -Naur mariadb-10.4.12-old/mysys/my_alloc.c mariadb-10.4.12-new/mysys/my_alloc.c
+--- mariadb-10.4.12-old/mysys/my_alloc.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_alloc.c	2020-02-03 13:59:30.875561830 -0800
+@@ -16,7 +16,7 @@
+ 
+ /* Routines to handle mallocing of results which will be freed the same time */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #undef EXTRA_DEBUG
+diff -Naur mariadb-10.4.12-old/mysys/my_basename.c mariadb-10.4.12-new/mysys/my_basename.c
+--- mariadb-10.4.12-old/mysys/my_basename.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_basename.c	2020-02-03 13:59:30.879561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ /**
+    @brief retrieve last component of the filename.
+diff -Naur mariadb-10.4.12-old/mysys/my_bit.c mariadb-10.4.12-new/mysys/my_bit.c
+--- mariadb-10.4.12-old/mysys/my_bit.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_bit.c	2020-02-03 13:59:30.875561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <my_bit.h>
+ 
+diff -Naur mariadb-10.4.12-old/mysys/my_compare.c mariadb-10.4.12-new/mysys/my_compare.c
+--- mariadb-10.4.12-old/mysys/my_compare.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_compare.c	2020-02-03 13:59:30.868561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+    
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_base.h>
+ #include <my_compare.h>
+diff -Naur mariadb-10.4.12-old/mysys/my_compress.c mariadb-10.4.12-new/mysys/my_compress.c
+--- mariadb-10.4.12-old/mysys/my_compress.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_compress.c	2020-02-03 13:59:30.872561830 -0800
+@@ -15,7 +15,7 @@
+ 
+ /* Written by Sinisa Milivojevic <sinisa@mysql.com> */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #ifdef HAVE_COMPRESS
+ #include <my_sys.h>
+ #ifndef SCO
+diff -Naur mariadb-10.4.12-old/mysys/my_cpu.c mariadb-10.4.12-new/mysys/my_cpu.c
+--- mariadb-10.4.12-old/mysys/my_cpu.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_cpu.c	2020-02-03 13:59:30.872561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_atomic.h>
+ #include <my_cpu.h>
+ #include <my_rdtsc.h>
+diff -Naur mariadb-10.4.12-old/mysys/my_dlerror.c mariadb-10.4.12-new/mysys/my_dlerror.c
+--- mariadb-10.4.12-old/mysys/my_dlerror.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_dlerror.c	2020-02-03 13:59:30.872561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string.h>
+ 
+ const char *my_dlerror(const char *dlpath)
+diff -Naur mariadb-10.4.12-old/mysys/my_getopt.c mariadb-10.4.12-new/mysys/my_getopt.c
+--- mariadb-10.4.12-old/mysys/my_getopt.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_getopt.c	2020-02-03 13:59:30.867561830 -0800
+@@ -15,7 +15,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_default.h>
+ #include <m_string.h>
+ #include <stdlib.h>
+diff -Naur mariadb-10.4.12-old/mysys/my_libwrap.c mariadb-10.4.12-new/mysys/my_libwrap.c
+--- mariadb-10.4.12-old/mysys/my_libwrap.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_libwrap.c	2020-02-03 13:59:30.880561830 -0800
+@@ -19,7 +19,7 @@
+   files that don't have the prototypes
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_libwrap.h>
+ 
+ #ifdef HAVE_LIBWRAP
+diff -Naur mariadb-10.4.12-old/mysys/my_memmem.c mariadb-10.4.12-new/mysys/my_memmem.c
+--- mariadb-10.4.12-old/mysys/my_memmem.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_memmem.c	2020-02-03 13:59:30.872561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ 
+ /*
+diff -Naur mariadb-10.4.12-old/mysys/my_setuser.c mariadb-10.4.12-new/mysys/my_setuser.c
+--- mariadb-10.4.12-old/mysys/my_setuser.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_setuser.c	2020-02-03 13:59:30.880561830 -0800
+@@ -1,4 +1,4 @@
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <my_sys.h>
+ #include <my_pthread.h>
+diff -Naur mariadb-10.4.12-old/mysys/mysys_priv.h mariadb-10.4.12-new/mysys/mysys_priv.h
+--- mariadb-10.4.12-old/mysys/mysys_priv.h	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/mysys_priv.h	2020-02-03 13:59:30.877561830 -0800
+@@ -16,7 +16,7 @@
+ #ifndef MYSYS_PRIV_INCLUDED
+ #define MYSYS_PRIV_INCLUDED
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_crypt.h>
+ 
+diff -Naur mariadb-10.4.12-old/mysys/my_winerr.c mariadb-10.4.12-new/mysys/my_winerr.c
+--- mariadb-10.4.12-old/mysys/my_winerr.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/my_winerr.c	2020-02-03 13:59:30.876561830 -0800
+@@ -20,7 +20,7 @@
+   heavily from undocumented _dosmaperr()(found of the static Microsoft C runtime).
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ 
+ 
+diff -Naur mariadb-10.4.12-old/mysys/stacktrace.c mariadb-10.4.12-new/mysys/stacktrace.c
+--- mariadb-10.4.12-old/mysys/stacktrace.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/stacktrace.c	2020-02-03 13:59:30.874561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_stacktrace.h>
+ 
+ #ifndef __WIN__
+diff -Naur mariadb-10.4.12-old/mysys/test_charset.c mariadb-10.4.12-new/mysys/test_charset.c
+--- mariadb-10.4.12-old/mysys/test_charset.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/test_charset.c	2020-02-03 13:59:30.872561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_sys.h>
+ #include <mysql_version.h>
+diff -Naur mariadb-10.4.12-old/mysys/testhash.c mariadb-10.4.12-new/mysys/testhash.c
+--- mariadb-10.4.12-old/mysys/testhash.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/testhash.c	2020-02-03 13:59:30.874561830 -0800
+@@ -15,7 +15,7 @@
+ 
+ /* Test of hash library: big test */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <hash.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/mysys/test_thr_mutex.c mariadb-10.4.12-new/mysys/test_thr_mutex.c
+--- mariadb-10.4.12-old/mysys/test_thr_mutex.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/test_thr_mutex.c	2020-02-03 13:59:30.875561830 -0800
+@@ -15,7 +15,7 @@
+ 
+ /* Testing of deadlock detector */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysys_priv.h>
+ 
+ 
+diff -Naur mariadb-10.4.12-old/mysys/thr_alarm.c mariadb-10.4.12-new/mysys/thr_alarm.c
+--- mariadb-10.4.12-old/mysys/thr_alarm.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/thr_alarm.c	2020-02-03 13:59:30.878561830 -0800
+@@ -17,7 +17,7 @@
+ /* To avoid problems with alarms in debug code, we disable DBUG here */
+ #define FORCE_DBUG_OFF
+ #include "mysys_priv.h"
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #if !defined(DONT_USE_THR_ALARM)
+ #include <errno.h>
+diff -Naur mariadb-10.4.12-old/mysys/thr_mutex.c mariadb-10.4.12-new/mysys/thr_mutex.c
+--- mariadb-10.4.12-old/mysys/thr_mutex.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/thr_mutex.c	2020-02-03 13:59:30.880561830 -0800
+@@ -17,7 +17,7 @@
+ 
+ /* This makes a wrapper for mutex handling to make it easier to debug mutex */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #if defined(TARGET_OS_LINUX) && !defined (__USE_UNIX98)
+ #define __USE_UNIX98			/* To get rw locks under Linux */
+ #endif
+diff -Naur mariadb-10.4.12-old/mysys/waiting_threads.c mariadb-10.4.12-new/mysys/waiting_threads.c
+--- mariadb-10.4.12-old/mysys/waiting_threads.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/waiting_threads.c	2020-02-03 13:59:30.871561830 -0800
+@@ -172,7 +172,7 @@
+       !! thread4 should not wait for thread2.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <waiting_threads.h>
+ #include <m_string.h>
+ 
+diff -Naur mariadb-10.4.12-old/mysys/wqueue.c mariadb-10.4.12-new/mysys/wqueue.c
+--- mariadb-10.4.12-old/mysys/wqueue.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys/wqueue.c	2020-02-03 13:59:30.871561830 -0800
+@@ -15,7 +15,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <wqueue.h>
+ 
+ #define STRUCT_PTR(TYPE, MEMBER, a)                                           \
+diff -Naur mariadb-10.4.12-old/mysys_ssl/my_crypt.cc mariadb-10.4.12-new/mysys_ssl/my_crypt.cc
+--- mariadb-10.4.12-old/mysys_ssl/my_crypt.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys_ssl/my_crypt.cc	2020-02-03 13:59:30.441561826 -0800
+@@ -15,7 +15,7 @@
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string.h>
+ 
+ #include <openssl/evp.h>
+diff -Naur mariadb-10.4.12-old/mysys_ssl/my_md5.cc mariadb-10.4.12-new/mysys_ssl/my_md5.cc
+--- mariadb-10.4.12-old/mysys_ssl/my_md5.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys_ssl/my_md5.cc	2020-02-03 13:59:30.442561826 -0800
+@@ -23,7 +23,7 @@
+   to make available YaSSL's MD5 implementation.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_md5.h>
+ #include <stdarg.h>
+ 
+diff -Naur mariadb-10.4.12-old/mysys_ssl/my_sha.ic mariadb-10.4.12-new/mysys_ssl/my_sha.ic
+--- mariadb-10.4.12-old/mysys_ssl/my_sha.ic	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys_ssl/my_sha.ic	2020-02-03 13:59:30.441561826 -0800
+@@ -23,7 +23,7 @@
+   Compatibility layer to make available YaSSL's SHAn implementation.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <stdarg.h>
+ 
+ #define HASH_SIZE (NUM > 1 ? NUM/8 : 20)
+diff -Naur mariadb-10.4.12-old/mysys_ssl/openssl.c mariadb-10.4.12-new/mysys_ssl/openssl.c
+--- mariadb-10.4.12-old/mysys_ssl/openssl.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/mysys_ssl/openssl.c	2020-02-03 13:59:30.442561826 -0800
+@@ -14,7 +14,7 @@
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <ssl_compat.h>
+ 
+ /*
+diff -Naur mariadb-10.4.12-old/plugin/auth_dialog/dialog.c mariadb-10.4.12-new/plugin/auth_dialog/dialog.c
+--- mariadb-10.4.12-old/plugin/auth_dialog/dialog.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/auth_dialog/dialog.c	2020-02-03 13:59:30.397561826 -0800
+@@ -27,7 +27,7 @@
+ */
+ #define _GNU_SOURCE 1 /* for RTLD_DEFAULT */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/client_plugin.h>
+ #include <mysql.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/plugin/auth_examples/qa_auth_client.c mariadb-10.4.12-new/plugin/auth_examples/qa_auth_client.c
+--- mariadb-10.4.12-old/plugin/auth_examples/qa_auth_client.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/auth_examples/qa_auth_client.c	2020-02-03 13:59:30.399561826 -0800
+@@ -14,7 +14,7 @@
+     along with this program; if not, write to the Free Software
+     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin_auth.h>
+ #include <mysql/client_plugin.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/plugin/auth_examples/qa_auth_interface.c mariadb-10.4.12-new/plugin/auth_examples/qa_auth_interface.c
+--- mariadb-10.4.12-old/plugin/auth_examples/qa_auth_interface.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/auth_examples/qa_auth_interface.c	2020-02-03 13:59:30.399561826 -0800
+@@ -14,7 +14,7 @@
+     along with this program; if not, write to the Free Software
+     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin_auth.h>
+ #include <mysql/client_plugin.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/plugin/auth_examples/qa_auth_server.c mariadb-10.4.12-new/plugin/auth_examples/qa_auth_server.c
+--- mariadb-10.4.12-old/plugin/auth_examples/qa_auth_server.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/auth_examples/qa_auth_server.c	2020-02-03 13:59:30.398561826 -0800
+@@ -14,7 +14,7 @@
+     along with this program; if not, write to the Free Software
+     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin_auth.h>
+ #include <mysql/client_plugin.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/plugin/auth_examples/test_plugin.c mariadb-10.4.12-new/plugin/auth_examples/test_plugin.c
+--- mariadb-10.4.12-old/plugin/auth_examples/test_plugin.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/auth_examples/test_plugin.c	2020-02-03 13:59:30.399561826 -0800
+@@ -25,7 +25,7 @@
+   This test plugin is based on the dialog plugin example.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin_auth.h>
+ #include <mysql/client_plugin.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/plugin/auth_pam/auth_pam.c mariadb-10.4.12-new/plugin/auth_pam/auth_pam.c
+--- mariadb-10.4.12-old/plugin/auth_pam/auth_pam.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/auth_pam/auth_pam.c	2020-02-03 13:59:30.414561826 -0800
+@@ -21,7 +21,7 @@
+ #include <sys/wait.h>
+ #include <mysql/plugin_auth.h>
+ #include "auth_pam_tool.h"
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #ifndef DBUG_OFF
+ static char pam_debug = 0;
+diff -Naur mariadb-10.4.12-old/plugin/aws_key_management/aws_key_management_plugin.cc mariadb-10.4.12-new/plugin/aws_key_management/aws_key_management_plugin.cc
+--- mariadb-10.4.12-old/plugin/aws_key_management/aws_key_management_plugin.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/aws_key_management/aws_key_management_plugin.cc	2020-02-03 13:59:30.413561826 -0800
+@@ -15,7 +15,7 @@
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <typelib.h>
+ #include <mysql/plugin_encryption.h>
+ #include <my_crypt.h>
+diff -Naur mariadb-10.4.12-old/plugin/daemon_example/daemon_example.cc mariadb-10.4.12-new/plugin/daemon_example/daemon_example.cc
+--- mariadb-10.4.12-old/plugin/daemon_example/daemon_example.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/daemon_example/daemon_example.cc	2020-02-03 13:59:30.395561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sql_priv.h>
+ #include <stdlib.h>
+ #include <ctype.h>
+diff -Naur mariadb-10.4.12-old/plugin/debug_key_management/debug_key_management_plugin.cc mariadb-10.4.12-new/plugin/debug_key_management/debug_key_management_plugin.cc
+--- mariadb-10.4.12-old/plugin/debug_key_management/debug_key_management_plugin.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/debug_key_management/debug_key_management_plugin.cc	2020-02-03 13:59:30.401561826 -0800
+@@ -25,7 +25,7 @@
+   DO NOT USE THIS PLUGIN IN PRODUCTION! EVER!
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin_encryption.h>
+ #include <string.h>
+ #include <myisampack.h>
+diff -Naur mariadb-10.4.12-old/plugin/disks/information_schema_disks.cc mariadb-10.4.12-new/plugin/disks/information_schema_disks.cc
+--- mariadb-10.4.12-old/plugin/disks/information_schema_disks.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/disks/information_schema_disks.cc	2020-02-03 13:59:30.401561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sys/statvfs.h>
+ #include <sys/types.h>
+ #include <mntent.h>
+diff -Naur mariadb-10.4.12-old/plugin/example_key_management/example_key_management_plugin.cc mariadb-10.4.12-new/plugin/example_key_management/example_key_management_plugin.cc
+--- mariadb-10.4.12-old/plugin/example_key_management/example_key_management_plugin.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/example_key_management/example_key_management_plugin.cc	2020-02-03 13:59:30.406561826 -0800
+@@ -25,7 +25,7 @@
+   DO NOT USE THIS PLUGIN IN PRODUCTION! EVER!
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <mysql/plugin_encryption.h>
+ #include <my_crypt.h>
+diff -Naur mariadb-10.4.12-old/plugin/feedback/feedback.h mariadb-10.4.12-new/plugin/feedback/feedback.h
+--- mariadb-10.4.12-old/plugin/feedback/feedback.h	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/feedback/feedback.h	2020-02-03 13:59:30.401561826 -0800
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sql_class.h>
+ 
+ namespace feedback {
+diff -Naur mariadb-10.4.12-old/plugin/file_key_management/file_key_management_plugin.cc mariadb-10.4.12-new/plugin/file_key_management/file_key_management_plugin.cc
+--- mariadb-10.4.12-old/plugin/file_key_management/file_key_management_plugin.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/file_key_management/file_key_management_plugin.cc	2020-02-03 13:59:30.396561826 -0800
+@@ -13,7 +13,7 @@
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <typelib.h>
+ #include "parser.h"
+ #include <mysql/plugin_encryption.h>
+diff -Naur mariadb-10.4.12-old/plugin/file_key_management/parser.cc mariadb-10.4.12-new/plugin/file_key_management/parser.cc
+--- mariadb-10.4.12-old/plugin/file_key_management/parser.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/file_key_management/parser.cc	2020-02-03 13:59:30.396561826 -0800
+@@ -69,7 +69,7 @@
+ openssl enc -aes-256-cbc -md sha1 -k "secret" -in keys.txt -out keys.enc
+ ***********************************************************************/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "parser.h"
+ #include <m_string.h>
+ #include <mysys_err.h>
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/handlersocket/database.cpp mariadb-10.4.12-new/plugin/handler_socket/handlersocket/database.cpp
+--- mariadb-10.4.12-old/plugin/handler_socket/handlersocket/database.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/handlersocket/database.cpp	2020-02-03 13:59:30.412561826 -0800
+@@ -6,7 +6,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string.h>
+ 
+ #include "database.hpp"
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/handlersocket/handlersocket.cpp mariadb-10.4.12-new/plugin/handler_socket/handlersocket/handlersocket.cpp
+--- mariadb-10.4.12-old/plugin/handler_socket/handlersocket/handlersocket.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/handlersocket/handlersocket.cpp	2020-02-03 13:59:30.410561826 -0800
+@@ -6,7 +6,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <memory>
+ #include <string>
+ #include <stdio.h>
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/handlersocket/hstcpsvr.cpp mariadb-10.4.12-new/plugin/handler_socket/handlersocket/hstcpsvr.cpp
+--- mariadb-10.4.12-old/plugin/handler_socket/handlersocket/hstcpsvr.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/handlersocket/hstcpsvr.cpp	2020-02-03 13:59:30.408561826 -0800
+@@ -6,7 +6,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <vector>
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/handlersocket/hstcpsvr_worker.cpp mariadb-10.4.12-new/plugin/handler_socket/handlersocket/hstcpsvr_worker.cpp
+--- mariadb-10.4.12-old/plugin/handler_socket/handlersocket/hstcpsvr_worker.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/handlersocket/hstcpsvr_worker.cpp	2020-02-03 13:59:30.409561826 -0800
+@@ -6,7 +6,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <netinet/in.h>
+ #include <errno.h>
+ #include <poll.h>
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/handlersocket/mysql_incl.hpp mariadb-10.4.12-new/plugin/handler_socket/handlersocket/mysql_incl.hpp
+--- mariadb-10.4.12-old/plugin/handler_socket/handlersocket/mysql_incl.hpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/handlersocket/mysql_incl.hpp	2020-02-03 13:59:30.410561826 -0800
+@@ -19,7 +19,7 @@
+ 
+ #define MYSQL_SERVER 1
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_version.h>
+ 
+ #if MYSQL_VERSION_ID >= 50505
+@@ -29,7 +29,7 @@
+ #include "unireg.h"
+ #include "lock.h"
+ #include "key.h" // key_copy()
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin.h>
+ #include <transaction.h>
+ #include <sql_base.h>
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/libhsclient/auto_addrinfo.hpp mariadb-10.4.12-new/plugin/handler_socket/libhsclient/auto_addrinfo.hpp
+--- mariadb-10.4.12-old/plugin/handler_socket/libhsclient/auto_addrinfo.hpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/libhsclient/auto_addrinfo.hpp	2020-02-03 13:59:30.408561826 -0800
+@@ -9,7 +9,7 @@
+ #ifndef DENA_AUTO_ADDRINFO_HPP
+ #define DENA_AUTO_ADDRINFO_HPP
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sys/socket.h>
+ #include <netdb.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/libhsclient/hstcpcli.cpp mariadb-10.4.12-new/plugin/handler_socket/libhsclient/hstcpcli.cpp
+--- mariadb-10.4.12-old/plugin/handler_socket/libhsclient/hstcpcli.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/libhsclient/hstcpcli.cpp	2020-02-03 13:59:30.408561826 -0800
+@@ -6,7 +6,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <stdexcept>
+ 
+ #include "hstcpcli.hpp"
+diff -Naur mariadb-10.4.12-old/plugin/handler_socket/libhsclient/socket.cpp mariadb-10.4.12-new/plugin/handler_socket/libhsclient/socket.cpp
+--- mariadb-10.4.12-old/plugin/handler_socket/libhsclient/socket.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/handler_socket/libhsclient/socket.cpp	2020-02-03 13:59:30.407561826 -0800
+@@ -6,7 +6,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <stdexcept>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/plugin/locale_info/locale_info.cc mariadb-10.4.12-new/plugin/locale_info/locale_info.cc
+--- mariadb-10.4.12-old/plugin/locale_info/locale_info.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/locale_info/locale_info.cc	2020-02-03 13:59:30.397561826 -0800
+@@ -26,7 +26,7 @@
+   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sql_class.h>          // THD
+ #include <table.h>              // ST_SCHEMA_TABLE
+ #include <mysql/plugin.h>
+diff -Naur mariadb-10.4.12-old/plugin/metadata_lock_info/metadata_lock_info.cc mariadb-10.4.12-new/plugin/metadata_lock_info/metadata_lock_info.cc
+--- mariadb-10.4.12-old/plugin/metadata_lock_info/metadata_lock_info.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/metadata_lock_info/metadata_lock_info.cc	2020-02-03 13:59:30.412561826 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "mysql/plugin.h"
+ #include "sql_class.h"
+diff -Naur mariadb-10.4.12-old/plugin/qc_info/qc_info.cc mariadb-10.4.12-new/plugin/qc_info/qc_info.cc
+--- mariadb-10.4.12-old/plugin/qc_info/qc_info.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/qc_info/qc_info.cc	2020-02-03 13:59:30.400561826 -0800
+@@ -32,7 +32,7 @@
+ #define MYSQL_SERVER
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sql_parse.h>          // check_global_access
+ #include <sql_acl.h>            // PROCESS_ACL
+ #include <sql_class.h>          // THD
+diff -Naur mariadb-10.4.12-old/plugin/query_response_time/plugin.cc mariadb-10.4.12-new/plugin/query_response_time/plugin.cc
+--- mariadb-10.4.12-old/plugin/query_response_time/plugin.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/query_response_time/plugin.cc	2020-02-03 13:59:30.397561826 -0800
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sql_class.h>
+ #include <table.h>
+ #include <sql_show.h>
+diff -Naur mariadb-10.4.12-old/plugin/server_audit/server_audit.c mariadb-10.4.12-new/plugin/server_audit/server_audit.c
+--- mariadb-10.4.12-old/plugin/server_audit/server_audit.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/server_audit/server_audit.c	2020-02-03 13:59:30.406561826 -0800
+@@ -86,7 +86,7 @@
+ #define MYSQL_SERVICE_LOGGER_INCLUDED
+ #endif /*MARIADB_ONLY*/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ #include <typelib.h>
+ #include <mysql/plugin.h>
+diff -Naur mariadb-10.4.12-old/plugin/server_audit/test_audit_v4.c mariadb-10.4.12-new/plugin/server_audit/test_audit_v4.c
+--- mariadb-10.4.12-old/plugin/server_audit/test_audit_v4.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/server_audit/test_audit_v4.c	2020-02-03 13:59:30.402561826 -0800
+@@ -1,6 +1,6 @@
+ #define PLUGIN_CONTEXT
+ 
+-/* Can't use <my_global.h> as this includes plugin.h */
++/* Can't use "my_global.h" as this includes plugin.h */
+ #include <stdio.h>
+ 
+ typedef void *MYSQL_THD;
+diff -Naur mariadb-10.4.12-old/plugin/userstat/userstat.cc mariadb-10.4.12-new/plugin/userstat/userstat.cc
+--- mariadb-10.4.12-old/plugin/userstat/userstat.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/userstat/userstat.cc	2020-02-03 13:59:30.397561826 -0800
+@@ -1,4 +1,4 @@
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin.h>
+ #include <mysql_version.h>
+ #include "table.h"
+diff -Naur mariadb-10.4.12-old/plugin/user_variables/user_variables.cc mariadb-10.4.12-new/plugin/user_variables/user_variables.cc
+--- mariadb-10.4.12-old/plugin/user_variables/user_variables.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/user_variables/user_variables.cc	2020-02-03 13:59:30.398561826 -0800
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1335 USA */
+ 
+ #define MYSQL_SERVER
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sql_class.h>
+ #include <table.h>
+ #include <sql_show.h>
+diff -Naur mariadb-10.4.12-old/plugin/versioning/versioning.cc mariadb-10.4.12-new/plugin/versioning/versioning.cc
+--- mariadb-10.4.12-old/plugin/versioning/versioning.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/versioning/versioning.cc	2020-02-03 13:59:30.395561826 -0800
+@@ -15,7 +15,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_version.h>
+ #include <mysqld.h>
+ #include <mysql/plugin.h>
+diff -Naur mariadb-10.4.12-old/plugin/win_auth_client/common.h mariadb-10.4.12-new/plugin/win_auth_client/common.h
+--- mariadb-10.4.12-old/plugin/win_auth_client/common.h	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/win_auth_client/common.h	2020-02-03 13:59:30.400561826 -0800
+@@ -16,7 +16,7 @@
+ #ifndef COMMON_H
+ #define COMMON_H
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <windows.h>
+ #include <sspi.h>              // for CtxtHandle
+ #include <mysql/plugin_auth.h> // for MYSQL_PLUGIN_VIO
+diff -Naur mariadb-10.4.12-old/plugin/win_auth_client/log_client.cc mariadb-10.4.12-new/plugin/win_auth_client/log_client.cc
+--- mariadb-10.4.12-old/plugin/win_auth_client/log_client.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/win_auth_client/log_client.cc	2020-02-03 13:59:30.401561826 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "common.h"
+ 
+ 
+diff -Naur mariadb-10.4.12-old/plugin/win_auth_client/plugin_client.cc mariadb-10.4.12-new/plugin/win_auth_client/plugin_client.cc
+--- mariadb-10.4.12-old/plugin/win_auth_client/plugin_client.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/win_auth_client/plugin_client.cc	2020-02-03 13:59:30.401561826 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql.h>
+ #include <mysql/plugin_auth.h>
+ #include <mysql/client_plugin.h>
+diff -Naur mariadb-10.4.12-old/plugin/wsrep_info/plugin.cc mariadb-10.4.12-new/plugin/wsrep_info/plugin.cc
+--- mariadb-10.4.12-old/plugin/wsrep_info/plugin.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/plugin/wsrep_info/plugin.cc	2020-02-03 13:59:30.398561826 -0800
+@@ -17,7 +17,7 @@
+ #define MYSQL_SERVER
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin.h>
+ #include <table.h>                              /* ST_SCHEMA_TABLE */
+ #include <sql_show.h>
+diff -Naur mariadb-10.4.12-old/sql/field_comp.cc mariadb-10.4.12-new/sql/field_comp.cc
+--- mariadb-10.4.12-old/sql/field_comp.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/field_comp.cc	2020-02-03 13:59:30.808561830 -0800
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_string.h"
+ #include "sql_class.h"
+ #include "field_comp.h"
+diff -Naur mariadb-10.4.12-old/sql/handle_connections_win.cc mariadb-10.4.12-new/sql/handle_connections_win.cc
+--- mariadb-10.4.12-old/sql/handle_connections_win.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/handle_connections_win.cc	2020-02-03 13:59:30.807561830 -0800
+@@ -15,7 +15,7 @@
+ 
+ /* Accepting connections on Windows */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <sql_class.h>
+ #include <sql_connect.h>
+ #include <mysqld.h>
+diff -Naur mariadb-10.4.12-old/sql/mariadb.h mariadb-10.4.12-new/sql/mariadb.h
+--- mariadb-10.4.12-old/sql/mariadb.h	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/mariadb.h	2020-02-03 13:59:30.813561830 -0800
+@@ -26,5 +26,5 @@
+ 
+ #ifndef MARIADB_INCLUDED
+ #define MARIADB_INCLUDED
+-#include <my_global.h>
++#include "my_global.h"
+ #endif /* MARIADB_INCLUDED */
+diff -Naur mariadb-10.4.12-old/sql/partition_info.cc mariadb-10.4.12-new/sql/partition_info.cc
+--- mariadb-10.4.12-old/sql/partition_info.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/partition_info.cc	2020-02-03 13:59:30.811561830 -0800
+@@ -21,7 +21,7 @@
+ #endif
+ 
+ #include "mariadb.h"
+-#include <my_global.h>
++#include "my_global.h"
+ #include <tztime.h>
+ #include "sql_priv.h"
+ // Required to get server definitions for mysql/plugin.h right
+diff -Naur mariadb-10.4.12-old/sql/semisync.cc mariadb-10.4.12-new/sql/semisync.cc
+--- mariadb-10.4.12-old/sql/semisync.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/semisync.cc	2020-02-03 13:59:30.812561830 -0800
+@@ -16,7 +16,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "semisync.h"
+ 
+ const unsigned char Repl_semi_sync_base::k_packet_magic_num= 0xef;
+diff -Naur mariadb-10.4.12-old/sql/semisync_master_ack_receiver.cc mariadb-10.4.12-new/sql/semisync_master_ack_receiver.cc
+--- mariadb-10.4.12-old/sql/semisync_master_ack_receiver.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/semisync_master_ack_receiver.cc	2020-02-03 13:59:30.816561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "semisync_master.h"
+ #include "semisync_master_ack_receiver.h"
+ 
+diff -Naur mariadb-10.4.12-old/sql/semisync_master.cc mariadb-10.4.12-new/sql/semisync_master.cc
+--- mariadb-10.4.12-old/sql/semisync_master.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/semisync_master.cc	2020-02-03 13:59:30.815561830 -0800
+@@ -16,7 +16,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "semisync_master.h"
+ 
+ #define TIME_THOUSAND 1000
+diff -Naur mariadb-10.4.12-old/sql/semisync_slave.cc mariadb-10.4.12-new/sql/semisync_slave.cc
+--- mariadb-10.4.12-old/sql/semisync_slave.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/semisync_slave.cc	2020-02-03 13:59:30.812561830 -0800
+@@ -15,7 +15,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "semisync_slave.h"
+ 
+ Repl_semi_sync_slave repl_semisync_slave;
+diff -Naur mariadb-10.4.12-old/sql/sql_builtin.cc.in mariadb-10.4.12-new/sql/sql_builtin.cc.in
+--- mariadb-10.4.12-old/sql/sql_builtin.cc.in	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/sql_builtin.cc.in	2020-02-03 13:59:30.812561830 -0800
+@@ -19,7 +19,7 @@
+   and cmake/plugin.cmake
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin.h>
+ 
+ typedef struct st_maria_plugin builtin_maria_plugin[];
+diff -Naur mariadb-10.4.12-old/sql/wsrep_mysqld.h mariadb-10.4.12-new/sql/wsrep_mysqld.h
+--- mariadb-10.4.12-old/sql/wsrep_mysqld.h	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/wsrep_mysqld.h	2020-02-03 13:59:30.813561830 -0800
+@@ -23,7 +23,7 @@
+ #include <mysql/plugin.h>
+ #include "mysql/service_wsrep.h"
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include "log.h"
+ #include "mysqld.h"
+diff -Naur mariadb-10.4.12-old/sql/wsrep_priv.h mariadb-10.4.12-new/sql/wsrep_priv.h
+--- mariadb-10.4.12-old/sql/wsrep_priv.h	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/wsrep_priv.h	2020-02-03 13:59:30.808561830 -0800
+@@ -19,7 +19,7 @@
+ #ifndef WSREP_PRIV_H
+ #define WSREP_PRIV_H
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "wsrep_mysqld.h"
+ #include "wsrep_schema.h"
+ 
+diff -Naur mariadb-10.4.12-old/sql/wsrep_sst.h mariadb-10.4.12-new/sql/wsrep_sst.h
+--- mariadb-10.4.12-old/sql/wsrep_sst.h	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql/wsrep_sst.h	2020-02-03 13:59:30.812561830 -0800
+@@ -19,7 +19,7 @@
+ #include <my_config.h>
+ 
+ #include "wsrep/gtid.hpp"
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string>
+ 
+ #define WSREP_SST_OPT_ROLE     "--role"
+diff -Naur mariadb-10.4.12-old/sql-common/client.c mariadb-10.4.12-new/sql-common/client.c
+--- mariadb-10.4.12-old/sql-common/client.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql-common/client.c	2020-02-03 13:59:30.420561826 -0800
+@@ -34,7 +34,7 @@
+   server.
+ */ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_default.h>
+ #include "mysql.h"
+ #include "hash.h"
+diff -Naur mariadb-10.4.12-old/sql-common/client_plugin.c mariadb-10.4.12-new/sql-common/client_plugin.c
+--- mariadb-10.4.12-old/sql-common/client_plugin.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql-common/client_plugin.c	2020-02-03 13:59:30.423561826 -0800
+@@ -28,7 +28,7 @@
+   There is no reference counting and no unloading either.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/sql-common/conf_to_src.c mariadb-10.4.12-new/sql-common/conf_to_src.c
+--- mariadb-10.4.12-old/sql-common/conf_to_src.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql-common/conf_to_src.c	2020-02-03 13:59:30.424561826 -0800
+@@ -19,7 +19,7 @@
+ /* can't use -lmysys because this prog is used to create -lstrings */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <ctype.h>
+ #include <string.h>
+ #include <unistd.h>
+diff -Naur mariadb-10.4.12-old/sql-common/errmsg.c mariadb-10.4.12-new/sql-common/errmsg.c
+--- mariadb-10.4.12-old/sql-common/errmsg.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql-common/errmsg.c	2020-02-03 13:59:30.423561826 -0800
+@@ -19,7 +19,7 @@
+ /* Error messages for MySQL clients */
+ /* (Error messages for the daemon are in share/language/errmsg.sys) */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include "errmsg.h"
+ 
+diff -Naur mariadb-10.4.12-old/sql-common/my_time.c mariadb-10.4.12-new/sql-common/my_time.c
+--- mariadb-10.4.12-old/sql-common/my_time.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql-common/my_time.c	2020-02-03 13:59:30.422561826 -0800
+@@ -15,7 +15,7 @@
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_time.h>
+ #include <m_string.h>
+ #include <m_ctype.h>
+diff -Naur mariadb-10.4.12-old/sql-common/my_user.c mariadb-10.4.12-new/sql-common/my_user.c
+--- mariadb-10.4.12-old/sql-common/my_user.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql-common/my_user.c	2020-02-03 13:59:30.414561826 -0800
+@@ -14,7 +14,7 @@
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_user.h>
+ #include <m_string.h>
+ #include <mysql_com.h>
+diff -Naur mariadb-10.4.12-old/sql-common/pack.c mariadb-10.4.12-new/sql-common/pack.c
+--- mariadb-10.4.12-old/sql-common/pack.c	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/sql-common/pack.c	2020-02-03 13:59:30.424561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_com.h>
+ #include <mysql.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/archive/ha_archive.cc mariadb-10.4.12-new/storage/archive/ha_archive.cc
+--- mariadb-10.4.12-old/storage/archive/ha_archive.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/archive/ha_archive.cc	2020-02-03 13:59:30.519561827 -0800
+@@ -21,7 +21,7 @@
+ #pragma implementation        // gcc: Class implementation
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_class.h"                          // SSV
+ #include "sql_table.h"                          // build_table_filename
+ #include <myisam.h>                             // T_EXTEND
+diff -Naur mariadb-10.4.12-old/storage/blackhole/ha_blackhole.cc mariadb-10.4.12-new/storage/blackhole/ha_blackhole.cc
+--- mariadb-10.4.12-old/storage/blackhole/ha_blackhole.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/blackhole/ha_blackhole.cc	2020-02-03 13:59:30.783561830 -0800
+@@ -19,7 +19,7 @@
+ #endif
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ #include "unireg.h"
+ #include "ha_blackhole.h"
+diff -Naur mariadb-10.4.12-old/storage/connect/cmgoconn.cpp mariadb-10.4.12-new/storage/connect/cmgoconn.cpp
+--- mariadb-10.4.12-old/storage/connect/cmgoconn.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/cmgoconn.cpp	2020-02-03 13:59:30.723561829 -0800
+@@ -9,7 +9,7 @@
+ /***********************************************************************/
+ /*  Include relevant MariaDB header file.                              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Required objects includes.                                         */
+diff -Naur mariadb-10.4.12-old/storage/connect/connect.cc mariadb-10.4.12-new/storage/connect/connect.cc
+--- mariadb-10.4.12-old/storage/connect/connect.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/connect.cc	2020-02-03 13:59:30.722561829 -0800
+@@ -33,7 +33,7 @@
+ /*  plgdbsem.h   is header containing the DB applic. declarations.     */
+ /***********************************************************************/
+ #define DONT_DEFINE_VOID
+-#include <my_global.h>
++#include "my_global.h"
+ #include "handler.h"
+ #undef  OFFSET
+ 
+diff -Naur mariadb-10.4.12-old/storage/connect/ha_connect.cc mariadb-10.4.12-new/storage/connect/ha_connect.cc
+--- mariadb-10.4.12-old/storage/connect/ha_connect.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/ha_connect.cc	2020-02-03 13:59:30.760561829 -0800
+@@ -107,7 +107,7 @@
+ 
+ #define MYSQL_SERVER 1
+ #define DONT_DEFINE_VOID
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_parse.h"
+ #include "sql_base.h"
+ #include "sql_partition.h"
+diff -Naur mariadb-10.4.12-old/storage/connect/javaconn.cpp mariadb-10.4.12-new/storage/connect/javaconn.cpp
+--- mariadb-10.4.12-old/storage/connect/javaconn.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/javaconn.cpp	2020-02-03 13:59:30.740561829 -0800
+@@ -16,7 +16,7 @@
+ /***********************************************************************/
+ /*  Include relevant MariaDB header file.                              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ //#include <m_string.h>
+ #if defined(__WIN__)
+ #include <direct.h>                      // for getcwd
+diff -Naur mariadb-10.4.12-old/storage/connect/jdbconn.cpp mariadb-10.4.12-new/storage/connect/jdbconn.cpp
+--- mariadb-10.4.12-old/storage/connect/jdbconn.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/jdbconn.cpp	2020-02-03 13:59:30.742561829 -0800
+@@ -16,7 +16,7 @@
+ /***********************************************************************/
+ /*  Include relevant MariaDB header file.                              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #if defined(__WIN__)
+ //nclude <io.h>
+diff -Naur mariadb-10.4.12-old/storage/connect/jmgoconn.cpp mariadb-10.4.12-new/storage/connect/jmgoconn.cpp
+--- mariadb-10.4.12-old/storage/connect/jmgoconn.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/jmgoconn.cpp	2020-02-03 13:59:30.748561829 -0800
+@@ -9,7 +9,7 @@
+ /***********************************************************************/
+ /*  Include relevant MariaDB header file.                              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Required objects includes.                                         */
+diff -Naur mariadb-10.4.12-old/storage/connect/json.cpp mariadb-10.4.12-new/storage/connect/json.cpp
+--- mariadb-10.4.12-old/storage/connect/json.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/json.cpp	2020-02-03 13:59:30.750561829 -0800
+@@ -9,7 +9,7 @@
+ /***********************************************************************/
+ /*  Include relevant sections of the MariaDB header file.              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Include application header files:                                  */
+diff -Naur mariadb-10.4.12-old/storage/connect/jsonudf.cpp mariadb-10.4.12-new/storage/connect/jsonudf.cpp
+--- mariadb-10.4.12-old/storage/connect/jsonudf.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/jsonudf.cpp	2020-02-03 13:59:30.735561829 -0800
+@@ -7,7 +7,7 @@
+ /*********************************************************************************/
+ /*  Include relevant sections of the MariaDB header file.                        */
+ /*********************************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysqld.h>
+ #include <mysql.h>
+ #include <sql_error.h>
+diff -Naur mariadb-10.4.12-old/storage/connect/mongo.cpp mariadb-10.4.12-new/storage/connect/mongo.cpp
+--- mariadb-10.4.12-old/storage/connect/mongo.cpp	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/mongo.cpp	2020-02-03 13:59:30.743561829 -0800
+@@ -7,7 +7,7 @@
+ /***********************************************************************/
+ /*  Include relevant sections of the MariaDB header file.              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Include application header files:                                  */
+diff -Naur mariadb-10.4.12-old/storage/connect/mycat.cc mariadb-10.4.12-new/storage/connect/mycat.cc
+--- mariadb-10.4.12-old/storage/connect/mycat.cc	2020-01-26 12:43:53.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/mycat.cc	2020-02-03 13:59:30.736561829 -0800
+@@ -29,7 +29,7 @@
+ /*  Include relevant MariaDB header file.                              */
+ /***********************************************************************/
+ #define DONT_DEFINE_VOID
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #if defined(UNIX)
+ #include <unistd.h>
+diff -Naur mariadb-10.4.12-old/storage/connect/noconst.c mariadb-10.4.12-new/storage/connect/noconst.c
+--- mariadb-10.4.12-old/storage/connect/noconst.c	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/noconst.c	2020-02-03 13:59:30.727561829 -0800
+@@ -1,7 +1,7 @@
+ /***********************************************************************/
+ /*  (C) Copyright to the author Olivier BERTRAND          2015         */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysqld.h>
+ #include <string.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/connect/odbconn.cpp mariadb-10.4.12-new/storage/connect/odbconn.cpp
+--- mariadb-10.4.12-old/storage/connect/odbconn.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/odbconn.cpp	2020-02-03 13:59:30.747561829 -0800
+@@ -9,7 +9,7 @@
+ /***********************************************************************/
+ /*  Include relevant MariaDB header file.                              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #if defined(__WIN__)
+ //nclude <io.h>
+diff -Naur mariadb-10.4.12-old/storage/connect/tabcmg.cpp mariadb-10.4.12-new/storage/connect/tabcmg.cpp
+--- mariadb-10.4.12-old/storage/connect/tabcmg.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/tabcmg.cpp	2020-02-03 13:59:30.761561829 -0800
+@@ -7,7 +7,7 @@
+ /***********************************************************************/
+ /*  Include relevant sections of the MariaDB header file.              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Include application header files:                                  */
+diff -Naur mariadb-10.4.12-old/storage/connect/tabjmg.cpp mariadb-10.4.12-new/storage/connect/tabjmg.cpp
+--- mariadb-10.4.12-old/storage/connect/tabjmg.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/tabjmg.cpp	2020-02-03 13:59:30.737561829 -0800
+@@ -7,7 +7,7 @@
+ /***********************************************************************/
+ /*  Include relevant sections of the MariaDB header file.              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Include application header files:                                  */
+diff -Naur mariadb-10.4.12-old/storage/connect/tabjson.cpp mariadb-10.4.12-new/storage/connect/tabjson.cpp
+--- mariadb-10.4.12-old/storage/connect/tabjson.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/tabjson.cpp	2020-02-03 13:59:30.727561829 -0800
+@@ -7,7 +7,7 @@
+ /***********************************************************************/
+ /*  Include relevant sections of the MariaDB header file.              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Include application header files:                                  */
+diff -Naur mariadb-10.4.12-old/storage/connect/tabrest.cpp mariadb-10.4.12-new/storage/connect/tabrest.cpp
+--- mariadb-10.4.12-old/storage/connect/tabrest.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/tabrest.cpp	2020-02-03 13:59:30.762561829 -0800
+@@ -9,7 +9,7 @@
+ /*  Definitions needed by the included files.                          */
+ /***********************************************************************/
+ #if defined(MARIADB)
+-#include <my_global.h>    // All MariaDB stuff
++#include "my_global.h"    // All MariaDB stuff
+ #else   // !MARIADB       OEM module
+ #include "mini-global.h"
+ #define _MAX_PATH 260
+diff -Naur mariadb-10.4.12-old/storage/connect/tabutil.cpp mariadb-10.4.12-new/storage/connect/tabutil.cpp
+--- mariadb-10.4.12-old/storage/connect/tabutil.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/tabutil.cpp	2020-02-03 13:59:30.738561829 -0800
+@@ -10,7 +10,7 @@
+ /*  Include relevant section of system dependant header files.         */
+ /***********************************************************************/
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_class.h"
+ #include "table.h"
+ #include "field.h"
+diff -Naur mariadb-10.4.12-old/storage/connect/tabvir.cpp mariadb-10.4.12-new/storage/connect/tabvir.cpp
+--- mariadb-10.4.12-old/storage/connect/tabvir.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/tabvir.cpp	2020-02-03 13:59:30.739561829 -0800
+@@ -7,7 +7,7 @@
+ /***********************************************************************/
+ /*  Include relevant sections of the MariaDB header file.              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Include application header files:                                  */
+diff -Naur mariadb-10.4.12-old/storage/connect/tabzip.cpp mariadb-10.4.12-new/storage/connect/tabzip.cpp
+--- mariadb-10.4.12-old/storage/connect/tabzip.cpp	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/tabzip.cpp	2020-02-03 13:59:30.737561829 -0800
+@@ -7,7 +7,7 @@
+ /***********************************************************************/
+ /*  Include relevant sections of the MariaDB header file.              */
+ /***********************************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /***********************************************************************/
+ /*  Include application header files:                                  */
+diff -Naur mariadb-10.4.12-old/storage/connect/user_connect.cc mariadb-10.4.12-new/storage/connect/user_connect.cc
+--- mariadb-10.4.12-old/storage/connect/user_connect.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/connect/user_connect.cc	2020-02-03 13:59:30.742561829 -0800
+@@ -36,7 +36,7 @@
+ 
+ #define DONT_DEFINE_VOID
+ #define MYSQL_SERVER
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_class.h"
+ #undef  OFFSET
+ 
+diff -Naur mariadb-10.4.12-old/storage/csv/ha_tina.cc mariadb-10.4.12-new/storage/csv/ha_tina.cc
+--- mariadb-10.4.12-old/storage/csv/ha_tina.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/csv/ha_tina.cc	2020-02-03 13:59:30.800561830 -0800
+@@ -41,7 +41,7 @@
+  -Brian
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ #include "sql_class.h"                          // SSV
+ #include <mysql/psi/mysql_file.h>
+diff -Naur mariadb-10.4.12-old/storage/csv/transparent_file.cc mariadb-10.4.12-new/storage/csv/transparent_file.cc
+--- mariadb-10.4.12-old/storage/csv/transparent_file.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/csv/transparent_file.cc	2020-02-03 13:59:30.798561830 -0800
+@@ -17,7 +17,7 @@
+ #pragma implementation        // gcc: Class implementation
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ #include <mysql/psi/mysql_file.h>
+ #include "transparent_file.h"
+diff -Naur mariadb-10.4.12-old/storage/federated/ha_federated.cc mariadb-10.4.12-new/storage/federated/ha_federated.cc
+--- mariadb-10.4.12-old/storage/federated/ha_federated.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/federated/ha_federated.cc	2020-02-03 13:59:30.524561827 -0800
+@@ -373,7 +373,7 @@
+ 
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ #include "sql_servers.h"         // FOREIGN_SERVER, get_server_by_name
+ #include "sql_class.h"           // SSV
+diff -Naur mariadb-10.4.12-old/storage/federatedx/federatedx_io.cc mariadb-10.4.12-new/storage/federatedx/federatedx_io.cc
+--- mariadb-10.4.12-old/storage/federatedx/federatedx_io.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/federatedx/federatedx_io.cc	2020-02-03 13:59:30.455561826 -0800
+@@ -28,7 +28,7 @@
+ 
+ 
+ /*#define MYSQL_SERVER 1*/
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ 
+ #include "ha_federatedx.h"
+diff -Naur mariadb-10.4.12-old/storage/federatedx/federatedx_io_mysql.cc mariadb-10.4.12-new/storage/federatedx/federatedx_io_mysql.cc
+--- mariadb-10.4.12-old/storage/federatedx/federatedx_io_mysql.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/federatedx/federatedx_io_mysql.cc	2020-02-03 13:59:30.450561826 -0800
+@@ -28,7 +28,7 @@
+ 
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ #include <mysqld_error.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/federatedx/federatedx_io_null.cc mariadb-10.4.12-new/storage/federatedx/federatedx_io_null.cc
+--- mariadb-10.4.12-old/storage/federatedx/federatedx_io_null.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/federatedx/federatedx_io_null.cc	2020-02-03 13:59:30.457561826 -0800
+@@ -28,7 +28,7 @@
+ 
+ 
+ /*#define MYSQL_SERVER 1*/
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ 
+ #include "ha_federatedx.h"
+diff -Naur mariadb-10.4.12-old/storage/federatedx/federatedx_txn.cc mariadb-10.4.12-new/storage/federatedx/federatedx_txn.cc
+--- mariadb-10.4.12-old/storage/federatedx/federatedx_txn.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/federatedx/federatedx_txn.cc	2020-02-03 13:59:30.457561826 -0800
+@@ -31,7 +31,7 @@
+ #endif
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ 
+ #include "ha_federatedx.h"
+diff -Naur mariadb-10.4.12-old/storage/federatedx/ha_federatedx.cc mariadb-10.4.12-new/storage/federatedx/ha_federatedx.cc
+--- mariadb-10.4.12-old/storage/federatedx/ha_federatedx.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/federatedx/ha_federatedx.cc	2020-02-03 13:59:30.455561826 -0800
+@@ -312,7 +312,7 @@
+ #endif
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql/plugin.h>
+ #include "ha_federatedx.h"
+ #include "sql_servers.h"
+diff -Naur mariadb-10.4.12-old/storage/federatedx/ha_federatedx.h mariadb-10.4.12-new/storage/federatedx/ha_federatedx.h
+--- mariadb-10.4.12-old/storage/federatedx/ha_federatedx.h	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/federatedx/ha_federatedx.h	2020-02-03 13:59:30.456561826 -0800
+@@ -39,7 +39,7 @@
+ #endif
+ 
+ //#include <mysql.h>
+-#include <my_global.h>
++#include "my_global.h"
+ #include <thr_lock.h>
+ #include "handler.h"
+ 
+diff -Naur mariadb-10.4.12-old/storage/heap/heapdef.h mariadb-10.4.12-new/storage/heap/heapdef.h
+--- mariadb-10.4.12-old/storage/heap/heapdef.h	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/heap/heapdef.h	2020-02-03 13:59:30.782561830 -0800
+@@ -15,7 +15,7 @@
+ 
+ /* This file is included in all heap-files */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_base.h>
+ C_MODE_START
+ #include <my_pthread.h>
+diff -Naur mariadb-10.4.12-old/storage/heap/hp_test1.c mariadb-10.4.12-new/storage/heap/hp_test1.c
+--- mariadb-10.4.12-old/storage/heap/hp_test1.c	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/heap/hp_test1.c	2020-02-03 13:59:30.782561830 -0800
+@@ -19,7 +19,7 @@
+    raderas.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include "heap.h"
+diff -Naur mariadb-10.4.12-old/storage/innobase/include/univ.i mariadb-10.4.12-new/storage/innobase/include/univ.i
+--- mariadb-10.4.12-old/storage/innobase/include/univ.i	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/innobase/include/univ.i	2020-02-03 13:59:30.504561827 -0800
+@@ -76,7 +76,7 @@
+ used throughout InnoDB but do not include too much themselves.  They
+ support cross-platform development and expose comonly used SQL names. */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "my_counter.h"
+ 
+ /* JAN: TODO: missing 5.7 header */
+diff -Naur mariadb-10.4.12-old/storage/innobase/log/log0crypt.cc mariadb-10.4.12-new/storage/innobase/log/log0crypt.cc
+--- mariadb-10.4.12-old/storage/innobase/log/log0crypt.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/innobase/log/log0crypt.cc	2020-02-03 13:59:30.505561827 -0800
+@@ -24,7 +24,7 @@
+ Modified           Jan Lindström jan.lindstrom@mariadb.com
+ MDEV-11782: Rewritten for MariaDB 10.2 by Marko Mäkelä, MariaDB Corporation.
+ *******************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ #include "m_string.h"
+ #include "log0crypt.h"
+ #include <mysql/service_my_crypt.h>
+diff -Naur mariadb-10.4.12-old/storage/innobase/row/row0merge.cc mariadb-10.4.12-new/storage/innobase/row/row0merge.cc
+--- mariadb-10.4.12-old/storage/innobase/row/row0merge.cc	2020-01-26 12:43:54.000000000 -0800
++++ mariadb-10.4.12-new/storage/innobase/row/row0merge.cc	2020-02-03 13:59:30.503561827 -0800
+@@ -24,7 +24,7 @@
+ Created 12/4/2005 Jan Lindstrom
+ Completed by Sunny Bains and Marko Makela
+ *******************************************************/
+-#include <my_global.h>
++#include "my_global.h"
+ #include <log.h>
+ #include <sql_class.h>
+ #include <math.h>
+diff -Naur mariadb-10.4.12-old/storage/maria/ha_maria.cc mariadb-10.4.12-new/storage/maria/ha_maria.cc
+--- mariadb-10.4.12-old/storage/maria/ha_maria.cc	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/ha_maria.cc	2020-02-03 13:59:30.789561830 -0800
+@@ -21,7 +21,7 @@
+ #endif
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_ctype.h>
+ #include <my_dir.h>
+ #include <myisampack.h>
+diff -Naur mariadb-10.4.12-old/storage/maria/lockman.c mariadb-10.4.12-new/storage/maria/lockman.c
+--- mariadb-10.4.12-old/storage/maria/lockman.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/lockman.c	2020-02-03 13:59:30.794561830 -0800
+@@ -105,7 +105,7 @@
+   getlock_result[] table.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_bit.h>
+ #include <lf.h>
+diff -Naur mariadb-10.4.12-old/storage/maria/maria_def.h mariadb-10.4.12-new/storage/maria/maria_def.h
+--- mariadb-10.4.12-old/storage/maria/maria_def.h	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/maria_def.h	2020-02-03 13:59:30.797561830 -0800
+@@ -15,7 +15,7 @@
+ 
+ /* This file is included by all internal maria files */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "maria.h"				/* Structs & some defines */
+ #include "ma_pagecache.h"
+ #include <myisampack.h>				/* packing of keys */
+diff -Naur mariadb-10.4.12-old/storage/maria/ma_sp_test.c mariadb-10.4.12-new/storage/maria/ma_sp_test.c
+--- mariadb-10.4.12-old/storage/maria/ma_sp_test.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/ma_sp_test.c	2020-02-03 13:59:30.797561830 -0800
+@@ -16,7 +16,7 @@
+ /* Testing of the basic functions of a MARIA spatial table        */
+ /* Written by Alex Barkov, who has a shared copyright to this code */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "maria.h"
+ 
+ #ifdef HAVE_SPATIAL
+diff -Naur mariadb-10.4.12-old/storage/maria/trnman.c mariadb-10.4.12-new/storage/maria/trnman.c
+--- mariadb-10.4.12-old/storage/maria/trnman.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/trnman.c	2020-02-03 13:59:30.790561830 -0800
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include "trnman.h"
+diff -Naur mariadb-10.4.12-old/storage/maria/unittest/lockman1-t.c mariadb-10.4.12-new/storage/maria/unittest/lockman1-t.c
+--- mariadb-10.4.12-old/storage/maria/unittest/lockman1-t.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/unittest/lockman1-t.c	2020-02-03 13:59:30.793561830 -0800
+@@ -21,7 +21,7 @@
+ 
+ #include <tap.h>
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_atomic.h>
+ #include <lf.h>
+diff -Naur mariadb-10.4.12-old/storage/maria/unittest/lockman2-t.c mariadb-10.4.12-new/storage/maria/unittest/lockman2-t.c
+--- mariadb-10.4.12-old/storage/maria/unittest/lockman2-t.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/unittest/lockman2-t.c	2020-02-03 13:59:30.792561830 -0800
+@@ -21,7 +21,7 @@
+ 
+ #include <tap.h>
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_atomic.h>
+ #include <lf.h>
+diff -Naur mariadb-10.4.12-old/storage/maria/unittest/lockman-t.c mariadb-10.4.12-new/storage/maria/unittest/lockman-t.c
+--- mariadb-10.4.12-old/storage/maria/unittest/lockman-t.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/unittest/lockman-t.c	2020-02-03 13:59:30.793561830 -0800
+@@ -21,7 +21,7 @@
+ 
+ #include <tap.h>
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_atomic.h>
+ #include <lf.h>
+diff -Naur mariadb-10.4.12-old/storage/maria/unittest/ma_control_file-t.c mariadb-10.4.12-new/storage/maria/unittest/ma_control_file-t.c
+--- mariadb-10.4.12-old/storage/maria/unittest/ma_control_file-t.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/unittest/ma_control_file-t.c	2020-02-03 13:59:30.791561830 -0800
+@@ -20,7 +20,7 @@
+   pull the plug programmatically :)
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <tap.h>
+ #ifdef _WIN32
+diff -Naur mariadb-10.4.12-old/storage/maria/unittest/trnman-t.c mariadb-10.4.12-new/storage/maria/unittest/trnman-t.c
+--- mariadb-10.4.12-old/storage/maria/unittest/trnman-t.c	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/maria/unittest/trnman-t.c	2020-02-03 13:59:30.792561830 -0800
+@@ -15,7 +15,7 @@
+ 
+ #include <tap.h>
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_atomic.h>
+ #include <lf.h>
+diff -Naur mariadb-10.4.12-old/storage/mroonga/mrn_mysql.h mariadb-10.4.12-new/storage/mroonga/mrn_mysql.h
+--- mariadb-10.4.12-old/storage/mroonga/mrn_mysql.h	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/mroonga/mrn_mysql.h	2020-02-03 13:59:30.505561827 -0800
+@@ -21,7 +21,7 @@
+ #define MRN_MYSQL_H_
+ 
+ #ifdef HAVE_CONFIG_H
+-#  include <my_global.h>
++#  include "my_global.h"
+ /* We need to undefine them because my_config.h defines them. :< */
+ #  undef VERSION
+ #  undef PACKAGE
+diff -Naur mariadb-10.4.12-old/storage/myisam/ftdefs.h mariadb-10.4.12-new/storage/myisam/ftdefs.h
+--- mariadb-10.4.12-old/storage/myisam/ftdefs.h	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisam/ftdefs.h	2020-02-03 13:59:30.510561827 -0800
+@@ -19,7 +19,7 @@
+ /* some definitions for full-text indices */
+ 
+ /* ftdefs.h is is always included first when used, so we have to include my_global.h here */
+-#include <my_global.h>
++#include "my_global.h"
+ #include "fulltext.h"
+ #include <m_ctype.h>
+ #include <my_tree.h>
+diff -Naur mariadb-10.4.12-old/storage/myisam/ha_myisam.cc mariadb-10.4.12-new/storage/myisam/ha_myisam.cc
+--- mariadb-10.4.12-old/storage/myisam/ha_myisam.cc	2020-01-26 12:43:55.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisam/ha_myisam.cc	2020-02-03 13:59:30.515561827 -0800
+@@ -21,7 +21,7 @@
+ #endif
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_plugin.h"
+ #include "myisamdef.h"
+ #include "sql_priv.h"
+diff -Naur mariadb-10.4.12-old/storage/myisam/mi_test1.c mariadb-10.4.12-new/storage/myisam/mi_test1.c
+--- mariadb-10.4.12-old/storage/myisam/mi_test1.c	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisam/mi_test1.c	2020-02-03 13:59:30.516561827 -0800
+@@ -16,7 +16,7 @@
+ 
+ /* Testing of the basic functions of a MyISAM table */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "myisam.h"
+ #include <my_getopt.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/storage/myisam/mi_test3.c mariadb-10.4.12-new/storage/myisam/mi_test3.c
+--- mariadb-10.4.12-old/storage/myisam/mi_test3.c	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisam/mi_test3.c	2020-02-03 13:59:30.511561827 -0800
+@@ -17,7 +17,7 @@
+ 
+ #ifndef _WIN32 /*no fork() in Windows*/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "myisam.h"
+ #include <sys/types.h>
+ #ifdef HAVE_SYS_WAIT_H
+diff -Naur mariadb-10.4.12-old/storage/myisam/myisamdef.h mariadb-10.4.12-new/storage/myisam/myisamdef.h
+--- mariadb-10.4.12-old/storage/myisam/myisamdef.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisam/myisamdef.h	2020-02-03 13:59:30.510561827 -0800
+@@ -17,7 +17,7 @@
+ 
+ /* This file is included by all internal myisam files */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <myisam.h>                     /* Structs & some defines */
+ #include <myisampack.h>                 /* packing of keys */
+ #include <my_tree.h>
+diff -Naur mariadb-10.4.12-old/storage/myisam/rt_test.c mariadb-10.4.12-new/storage/myisam/rt_test.c
+--- mariadb-10.4.12-old/storage/myisam/rt_test.c	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisam/rt_test.c	2020-02-03 13:59:30.508561827 -0800
+@@ -17,7 +17,7 @@
+ /* Written by Alex Barkov who has a shared copyright to this code */
+ 
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "myisam.h"
+ 
+ #ifdef HAVE_RTREE_KEYS
+diff -Naur mariadb-10.4.12-old/storage/myisam/sp_test.c mariadb-10.4.12-new/storage/myisam/sp_test.c
+--- mariadb-10.4.12-old/storage/myisam/sp_test.c	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisam/sp_test.c	2020-02-03 13:59:30.511561827 -0800
+@@ -16,7 +16,7 @@
+ /* Testing of the basic functions of a MyISAM spatial table        */
+ /* Written by Alex Barkov, who has a shared copyright to this code */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "myisam.h"
+ 
+ #ifdef HAVE_SPATIAL
+diff -Naur mariadb-10.4.12-old/storage/myisammrg/ha_myisammrg.cc mariadb-10.4.12-new/storage/myisammrg/ha_myisammrg.cc
+--- mariadb-10.4.12-old/storage/myisammrg/ha_myisammrg.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/myisammrg/ha_myisammrg.cc	2020-02-03 13:59:30.508561827 -0800
+@@ -91,7 +91,7 @@
+ #endif
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "sql_priv.h"
+ #include "unireg.h"
+ #include "sql_cache.h"                          // query_cache_*
+diff -Naur mariadb-10.4.12-old/storage/oqgraph/ha_oqgraph.cc mariadb-10.4.12-new/storage/oqgraph/ha_oqgraph.cc
+--- mariadb-10.4.12-old/storage/oqgraph/ha_oqgraph.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/oqgraph/ha_oqgraph.cc	2020-02-03 13:59:30.802561830 -0800
+@@ -39,7 +39,7 @@
+ #pragma implementation                          // gcc: Class implementation
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #define MYSQL_SERVER 1                          // to have THD
+ /* For the moment, include code to deal with integer latches.
+  * I have wrapped it with this #ifdef to make it easier to find and remove in the future.
+diff -Naur mariadb-10.4.12-old/storage/oqgraph/oqgraph_thunk.cc mariadb-10.4.12-new/storage/oqgraph/oqgraph_thunk.cc
+--- mariadb-10.4.12-old/storage/oqgraph/oqgraph_thunk.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/oqgraph/oqgraph_thunk.cc	2020-02-03 13:59:30.803561830 -0800
+@@ -23,7 +23,7 @@
+ */
+ 
+ #define MYSQL_SERVER
+-#include <my_global.h>
++#include "my_global.h"
+ #include "oqgraph_thunk.h"
+ 
+ #include <boost/tuple/tuple.hpp>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/gen_pfs_lex_token.cc mariadb-10.4.12-new/storage/perfschema/gen_pfs_lex_token.cc
+--- mariadb-10.4.12-old/storage/perfschema/gen_pfs_lex_token.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/gen_pfs_lex_token.cc	2020-02-03 13:59:30.767561829 -0800
+@@ -21,7 +21,7 @@
+    along with this program; if not, write to the Free Software Foundation,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/pfs_defaults.cc mariadb-10.4.12-new/storage/perfschema/pfs_defaults.cc
+--- mariadb-10.4.12-old/storage/perfschema/pfs_defaults.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/pfs_defaults.cc	2020-02-03 13:59:30.768561829 -0800
+@@ -25,7 +25,7 @@
+   Default setup (implementation).
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "pfs.h"
+ #include "pfs_defaults.h"
+ #include "pfs_instr.h"
+diff -Naur mariadb-10.4.12-old/storage/perfschema/pfs_global.cc mariadb-10.4.12-new/storage/perfschema/pfs_global.cc
+--- mariadb-10.4.12-old/storage/perfschema/pfs_global.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/pfs_global.cc	2020-02-03 13:59:30.763561829 -0800
+@@ -25,7 +25,7 @@
+   Miscellaneous global dependencies (implementation).
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "pfs_global.h"
+ #include <my_sys.h>
+ #include <my_net.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/pfs_instr.cc mariadb-10.4.12-new/storage/perfschema/pfs_instr.cc
+--- mariadb-10.4.12-old/storage/perfschema/pfs_instr.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/pfs_instr.cc	2020-02-03 13:59:30.766561829 -0800
+@@ -25,7 +25,7 @@
+   Performance schema instruments (implementation).
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string.h>
+ 
+ #include "my_sys.h"
+diff -Naur mariadb-10.4.12-old/storage/perfschema/pfs_instr_class.h mariadb-10.4.12-new/storage/perfschema/pfs_instr_class.h
+--- mariadb-10.4.12-old/storage/perfschema/pfs_instr_class.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/pfs_instr_class.h	2020-02-03 13:59:30.763561829 -0800
+@@ -48,7 +48,7 @@
+ */
+ #define PFS_MAX_FULL_PREFIX_NAME_LENGTH 32
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <mysql/psi/psi.h>
+ #include "pfs_lock.h"
+diff -Naur mariadb-10.4.12-old/storage/perfschema/table_session_account_connect_attrs.cc mariadb-10.4.12-new/storage/perfschema/table_session_account_connect_attrs.cc
+--- mariadb-10.4.12-old/storage/perfschema/table_session_account_connect_attrs.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/table_session_account_connect_attrs.cc	2020-02-03 13:59:30.768561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "table_session_account_connect_attrs.h"
+ 
+ THR_LOCK table_session_account_connect_attrs::m_table_lock;
+diff -Naur mariadb-10.4.12-old/storage/perfschema/table_session_connect_attrs.cc mariadb-10.4.12-new/storage/perfschema/table_session_connect_attrs.cc
+--- mariadb-10.4.12-old/storage/perfschema/table_session_connect_attrs.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/table_session_connect_attrs.cc	2020-02-03 13:59:30.767561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "table_session_connect_attrs.h"
+ 
+ THR_LOCK table_session_connect_attrs::m_table_lock;
+diff -Naur mariadb-10.4.12-old/storage/perfschema/table_session_connect.cc mariadb-10.4.12-new/storage/perfschema/table_session_connect.cc
+--- mariadb-10.4.12-old/storage/perfschema/table_session_connect.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/table_session_connect.cc	2020-02-03 13:59:30.767561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "table_session_connect.h"
+ 
+ table_session_connect::table_session_connect(const PFS_engine_table_share *share)
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_account-oom-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_account-oom-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_account-oom-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_account-oom-t.cc	2020-02-03 13:59:30.775561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_instr.h>
+ #include <pfs_stat.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_connect_attr-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_connect_attr-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_connect_attr-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_connect_attr-t.cc	2020-02-03 13:59:30.771561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_server.h>
+ #include <pfs_instr_class.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_host-oom-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_host-oom-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_host-oom-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_host-oom-t.cc	2020-02-03 13:59:30.774561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_instr.h>
+ #include <pfs_stat.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr_class-oom-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr_class-oom-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr_class-oom-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr_class-oom-t.cc	2020-02-03 13:59:30.775561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_instr_class.h>
+ #include <pfs_global.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr_class-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr_class-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr_class-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr_class-t.cc	2020-02-03 13:59:30.769561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <string.h>                             // strncpy
+ #include <pfs_instr_class.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr-oom-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr-oom-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr-oom-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr-oom-t.cc	2020-02-03 13:59:30.774561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_instr.h>
+ #include <pfs_stat.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_instr-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_instr-t.cc	2020-02-03 13:59:30.770561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_instr.h>
+ #include <pfs_stat.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_misc-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_misc-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_misc-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_misc-t.cc	2020-02-03 13:59:30.775561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <pfs_instr.h>
+ #include <pfs_stat.h>
+ #include <pfs_global.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs-t.cc	2020-02-03 13:59:30.773561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_server.h>
+ #include <pfs_instr_class.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_timer-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_timer-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_timer-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_timer-t.cc	2020-02-03 13:59:30.770561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_atomic.h>
+ #include <pfs_timer.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/pfs_user-oom-t.cc mariadb-10.4.12-new/storage/perfschema/unittest/pfs_user-oom-t.cc
+--- mariadb-10.4.12-old/storage/perfschema/unittest/pfs_user-oom-t.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/pfs_user-oom-t.cc	2020-02-03 13:59:30.768561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <pfs_instr.h>
+ #include <pfs_stat.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/stub_pfs_defaults.h mariadb-10.4.12-new/storage/perfschema/unittest/stub_pfs_defaults.h
+--- mariadb-10.4.12-old/storage/perfschema/unittest/stub_pfs_defaults.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/stub_pfs_defaults.h	2020-02-03 13:59:30.775561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <pfs.h>
+ #include <pfs_defaults.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/stub_pfs_global.h mariadb-10.4.12-new/storage/perfschema/unittest/stub_pfs_global.h
+--- mariadb-10.4.12-old/storage/perfschema/unittest/stub_pfs_global.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/stub_pfs_global.h	2020-02-03 13:59:30.771561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <pfs_global.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/storage/perfschema/unittest/stub_print_error.h mariadb-10.4.12-new/storage/perfschema/unittest/stub_print_error.h
+--- mariadb-10.4.12-old/storage/perfschema/unittest/stub_print_error.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/perfschema/unittest/stub_print_error.h	2020-02-03 13:59:30.775561829 -0800
+@@ -20,7 +20,7 @@
+   along with this program; if not, write to the Free Software Foundation,
+   51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <pfs_global.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/event_listener.cc mariadb-10.4.12-new/storage/rocksdb/event_listener.cc
+--- mariadb-10.4.12-old/storage/rocksdb/event_listener.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/event_listener.cc	2020-02-03 13:59:30.496561827 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* The C++ file's header */
+ #include "./event_listener.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/ha_rocksdb.cc mariadb-10.4.12-new/storage/rocksdb/ha_rocksdb.cc
+--- mariadb-10.4.12-old/storage/rocksdb/ha_rocksdb.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/ha_rocksdb.cc	2020-02-03 13:59:30.487561827 -0800
+@@ -23,7 +23,7 @@
+ /* For use of 'PRIu64': */
+ #define __STDC_FORMAT_MACROS
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <inttypes.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/nosql_access.cc mariadb-10.4.12-new/storage/rocksdb/nosql_access.cc
+--- mariadb-10.4.12-old/storage/rocksdb/nosql_access.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/nosql_access.cc	2020-02-03 13:59:30.487561827 -0800
+@@ -16,7 +16,7 @@
+ 
+ #define MYSQL_SERVER 1
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ /* This C++ file's header */
+ #include "./nosql_access.h"
+ 
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/properties_collector.cc mariadb-10.4.12-new/storage/rocksdb/properties_collector.cc
+--- mariadb-10.4.12-old/storage/rocksdb/properties_collector.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/properties_collector.cc	2020-02-03 13:59:30.461561826 -0800
+@@ -17,7 +17,7 @@
+ #ifdef _WIN32
+ #define _CRT_RAND_S
+ #endif
+-#include <my_global.h>
++#include "my_global.h"
+ #ifdef _WIN32
+ #include <stdlib.h>
+ #define rand_r rand_s
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_cf_manager.cc mariadb-10.4.12-new/storage/rocksdb/rdb_cf_manager.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_cf_manager.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_cf_manager.cc	2020-02-03 13:59:30.487561827 -0800
+@@ -21,7 +21,7 @@
+ /* For use of 'PRIu64': */
+ #define __STDC_FORMAT_MACROS
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <inttypes.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_cf_options.cc mariadb-10.4.12-new/storage/rocksdb/rdb_cf_options.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_cf_options.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_cf_options.cc	2020-02-03 13:59:30.466561826 -0800
+@@ -18,7 +18,7 @@
+ #pragma implementation  // gcc: Class implementation
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* This C++ files header file */
+ #include "./rdb_cf_options.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_converter.cc mariadb-10.4.12-new/storage/rocksdb/rdb_converter.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_converter.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_converter.cc	2020-02-03 13:59:30.464561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* This C++ file's header file */
+ #include "./rdb_converter.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_datadic.cc mariadb-10.4.12-new/storage/rocksdb/rdb_datadic.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_datadic.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_datadic.cc	2020-02-03 13:59:30.495561827 -0800
+@@ -21,7 +21,7 @@
+ /* For use of 'PRIu64': */
+ #define __STDC_FORMAT_MACROS
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ /* This C++ file's header file */
+ #include "./rdb_datadic.h"
+ 
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_index_merge.cc mariadb-10.4.12-new/storage/rocksdb/rdb_index_merge.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_index_merge.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_index_merge.cc	2020-02-03 13:59:30.465561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* This C++ file's header file */
+ #include "./rdb_index_merge.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_i_s.cc mariadb-10.4.12-new/storage/rocksdb/rdb_i_s.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_i_s.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_i_s.cc	2020-02-03 13:59:30.460561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* C++ standard header files */
+ #include <algorithm>
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_mariadb_server_port.cc mariadb-10.4.12-new/storage/rocksdb/rdb_mariadb_server_port.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_mariadb_server_port.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_mariadb_server_port.cc	2020-02-03 13:59:30.464561826 -0800
+@@ -1,4 +1,4 @@
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ 
+ /* MySQL includes */
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_mutex_wrapper.cc mariadb-10.4.12-new/storage/rocksdb/rdb_mutex_wrapper.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_mutex_wrapper.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_mutex_wrapper.cc	2020-02-03 13:59:30.495561827 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* This C++ file's header file */
+ #include "./rdb_mutex_wrapper.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_perf_context.cc mariadb-10.4.12-new/storage/rocksdb/rdb_perf_context.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_perf_context.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_perf_context.cc	2020-02-03 13:59:30.466561826 -0800
+@@ -15,7 +15,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include "rdb_mariadb_port.h"
+ /* This C++ file's header file */
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_perf_context.h mariadb-10.4.12-new/storage/rocksdb/rdb_perf_context.h
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_perf_context.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_perf_context.h	2020-02-03 13:59:30.461561826 -0800
+@@ -22,7 +22,7 @@
+ #include <string>
+ 
+ /* MySQL header files */
+-#include <my_global.h>
++#include "my_global.h"
+ #include "./handler.h"
+ 
+ #include "rdb_mariadb_port.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_psi.h mariadb-10.4.12-new/storage/rocksdb/rdb_psi.h
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_psi.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_psi.h	2020-02-03 13:59:30.496561827 -0800
+@@ -18,7 +18,7 @@
+ #define _rdb_psi_h_
+ 
+ /* MySQL header files */
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ 
+ #include <mysql/psi/mysql_stage.h>
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_sst_info.cc mariadb-10.4.12-new/storage/rocksdb/rdb_sst_info.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_sst_info.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_sst_info.cc	2020-02-03 13:59:30.463561826 -0800
+@@ -17,7 +17,7 @@
+ /* For PRIu64 use below: */
+ #define __STDC_FORMAT_MACROS
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* This C++ file's header file */
+ #include "./rdb_sst_info.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_threads.cc mariadb-10.4.12-new/storage/rocksdb/rdb_threads.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_threads.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_threads.cc	2020-02-03 13:59:30.461561826 -0800
+@@ -19,7 +19,7 @@
+ #pragma implementation  // gcc: Class implementation
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* The C++ file's header */
+ #include "./rdb_threads.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_utils.cc mariadb-10.4.12-new/storage/rocksdb/rdb_utils.cc
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_utils.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_utils.cc	2020-02-03 13:59:30.462561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ /* This C++ file's header */
+ #include "./rdb_utils.h"
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/rdb_utils.h mariadb-10.4.12-new/storage/rocksdb/rdb_utils.h
+--- mariadb-10.4.12-old/storage/rocksdb/rdb_utils.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/rdb_utils.h	2020-02-03 13:59:30.496561827 -0800
+@@ -143,7 +143,7 @@
+   To increase the comprehension and readability of MyRocks codebase we'll use
+   constants similar to ones from C standard (EXIT_SUCCESS and EXIT_FAILURE) to
+   make sure that both failure and success paths are clearly identifiable. The
+-  definitions of FALSE and TRUE come from <my_global.h>.
++  definitions of FALSE and TRUE come from "my_global.h".
+ */
+ #define HA_EXIT_SUCCESS FALSE
+ #define HA_EXIT_FAILURE TRUE
+diff -Naur mariadb-10.4.12-old/storage/rocksdb/tools/mysql_ldb.cc mariadb-10.4.12-new/storage/rocksdb/tools/mysql_ldb.cc
+--- mariadb-10.4.12-old/storage/rocksdb/tools/mysql_ldb.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/rocksdb/tools/mysql_ldb.cc	2020-02-03 13:59:30.466561826 -0800
+@@ -3,7 +3,7 @@
+ //  LICENSE file in the root directory of this source tree. An additional grant
+ //  of patent rights can be found in the PATENTS file in the same directory.
+ //
+-#include <my_global.h>
++#include "my_global.h"
+ #include "../rdb_comparator.h"
+ #include "rocksdb/ldb_tool.h"
+ 
+diff -Naur mariadb-10.4.12-old/storage/sphinx/ha_sphinx.cc mariadb-10.4.12-new/storage/sphinx/ha_sphinx.cc
+--- mariadb-10.4.12-old/storage/sphinx/ha_sphinx.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/sphinx/ha_sphinx.cc	2020-02-03 13:59:30.782561830 -0800
+@@ -22,7 +22,7 @@
+ #define _CRT_NONSTDC_NO_DEPRECATE 1
+ #endif
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_version.h>
+ 
+ #if MYSQL_VERSION_ID>=50515
+diff -Naur mariadb-10.4.12-old/storage/sphinx/snippets_udf.cc mariadb-10.4.12-new/storage/sphinx/snippets_udf.cc
+--- mariadb-10.4.12-old/storage/sphinx/snippets_udf.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/sphinx/snippets_udf.cc	2020-02-03 13:59:30.776561829 -0800
+@@ -13,7 +13,7 @@
+ // did not, you can find it at http://www.gnu.org/
+ //
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string.h>
+ #include <assert.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/spider/ha_spider.cc mariadb-10.4.12-new/storage/spider/ha_spider.cc
+--- mariadb-10.4.12-old/storage/spider/ha_spider.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/ha_spider.cc	2020-02-03 13:59:30.720561829 -0800
+@@ -19,7 +19,7 @@
+ #endif
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/hs_client/config.cpp mariadb-10.4.12-new/storage/spider/hs_client/config.cpp
+--- mariadb-10.4.12-old/storage/spider/hs_client/config.cpp	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/hs_client/config.cpp	2020-02-03 13:59:30.697561829 -0800
+@@ -7,7 +7,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #if MYSQL_VERSION_ID < 50500
+ #include "mysql_priv.h"
+diff -Naur mariadb-10.4.12-old/storage/spider/hs_client/escape.cpp mariadb-10.4.12-new/storage/spider/hs_client/escape.cpp
+--- mariadb-10.4.12-old/storage/spider/hs_client/escape.cpp	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/hs_client/escape.cpp	2020-02-03 13:59:30.698561829 -0800
+@@ -7,7 +7,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "hs_compat.h"
+ #include "escape.hpp"
+diff -Naur mariadb-10.4.12-old/storage/spider/hs_client/fatal.cpp mariadb-10.4.12-new/storage/spider/hs_client/fatal.cpp
+--- mariadb-10.4.12-old/storage/spider/hs_client/fatal.cpp	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/hs_client/fatal.cpp	2020-02-03 13:59:30.698561829 -0800
+@@ -7,7 +7,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #if MYSQL_VERSION_ID < 50500
+ #include "mysql_priv.h"
+diff -Naur mariadb-10.4.12-old/storage/spider/hs_client/hstcpcli.cpp mariadb-10.4.12-new/storage/spider/hs_client/hstcpcli.cpp
+--- mariadb-10.4.12-old/storage/spider/hs_client/hstcpcli.cpp	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/hs_client/hstcpcli.cpp	2020-02-03 13:59:30.698561829 -0800
+@@ -7,7 +7,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "hs_compat.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/hs_client/socket.cpp mariadb-10.4.12-new/storage/spider/hs_client/socket.cpp
+--- mariadb-10.4.12-old/storage/spider/hs_client/socket.cpp	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/hs_client/socket.cpp	2020-02-03 13:59:30.696561829 -0800
+@@ -7,7 +7,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_config.h>
+ #ifndef __WIN__
+ #include <sys/types.h>
+@@ -21,7 +21,7 @@
+ #include <mysql/plugin.h>
+ #else
+ #if defined(MARIADB_BASE_VERSION) && MYSQL_VERSION_ID >= 100000
+-#include <my_global.h>
++#include "my_global.h"
+ #endif
+ #include "sql_priv.h"
+ #include "probes_mysql.h"
+diff -Naur mariadb-10.4.12-old/storage/spider/hs_client/string_util.cpp mariadb-10.4.12-new/storage/spider/hs_client/string_util.cpp
+--- mariadb-10.4.12-old/storage/spider/hs_client/string_util.cpp	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/hs_client/string_util.cpp	2020-02-03 13:59:30.696561829 -0800
+@@ -7,7 +7,7 @@
+  * See COPYRIGHT.txt for details.
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "hs_compat.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_conn.cc mariadb-10.4.12-new/storage/spider/spd_conn.cc
+--- mariadb-10.4.12-old/storage/spider/spd_conn.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_conn.cc	2020-02-03 13:59:30.660561828 -0800
+@@ -15,7 +15,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_copy_tables.cc mariadb-10.4.12-new/storage/spider/spd_copy_tables.cc
+--- mariadb-10.4.12-old/storage/spider/spd_copy_tables.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_copy_tables.cc	2020-02-03 13:59:30.608561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_db_conn.cc mariadb-10.4.12-new/storage/spider/spd_db_conn.cc
+--- mariadb-10.4.12-old/storage/spider/spd_db_conn.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_db_conn.cc	2020-02-03 13:59:30.627561828 -0800
+@@ -15,7 +15,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_db_handlersocket.cc mariadb-10.4.12-new/storage/spider/spd_db_handlersocket.cc
+--- mariadb-10.4.12-old/storage/spider/spd_db_handlersocket.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_db_handlersocket.cc	2020-02-03 13:59:30.636561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_db_include.cc mariadb-10.4.12-new/storage/spider/spd_db_include.cc
+--- mariadb-10.4.12-old/storage/spider/spd_db_include.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_db_include.cc	2020-02-03 13:59:30.673561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_db_mysql.cc mariadb-10.4.12-new/storage/spider/spd_db_mysql.cc
+--- mariadb-10.4.12-old/storage/spider/spd_db_mysql.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_db_mysql.cc	2020-02-03 13:59:30.600561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_db_oracle.cc mariadb-10.4.12-new/storage/spider/spd_db_oracle.cc
+--- mariadb-10.4.12-old/storage/spider/spd_db_oracle.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_db_oracle.cc	2020-02-03 13:59:30.695561829 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_direct_sql.cc mariadb-10.4.12-new/storage/spider/spd_direct_sql.cc
+--- mariadb-10.4.12-old/storage/spider/spd_direct_sql.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_direct_sql.cc	2020-02-03 13:59:30.663561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_group_by_handler.cc mariadb-10.4.12-new/storage/spider/spd_group_by_handler.cc
+--- mariadb-10.4.12-old/storage/spider/spd_group_by_handler.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_group_by_handler.cc	2020-02-03 13:59:30.676561829 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_i_s.cc mariadb-10.4.12-new/storage/spider/spd_i_s.cc
+--- mariadb-10.4.12-old/storage/spider/spd_i_s.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_i_s.cc	2020-02-03 13:59:30.653561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_malloc.cc mariadb-10.4.12-new/storage/spider/spd_malloc.cc
+--- mariadb-10.4.12-old/storage/spider/spd_malloc.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_malloc.cc	2020-02-03 13:59:30.653561828 -0800
+@@ -15,7 +15,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_param.cc mariadb-10.4.12-new/storage/spider/spd_param.cc
+--- mariadb-10.4.12-old/storage/spider/spd_param.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_param.cc	2020-02-03 13:59:30.668561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_ping_table.cc mariadb-10.4.12-new/storage/spider/spd_ping_table.cc
+--- mariadb-10.4.12-old/storage/spider/spd_ping_table.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_ping_table.cc	2020-02-03 13:59:30.611561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_sys_table.cc mariadb-10.4.12-new/storage/spider/spd_sys_table.cc
+--- mariadb-10.4.12-old/storage/spider/spd_sys_table.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_sys_table.cc	2020-02-03 13:59:30.673561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_table.cc mariadb-10.4.12-new/storage/spider/spd_table.cc
+--- mariadb-10.4.12-old/storage/spider/spd_table.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_table.cc	2020-02-03 13:59:30.651561828 -0800
+@@ -15,7 +15,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_trx.cc mariadb-10.4.12-new/storage/spider/spd_trx.cc
+--- mariadb-10.4.12-old/storage/spider/spd_trx.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_trx.cc	2020-02-03 13:59:30.606561828 -0800
+@@ -15,7 +15,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "spd_environ.h"
+ #if MYSQL_VERSION_ID < 50500
+diff -Naur mariadb-10.4.12-old/storage/spider/spd_udf.cc mariadb-10.4.12-new/storage/spider/spd_udf.cc
+--- mariadb-10.4.12-old/storage/spider/spd_udf.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/spider/spd_udf.cc	2020-02-03 13:59:30.651561828 -0800
+@@ -14,7 +14,7 @@
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "spd_environ.h"
+ #include "mysql.h"
+ #include "spd_udf.h"
+diff -Naur mariadb-10.4.12-old/storage/test_sql_discovery/test_sql_discovery.cc mariadb-10.4.12-new/storage/test_sql_discovery/test_sql_discovery.cc
+--- mariadb-10.4.12-old/storage/test_sql_discovery/test_sql_discovery.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/test_sql_discovery/test_sql_discovery.cc	2020-02-03 13:59:30.783561830 -0800
+@@ -22,7 +22,7 @@
+   uses discovery via frm shipping.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_version.h>
+ #include <handler.h>
+ #include <table.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/hatoku_defines.h mariadb-10.4.12-new/storage/tokudb/hatoku_defines.h
+--- mariadb-10.4.12-old/storage/tokudb/hatoku_defines.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/hatoku_defines.h	2020-02-03 13:59:30.578561828 -0800
+@@ -27,7 +27,7 @@
+ #define _HATOKU_DEFINES_H
+ 
+ #define MYSQL_SERVER 1
+-#include <my_global.h>
++#include "my_global.h"
+ #include "mysql_version.h"
+ #include "sql_table.h"
+ #include "handler.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/bndata.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/bndata.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/bndata.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/bndata.cc	2020-02-03 13:59:30.526561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <ft/bndata.h>
+ #include <ft/ft-internal.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/cachetable/cachetable.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/cachetable/cachetable.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/cachetable/cachetable.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/cachetable/cachetable.cc	2020-02-03 13:59:30.533561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string.h>
+ #include <time.h>
+ #include <stdarg.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/cachetable/checkpoint.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/cachetable/checkpoint.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/cachetable/checkpoint.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/cachetable/checkpoint.cc	2020-02-03 13:59:30.526561827 -0800
+@@ -73,7 +73,7 @@
+  *
+  *****/
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <time.h>
+ 
+ #include "portability/toku_portability.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/cursor.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/cursor.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/cursor.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/cursor.cc	2020-02-03 13:59:30.565561827 -0800
+@@ -35,7 +35,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/ft-internal.h"
+ 
+ #include "ft/cursor.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-cachetable-wrappers.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-cachetable-wrappers.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-cachetable-wrappers.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-cachetable-wrappers.cc	2020-02-03 13:59:30.545561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/serialize/block_table.h"
+ #include "ft/ft-cachetable-wrappers.h"
+ #include "ft/ft-flusher.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft.cc	2020-02-03 13:59:30.554561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/serialize/block_table.h"
+ #include "ft/ft.h"
+ #include "ft/ft-cachetable-wrappers.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-flusher.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-flusher.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-flusher.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-flusher.cc	2020-02-03 13:59:30.557561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/ft.h"
+ #include "ft/ft-cachetable-wrappers.h"
+ #include "ft/ft-internal.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft.h mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft.h
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft.h	2020-02-03 13:59:30.552561827 -0800
+@@ -45,7 +45,7 @@
+ #include "ft/logger/log.h"
+ #include "util/dbt.h"
+ #ifndef TOKU_MYSQL_WITH_PFS
+-#include <my_global.h>
++#include "my_global.h"
+ #endif
+ 
+ typedef struct ft *FT;
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-hot-flusher.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-hot-flusher.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-hot-flusher.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-hot-flusher.cc	2020-02-03 13:59:30.534561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/ft.h"
+ #include "ft/ft-cachetable-wrappers.h"
+ #include "ft/ft-flusher.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-ops.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-ops.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-ops.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-ops.cc	2020-02-03 13:59:30.564561827 -0800
+@@ -147,7 +147,7 @@
+ 
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/cachetable/checkpoint.h"
+ #include "ft/cursor.h"
+ #include "ft/ft-cachetable-wrappers.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-status.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-status.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-status.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-status.cc	2020-02-03 13:59:30.552561827 -0800
+@@ -50,7 +50,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/ft.h"
+ #include "ft/ft-status.h"
+ 
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-test-helpers.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-test-helpers.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-test-helpers.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-test-helpers.cc	2020-02-03 13:59:30.546561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/ft.h"
+ #include "ft/ft-cachetable-wrappers.h"
+ #include "ft/ft-internal.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-verify.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-verify.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ft-verify.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ft-verify.cc	2020-02-03 13:59:30.525561827 -0800
+@@ -44,7 +44,7 @@
+  *   For each nonleaf node:  All the messages have keys that are between the associated pivot keys ( left_pivot_key < message <= right_pivot_key)
+  */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/serialize/block_table.h"
+ #include "ft/ft.h"
+ #include "ft/ft-cachetable-wrappers.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/leafentry.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/leafentry.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/leafentry.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/leafentry.cc	2020-02-03 13:59:30.564561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "serialize/wbuf.h"
+ #include "leafentry.h"
+ 
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/le-cursor.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/le-cursor.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/le-cursor.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/le-cursor.cc	2020-02-03 13:59:30.549561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/ft.h"
+ #include "ft/ft-internal.h"
+ #include "ft/le-cursor.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/loader/dbufio.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/loader/dbufio.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/loader/dbufio.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/loader/dbufio.cc	2020-02-03 13:59:30.535561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <errno.h>
+ #include <string.h>
+ #include <unistd.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/loader/loader.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/loader/loader.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/loader/loader.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/loader/loader.cc	2020-02-03 13:59:30.540561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <toku_portability.h>
+ 
+ #include <arpa/inet.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/loader/pqueue.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/loader/pqueue.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/loader/pqueue.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/loader/pqueue.cc	2020-02-03 13:59:30.540561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <toku_portability.h>
+ #include "toku_os.h"
+ #include "ft-internal.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/logcursor.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/logcursor.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/logcursor.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/logcursor.cc	2020-02-03 13:59:30.544561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "log-internal.h"
+ #include "logger/logcursor.h"
+ #include <limits.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/logfilemgr.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/logfilemgr.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/logfilemgr.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/logfilemgr.cc	2020-02-03 13:59:30.544561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "logger/log-internal.h"
+ #include "logger/logcursor.h"
+ #include "logger/logfilemgr.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/logger.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/logger.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/logger.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/logger.cc	2020-02-03 13:59:30.543561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <memory.h>
+ #include <ctype.h>
+ #include <limits.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/log_upgrade.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/log_upgrade.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/logger/log_upgrade.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/logger/log_upgrade.cc	2020-02-03 13:59:30.545561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <ft/log_header.h>
+ 
+ #include "log-internal.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/msg.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/msg.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/msg.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/msg.cc	2020-02-03 13:59:30.534561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "portability/toku_portability.h"
+ 
+ #include "ft/msg.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/node.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/node.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/node.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/node.cc	2020-02-03 13:59:30.549561827 -0800
+@@ -35,7 +35,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "ft/ft.h"
+ #include "ft/ft-internal.h"
+ #include "ft/serialize/ft_node-serialize.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/pivotkeys.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/pivotkeys.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/pivotkeys.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/pivotkeys.cc	2020-02-03 13:59:30.541561827 -0800
+@@ -35,7 +35,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string>
+ 
+ #include "portability/memory.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/serialize/block_table.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/serialize/block_table.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/serialize/block_table.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/serialize/block_table.cc	2020-02-03 13:59:30.551561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "portability/memory.h"
+ #include "portability/toku_assert.h"
+ #include "portability/toku_portability.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/serialize/compress.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/serialize/compress.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/serialize/compress.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/serialize/compress.cc	2020-02-03 13:59:30.551561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <toku_portability.h>
+ #include <util/scoped_malloc.h>
+ 
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ule.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ule.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/ft/ule.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/ft/ule.cc	2020-02-03 13:59:30.569561827 -0800
+@@ -47,7 +47,7 @@
+ // See design documentation for nested transactions at
+ // TokuWiki/Imp/TransactionsOverview.
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include "portability/toku_portability.h"
+ 
+ #include "ft/ft-internal.h"
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/portability/toku_portability.h mariadb-10.4.12-new/storage/tokudb/PerconaFT/portability/toku_portability.h
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/portability/toku_portability.h	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/portability/toku_portability.h	2020-02-03 13:59:30.570561827 -0800
+@@ -68,7 +68,7 @@
+ 
+ #define DEV_NULL_FILE "/dev/null"
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ // include here, before they get deprecated
+ #include <toku_atomic.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/src/ydb.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/src/ydb.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/src/ydb.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/src/ydb.cc	2020-02-03 13:59:30.577561828 -0800
+@@ -39,7 +39,7 @@
+ extern const char *toku_patent_string;
+ const char *toku_copyright_string = "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved.";
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ extern int writing_rollback;
+ 
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/src/ydb_db.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/src/ydb_db.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/src/ydb_db.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/src/ydb_db.cc	2020-02-03 13:59:30.572561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <ctype.h>
+ 
+ #include <db.h>
+diff -Naur mariadb-10.4.12-old/storage/tokudb/PerconaFT/src/ydb_env_func.cc mariadb-10.4.12-new/storage/tokudb/PerconaFT/src/ydb_env_func.cc
+--- mariadb-10.4.12-old/storage/tokudb/PerconaFT/src/ydb_env_func.cc	2020-01-26 12:43:56.000000000 -0800
++++ mariadb-10.4.12-new/storage/tokudb/PerconaFT/src/ydb_env_func.cc	2020-02-03 13:59:30.570561827 -0800
+@@ -36,7 +36,7 @@
+ 
+ #ident "Copyright (c) 2006, 2015, Percona and/or its affiliates. All rights reserved."
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <toku_portability.h>
+ 
+ #include <memory.h>
+diff -Naur mariadb-10.4.12-old/strings/json_lib.c mariadb-10.4.12-new/strings/json_lib.c
+--- mariadb-10.4.12-old/strings/json_lib.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/strings/json_lib.c	2020-02-03 13:59:30.806561830 -0800
+@@ -1,4 +1,4 @@
+-#include <my_global.h>
++#include "my_global.h"
+ #include <string.h>
+ #include <m_ctype.h>
+ #include "json_lib.h"
+diff -Naur mariadb-10.4.12-old/strings/strings_def.h mariadb-10.4.12-new/strings/strings_def.h
+--- mariadb-10.4.12-old/strings/strings_def.h	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/strings/strings_def.h	2020-02-03 13:59:30.803561830 -0800
+@@ -18,7 +18,7 @@
+ /* This file is to be include first in all files in the string directory */
+ 
+ #undef DBUG_ASSERT_AS_PRINTF
+-#include <my_global.h>		/* Define standard vars */
++#include "my_global.h"		/* Define standard vars */
+ #include "m_string.h"		/* Exernal definitions of string functions */
+ 
+ /*
+diff -Naur mariadb-10.4.12-old/tests/async_queries.c mariadb-10.4.12-new/tests/async_queries.c
+--- mariadb-10.4.12-old/tests/async_queries.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/tests/async_queries.c	2020-02-03 13:59:30.440561826 -0800
+@@ -21,7 +21,7 @@
+   API, and compare to running same queries with the normal blocking API.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <mysql.h>
+ #include <my_getopt.h>
+diff -Naur mariadb-10.4.12-old/tests/bug25714.c mariadb-10.4.12-new/tests/bug25714.c
+--- mariadb-10.4.12-old/tests/bug25714.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/tests/bug25714.c	2020-02-03 13:59:30.440561826 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <mysql.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/tests/mysql_client_fw.c mariadb-10.4.12-new/tests/mysql_client_fw.c
+--- mariadb-10.4.12-old/tests/mysql_client_fw.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/tests/mysql_client_fw.c	2020-02-03 13:59:30.439561826 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <mysql.h>
+ #include <errmsg.h>
+diff -Naur mariadb-10.4.12-old/tests/thread_test.c mariadb-10.4.12-new/tests/thread_test.c
+--- mariadb-10.4.12-old/tests/thread_test.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/tests/thread_test.c	2020-02-03 13:59:30.440561826 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <my_sys.h>
+ #include <my_pthread.h>
+diff -Naur mariadb-10.4.12-old/unittest/examples/core-t.c mariadb-10.4.12-new/unittest/examples/core-t.c
+--- mariadb-10.4.12-old/unittest/examples/core-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/examples/core-t.c	2020-02-03 13:59:30.816561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <stdlib.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/examples/no_plan-t.c mariadb-10.4.12-new/unittest/examples/no_plan-t.c
+--- mariadb-10.4.12-old/unittest/examples/no_plan-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/examples/no_plan-t.c	2020-02-03 13:59:30.816561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <stdlib.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/examples/skip_all-t.c mariadb-10.4.12-new/unittest/examples/skip_all-t.c
+--- mariadb-10.4.12-old/unittest/examples/skip_all-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/examples/skip_all-t.c	2020-02-03 13:59:30.816561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <stdlib.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/examples/todo-t.c mariadb-10.4.12-new/unittest/examples/todo-t.c
+--- mariadb-10.4.12-old/unittest/examples/todo-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/examples/todo-t.c	2020-02-03 13:59:30.816561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ 
+ #include <stdlib.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/json_lib/json_lib-t.c mariadb-10.4.12-new/unittest/json_lib/json_lib-t.c
+--- mariadb-10.4.12-old/unittest/json_lib/json_lib-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/json_lib/json_lib-t.c	2020-02-03 13:59:30.819561830 -0800
+@@ -16,7 +16,7 @@
+ #include "my_config.h"
+ #include "config.h"
+ #include <tap.h>
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <json_lib.h>
+ 
+diff -Naur mariadb-10.4.12-old/unittest/my_decimal/my_decimal-t.cc mariadb-10.4.12-new/unittest/my_decimal/my_decimal-t.cc
+--- mariadb-10.4.12-old/unittest/my_decimal/my_decimal-t.cc	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/my_decimal/my_decimal-t.cc	2020-02-03 13:59:30.819561830 -0800
+@@ -16,7 +16,7 @@
+ #include "my_config.h"
+ #include "config.h"
+ #include <tap.h>
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include <sql_string.h>
+diff -Naur mariadb-10.4.12-old/unittest/mysys/aes-t.c mariadb-10.4.12-new/unittest/mysys/aes-t.c
+--- mariadb-10.4.12-old/unittest/mysys/aes-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/aes-t.c	2020-02-03 13:59:30.821561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_crypt.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/mysys/base64-t.c mariadb-10.4.12-new/unittest/mysys/base64-t.c
+--- mariadb-10.4.12-old/unittest/mysys/base64-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/base64-t.c	2020-02-03 13:59:30.820561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <tap.h>
+ #include <string.h>
+diff -Naur mariadb-10.4.12-old/unittest/mysys/bitmap-t.c mariadb-10.4.12-new/unittest/mysys/bitmap-t.c
+--- mariadb-10.4.12-old/unittest/mysys/bitmap-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/bitmap-t.c	2020-02-03 13:59:30.820561830 -0800
+@@ -19,7 +19,7 @@
+    library.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_bitmap.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/mysys/dynstring-t.c mariadb-10.4.12-new/unittest/mysys/dynstring-t.c
+--- mariadb-10.4.12-old/unittest/mysys/dynstring-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/dynstring-t.c	2020-02-03 13:59:30.822561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <my_sys.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/mysys/ma_dyncol-t.c mariadb-10.4.12-new/unittest/mysys/ma_dyncol-t.c
+--- mariadb-10.4.12-old/unittest/mysys/ma_dyncol-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/ma_dyncol-t.c	2020-02-03 13:59:30.823561830 -0800
+@@ -26,7 +26,7 @@
+    SUCH DAMAGE.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <m_string.h>
+ #include <ma_dyncol.h>
+diff -Naur mariadb-10.4.12-old/unittest/mysys/my_delete-t.c mariadb-10.4.12-new/unittest/mysys/my_delete-t.c
+--- mariadb-10.4.12-old/unittest/mysys/my_delete-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/my_delete-t.c	2020-02-03 13:59:30.823561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include "tap.h"
+ 
+diff -Naur mariadb-10.4.12-old/unittest/mysys/my_getopt-t.c mariadb-10.4.12-new/unittest/mysys/my_getopt-t.c
+--- mariadb-10.4.12-old/unittest/mysys/my_getopt-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/my_getopt-t.c	2020-02-03 13:59:30.822561830 -0800
+@@ -25,7 +25,7 @@
+    SUCH DAMAGE.
+ */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_getopt.h>
+ #include <mysys_err.h>
+ #include <stdarg.h>
+diff -Naur mariadb-10.4.12-old/unittest/mysys/my_malloc-t.c mariadb-10.4.12-new/unittest/mysys/my_malloc-t.c
+--- mariadb-10.4.12-old/unittest/mysys/my_malloc-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/my_malloc-t.c	2020-02-03 13:59:30.820561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include "tap.h"
+ 
+diff -Naur mariadb-10.4.12-old/unittest/mysys/my_vsnprintf-t.c mariadb-10.4.12-new/unittest/mysys/my_vsnprintf-t.c
+--- mariadb-10.4.12-old/unittest/mysys/my_vsnprintf-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/my_vsnprintf-t.c	2020-02-03 13:59:30.821561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <m_string.h>
+ #include <tap.h>
+ 
+diff -Naur mariadb-10.4.12-old/unittest/mysys/thr_template.c mariadb-10.4.12-new/unittest/mysys/thr_template.c
+--- mariadb-10.4.12-old/unittest/mysys/thr_template.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/mysys/thr_template.c	2020-02-03 13:59:30.820561830 -0800
+@@ -14,7 +14,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_atomic.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/sql/mf_iocache-t.cc mariadb-10.4.12-new/unittest/sql/mf_iocache-t.cc
+--- mariadb-10.4.12-old/unittest/sql/mf_iocache-t.cc	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/sql/mf_iocache-t.cc	2020-02-03 13:59:30.818561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1335 USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ #include <my_crypt.h>
+ #include <tap.h>
+diff -Naur mariadb-10.4.12-old/unittest/sql/my_apc-t.cc mariadb-10.4.12-new/unittest/sql/my_apc-t.cc
+--- mariadb-10.4.12-old/unittest/sql/my_apc-t.cc	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/sql/my_apc-t.cc	2020-02-03 13:59:30.819561830 -0800
+@@ -17,7 +17,7 @@
+ /*
+   This file does standalone APC system tests.
+ */
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_pthread.h>
+ #include <my_sys.h>
+ 
+diff -Naur mariadb-10.4.12-old/unittest/strings/strings-t.c mariadb-10.4.12-new/unittest/strings/strings-t.c
+--- mariadb-10.4.12-old/unittest/strings/strings-t.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/unittest/strings/strings-t.c	2020-02-03 13:59:30.817561830 -0800
+@@ -14,7 +14,7 @@
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1335  USA */
+ 
+ #include <tap.h>
+-#include <my_global.h>
++#include "my_global.h"
+ #include <my_sys.h>
+ 
+ 
+diff -Naur mariadb-10.4.12-old/vio/test-ssl.c mariadb-10.4.12-new/vio/test-ssl.c
+--- mariadb-10.4.12-old/vio/test-ssl.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/vio/test-ssl.c	2020-02-03 13:59:30.824561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #if defined(HAVE_OPENSSL)
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/vio/test-sslclient.c mariadb-10.4.12-new/vio/test-sslclient.c
+--- mariadb-10.4.12-old/vio/test-sslclient.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/vio/test-sslclient.c	2020-02-03 13:59:30.824561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #ifdef HAVE_OPENSSL
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/vio/test-sslserver.c mariadb-10.4.12-new/vio/test-sslserver.c
+--- mariadb-10.4.12-old/vio/test-sslserver.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/vio/test-sslserver.c	2020-02-03 13:59:30.824561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #ifdef HAVE_OPENSSL
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/vio/vio_priv.h mariadb-10.4.12-new/vio/vio_priv.h
+--- mariadb-10.4.12-old/vio/vio_priv.h	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/vio/vio_priv.h	2020-02-03 13:59:30.823561830 -0800
+@@ -20,7 +20,7 @@
+ /* Structures and functions private to the vio package */
+ 
+ #define DONT_MAP_VIO
+-#include <my_global.h>
++#include "my_global.h"
+ #include <mysql_com.h>
+ #include <my_sys.h>
+ #include <m_string.h>
+diff -Naur mariadb-10.4.12-old/vio/viotest-ssl.c mariadb-10.4.12-new/vio/viotest-ssl.c
+--- mariadb-10.4.12-old/vio/viotest-ssl.c	2020-01-26 12:43:57.000000000 -0800
++++ mariadb-10.4.12-new/vio/viotest-ssl.c	2020-02-03 13:59:30.824561830 -0800
+@@ -13,7 +13,7 @@
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1335  USA */
+ 
+-#include <my_global.h>
++#include "my_global.h"
+ #ifdef HAVE_OPENSSL
+ #include <my_sys.h>
+ #include <m_string.h>

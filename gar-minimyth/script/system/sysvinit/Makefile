@@ -1,7 +1,7 @@
 GARNAME = sysvinit
 GARVERSION = 2.96
 CATEGORIES = system
-MASTER_SITES = https://download.savannah.gnu.org/releases/$(GARNAME)/
+MASTER_SITES = https://download.savannah.gnu.org/releases/sysvinit/
 DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = $(DISTNAME)-init_silent.patch $(DISTNAME)-makefile.patch $(DISTNAME)-halt.patch
 LICENSE = GPL2

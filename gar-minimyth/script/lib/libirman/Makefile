@@ -3,8 +3,6 @@ GARVERSION = 0.4.6
 CATEGORIES = lib
 MASTER_SITES = https://sourceforge.net/projects/libirman/files/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch
 LICENSE = GPL2/LGPL2
 
 DESCRIPTION =
@@ -18,20 +16,16 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
 	--disable-swtest
 
 include ../../gar.mk
 
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
-	@cp $(WORKSRC)/test_io   $(DESTDIR)/$(bindir)
-	@cp $(WORKSRC)/test_name $(DESTDIR)/$(bindir)
-	@cp $(WORKSRC)/test_func $(DESTDIR)/$(bindir)
-	@rm -f $(DESTDIR)$(libdir)/libirman.la
+	@cp -fv $(WORKSRC)/test_io   $(DESTDIR)/$(bindir)
+	@cp -fv $(WORKSRC)/test_name $(DESTDIR)/$(bindir)
+	@cp -fv $(WORKSRC)/test_func $(DESTDIR)/$(bindir)
+	@rm -fv $(DESTDIR)$(libdir)/libirman.la
 	@$(MAKECOOKIE)

@@ -1,0 +1,9 @@
+3818ad8600447f05349098232c2ddc78  download/gcc-9.2.0.tar.xz
+f58fa8001d60c4c77595fbbb62b63c1d  download/gmp-6.1.2.tar.xz
+12caf7eea20946c581ace61302b1c876  download/isl-0.21.tar.xz
+4125404e41e482ec68282a2e687f6c73  download/mpc-1.1.0.tar.gz
+320fbc4463d4c8cb1e566929d8adc4f8  download/mpfr-4.0.2.tar.xz
+f6b0f84bb72892592385bdd975e09937  download/gcc-9.2.0-disable_multilib_i386_linux64.patch
+3c3a26ce61cf909a94321d3228121559  download/gcc-9.2.0-perl.patch.gar
+f31d48bd903c375847077538683f8b02  download/gcc-9.2.0-dynamic_linker.patch
+9d6f0e4b7148b40746598aed74d6d1b9  download/gcc-9.2.0-libstdc++-v3_config.patch

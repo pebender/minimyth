@@ -1,0 +1,12 @@
+diff -Naur iputils-s20151218-old/Makefile iputils-s20151218-new/Makefile
+--- iputils-s20151218-old/Makefile	2015-12-17 07:45:51.000000000 -0800
++++ iputils-s20151218-new/Makefile	2020-02-01 16:15:11.713950376 -0800
+@@ -110,7 +110,7 @@
+ IPV6_TARGETS=tracepath6 traceroute6 ping6
+ TARGETS=$(IPV4_TARGETS) $(IPV6_TARGETS)
+ 
+-CFLAGS=$(CCOPTOPT) $(CCOPT) $(GLIBCFIX) $(DEFINES)
++CFLAGS+=$(CCOPTOPT) $(CCOPT) $(GLIBCFIX) $(DEFINES)
+ LDLIBS=$(LDLIB) $(ADDLIB)
+ 
+ UNAME_N:=$(shell uname -n)

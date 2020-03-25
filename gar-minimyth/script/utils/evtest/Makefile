@@ -1,8 +1,9 @@
 GARNAME = evtest
-GARVERSION = 1.32
+GARVERSION = 1.34
 CATEGORIES = utils
 MASTER_SITES = https://gitlab.freedesktop.org/libevdev/evtest/-/archive/evtest-$(GARVERSION)/
 DISTFILES = $(GARNAME)-$(DISTNAME).tar.bz2
+PATCHFILES = $(DISTNAME)-648f5c1a.patch
 LICENSE = GPL2
 
 DESCRIPTION = 

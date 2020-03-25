@@ -1,0 +1,12 @@
+diff -Naur lirc-0.10.1-old/configure.ac lirc-0.10.1-new/configure.ac
+--- lirc-0.10.1-old/configure.ac	2017-09-10 01:52:19.000000000 -0700
++++ lirc-0.10.1-new/configure.ac	2020-03-16 21:03:47.753311481 -0700
+@@ -50,7 +50,7 @@
+ test -n "$PYTHON_LIBS" || \
+     AC_MSG_WARN([No python package found (missing devel package?)])
+ python_version_nodots=$(echo $PYTHON_VERSION | tr -d '.')
+-AM_CONDITIONAL(HAVE_PYTHON35, [test $python_version_nodots -ge 35])
++AM_CONDITIONAL(HAVE_PYTHON35, [test 0 -ge 35])
+ CFLAGS="$CFLAGS $PYTHON_CFLAGS"
+ 
+ 

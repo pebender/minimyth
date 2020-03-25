@@ -9,7 +9,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/expat xorg/libX11 xorg/libXt
+DEPENDS = lang/c build-tool/make lib/expat xorg/libX11 xorg/libXt
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -29,7 +30,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-ducktype-docs  \
 	--enable-abstract-sockets \
 	--disable-selinux \
-	--with-xml=expat \
 	--with-x
 
 CONFIGURE_ENV = \

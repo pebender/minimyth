@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lib/freetype lib/libxml2
+DEPENDS   = lang/c build-tool/make build-tool/autotools lib/freetype lib/libxml2 disk/e2fsprogs
 BUILDDEPS = lib/freetype utils/gperf
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
@@ -23,7 +23,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--enable-libxml2 \
 	--disable-docs \
-	--with-gnu-ld \
 	--with-arch=$(GARCH)
 
 DEFAULT_ENV   = \
@@ -42,10 +41,7 @@ INSTALL_ENV   = $(DEFAULT_ENV)
 
 include ../../gar.mk
 
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
+LDFLAGS +=  -lintl
 
 pre-install:
 	@rm -rf $(DESTDIR)$(sysconfdir)/fonts

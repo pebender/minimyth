@@ -18,7 +18,7 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
-	--enable-nls \
+	--disable-nls \
 	--disable-rpath \
 	--enable-alsa-topology \
 	--disable-alsatest \
@@ -30,7 +30,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-rst2man \
 	--enable-largefile \
 	--with-udev-rules-dir="$(libdir)/udev/rules.d" \
-	--with-curses=ncursesw
+	--with-curses=curses
 
 include ../../gar.mk
 

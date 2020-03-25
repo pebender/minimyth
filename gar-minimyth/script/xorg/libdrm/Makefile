@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS  = lang/c \
+DEPENDS = lang/c build-tool/make \
 	xorg/libpciaccess \
 	xorg/libpthread-stubs
 ifneq ($(DESTIMG),build)
@@ -38,7 +38,8 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-install-test-programs \
 	--disable-cairo-tests \
 	--disable-manpages \
-	--disable-valgrind
+	--disable-valgrind \
+	--without-xsltproc
 ifeq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--disable-udev
@@ -47,6 +48,7 @@ CONFIGURE_ARGS += \
 	--enable-udev
 endif
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 post-install:

@@ -1,10 +1,9 @@
 GARNAME = libusb-compat-0.1
-GARVERSION = 0.1.4
+GARVERSION = 0.1.7
 CATEGORIES = lib
 MASTER_SITES = https://github.com/libusb/libusb-compat-0.1/archive/
-DISTFILES = $(GARVERSION).tar.gz
+DISTFILES = v$(GARVERSION).tar.gz
 PATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch \
 	$(DISTNAME).patch.gar
 LICENSE = LGPL2_1
 
@@ -19,6 +18,7 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
 	--disable-log \
@@ -28,16 +28,14 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 include ../../gar.mk
 
 pre-configure:
-	@mkdir -p $(WORKSRC)/m4
 	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/libusb.la
-	@rm -f $(DESTDIR)$(bindir)-config/libusb-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)libusb-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/libusb-config $(DESTDIR)$(bindir)-config/libusb-config
-	@$(if $(compiler_prefix), ln -s libusb-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)libusb-config)
+	@rm -fv $(DESTDIR)$(libdir)/libusb.la
+	@rm -fv $(DESTDIR)$(bindir)/config/libusb-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-libusb-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config
+	@mv -v $(DESTDIR)$(bindir)/libusb-config $(DESTDIR)$(bindir)/config/libusb-config
+	@ln -sfv libusb-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libusb-config
 	@$(MAKECOOKIE)

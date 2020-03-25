@@ -1,5 +1,5 @@
 GARNAME = libxslt
-GARVERSION = 1.1.28
+GARVERSION = 1.1.34
 CATEGORIES = lib
 MASTER_SITES = ftp://xmlsoft.org/libxml2/
 DISTFILES = $(DISTNAME).tar.gz
@@ -24,11 +24,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libexslt.la
 	@rm -f $(DESTDIR)$(libdir)/libxslt.la
@@ -38,9 +33,9 @@ post-install:
 	@sed -i 's%-I$${includedir}%-I$(DESTDIR)$${includedir}%g' $(DESTDIR)$(bindir)/xslt-config
 	@sed -i 's%-L${libdir}%-L$(DESTDIR)${libdir}%g'           $(DESTDIR)$(libdir)/xsltConf.sh
 	@sed -i 's%-I${includedir}%-I$(DESTDIR)${includedir}%g'   $(DESTDIR)$(libdir)/xsltConf.sh
-	@rm -f $(DESTDIR)$(bindir)-config/xslt-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)xslt-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/xslt-config $(DESTDIR)$(bindir)-config/xslt-config
-	@$(if $(compiler_prefix), ln -s xslt-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)xslt-config)
+	@rm -f $(DESTDIR)$(bindir)/config/xslt-config
+	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-xslt-config
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/xslt-config $(DESTDIR)$(bindir)/config/xslt-config
+	@ln -s xslt-config $(DESTDIR)$(bindir)/config/$(GARHOST)-xslt-config
 	@$(MAKECOOKIE)

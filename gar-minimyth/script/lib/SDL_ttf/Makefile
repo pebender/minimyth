@@ -26,7 +26,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-x
 
 CONFIGURE_ENV = \
-	SDL_CONFIG=$(DESTDIR)$(prefix)/bin-config/sdl-config
+	SDL_CONFIG=$(DESTDIR)$(bindir)/config/sdl-config
 
 include ../../gar.mk
 

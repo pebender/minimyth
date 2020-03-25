@@ -1,0 +1,12 @@
+diff -Naur cmake-3.16.5-old/bootstrap cmake-3.16.5-new/bootstrap
+--- cmake-3.16.5-old/bootstrap	2020-03-04 05:50:44.000000000 -0800
++++ cmake-3.16.5-new/bootstrap	2020-03-16 18:33:00.927804644 -0700
+@@ -861,6 +861,8 @@
+     cmake_bootstrap_system_libs="${cmake_bootstrap_system_libs} -DCMAKE_USE_SYSTEM_LIBRARY_`cmake_toupper $lib`=0" ;;
+   --qt-gui) cmake_bootstrap_qt_gui="1" ;;
+   --no-qt-gui) cmake_bootstrap_qt_gui="0" ;;
++  --openssl) cmake_bootstrap_system_libs="${cmake_bootstrap_system_libs} -DCMAKE_USE_OPENSSL=1" ;;
++  --no-openssl) cmake_bootstrap_system_libs="${cmake_bootstrap_system_libs} -DCMAKE_USE_OPENSSL=0" ;;
+   --qt-qmake=*) cmake_bootstrap_qt_qmake=`cmake_arg "$1"` ;;
+   --sphinx-info) cmake_sphinx_info="1" ;;
+   --sphinx-man) cmake_sphinx_man="1" ;;

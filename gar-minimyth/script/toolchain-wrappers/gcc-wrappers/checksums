@@ -1,0 +1,8 @@
+84245cd4a80198a4a10e4f64a680df7e  download/build-cpp
+fffc9886add050a9eaf41ed92b93d3e4  download/build-gcc
+cad24c1b95ed8affacfe16b12837486e  download/build-gxx
+46b368fb90671baccd2925939a813faa  download/build-ld.bfd
+29e48236f509380ab6bc5507ad22e862  download/main-cpp
+11c5f8d9679ba690253c51c65cfac846  download/main-gcc
+1c8cbfd649d677bb4f954f0227aff3d2  download/main-gxx
+590bc3a4b6ee12aea39f47ff378303ea  download/main-ld.bfd

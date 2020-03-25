@@ -3,9 +3,9 @@ GARVERSION = 8.43
 CATEGORIES = lib
 MASTER_SITES = https://ftp.pcre.org/pub/pcre/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES  = $(DISTNAME).patch.gar
+#PATCHFILES  = $(DISTNAME).patch.gar
 ifneq ($(DESTIMG),build)
-PATCHFILES += $(DISTNAME)-cross.patch
+#PATCHFILES += $(DISTNAME)-cross.patch
 endif
 LICENSE = BSD_3_Clause
 

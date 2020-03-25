@@ -1,0 +1,1836 @@
+diff -Naur libtool-2.4.6-old/bootstrap libtool-2.4.6-new/bootstrap
+--- libtool-2.4.6-old/bootstrap	2015-01-20 11:19:11.000000000 -0800
++++ libtool-2.4.6-new/bootstrap	2020-03-16 19:05:32.871698239 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ ## DO NOT EDIT - This file generated from build-aux/bootstrap.in
+ ##               by inline-source v2014-01-03.01
+ 
+@@ -92,7 +92,7 @@
+ : ${AUTOPOINT="autopoint"}
+ : ${AUTORECONF="autoreconf"}
+ : ${CMP="cmp"}
+-: ${CONFIG_SHELL="/bin/sh"}
++: ${CONFIG_SHELL="@GAR_DESTDIR@GAR_bindir@/bash"}
+ : ${DIFF="diff"}
+ : ${GIT="git"}
+ : ${LN_S="ln -s"}
+@@ -484,7 +484,7 @@
+ : ${MKDIR="mkdir"}
+ : ${MV="mv -f"}
+ : ${RM="rm -f"}
+-: ${SHELL="${CONFIG_SHELL-/bin/sh}"}
++: ${SHELL="${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}"}
+ 
+ 
+ ## -------------------- ##
+@@ -1533,7 +1533,7 @@
+ # time-stamp-pattern: "10/scriptversion=%:y-%02m-%02d.%02H; # UTC"
+ # time-stamp-time-zone: "UTC"
+ # End:
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # Set a version string for this script.
+ scriptversion=2014-01-07.03; # UTC
+@@ -1571,7 +1571,7 @@
+ #
+ # For the simplest scripts you might need only:
+ #
+-#   #!/bin/sh
++#   #!@GAR_DESTDIR@@GAR_bindir@/bash
+ #   . relative/path/to/funclib.sh
+ #   . relative/path/to/options-parser
+ #   scriptversion=1.0
+@@ -2141,7 +2141,7 @@
+ # time-stamp-pattern: "10/scriptversion=%:y-%02m-%02d.%02H; # UTC"
+ # time-stamp-time-zone: "UTC"
+ # End:
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # Extract macro arguments from autotools input with GNU M4.
+ # Written by Gary V. Vaughan, 2010
+diff -Naur libtool-2.4.6-old/build-aux/compile libtool-2.4.6-new/build-aux/compile
+--- libtool-2.4.6-old/build-aux/compile	2015-01-16 10:32:31.000000000 -0800
++++ libtool-2.4.6-new/build-aux/compile	2020-03-16 19:07:12.797692792 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Wrapper for compilers which do not understand '-c -o'.
+ 
+ scriptversion=2012-10-14.11; # UTC
+diff -Naur libtool-2.4.6-old/build-aux/config.guess libtool-2.4.6-new/build-aux/config.guess
+--- libtool-2.4.6-old/build-aux/config.guess	2015-02-13 04:12:57.000000000 -0800
++++ libtool-2.4.6-new/build-aux/config.guess	2020-03-16 19:07:00.200693478 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Attempt to guess a canonical system name.
+ #   Copyright 1992-2015 Free Software Foundation, Inc.
+ 
+@@ -901,7 +901,7 @@
+ 	  EV67)  UNAME_MACHINE=alphaev67 ;;
+ 	  EV68*) UNAME_MACHINE=alphaev68 ;;
+ 	esac
+-	objdump --private-headers /bin/sh | grep -q ld.so.1
++	objdump --private-headers @GAR_DESTDIR@@GAR_bindir@/bash | grep -q ld.so.1
+ 	if test "$?" = 0 ; then LIBC="gnulibc1" ; fi
+ 	echo ${UNAME_MACHINE}-unknown-linux-${LIBC}
+ 	exit ;;
+diff -Naur libtool-2.4.6-old/build-aux/config.sub libtool-2.4.6-new/build-aux/config.sub
+--- libtool-2.4.6-old/build-aux/config.sub	2015-02-13 04:12:57.000000000 -0800
++++ libtool-2.4.6-new/build-aux/config.sub	2020-03-16 19:07:07.187693097 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Configuration validation subroutine script.
+ #   Copyright 1992-2015 Free Software Foundation, Inc.
+ 
+diff -Naur libtool-2.4.6-old/build-aux/depcomp libtool-2.4.6-new/build-aux/depcomp
+--- libtool-2.4.6-old/build-aux/depcomp	2015-01-16 10:32:31.000000000 -0800
++++ libtool-2.4.6-new/build-aux/depcomp	2020-03-16 19:07:44.064691087 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # depcomp - compile a program generating dependencies as side-effects
+ 
+ scriptversion=2013-05-30.07; # UTC
+diff -Naur libtool-2.4.6-old/build-aux/do-release-commit-and-tag libtool-2.4.6-new/build-aux/do-release-commit-and-tag
+--- libtool-2.4.6-old/build-aux/do-release-commit-and-tag	2015-01-18 05:13:49.000000000 -0800
++++ libtool-2.4.6-new/build-aux/do-release-commit-and-tag	2020-03-16 19:07:09.148692991 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_DESTDIR@@GAR_bindir@/bash
+ # In a git/autoconf/automake-enabled project with a NEWS file and a version-
+ # controlled .prev-version file, automate the procedure by which we record
+ # the date, release-type and version string in the NEWS file.  That commit
+diff -Naur libtool-2.4.6-old/build-aux/edit-readme-alpha libtool-2.4.6-new/build-aux/edit-readme-alpha
+--- libtool-2.4.6-old/build-aux/edit-readme-alpha	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/build-aux/edit-readme-alpha	2020-03-16 19:07:02.460693355 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ #   edit-readme-alpha - edit README file for alpha releases
+ #   Copyright (C) 2010-2015 Free Software Foundation, Inc.
+diff -Naur libtool-2.4.6-old/build-aux/extract-trace libtool-2.4.6-new/build-aux/extract-trace
+--- libtool-2.4.6-old/build-aux/extract-trace	2015-01-20 11:18:37.000000000 -0800
++++ libtool-2.4.6-new/build-aux/extract-trace	2020-03-16 19:06:47.153694190 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # Extract macro arguments from autotools input with GNU M4.
+ # Written by Gary V. Vaughan, 2010
+diff -Naur libtool-2.4.6-old/build-aux/funclib.sh libtool-2.4.6-new/build-aux/funclib.sh
+--- libtool-2.4.6-old/build-aux/funclib.sh	2015-01-20 11:18:37.000000000 -0800
++++ libtool-2.4.6-new/build-aux/funclib.sh	2020-03-16 19:07:17.761692521 -0700
+@@ -253,7 +253,7 @@
+ : ${MKDIR="mkdir"}
+ : ${MV="mv -f"}
+ : ${RM="rm -f"}
+-: ${SHELL="${CONFIG_SHELL-/bin/sh}"}
++: ${SHELL="${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}"}
+ 
+ 
+ ## -------------------- ##
+diff -Naur libtool-2.4.6-old/build-aux/gendocs.sh libtool-2.4.6-new/build-aux/gendocs.sh
+--- libtool-2.4.6-old/build-aux/gendocs.sh	2015-01-16 10:32:31.000000000 -0800
++++ libtool-2.4.6-new/build-aux/gendocs.sh	2020-03-16 19:06:44.746694321 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh -e
++#!@GAR_DESTDIR@@GAR_bindir@/bash -e
+ # gendocs.sh -- generate a GNU manual in many formats.  This script is
+ #   mentioned in maintain.texi.  See the help message below for usage details.
+ 
+diff -Naur libtool-2.4.6-old/build-aux/git-version-gen libtool-2.4.6-new/build-aux/git-version-gen
+--- libtool-2.4.6-old/build-aux/git-version-gen	2015-01-16 10:32:31.000000000 -0800
++++ libtool-2.4.6-new/build-aux/git-version-gen	2020-03-16 19:07:14.881692678 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_DESTDIR@@GAR_bindir@/bash
+ # Print a version string.
+ scriptversion=2014-12-02.19; # UTC
+ 
+diff -Naur libtool-2.4.6-old/build-aux/gnupload libtool-2.4.6-new/build-aux/gnupload
+--- libtool-2.4.6-old/build-aux/gnupload	2015-01-18 05:13:50.000000000 -0800
++++ libtool-2.4.6-new/build-aux/gnupload	2020-03-16 19:07:20.353692380 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_DESTDIR@@GAR_bindir@/bash
+ # Sign files and upload them.
+ 
+ scriptversion=2013-03-19.17; # UTC
+diff -Naur libtool-2.4.6-old/build-aux/gnu-web-doc-update libtool-2.4.6-new/build-aux/gnu-web-doc-update
+--- libtool-2.4.6-old/build-aux/gnu-web-doc-update	2015-01-16 10:32:31.000000000 -0800
++++ libtool-2.4.6-new/build-aux/gnu-web-doc-update	2020-03-16 19:07:04.797693228 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_DESTDIR@@GAR_bindir@/bash
+ # Run this after each non-alpha release, to update the web documentation at
+ # http://www.gnu.org/software/$pkg/manual/
+ 
+diff -Naur libtool-2.4.6-old/build-aux/inline-source libtool-2.4.6-new/build-aux/inline-source
+--- libtool-2.4.6-old/build-aux/inline-source	2015-01-20 11:18:37.000000000 -0800
++++ libtool-2.4.6-new/build-aux/inline-source	2020-03-16 19:06:32.198695005 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # Output the contents of a shell script with sourced files inlined.
+ # Written by Gary V. Vaughan, 2012
+diff -Naur libtool-2.4.6-old/build-aux/install-sh libtool-2.4.6-new/build-aux/install-sh
+--- libtool-2.4.6-old/build-aux/install-sh	2014-11-17 09:02:09.000000000 -0800
++++ libtool-2.4.6-new/build-aux/install-sh	2020-03-16 19:06:36.248694784 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_DESTDIR@@GAR_bindir@/bash
+ # install - install a program, script, or datafile
+ 
+ scriptversion=2013-12-25.23; # UTC
+diff -Naur libtool-2.4.6-old/build-aux/ltmain.in libtool-2.4.6-new/build-aux/ltmain.in
+--- libtool-2.4.6-old/build-aux/ltmain.in	2015-02-06 04:57:56.000000000 -0800
++++ libtool-2.4.6-new/build-aux/ltmain.in	2020-03-16 19:12:24.973675774 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # libtool (GNU @PACKAGE@) @VERSION@
+ # Provide generalized library-building support services.
+@@ -2179,7 +2179,7 @@
+ 
+     # There may be an optional sh(1) argument at the beginning of
+     # install_prog (especially on Windows NT).
+-    if test "$SHELL" = "$nonopt" || test /bin/sh = "$nonopt" ||
++    if test "$SHELL" = "$nonopt" || test @GAR_DESTDIR@@GAR_bindir@/bash = "$nonopt" ||
+        # Allow the use of GNU shtool's install command.
+        case $nonopt in *shtool*) :;; *) false;; esac
+     then
+diff -Naur libtool-2.4.6-old/build-aux/ltmain.sh libtool-2.4.6-new/build-aux/ltmain.sh
+--- libtool-2.4.6-old/build-aux/ltmain.sh	2015-02-15 08:15:12.000000000 -0800
++++ libtool-2.4.6-new/build-aux/ltmain.sh	2020-03-16 19:07:37.755691431 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ ## DO NOT EDIT - This file generated from ./build-aux/ltmain.in
+ ##               by inline-source v2014-01-03.01
+ 
+@@ -318,7 +318,7 @@
+ : ${MKDIR="mkdir"}
+ : ${MV="mv -f"}
+ : ${RM="rm -f"}
+-: ${SHELL="${CONFIG_SHELL-/bin/sh}"}
++: ${SHELL="${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}"}
+ 
+ 
+ ## -------------------- ##
+@@ -1367,7 +1367,7 @@
+ # time-stamp-pattern: "10/scriptversion=%:y-%02m-%02d.%02H; # UTC"
+ # time-stamp-time-zone: "UTC"
+ # End:
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # Set a version string for this script.
+ scriptversion=2014-01-07.03; # UTC
+@@ -1405,7 +1405,7 @@
+ #
+ # For the simplest scripts you might need only:
+ #
+-#   #!/bin/sh
++#   #!@GAR_DESTDIR@@GAR_bindir@/bash
+ #   . relative/path/to/funclib.sh
+ #   . relative/path/to/options-parser
+ #   scriptversion=1.0
+@@ -4091,7 +4091,7 @@
+ 
+     # There may be an optional sh(1) argument at the beginning of
+     # install_prog (especially on Windows NT).
+-    if test "$SHELL" = "$nonopt" || test /bin/sh = "$nonopt" ||
++    if test "$SHELL" = "$nonopt" || test @GAR_DESTDIR@@GAR_bindir@/bash = "$nonopt" ||
+        # Allow the use of GNU shtool's install command.
+        case $nonopt in *shtool*) :;; *) false;; esac
+     then
+diff -Naur libtool-2.4.6-old/build-aux/mdate-sh libtool-2.4.6-new/build-aux/mdate-sh
+--- libtool-2.4.6-old/build-aux/mdate-sh	2015-01-16 10:32:31.000000000 -0800
++++ libtool-2.4.6-new/build-aux/mdate-sh	2020-03-16 19:06:41.663694489 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_DESTDIR@@GAR_bindir@/bash
+ # Get modification time of a file or directory and pretty-print it.
+ 
+ scriptversion=2010-08-21.06; # UTC
+diff -Naur libtool-2.4.6-old/build-aux/missing libtool-2.4.6-new/build-aux/missing
+--- libtool-2.4.6-old/build-aux/missing	2015-01-05 14:11:43.000000000 -0800
++++ libtool-2.4.6-new/build-aux/missing	2020-03-16 19:07:41.813691210 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Common wrapper for a few potentially missing GNU programs.
+ 
+ scriptversion=2013-10-28.13; # UTC
+diff -Naur libtool-2.4.6-old/build-aux/options-parser libtool-2.4.6-new/build-aux/options-parser
+--- libtool-2.4.6-old/build-aux/options-parser	2015-01-20 11:18:37.000000000 -0800
++++ libtool-2.4.6-new/build-aux/options-parser	2020-03-16 19:06:29.369695159 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # Set a version string for this script.
+ scriptversion=2014-01-07.03; # UTC
+@@ -36,7 +36,7 @@
+ #
+ # For the simplest scripts you might need only:
+ #
+-#   #!/bin/sh
++#   #!@GAR_DESTDIR@@GAR_bindir@/bash
+ #   . relative/path/to/funclib.sh
+ #   . relative/path/to/options-parser
+ #   scriptversion=1.0
+diff -Naur libtool-2.4.6-old/build-aux/vc-list-files libtool-2.4.6-new/build-aux/vc-list-files
+--- libtool-2.4.6-old/build-aux/vc-list-files	2015-01-16 10:32:31.000000000 -0800
++++ libtool-2.4.6-new/build-aux/vc-list-files	2020-03-16 19:07:10.821692899 -0700
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_DESTDIR@@GAR_bindir@/bash
+ # List version-controlled file names.
+ 
+ # Print a version string.
+diff -Naur libtool-2.4.6-old/configure libtool-2.4.6-new/configure
+--- libtool-2.4.6-old/configure	2015-02-15 08:14:34.000000000 -0800
++++ libtool-2.4.6-new/configure	2020-03-16 19:13:51.363671065 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Guess values for system-dependent variables and create Makefiles.
+ # Generated by GNU Autoconf 2.69 for GNU Libtool 2.4.6.
+ #
+@@ -284,7 +284,7 @@
+ fi
+ fi
+ fi
+-SHELL=${CONFIG_SHELL-/bin/sh}
++SHELL=${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}
+ export SHELL
+ # Unset more variables known to interfere with behavior of common tools.
+ CLICOLOR_FORCE= GREP_OPTIONS=
+@@ -566,7 +566,7 @@
+ 
+ lt_ltdl_dir='libltdl'
+ 
+-SHELL=${CONFIG_SHELL-/bin/sh}
++SHELL=${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}
+ 
+ lt_dlopen_dir=$lt_ltdl_dir; lt_libobj_prefix=$lt_ltdl_dir/
+ 
+@@ -3177,7 +3177,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   cat >conftest.make <<\_ACEOF
+-SHELL = /bin/sh
++SHELL = @GAR_DESTDIR@@GAR_bindir@/bash
+ all:
+ 	@echo '@@@%%%=$(MAKE)=@@@%%%'
+ _ACEOF
+@@ -5963,7 +5963,7 @@
+       for i in 1 2 3 4 5 6 7 8; do
+         teststring=$teststring$teststring
+       done
+-      SHELL=${SHELL-${CONFIG_SHELL-/bin/sh}}
++      SHELL=${SHELL-${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}}
+       # If test is not a shell built-in, we'll probably end up computing a
+       # maximum length that is only half of the actual maximum length, but
+       # we can't tell.
+diff -Naur libtool-2.4.6-old/doc/libtool.1 libtool-2.4.6-new/doc/libtool.1
+--- libtool-2.4.6-old/doc/libtool.1	2015-02-15 08:15:13.000000000 -0800
++++ libtool-2.4.6-new/doc/libtool.1	2020-03-16 19:08:01.502690137 -0700
+@@ -93,7 +93,7 @@
+ x86_64\-apple\-darwin14.1.0
+ .TP
+ shell:
+-\fI\,/bin/sh\/\fP
++\fI\,@GAR_DESTDIR@@GAR_bindir@/bash\/\fP
+ .TP
+ compiler:
+ gcc
+diff -Naur libtool-2.4.6-old/doc/notes.texi libtool-2.4.6-new/doc/notes.texi
+--- libtool-2.4.6-old/doc/notes.texi	2014-12-11 15:06:09.000000000 -0800
++++ libtool-2.4.6-new/doc/notes.texi	2020-03-16 19:08:05.863689899 -0700
+@@ -14,7 +14,7 @@
+ @code{AR=/usr/bin/ar LD=/usr/bin/ld NM='/usr/bin/nm -B'}.
+ 
+ @item
+-On AIX, the @command{/bin/sh} is very slow due to its inefficient handling
++On AIX, the @command{@GAR_DESTDIR@@GAR_bindir@/bash} is very slow due to its inefficient handling
+ of here-documents.  A modern shell is preferable:
+ @example
+ CONFIG_SHELL=/bin/bash; export $CONFIG_SHELL
+diff -Naur libtool-2.4.6-old/libltdl/configure libtool-2.4.6-new/libltdl/configure
+--- libtool-2.4.6-old/libltdl/configure	2015-02-15 08:15:15.000000000 -0800
++++ libtool-2.4.6-new/libltdl/configure	2020-03-16 19:13:22.378672645 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Guess values for system-dependent variables and create Makefiles.
+ # Generated by GNU Autoconf 2.69 for libltdl 2.4.3a.
+ #
+@@ -284,7 +284,7 @@
+ fi
+ fi
+ fi
+-SHELL=${CONFIG_SHELL-/bin/sh}
++SHELL=${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}
+ export SHELL
+ # Unset more variables known to interfere with behavior of common tools.
+ CLICOLOR_FORCE= GREP_OPTIONS=
+@@ -564,7 +564,7 @@
+ # Sed expression to map a string onto a valid variable name.
+ as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr_alnum]%_%g'"
+ 
+-SHELL=${CONFIG_SHELL-/bin/sh}
++SHELL=${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}
+ 
+ 
+ test -n "$DJDIR" || exec 7<&0 </dev/null
+@@ -2673,7 +2673,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   cat >conftest.make <<\_ACEOF
+-SHELL = /bin/sh
++SHELL = @GAR_DESTDIR@@GAR_bindir@/bash
+ all:
+ 	@echo '@@@%%%=$(MAKE)=@@@%%%'
+ _ACEOF
+@@ -4848,7 +4848,7 @@
+       for i in 1 2 3 4 5 6 7 8; do
+         teststring=$teststring$teststring
+       done
+-      SHELL=${SHELL-${CONFIG_SHELL-/bin/sh}}
++      SHELL=${SHELL-${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}}
+       # If test is not a shell built-in, we'll probably end up computing a
+       # maximum length that is only half of the actual maximum length, but
+       # we can't tell.
+diff -Naur libtool-2.4.6-old/libtoolize.in libtool-2.4.6-new/libtoolize.in
+--- libtool-2.4.6-old/libtoolize.in	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/libtoolize.in	2020-03-16 19:13:27.927672342 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ # Prepare a package to use libtool.
+ # Written by Gary V. Vaughan <gary@gnu.org>, 2003
+diff -Naur libtool-2.4.6-old/m4/libtool.m4 libtool-2.4.6-new/m4/libtool.m4
+--- libtool-2.4.6-old/m4/libtool.m4	2015-01-20 08:15:19.000000000 -0800
++++ libtool-2.4.6-new/m4/libtool.m4	2020-03-16 19:13:38.149671785 -0700
+@@ -77,7 +77,7 @@
+ AC_REQUIRE([LTOBSOLETE_VERSION])dnl
+ m4_require([_LT_PROG_LTMAIN])dnl
+ 
+-_LT_SHELL_INIT([SHELL=${CONFIG_SHELL-/bin/sh}])
++_LT_SHELL_INIT([SHELL=${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}])
+ 
+ dnl Parse OPTIONS
+ _LT_SET_OPTIONS([$0], [$1])
+@@ -1774,7 +1774,7 @@
+       for i in 1 2 3 4 5 6 7 8; do
+         teststring=$teststring$teststring
+       done
+-      SHELL=${SHELL-${CONFIG_SHELL-/bin/sh}}
++      SHELL=${SHELL-${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}}
+       # If test is not a shell built-in, we'll probably end up computing a
+       # maximum length that is only half of the actual maximum length, but
+       # we can't tell.
+diff -Naur libtool-2.4.6-old/tests/configure-funcs.at libtool-2.4.6-new/tests/configure-funcs.at
+--- libtool-2.4.6-old/tests/configure-funcs.at	2015-01-20 08:08:10.000000000 -0800
++++ libtool-2.4.6-new/tests/configure-funcs.at	2020-03-16 19:08:15.118689394 -0700
+@@ -29,7 +29,7 @@
+ re_begincf='^# ### BEGIN FUNCTIONS SHARED WITH CONFIGURE'
+ re_endcf='^# ### END FUNCTIONS SHARED WITH CONFIGURE'
+ 
+-$ECHO '#!/bin/sh'       > "$1"
++$ECHO '#!@GAR_DESTDIR@@GAR_bindir@/bash'       > "$1"
+ $ECHO '#: ${SED=sed}'   >> "$1"
+ $ECHO '#: ${ECHO=echo}' >> "$1"
+ 
+diff -Naur libtool-2.4.6-old/tests/darwin.at libtool-2.4.6-new/tests/darwin.at
+--- libtool-2.4.6-old/tests/darwin.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/darwin.at	2020-03-16 19:12:48.158674510 -0700
+@@ -66,7 +66,7 @@
+ 
+ mkdir bin
+ AT_DATA([bin/basename],[[
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ usage="usage: $0 argument"
+ if test $# != 1; then
+diff -Naur libtool-2.4.6-old/tests/demo.at libtool-2.4.6-new/tests/demo.at
+--- libtool-2.4.6-old/tests/demo.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/demo.at	2020-03-16 19:12:55.154674129 -0700
+@@ -123,7 +123,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf $@
+-	echo '#! /bin/sh' > $@
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' > $@
+ 	echo 'echo sorry, -dlopen is unsupported' >> $@
+ 	chmod +x $@
+ 
+@@ -853,7 +853,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf $@
+-	echo '#! /bin/sh' > $@
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' > $@
+ 	echo 'echo sorry, -dlopen is unsupported' >> $@
+ 	chmod +x $@
+ 
+diff -Naur libtool-2.4.6-old/tests/deplibs-mingw.at libtool-2.4.6-new/tests/deplibs-mingw.at
+--- libtool-2.4.6-old/tests/deplibs-mingw.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/deplibs-mingw.at	2020-03-16 19:12:58.587673942 -0700
+@@ -69,7 +69,7 @@
+       mkdir bin new-libtool
+ 
+       cat >bin/file <<\EOF
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 1
+ EOF
+       chmod +x bin/file
+diff -Naur libtool-2.4.6-old/tests/early-libtool.at libtool-2.4.6-new/tests/early-libtool.at
+--- libtool-2.4.6-old/tests/early-libtool.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/early-libtool.at	2020-03-16 19:13:02.392673734 -0700
+@@ -100,7 +100,7 @@
+ ]])
+ 
+ cat > missing <<_EOF
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 0
+ _EOF
+ chmod a+x missing
+@@ -207,7 +207,7 @@
+ ]])
+ 
+ cat > missing <<_EOF
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 0
+ _EOF
+ chmod a+x missing
+diff -Naur libtool-2.4.6-old/tests/execute-mode.at libtool-2.4.6-new/tests/execute-mode.at
+--- libtool-2.4.6-old/tests/execute-mode.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/execute-mode.at	2020-03-16 19:12:37.086675114 -0700
+@@ -28,7 +28,7 @@
+ eval `$LIBTOOL --config | $EGREP '^(FGREP)='`
+ 
+ AT_DATA([foo],
+-[[#! /bin/sh
++[[#! @GAR_DESTDIR@@GAR_bindir@/bash
+ if test $# -gt 0; then
+   for arg
+   do
+@@ -40,7 +40,7 @@
+ ]])
+ 
+ AT_DATA([lt-wrapper],
+-[[#! /bin/sh
++[[#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Generated by GNU libtool.
+ # fake wrapper script.
+ program=lt-real
+@@ -54,7 +54,7 @@
+ ]])
+ 
+ AT_DATA([lt-real],
+-[[#! /bin/sh
++[[#! @GAR_DESTDIR@@GAR_bindir@/bash
+ for arg
+ do
+   printf %s\\n "$arg"
+diff -Naur libtool-2.4.6-old/tests/fail.at libtool-2.4.6-new/tests/fail.at
+--- libtool-2.4.6-old/tests/fail.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/fail.at	2020-03-16 19:08:17.800689248 -0700
+@@ -35,7 +35,7 @@
+ ])
+ 
+ AT_DATA([script],
+-[[#! /bin/sh
++[[#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 0
+ ]])
+ chmod +x script
+diff -Naur libtool-2.4.6-old/tests/libtoolize.at libtool-2.4.6-new/tests/libtoolize.at
+--- libtool-2.4.6-old/tests/libtoolize.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/libtoolize.at	2020-03-16 19:08:09.244689715 -0700
+@@ -1078,7 +1078,7 @@
+ ]])
+ 
+ AT_DATA([no-m4],
+-[[#! /bin/sh
++[[#! @GAR_DESTDIR@@GAR_bindir@/bash
+ echo 'error: do not call m4' >&2
+ exit 1
+ ]])
+diff -Naur libtool-2.4.6-old/tests/static.at libtool-2.4.6-new/tests/static.at
+--- libtool-2.4.6-old/tests/static.at	2015-01-16 10:52:04.000000000 -0800
++++ libtool-2.4.6-new/tests/static.at	2020-03-16 19:12:41.080674896 -0700
+@@ -359,7 +359,7 @@
+ AT_SETUP([ccache -all-static])
+ 
+ AT_DATA([ccache],
+-[[#! /bin/sh
++[[#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # poor man's ccache clone
+ case $1 in
+ -*) echo "bogus argument: $1" >&2; exit 1 ;;
+diff -Naur libtool-2.4.6-old/tests/testsuite libtool-2.4.6-new/tests/testsuite
+--- libtool-2.4.6-old/tests/testsuite	2015-02-15 08:15:25.000000000 -0800
++++ libtool-2.4.6-new/tests/testsuite	2020-03-16 19:11:20.551679286 -0700
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Generated from tests/testsuite.at by GNU Autoconf 2.69.
+ #
+ # Copyright (C) 2009-2012 Free Software Foundation, Inc.
+@@ -245,7 +245,7 @@
+ fi
+ fi
+ fi
+-SHELL=${CONFIG_SHELL-/bin/sh}
++SHELL=${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}
+ export SHELL
+ # Unset more variables known to interfere with behavior of common tools.
+ CLICOLOR_FORCE= GREP_OPTIONS=
+@@ -529,7 +529,7 @@
+ 
+ 
+ 
+-SHELL=${CONFIG_SHELL-/bin/sh}
++SHELL=${CONFIG_SHELL-@GAR_DESTDIR@@GAR_bindir@/bash}
+ 
+ # How were we run?
+ at_cli_args="$@"
+@@ -1644,7 +1644,7 @@
+ at_fn_create_debugging_script ()
+ {
+   {
+-    echo "#! /bin/sh" &&
++    echo "#! @GAR_DESTDIR@@GAR_bindir@/bash" &&
+     echo 'test "${ZSH_VERSION+set}" = set && alias -g '\''${1+"$@"}'\''='\''"$@"'\''' &&
+     $as_echo "cd '$at_dir'" &&
+     $as_echo "exec \${CONFIG_SHELL-$SHELL} \"$at_myself\" -v -d $at_debug_args $at_group \${1+\"\$@\"}" &&
+@@ -2307,7 +2307,7 @@
+ re_begincf='^# ### BEGIN FUNCTIONS SHARED WITH CONFIGURE'
+ re_endcf='^# ### END FUNCTIONS SHARED WITH CONFIGURE'
+ 
+-$ECHO '#!/bin/sh'       > "func_munge_path_list"
++$ECHO '#!@GAR_DESTDIR@@GAR_bindir@/bash'       > "func_munge_path_list"
+ $ECHO '#: ${SED=sed}'   >> "func_munge_path_list"
+ $ECHO '#: ${ECHO=echo}' >> "func_munge_path_list"
+ 
+@@ -4298,7 +4298,7 @@
+ 
+ 
+ cat >no-m4 <<'_ATEOF'
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ echo 'error: do not call m4' >&2
+ exit 1
+ _ATEOF
+@@ -5245,7 +5245,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -5584,9 +5584,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:388: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
++$as_echo "$at_srcdir/demo.at:388: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:388"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -5886,7 +5886,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -6225,9 +6225,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:405: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/demo.at:405: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:405"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -6527,7 +6527,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -6866,9 +6866,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:422: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/demo.at:422: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:422"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -7168,7 +7168,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -7534,9 +7534,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:467: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/demo.at:467: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:467"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -7670,7 +7670,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -8009,9 +8009,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:482: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-fast-install=no"
++$as_echo "$at_srcdir/demo.at:482: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-fast-install=no"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:482"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-fast-install=no
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-fast-install=no
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -8297,7 +8297,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -8636,9 +8636,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:500: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-pic"
++$as_echo "$at_srcdir/demo.at:500: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-pic"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:500"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-pic
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-pic
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -8867,7 +8867,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -9205,9 +9205,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:538: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-pic=no"
++$as_echo "$at_srcdir/demo.at:538: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-pic=no"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:538"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-pic=no
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-pic=no
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -9376,7 +9376,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -9775,9 +9775,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:611: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/demo.at:611: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:611"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -10228,7 +10228,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -10567,9 +10567,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:719: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/demo.at:719: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:719"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -10739,7 +10739,7 @@
+ 
+ 
+ func_save_files
+-# AIX 5.3 '/bin/sh' will invoke the trap for 0 at the end of a
++# AIX 5.3 '@GAR_DESTDIR@@GAR_bindir@/bash' will invoke the trap for 0 at the end of a
+ # function, so we set the trap outside of a function to be portable.
+ trap func_restore_files 0 1 2 13 15
+ 
+@@ -10964,7 +10964,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -11303,9 +11303,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:790: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/demo.at:790: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:790"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -11563,7 +11563,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -11846,7 +11846,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf $@
+-	echo '#! /bin/sh' > $@
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' > $@
+ 	echo 'echo sorry, -dlopen is unsupported' >> $@
+ 	chmod +x $@
+ 
+@@ -12074,9 +12074,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/demo.at:977: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/demo.at:977: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "demo.at:977"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -12373,7 +12373,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -12718,9 +12718,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/pic_flag.at:57: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" lt_cv_prog_compiler_pic=\"\$C_pic_flag\" 		lt_cv_prog_compiler_pic_CXX=\"\$CXX_pic_flag\""
++$as_echo "$at_srcdir/pic_flag.at:57: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" lt_cv_prog_compiler_pic=\"\$C_pic_flag\" 		lt_cv_prog_compiler_pic_CXX=\"\$CXX_pic_flag\""
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "pic_flag.at:57"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" lt_cv_prog_compiler_pic="$C_pic_flag" 		lt_cv_prog_compiler_pic_CXX="$CXX_pic_flag"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" lt_cv_prog_compiler_pic="$C_pic_flag" 		lt_cv_prog_compiler_pic_CXX="$CXX_pic_flag"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -12846,7 +12846,7 @@
+ bin_SCRIPTS = helldl
+ helldl helldl$(EXEEXT):
+ 	rm -rf
+-	echo '#! /bin/sh' >
++	echo '#! @GAR_DESTDIR@@GAR_bindir@/bash' >
+ 	echo 'echo sorry, -dlopen is unsupported' >>
+ 	chmod +x
+ 
+@@ -13187,9 +13187,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/with-pic.at:32: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/with-pic.at:32: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "with-pic.at:32"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -13238,9 +13238,9 @@
+ : ${MAKE=make}
+ 
+ { set +x
+-$as_echo "$at_srcdir/with-pic.at:44: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=no"
++$as_echo "$at_srcdir/with-pic.at:44: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=no"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "with-pic.at:44"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic=no
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic=no
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -13280,9 +13280,9 @@
+ $MAKE clean
+ 
+ { set +x
+-$as_echo "$at_srcdir/with-pic.at:49: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=yes"
++$as_echo "$at_srcdir/with-pic.at:49: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=yes"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "with-pic.at:49"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic=yes
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic=yes
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -13322,9 +13322,9 @@
+ $MAKE clean
+ 
+ { set +x
+-$as_echo "$at_srcdir/with-pic.at:54: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=\"demo,foo,bar\""
++$as_echo "$at_srcdir/with-pic.at:54: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=\"demo,foo,bar\""
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "with-pic.at:54"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic="demo,foo,bar"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic="demo,foo,bar"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -13364,9 +13364,9 @@
+ $MAKE clean
+ 
+ { set +x
+-$as_echo "$at_srcdir/with-pic.at:59: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=\"foo,bar\""
++$as_echo "$at_srcdir/with-pic.at:59: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared --with-pic=\"foo,bar\""
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "with-pic.at:59"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic="foo,bar"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared --with-pic="foo,bar"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -13629,9 +13629,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/cdemo.at:140: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
++$as_echo "$at_srcdir/cdemo.at:140: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "cdemo.at:140"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -13934,9 +13934,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/cdemo.at:155: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/cdemo.at:155: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "cdemo.at:155"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -14239,9 +14239,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/cdemo.at:170: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/cdemo.at:170: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "cdemo.at:170"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -14544,9 +14544,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/cdemo.at:184: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/cdemo.at:184: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "cdemo.at:184"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -15744,9 +15744,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/depdemo.at:290: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
++$as_echo "$at_srcdir/depdemo.at:290: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "depdemo.at:290"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -16253,9 +16253,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/depdemo.at:307: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/depdemo.at:307: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "depdemo.at:307"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -16762,9 +16762,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/depdemo.at:324: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/depdemo.at:324: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "depdemo.at:324"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -17271,9 +17271,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/depdemo.at:340: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-fast-install=no"
++$as_echo "$at_srcdir/depdemo.at:340: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-fast-install=no"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "depdemo.at:340"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-fast-install=no
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-fast-install=no
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -17766,9 +17766,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/depdemo.at:359: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/depdemo.at:359: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "depdemo.at:359"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -17908,7 +17908,7 @@
+ 
+ func_save_files
+ 
+-# AIX 5.3 '/bin/sh' will invoke the trap for 0 at the end of a
++# AIX 5.3 '@GAR_DESTDIR@@GAR_bindir@/bash' will invoke the trap for 0 at the end of a
+ # function, so we set the trap outside of a function to be portable.
+ trap func_restore_files 0 1 2 13 15
+ 
+@@ -20915,7 +20915,7 @@
+ 
+ 
+ cat >script <<'_ATEOF'
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 0
+ _ATEOF
+ 
+@@ -22017,7 +22017,7 @@
+ 
+ 
+ cat >ccache <<'_ATEOF'
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # poor man's ccache clone
+ case $1 in
+ -*) echo "bogus argument: $1" >&2; exit 1 ;;
+@@ -23282,7 +23282,7 @@
+ eval `$LIBTOOL --config | $EGREP '^(FGREP)='`
+ 
+ cat >foo <<'_ATEOF'
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ if test $# -gt 0; then
+   for arg
+   do
+@@ -23295,7 +23295,7 @@
+ 
+ 
+ cat >lt-wrapper <<'_ATEOF'
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ # Generated by GNU libtool.
+ # fake wrapper script.
+ program=lt-real
+@@ -23310,7 +23310,7 @@
+ 
+ 
+ cat >lt-real <<'_ATEOF'
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ for arg
+ do
+   printf %s\\n "$arg"
+@@ -26183,7 +26183,7 @@
+ esac
+ # Avoid these errors:
+ # GNU/Linux:
+-#   /bin/sh: warning: setlocale: LC_ALL: cannot change locale (de_DE)
++#   @GAR_DESTDIR@@GAR_bindir@/bash: warning: setlocale: LC_ALL: cannot change locale (de_DE)
+ # HP-UX:
+ #   Warning! One or more of your selected locales are not available.
+ #   Please invoke the commands "locale" and "locale -a" to verify your
+@@ -27548,9 +27548,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/old-m4-iface.at:91: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/old-m4-iface.at:91: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "old-m4-iface.at:91"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -27844,9 +27844,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/old-m4-iface.at:162: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
++$as_echo "$at_srcdir/old-m4-iface.at:162: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "old-m4-iface.at:162"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -28205,9 +28205,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/old-ltdl-iface.at:134: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/old-ltdl-iface.at:134: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "old-ltdl-iface.at:134"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -28402,9 +28402,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/am-subdir.at:78: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/am-subdir.at:78: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "am-subdir.at:78"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -28660,9 +28660,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/am-subdir.at:146: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/am-subdir.at:146: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "am-subdir.at:146"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -32947,9 +32947,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/mdemo.at:630: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl --disable-shared"
++$as_echo "$at_srcdir/mdemo.at:630: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl --disable-shared"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "mdemo.at:630"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl --disable-shared
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl --disable-shared
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -33834,9 +33834,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/mdemo.at:647: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl --disable-static"
++$as_echo "$at_srcdir/mdemo.at:647: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "mdemo.at:647"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -34721,9 +34721,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/mdemo.at:664: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
++$as_echo "$at_srcdir/mdemo.at:664: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "mdemo.at:664"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -35608,9 +35608,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/mdemo.at:680: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
++$as_echo "$at_srcdir/mdemo.at:680: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "mdemo.at:680"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -36708,9 +36708,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/mdemo.at:841: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
++$as_echo "$at_srcdir/mdemo.at:841: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "mdemo.at:841"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -36845,9 +36845,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/standalone.at:34: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/standalone.at:34: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "standalone.at:34"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -36923,9 +36923,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/standalone.at:49: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/standalone.at:49: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "standalone.at:49"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -37003,9 +37003,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/standalone.at:66: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
++$as_echo "$at_srcdir/standalone.at:66: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "standalone.at:66"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -37354,9 +37354,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/subproject.at:62: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/subproject.at:62: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "subproject.at:62"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -37526,9 +37526,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/subproject.at:78: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/subproject.at:78: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "subproject.at:78"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -37700,9 +37700,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/subproject.at:97: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
++$as_echo "$at_srcdir/subproject.at:97: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "subproject.at:97"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -38093,9 +38093,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/nonrecursive.at:92: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/nonrecursive.at:92: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "nonrecursive.at:92"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -38321,9 +38321,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/nonrecursive.at:116: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/nonrecursive.at:116: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "nonrecursive.at:116"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -38551,9 +38551,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/nonrecursive.at:142: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
++$as_echo "$at_srcdir/nonrecursive.at:142: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "nonrecursive.at:142"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -38707,9 +38707,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/recursive.at:68: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/recursive.at:68: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "recursive.at:68"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -38849,9 +38849,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/recursive.at:88: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/recursive.at:88: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "recursive.at:88"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -38993,9 +38993,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/recursive.at:110: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
++$as_echo "$at_srcdir/recursive.at:110: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "recursive.at:110"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -39509,9 +39509,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/tagdemo.at:343: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
++$as_echo "$at_srcdir/tagdemo.at:343: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "tagdemo.at:343"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -40048,9 +40048,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/tagdemo.at:358: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/tagdemo.at:358: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "tagdemo.at:358"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -40587,9 +40587,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/tagdemo.at:373: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/tagdemo.at:373: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "tagdemo.at:373"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -41126,9 +41126,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/tagdemo.at:388: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/tagdemo.at:388: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "tagdemo.at:388"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -42722,7 +42722,7 @@
+ 
+ 
+ cat > missing <<_EOF
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 0
+ _EOF
+ chmod a+x missing
+@@ -42779,9 +42779,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/early-libtool.at:111: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/early-libtool.at:111: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "early-libtool.at:111"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -42954,7 +42954,7 @@
+ 
+ 
+ cat > missing <<_EOF
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 0
+ _EOF
+ chmod a+x missing
+@@ -43011,9 +43011,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/early-libtool.at:218: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/early-libtool.at:218: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "early-libtool.at:218"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -43222,9 +43222,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/no-executables.at:76: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/no-executables.at:76: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "no-executables.at:76"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -43236,9 +43236,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/no-executables.at:77: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" test_ac_libtool_dlopen=:"
++$as_echo "$at_srcdir/no-executables.at:77: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" test_ac_libtool_dlopen=:"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "no-executables.at:77"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" test_ac_libtool_dlopen=:
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" test_ac_libtool_dlopen=:
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -43618,9 +43618,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/configure-iface.at:145: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl --prefix=\$prefix"
++$as_echo "$at_srcdir/configure-iface.at:145: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl --prefix=\$prefix"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "configure-iface.at:145"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl --prefix=$prefix
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl --prefix=$prefix
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -43722,9 +43722,9 @@
+ 
+ (cd ltdl
+ { set +x
+-$as_echo "$at_srcdir/configure-iface.at:171: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
++$as_echo "$at_srcdir/configure-iface.at:171: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --enable-ltdl-install --prefix=\$prefix"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "configure-iface.at:171"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --enable-ltdl-install --prefix=$prefix
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -44002,9 +44002,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/configure-iface.at:229: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-ltdl-lib=\$prefix/lib --with-ltdl-include=\$prefix/include"
++$as_echo "$at_srcdir/configure-iface.at:229: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-ltdl-lib=\$prefix/lib --with-ltdl-include=\$prefix/include"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "configure-iface.at:229"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-ltdl-lib=$prefix/lib --with-ltdl-include=$prefix/include
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-ltdl-lib=$prefix/lib --with-ltdl-include=$prefix/include
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -44280,9 +44280,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/configure-iface.at:283: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
++$as_echo "$at_srcdir/configure-iface.at:283: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --with-included-ltdl"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "configure-iface.at:283"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --with-included-ltdl
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -44449,9 +44449,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/configure-iface.at:321: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/configure-iface.at:321: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "configure-iface.at:321"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -44858,9 +44858,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/f77demo.at:304: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
++$as_echo "$at_srcdir/f77demo.at:304: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "f77demo.at:304"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -45386,9 +45386,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/f77demo.at:319: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/f77demo.at:319: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "f77demo.at:319"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -45914,9 +45914,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/f77demo.at:334: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/f77demo.at:334: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "f77demo.at:334"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -46479,9 +46479,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/fcdemo.at:318: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
++$as_echo "$at_srcdir/fcdemo.at:318: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-shared"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "fcdemo.at:318"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-shared
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -47041,9 +47041,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/fcdemo.at:333: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
++$as_echo "$at_srcdir/fcdemo.at:333: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" --disable-static"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "fcdemo.at:333"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" --disable-static
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -47603,9 +47603,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/fcdemo.at:348: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/fcdemo.at:348: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "fcdemo.at:348"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -47845,7 +47845,7 @@
+ mkdir bin
+ cat >bin/basename <<'_ATEOF'
+ 
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ 
+ usage="usage: $0 argument"
+ if test $# != 1; then
+@@ -48364,9 +48364,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/darwin.at:225: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/darwin.at:225: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "darwin.at:225"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -48392,9 +48392,9 @@
+ 
+ mv stdout expout
+ { set +x
+-$as_echo "$at_srcdir/darwin.at:228: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" LDFLAGS=-L/there/is/no/dir/here"
++$as_echo "$at_srcdir/darwin.at:228: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" LDFLAGS=-L/there/is/no/dir/here"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "darwin.at:228"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" LDFLAGS=-L/there/is/no/dir/here
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" LDFLAGS=-L/there/is/no/dir/here
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -49119,7 +49119,7 @@
+       mkdir bin new-libtool
+ 
+       cat >bin/file <<\EOF
+-#! /bin/sh
++#! @GAR_DESTDIR@@GAR_bindir@/bash
+ exit 1
+ EOF
+       chmod +x bin/file
+@@ -49129,9 +49129,9 @@
+       # missing configure flags and other reasons.
+       LDFLAGS=$save_LDFLAGS
+       { set +x
+-$as_echo "$at_srcdir/deplibs-mingw.at:81: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL \"\$abs_top_srcdir\"/configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" || exit 77"
++$as_echo "$at_srcdir/deplibs-mingw.at:81: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL \"\$abs_top_srcdir\"/configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" || exit 77"
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "deplibs-mingw.at:81"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL "$abs_top_srcdir"/configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" || exit 77
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL "$abs_top_srcdir"/configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" || exit 77
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -49430,9 +49430,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:203: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:203: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:203"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -49623,9 +49623,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:203: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:203: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:203"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -49815,9 +49815,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:203: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:203: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:203"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -50194,9 +50194,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:204: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:204: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:204"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -50387,9 +50387,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:204: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:204: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:204"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -50579,9 +50579,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:204: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:204: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:204"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -50958,9 +50958,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:205: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:205: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:205"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -51151,9 +51151,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:205: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:205: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:205"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+@@ -51343,9 +51343,9 @@
+ 
+ 
+ { set +x
+-$as_echo "$at_srcdir/sysroot.at:205: : \${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
++$as_echo "$at_srcdir/sysroot.at:205: : \${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  \$CONFIG_SHELL ./configure \$configure_options           --prefix=\"\$prefix\" --exec-prefix=\"\$prefix\" --bindir=\"\$prefix/bin\" --libdir=\"\$prefix/lib\" "
+ at_fn_check_prepare_notrace 'a ${...} parameter expansion' "sysroot.at:205"
+-( $at_check_trace; : ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
++( $at_check_trace; : ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; 	  $CONFIG_SHELL ./configure $configure_options           --prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib"
+ ) >>"$at_stdout" 2>>"$at_stderr" 5>&-
+ at_status=$? at_failed=false
+ $at_check_filter
+diff -Naur libtool-2.4.6-old/tests/testsuite.at libtool-2.4.6-new/tests/testsuite.at
+--- libtool-2.4.6-old/tests/testsuite.at	2015-01-20 07:24:15.000000000 -0800
++++ libtool-2.4.6-new/tests/testsuite.at	2020-03-16 19:13:05.410673570 -0700
+@@ -181,7 +181,7 @@
+ # Configure CONFIGURE-SCRIPT, defaulting to ./configure, with
+ # additional OPTIONS.
+ m4_define([LT_AT_CONFIGURE],
+-[AT_CHECK([: ${CONFIG_SHELL=/bin/sh}; export CONFIG_SHELL; ]dnl
++[AT_CHECK([: ${CONFIG_SHELL=@GAR_DESTDIR@@GAR_bindir@/bash}; export CONFIG_SHELL; ]dnl
+ 	  [$CONFIG_SHELL m4_default([$2], [./configure]) $configure_options ]dnl
+           [--prefix="$prefix" --exec-prefix="$prefix" --bindir="$prefix/bin" --libdir="$prefix/lib" $1],
+ 	  [0], [ignore], [ignore])

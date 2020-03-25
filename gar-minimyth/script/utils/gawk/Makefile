@@ -1,5 +1,5 @@
 GARNAME = gawk
-GARVERSION = 5.0.1
+GARVERSION = $(GAWK_VERSION)
 CATEGORIES = utils
 MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
 DISTFILES = $(DISTNAME).tar.xz
@@ -33,4 +33,5 @@ INSTALL_ARGS = \
 	MANS="" \
 	INFO_DEPS=""
 
+GAR_EXTRA_CONF += utils/gawk/package-api.mk
 include ../../gar.mk

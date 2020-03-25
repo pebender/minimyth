@@ -36,4 +36,5 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-freetype2 \
 	--with-mesa-source=$(DESTDIR)$(sourcedir)/Mesa
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

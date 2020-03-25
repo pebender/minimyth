@@ -10,21 +10,26 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lib/zlib \
+DEPENDS = lang/c build-tool/make lib/zlib \
 	xorg/font-util \
 	xorg/util-macros \
 	xorg/xorgproto
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
+
+pre-configure:
+	echo "PKG_CONFIG_PATH=$(PKG_CONFIG_PATH)"
+	echo "PKG_CONFIG_PATH=$(PKG_CONFIG_PATH)"
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

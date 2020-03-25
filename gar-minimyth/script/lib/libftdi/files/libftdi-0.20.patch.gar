@@ -1,6 +1,6 @@
 diff -Naur libftdi-0.20-old/libftdi-config.in libftdi-0.20-new/libftdi-config.in
---- libftdi-0.20-old/libftdi-config.in	2012-01-26 03:40:48.000000000 -0800
-+++ libftdi-0.20-new/libftdi-config.in	2012-11-23 08:10:51.000000000 -0800
+--- libftdi-0.20-old/libftdi1-config.in	2012-01-26 03:40:48.000000000 -0800
++++ libftdi-0.20-new/libftdi1-config.in	2012-11-23 08:10:51.000000000 -0800
 @@ -50,8 +50,8 @@
        exit 0
        ;;

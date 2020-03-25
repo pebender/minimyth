@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c lib/libjpeg lib/libpng lib/libtiff
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -20,20 +20,29 @@ EXTRACTDIR = $(WORKSRC)
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
-	--disable-static
+	--disable-static \
+	--disable-silent-rules \
+	--enable-shared \
+	--disable-static \
+	--disable-gl \
+	--disable-sdl \
+	--enable-png \
+	--enable-jpeg \
+	--enable-tiff \
+	--disable-gif \
+	--disable-wic \
+	--disable-libwebpmux \
+	--enable-libwebpdemux \
+	--disable-libwebpdecoder \
+	--disable-libwebpextras
 
 include ../../gar.mk
 
 checksum-v$(GARVERSION).tar.gz:
 	@$(MAKECOOKIE)
 
-pre-extract:
-	@mkdir -pv $(WORKSRC)
-	@$(MAKECOOKIE)
-
 pre-configure:
 	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
 	@$(MAKECOOKIE)
 
 post-install:

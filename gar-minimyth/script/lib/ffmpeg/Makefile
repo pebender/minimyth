@@ -13,7 +13,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lib/fontconfig lib/libbluray lib/SDL lib/zlib net/librtmp utils/bzip2 X11/libva X11/libvdpau
+DEPENDS   = lang/c build-tool/make lib/fontconfig lib/libbluray lib/SDL lib/zlib net/librtmp utils/bzip2 X11/libva X11/libvdpau
 BUILDDEPS = devel/yasm
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
@@ -134,7 +134,6 @@ CONFIGURE_ARGS = \
 	--disable-openal \
 	--disable-openssl \
 	--enable-zlib \
-	--cross-prefix=$(compiler_prefix) \
 	--enable-cross-compile \
 	--sysroot="$(DESTDIR)$(rootdir)" \
 	--sysinclude="$(DESTDIR)$(includedir)" \
@@ -206,12 +205,11 @@ BUILD_ARGS     = \
 INSTALL_ARGS   = \
 	V='1'
 
-GAR_EXTRA_CONF += mediaplayers/mplayer-svn/package-api.mk
 include ../../gar.mk
 
 # ffmpeg 1.1.6 fails to compile with asm and gcc 5.2.0's link time optimization enabled.
-#CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
-#LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
+#CFLAGS  := $(filter-out -flto, $(CFLAGS))
+#LDFLAGS := $(filter-out -flto, $(LDFLAGS))
 
 clean-all:
 	@$(MAKE) clean

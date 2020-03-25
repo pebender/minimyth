@@ -3,20 +3,17 @@ GARVERSION = 1.1.2
 CATEGORIES = lib
 MASTER_SITES = https://download.videolan.org/pub/videolan/libbluray/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
-xxPATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS   = lang/c lib/libxml2 lib/fontconfig lib/freetype
-BUILDDEPS =
+DEPENDS = lang/c build-tool/make lib/libxml2 lib/fontconfig lib/freetype
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -39,15 +36,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-doxygen-pdf \
 	--with-libxml2 \
 	--with-freetype \
-	--with-fontconfig \
-	--with-gnu-ld
+	--with-fontconfig
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

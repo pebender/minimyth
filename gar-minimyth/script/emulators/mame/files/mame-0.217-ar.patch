@@ -1,0 +1,46 @@
+diff -Naur mame-mame0217-old/makefile mame-mame0217-new/makefile
+--- mame-mame0217-old/makefile	2019-12-24 01:48:17.000000000 -0800
++++ mame-mame0217-new/makefile	2020-01-31 11:43:49.490945466 -0800
+@@ -563,6 +563,14 @@
+ LD := $(OVERRIDE_LD)
+ endif
+ endif
++ifdef OVERRIDE_AR
++PARAMS += --AR='$(OVERRIDE_AR)'
++ifndef CROSS_BUILD
++AR := $(OVERRIDE_AR)
++endif
++endif
++
++#-------------------------------------------------
+ 
+ #-------------------------------------------------
+ # sanity check the configuration
+diff -Naur mame-mame0217-old/scripts/genie.lua mame-mame0217-new/scripts/genie.lua
+--- mame-mame0217-old/scripts/genie.lua	2019-12-24 01:48:17.000000000 -0800
++++ mame-mame0217-new/scripts/genie.lua	2020-01-31 11:45:53.880946683 -0800
+@@ -195,6 +195,11 @@
+ }
+ 
+ newoption {
++	trigger = "AR",
++	description = "AR replacement",
++}
++
++newoption {
+ 	trigger = "TOOLCHAIN",
+ 	description = "Toolchain prefix"
+ }
+diff -Naur mame-mame0217-old/scripts/toolchain.lua mame-mame0217-new/scripts/toolchain.lua
+--- mame-mame0217-old/scripts/toolchain.lua	2019-12-24 01:48:17.000000000 -0800
++++ mame-mame0217-new/scripts/toolchain.lua	2020-01-31 11:46:31.312947049 -0800
+@@ -502,6 +502,9 @@
+ 	if (_OPTIONS["LD"] ~= nil) then
+ 		premake.gcc.ld  = _OPTIONS["LD"]
+ 	end
++	if (_OPTIONS["AR"] ~= nil) then
++		premake.gcc.ar  = _OPTIONS["AR"]
++	end
+ 
+ 	configuration {} -- reset configuration
+ 

@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c system/lirc xorg/xorg
+DEPENDS = lang/c system/lirc xorg/libX11 xorg/libXtst
 
 BUILD_SCRIPTS   = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = custom

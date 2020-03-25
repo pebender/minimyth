@@ -22,4 +22,5 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--with-bzip2
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

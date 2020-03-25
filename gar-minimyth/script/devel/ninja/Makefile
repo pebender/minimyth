@@ -1,23 +1,29 @@
 GARNAME = ninja
 GARVERSION = $(NINJA_VERSION)
 CATEGORIES = devel
-MASTER_SITES = https://github.com/ninja-build/$(GARNAME)/archive/
+MASTER_SITES = https://github.com/ninja-build/ninja/archive/
 DISTFILES = v$(GARVERSION).tar.gz
-xPATCHFILES = \
-	$(DISTNAME)-cross.patch.gar
 LICENSE = Apache_2_0
 
 DESCRIPTION = 
 define BLURB
 endef
 
-ifeq ($(GARHOST),$(GARBUILD))
+ifeq ($(DESTIMG),build)
 DEPENDS   = lang/cxx
 BUILDDEPS = python/python
 else
 BUILDDEPS = devel/ninja
 endif
 
+ifeq ($(DESTIMG),build)
+build_DESTDIR = $(build_DESTDIR_swapped)
+build_rootdir = $(build_rootdir_swapped)
+DESTIDR = $(build_DESTDIR_swapped)
+rootdir = $(build_rootdir_swapped)
+endif
+
+BUILD_SCRIPTS = $(WORKSRC)/configure.py
 ifeq ($(DESTIMG),build)
 BUILD_SCRIPTS = $(WORKSRC)/configure.py
 INSTALL_SCRIPTS = custom

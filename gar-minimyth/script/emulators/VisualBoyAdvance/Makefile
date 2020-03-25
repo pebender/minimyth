@@ -16,7 +16,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lang/cxx lib/libpng lib/SDL lib/zlib xorg/xorg
+DEPENDS   = lang/c lang/cxx build-tool/autotools lib/libpng lib/SDL lib/zlib xorg/xorg
 BUILDDEPS = devel/nasm
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
@@ -37,7 +37,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-x
 
 CONFIGURE_ENV = \
-	SDL_CONFIG=$(DESTDIR)$(prefix)/bin-config/sdl-config
+	SDL_CONFIG=$(DESTDIR)$(bindir)/config/sdl-config
 
 include ../../gar.mk
 

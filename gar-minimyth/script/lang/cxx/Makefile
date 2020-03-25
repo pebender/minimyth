@@ -5,12 +5,9 @@ DESCRIPTION =
 define BLURB
 endef
 
-ifneq ($(GARHOST),$(GARBUILD))
-DEPENDS = lang/c lang/libcxx
-else
 DEPENDS = lang/c
-endif
 
+GAR_EXTRA_CONF += lang/lang/toolchain.mk
 include ../../gar.mk
 
 $(DESTIMG)_NODEPEND += lang/cxx

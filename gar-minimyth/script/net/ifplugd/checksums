@@ -1,2 +1,3 @@
 df6f4bab52f46ffd6eb1f5912d4ccee3  download/ifplugd-0.28.tar.gz
 597b96a869e2818367be37cffde5f29e  download/ifplugd-0.28-interface_c.patch
+ad93f83f54807cbda05875031cffc9ac  download/ifplugd-0.28-musl-fix-types.patch

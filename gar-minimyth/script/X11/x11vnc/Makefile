@@ -13,7 +13,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/avahi lib/libjpeg lib/zlib X11/libvncserver xorg/xorg
+DEPENDS = lang/c lib/avahi lib/libjpeg lib/zlib X11/libvncserver xorg/libX11 xorg/libXcomposite xorg/libXcursor xorg/libXdamage xorg/libXext xorg/libXfixes xorg/libXinerama xorg/libXrandr xorg/libXtst
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

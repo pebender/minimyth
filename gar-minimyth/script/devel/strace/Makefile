@@ -1,28 +1,21 @@
 GARNAME = strace
-GARVERSION = 4.7
+GARVERSION = 5.4
 CATEGORIES = devel
 MASTER_SITES = https://strace.io/files/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
-PATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch
 LICENSE = BSD_3_Clause
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c 
+DEPENDS = lang/c build-tool/make
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)

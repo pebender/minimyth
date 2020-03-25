@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c xorg/xorg
+DEPENDS = lang/c xorg/libX11
 
 WORKSRC = $(WORKDIR)/unclutter
 

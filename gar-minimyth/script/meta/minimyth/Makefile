@@ -15,7 +15,6 @@ DESTIMG = $(MINIMYTHIMG)
 
 DEPENDS = \
 	system/acpid \
-	system/aquosserver \
 	utils/alsa-utils \
 	system/bdremote-ng \
 	utils/bluez-tools \
@@ -25,12 +24,9 @@ DEPENDS = \
 	net/curl \
 	disk/e2fsprogs \
 	utils/ethtool \
-	system/eventlircd \
 	utils/evtest \
 	devel/fakeroot \
 	system/g15daemon \
-	devel/glibc-locale \
-	$(if $(filter i386,$(mm_GARCH_FAMILY)),net/gpxe) \
 	disk/hdparm \
 	net/ifplugd \
 	system/iguanair \
@@ -56,13 +52,6 @@ DEPENDS = \
 	net/openssh \
 	net/rpcbind \
 	utils/pciutils \
-	perl/perl \
-	perl/perl-Class-Inspector \
-	perl/perl-Date-Manip \
-	perl/perl-Lchown \
-	perl/perl-MiniMyth \
-	perl/perl-RFLibs \
-	perl/perl-Regexp-Wildcards \
 	utils/pmount \
 	system/powernowd \
 	utils/procps \
@@ -157,7 +146,8 @@ BUILDDEPS = \
 	utils/squashfs \
 	utils/tar \
 	utils/util-linux \
-	xorg/xorg \
+	xorg/mkfontdir \
+	xorg/mkfontscale \
 	perl/perlstrip \
 	python/python-pyminifier
 
@@ -168,12 +158,12 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 include ../../gar.mk
 
 pre-everything:
-	@$(MAKE) -f files/check.mk DESTIMG=$(DESTIMG)
+	@$(MAKE) -f files/check.mk DESTIMG=$(DESTIMG) build_DESTIMG=$(build_DESTIMG)
 	@# There is no MAKECOOKIE so that this runs every time.
 
 $(DOWNLOADDIR)/$(DISTNAME).tar.bz2:
 	@if [ ! -e $(DOWNLOADDIR)/$(DISTNAME).tar.bz2 ] ; then \
-		$(MAKE) -f files/distfile.mk DESTIMG=$(DESTIMG) ; \
+		$(MAKE) -f files/distfile.mk DESTIMG=$(DESTIMG) build_DESTIMG=$(build_DESTIMG) ; \
 	fi
 
 checksum-$(DISTNAME).tar.bz2:
@@ -183,5 +173,5 @@ $(GARCHIVEDIR)/$(DISTNAME).tar.bz2:
 	@#
 
 configure-custom:
-	@$(MAKE) -f files/configure.mk DESTIMG=$(DESTIMG)
+	@$(MAKE) -f files/configure.mk DESTIMG=$(DESTIMG) build_DESTIMG=$(build_DESTIMG)
 	@$(MAKECOOKIE)

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#
+# ld.bfd hash: @TOOL_HASH@
+#
+
+compiler_options=""
+
+@GAR_build_DESTDIR@@GAR_build_bindir@/ld.bfd $compiler_options "$@"

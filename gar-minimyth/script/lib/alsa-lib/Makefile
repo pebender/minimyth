@@ -10,11 +10,12 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c build-tool/make
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -46,15 +47,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-# alsa-lib 1.2.1.2 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
+CFLAGS += -fPIC
+CXXFLAGS += -fPIC
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libasound.la

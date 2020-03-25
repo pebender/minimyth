@@ -1,7 +1,7 @@
 GARNAME = coreutils
 GARVERSION = $(COREUTILS_VERSION)
 CATEGORIES = utils
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/coreutils/
 DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = $(DISTNAME)-sysinfo.patch
 LICENSE = GPL3
@@ -18,13 +18,8 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
-	--disable-rpath
+	--disable-rpath \
+	--without-openssl
 
 GAR_EXTRA_CONF += utils/coreutils/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_GETTEXTIZE)
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
-	@$(MAKECOOKIE)

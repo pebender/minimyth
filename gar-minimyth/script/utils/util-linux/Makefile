@@ -1,7 +1,7 @@
 GARNAME = util-linux
-GARVERSION = 2.34
+GARVERSION = 2.35.1
 CATEGORIES = utils
-MASTER_SITES = https://www.kernel.org/pub/linux/utils/util-linux/v2.34/
+MASTER_SITES = https://www.kernel.org/pub/linux/utils/util-linux/v2.35/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2
 
@@ -23,7 +23,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-gtk-doc \
-	--enable-nls \
+	--disable-nls \
 	--disable-rpath \
 	--enable-tls \
 	--enable-widechar \
@@ -125,14 +125,8 @@ INSTALL_ARGS   = \
 include ../../gar.mk
 
 # util-linux 2.26.2 fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
-#LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
-
-pre-configure:
-	@$(call RUN_GETTEXTIZE)
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
+CFLAGS  := $(filter-out -flto, $(CFLAGS))
+LDFLAGS := $(filter-out -flto, $(LDFLAGS))
 
 post-install:
 	@rm -f $(DESTDIR)$(elibdir)/libblkid.la

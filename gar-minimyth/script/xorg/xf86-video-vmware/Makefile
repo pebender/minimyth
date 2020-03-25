@@ -17,9 +17,9 @@ DEPENDS = lang/c xorg/libdrm \
 	xorg/libXext \
 	xorg/util-macros \
 	xorg/xorg-server \
-	xorg/xorgproto
-BUILDDEPS = \
+	xorg/xorgproto \
 	xorg/xorg-sgml-doctools
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -30,6 +30,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--enable-shared
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 post-install:

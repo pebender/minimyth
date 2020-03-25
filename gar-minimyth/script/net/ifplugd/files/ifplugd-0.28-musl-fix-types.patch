@@ -1,0 +1,19 @@
+diff -Naur ifplugd-0.28-old/src/ethtool-local.h ifplugd-0.28-new/src/ethtool-local.h
+--- ifplugd-0.28-old/src/ethtool-local.h	2003-12-11 09:58:45.000000000 -0800
++++ ifplugd-0.28-new/src/ethtool-local.h	2020-03-24 21:51:29.330476654 -0700
+@@ -21,10 +21,12 @@
+  * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+  */
+ 
++#include <stdint.h>
++
+ typedef unsigned long long u64;
+-typedef __uint32_t u32;        
+-typedef __uint16_t u16;        
+-typedef __uint8_t u8;          
++typedef uint32_t u32;
++typedef uint16_t u16;
++typedef uint8_t u8;
+ 
+ #include "ethtool-kernel.h"
+ 

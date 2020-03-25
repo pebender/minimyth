@@ -1,9 +1,8 @@
 GARNAME = libdvdnav
-GARVERSION = 4.2.0
+GARVERSION = 6.0.1
 CATEGORIES = lib
-MASTER_SITES = https://download.videolan.org/pub/videolan/libdvdnav/
+MASTER_SITES = https://download.videolan.org/pub/videolan/libdvdnav/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = $(DISTNAME)-destdir.patch
 LICENSE = GPL2
 
 DESCRIPTION = 
@@ -16,29 +15,13 @@ CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
+	--enable-shared \
+	--disable-static
 
 include ../../gar.mk
 
-svn//%/$(DISTNAME).tar.bz2:
-	@$(call FETCH_SVN, svn://$*, $(GARVERSION), $(DISTNAME))
-	@$(MAKECOOKIE)
-
-x-checksum-$(DISTNAME).tar.bz2:
-	@$(MAKECOOKIE)
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libdvdnav.la
-	@rm -f $(DESTDIR)$(libdir)/libdvdnavmini.la
-	@sed -e 's%-I$(DESTDIR)$(includedir)%-I$${includedir}%g' -i $(DESTDIR)$(libdir)/pkgconfig/dvdnavmini.pc
-	@rm -f $(DESTDIR)$(bindir)-config/dvdnav-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)dvdnav-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/dvdnav-config $(DESTDIR)$(bindir)-config/dvdnav-config
-	@$(if $(compiler_prefix), ln -s dvdnav-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)dvdnav-config)
 	@$(MAKECOOKIE)

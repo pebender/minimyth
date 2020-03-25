@@ -11,8 +11,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c xorg/xorg X11/rxvt
-
+DEPENDS = lang/c X11/rxvt xorg/libICE xorg/libX11 xorg/libXrandr xorg/libXtst
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile

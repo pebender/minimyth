@@ -7,14 +7,15 @@ endef
 
 BUILDDEPS = lang/c \
 	native/native \
-	ccache/ccache \
-	compiler/compiler \
-	lang/libcxx-from-compiler \
+	cc-build/ccache \
+	toolchain/toolchain \
+	lang/libc \
+	lang/libcxx \
 	utils/bash \
 	utils/coreutils \
 	devel/make \
-	perl/perl \
 	devel/pkg-config \
+	perl/perl \
 	python/python \
 	utils/tar \
 	utils/gzip \
@@ -38,10 +39,15 @@ BUILDDEPS = lang/c \
 	devel/autoconf \
 	devel/autoconf-archive \
 	devel/automake \
-	devel/libtool \
 	devel/intltool \
-	doc/texinfo
+	devel/libtool \
+	doc/texinfo \
+	devel/ninja \
+	devel/cmake \
+	devel/meson \
+	devel/qmake
 
+GAR_EXTRA_CONF += lang/lang/toolchain.mk
 include ../../gar.mk
 
 post-install:

@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c perl/perl perl/perl-XML-Parser
+DEPENDS   = lang/c build-tool/make perl/perl perl/perl-XML-Parser
 BUILDDEPS = perl/perl perl/perl-XML-Parser
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
@@ -19,4 +19,3 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
 
 include ../../gar.mk
-

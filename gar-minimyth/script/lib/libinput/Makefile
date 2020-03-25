@@ -11,7 +11,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c
-BUILDDEPS =
+BUILDDEPS = devel/meson
 
 WORKBLD = $(WORKSRC)_build
 
@@ -28,7 +28,7 @@ CONFIGURE_ARGS  = \
 	-Ddebug-gui=false \
 	-Dtests=false \
 	-Ddocumentation=false
-ifneq ("$(DESTIMG),"build)
+ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--cross-file $(GARHOST)
 endif

@@ -2,7 +2,6 @@ GARNAME = icu
 GARVERSION = 65.1
 CATEGORIES = lib
 MASTER_SITES = https://github.com/unicode-org/icu/releases/download/release-$(subst .,-,$(GARVERSION))/
-ftp://xmlsoft.org/$(GARNAME)/
 DISTFILES = $(GARNAME)4c-$(subst .,_,$(GARVERSION))-src.tgz
 LICENSE = MIT/MIT_Modified
 
@@ -10,20 +9,19 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS  = lang/c lib/zlib
+DEPENDS = lang/c build-tool/make lib/zlib
+BUILDDEPS =
 ifeq ($(DESTIMG),build)
 DEPENDS += python/python
 else
 BUILDDEPS += lib/icu
 endif
 
-PWD := $(shell pwd)
-
 WORKSRC = $(WORKDIR)/$(GARNAME)/source
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--config-cache \
@@ -56,9 +54,6 @@ CONFIGURE_ENV += \
 	ac_cv_c_bigendian="no"
 endif
 
-include ../../gar.mk
+PWD := $(shell pwd)
 
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
+include ../../gar.mk

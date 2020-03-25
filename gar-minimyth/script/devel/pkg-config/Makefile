@@ -9,17 +9,21 @@ DESCRIPTION =
 define BLURB
 endef
 
-ifeq ($(GARHOST),$(GARBUILD))
+ifeq ($(DESTIMG),build)
 DEPENDS = lang/c build-tool/make
 else
 BUILDDEPS = devel/pkg-config
 endif
 
-ifeq ($(GARHOST),$(GARBUILD))
+CONFIGURE_SCRIPTS  =
+BUILD_SCRIPTS      =
+INSTALL_SCRIPTS    =
+ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS  = $(WORKSRC)/configure
 BUILD_SCRIPTS      = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS    = $(WORKSRC)/Makefile
 endif
+INSTALL_SCRIPTS   += wrapper
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -31,3 +35,17 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 GAR_EXTRA_CONF += devel/pkg-config/package-api.mk
 include ../../gar.mk
+
+install-wrapper:
+	rm -fv $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo '#!$(SHELL)'                                          >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo 'PKG_CONFIG_PATH="$(PKG_CONFIG_PATH)"'                >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo 'PKG_CONFIG_LIBDIR="$(PKG_CONFIG_LIBDIR)"'            >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo 'PKG_CONFIG_SYSROOT_DIR="$(PKG_CONFIG_SYSROOT_DIR)"'  >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo 'export PKG_CONFIG_PATH'                              >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo 'export PKG_CONFIG_LIBDIR'                            >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo 'export PKG_CONFIG_SYSROOT_DIR'                       >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	echo '$(build_DESTDIR)$(build_bindir)/pkg-config $$*'      >> $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	chmod ugo+x                                                   $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~
+	mv -fv $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)~ $(build_DESTDIR)$(build_bindir)/$(GARHOST)-$(GARNAME)
+	@$(MAkkKECOOKIE)

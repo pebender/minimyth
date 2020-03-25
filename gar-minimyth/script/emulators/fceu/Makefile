@@ -13,7 +13,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/SDL
+DEPENDS = lang/c build-tool/make lib/SDL build-tool/autotools
+BUILDDEPS =
 
 WORKSRC = $(WORKDIR)/$(GARNAME)
 
@@ -28,7 +29,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-opengl
 
 CONFIGURE_ENV = \
-	SDL_CONFIG=$(DESTDIR)$(prefix)/bin-config/sdl-config
+	SDL_CONFIG=$(DESTDIR)$(bindir)/config/sdl-config
 
 include ../../gar.mk
 

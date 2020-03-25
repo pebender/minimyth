@@ -30,8 +30,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-libseccomp \
 	--enable-fsect-man5 \
 	--disable-static \
-	--enable-shared \
-	--with-sysroot=$(DESTDIR)
+	--enable-shared
 
 include ../../gar.mk
 

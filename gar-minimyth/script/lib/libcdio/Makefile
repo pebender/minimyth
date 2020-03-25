@@ -1,17 +1,15 @@
 GARNAME = libcdio
 GARVERSION = $(LIBCDIO_VERSION)
 CATEGORIES = lib
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch
+MASTER_SITES = https://ftp.gnu.org/gnu/libcdio/
+DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = GPL3
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx
+DEPENDS = lang/c lang/cxx build-tool/make
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -23,8 +21,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-cpp-progs \
 	--enable-shared \
 	--disable-static \
-	--enable-joliet \
 	--disable-rpath \
+	--enable-joliet \
 	--enable-rock \
 	--disable-cddb \
 	--disable-vcd-info \
@@ -36,11 +34,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-iso-read
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libcdio.la

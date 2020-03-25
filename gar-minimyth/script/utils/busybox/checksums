@@ -12,3 +12,8 @@ e66c1a8b7fbcb0691c6d583ad8205b4c  download/busybox-1.20.2-dhcp_tcode.patch
 
 966cb691e600801d7d1b0705a5d8fb54  download/busybox-1.20.2.config
 cfb5d5d7ed1414b5749f2c2ec0bf066a  download/busybox-1.20.2-sys-resource.patch
+
+70913edaf2263a157393af07565c17f0  download/busybox-1.31.1.tar.bz2
+25c48a3d3cf9cc3c398e653b10b97ddd  download/busybox-1.31.1-werror.patch
+88399f98bec1db1fa7012d1063bcbcc6  download/busybox-1.31.1-be5a505d.patch
+440ce9fef9d6f50ae904af11a7d1a09b  download/busybox-1.31.1.config

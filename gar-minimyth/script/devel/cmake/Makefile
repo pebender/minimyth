@@ -10,17 +10,23 @@ DESCRIPTION =
 define BLURB
 endef
 
-ifeq ($(GARHOST),$(GARBUILD))
+ifeq ($(DESTIMG),build)
 DEPENDS = lang/c lang/cxx build-tool/make lib/openssl devel/ninja
 else
 BUILDDEPS = devel/cmake
 endif
 
-ifeq ($(GARHOST),$(GARBUILD))
+build_DESTDIR = $(build_DESTDIR_swapped)
+build_rootdir = $(build_rootdir_swapped)
+#DESTDIR = $(build_DESTDIR_swapped)
+#rootdir = $(build_rootdir_swapped)
+
+ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 endif
+
 
 CONFIGURE_ARGS = \
 	--verbose \
@@ -33,4 +39,5 @@ CONFIGURE_ARGS = \
 	--docdir="$(subst $(prefix),,$(docdir)/CMake)" \
 	--mandir="$(subst $(prefix),,$(mandir))"
 
+GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk

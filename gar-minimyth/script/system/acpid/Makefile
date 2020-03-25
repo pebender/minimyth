@@ -25,8 +25,3 @@ CONFIGURE_ENV = \
 include ../../gar.mk
 
 LDFLAGS := $(LDFLAGS) -fwhole-program
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)

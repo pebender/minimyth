@@ -1,0 +1,1164 @@
+[===== NOW BUILDING:	linux-5.5.1	=====]
+	[fetch] complete for linux.
+	[checksum] complete for linux.
+	[extract] complete for linux.
+	[patch] complete for linux.
+	[configure] complete for linux.
+ ==> Running make in work/main.d/linux-5.5.1
+make[1]: Entering directory '/home/paul/git/minimyth/gar-minimyth/script/kernel-5.5/linux/work/main.d/linux-5.5.1'
+make -f ./scripts/Makefile.build obj=arch/x86/entry/syscalls all
+make -f ./scripts/Makefile.build obj=scripts/basic
+set -e; mkdir -p include/config/; { echo "5.5.1$(sh ./scripts/setlocalversion .)"; } > include/config/kernel.release.tmp; if [ -r include/config/kernel.release ] && cmp -s include/config/kernel.release include/config/kernel.release.tmp; then rm -f include/config/kernel.release.tmp; else : '  UPD     include/config/kernel.release'; mv -f include/config/kernel.release.tmp include/config/kernel.release; fi
+rm -f .tmp_quiet_recordmcount
+make -f ./scripts/Makefile.asm-generic obj=arch/x86/include/generated/uapi/asm \
+generic=include/uapi/asm-generic
+set -e; mkdir -p include/generated/uapi/linux/; { 	echo \#define LINUX_VERSION_CODE 328961; echo '#define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))'; } > include/generated/uapi/linux/version.h.tmp; if [ -r include/generated/uapi/linux/version.h ] && cmp -s include/generated/uapi/linux/version.h include/generated/uapi/linux/version.h.tmp; then rm -f include/generated/uapi/linux/version.h.tmp; else : '  UPD     include/generated/uapi/linux/version.h'; mv -f include/generated/uapi/linux/version.h.tmp include/generated/uapi/linux/version.h; fi
+rm -f include/linux/version.h
+set -e; mkdir -p include/generated/; { 	if [ `echo -n "5.5.1" | wc -c ` -gt 64 ]; then echo '"5.5.1" exceeds 64 characters' >&2; exit 1; fi; echo \#define UTS_RELEASE \"5.5.1\"; } > include/generated/utsrelease.h.tmp; if [ -r include/generated/utsrelease.h ] && cmp -s include/generated/utsrelease.h include/generated/utsrelease.h.tmp; then rm -f include/generated/utsrelease.h.tmp; else : '  UPD     include/generated/utsrelease.h'; mv -f include/generated/utsrelease.h.tmp include/generated/utsrelease.h; fi
+make -f ./scripts/Makefile.build obj=arch/x86/tools relocs
+make -f ./scripts/Makefile.build obj=scripts/dtc
+make -f ./scripts/Makefile.asm-generic obj=arch/x86/include/generated/asm \
+generic=include/asm-generic
+make -f ./scripts/Makefile.build obj=scripts
+make -f ./scripts/Makefile.modbuiltin obj=init
+make -f ./scripts/Makefile.modbuiltin obj=usr
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > init/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > usr/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=kernel
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/crypto
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/entry
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/events
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/mm
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/net
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/entry/vdso
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/events/amd
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/net/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/acpi
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/atom
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/events/amd/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/realmode
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/kernel/acpi/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/atom/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/events/intel
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/apic
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/realmode/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/ce4100
+(for m in arch/x86/events/intel/intel-uncore.ko; do echo $m; done;	\
+cat /dev/null ) > arch/x86/events/intel/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/efi
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/kernel/apic/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/ce4100/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null arch/x86/events/amd/modules.builtin arch/x86/events/intel/modules.builtin) > arch/x86/events/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/cpu
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/efi/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=certs
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/entry/vsyscall
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/geode
+(for m in ; do echo $m; done;	\
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/geode/modules.builtin
+cat /dev/null ) > arch/x86/entry/vsyscall/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/goldfish
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/fpu
+(for m in ; do echo $m; done;	\
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/kernel/fpu/modules.builtin
+cat /dev/null ) > arch/x86/platform/goldfish/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/kprobes
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/intel
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > certs/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/kernel/kprobes/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/intel/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/intel-mid
+make -f ./scripts/Makefile.modbuiltin obj=kernel/bpf
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/intel-quark
+make -f ./scripts/Makefile.modbuiltin obj=kernel/dma
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/intel-mid/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/bpf/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/intel-quark/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/dma/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/mm/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/iris
+make -f ./scripts/Makefile.modbuiltin obj=kernel/events
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/olpc
+make -f ./scripts/Makefile.modbuiltin obj=kernel/irq
+make -f ./scripts/Makefile.modbuiltin obj=kernel/livepatch
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/iris/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/events/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/olpc/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/irq/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/livepatch/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=mm
+make -f ./scripts/Makefile.modbuiltin obj=kernel/locking
+make -f ./scripts/Makefile.modbuiltin obj=kernel/power
+make -f ./scripts/Makefile.modbuiltin obj=kernel/printk
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/scx200
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/locking/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/scx200/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/power/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/printk/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/sfi
+make -f ./scripts/Makefile.modbuiltin obj=kernel/rcu
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/ts5500
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/cpu/mce
+make -f ./scripts/Makefile.modbuiltin obj=kernel/sched
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/rcu/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/sfi/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/ts5500/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/kernel/cpu/mce/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/sched/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/cpu/microcode
+make -f ./scripts/Makefile.modbuiltin obj=kernel/time
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/kernel/cpu/mtrr
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/platform/uv
+make -f ./scripts/Makefile.modbuiltin obj=fs
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/kernel/cpu/microcode/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > mm/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/platform/uv/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > kernel/time/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/kernel/cpu/mtrr/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/crypto/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null arch/x86/platform/atom/modules.builtin arch/x86/platform/ce4100/modules.builtin arch/x86/platform/efi/modules.builtin arch/x86/platform/geode/modules.builtin arch/x86/platform/goldfish/modules.builtin arch/x86/platform/intel/modules.builtin arch/x86/platform/intel-mid/modules.builtin arch/x86/platform/intel-quark/modules.builtin arch/x86/platform/iris/modules.builtin arch/x86/platform/olpc/modules.builtin arch/x86/platform/scx200/modules.builtin arch/x86/platform/sfi/modules.builtin arch/x86/platform/ts5500/modules.builtin arch/x86/platform/uv/modules.builtin) > arch/x86/platform/modules.builtin
+(for m in kernel/configs.ko; do echo $m; done;	\
+cat /dev/null kernel/bpf/modules.builtin kernel/dma/modules.builtin kernel/events/modules.builtin kernel/irq/modules.builtin kernel/livepatch/modules.builtin kernel/locking/modules.builtin kernel/power/modules.builtin kernel/printk/modules.builtin kernel/rcu/modules.builtin kernel/sched/modules.builtin kernel/time/modules.builtin) > kernel/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null arch/x86/kernel/cpu/mce/modules.builtin arch/x86/kernel/cpu/microcode/modules.builtin arch/x86/kernel/cpu/mtrr/modules.builtin) > arch/x86/kernel/cpu/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null arch/x86/kernel/acpi/modules.builtin arch/x86/kernel/apic/modules.builtin arch/x86/kernel/cpu/modules.builtin arch/x86/kernel/fpu/modules.builtin arch/x86/kernel/kprobes/modules.builtin) > arch/x86/kernel/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=ipc
+make -f ./scripts/Makefile.modbuiltin obj=fs/cramfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/debugfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/devpts
+make -f ./scripts/Makefile.modbuiltin obj=fs/exportfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/ext2
+make -f ./scripts/Makefile.modbuiltin obj=fs/ext4
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/debugfs/modules.builtin
+(for m in fs/cramfs/cramfs.ko; do echo $m; done;	\
+cat /dev/null ) > fs/cramfs/modules.builtin
+(for m in fs/exportfs/exportfs.ko; do echo $m; done;	\
+cat /dev/null ) > fs/exportfs/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/devpts/modules.builtin
+(for m in fs/ext2/ext2.ko; do echo $m; done;	\
+cat /dev/null ) > fs/ext2/modules.builtin
+(for m in fs/ext4/ext4.ko; do echo $m; done;	\
+cat /dev/null ) > fs/ext4/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=fs/iomap
+make -f ./scripts/Makefile.modbuiltin obj=fs/jbd2
+make -f ./scripts/Makefile.modbuiltin obj=fs/kernfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/lockd
+make -f ./scripts/Makefile.modbuiltin obj=fs/nfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/nfs_common
+(for m in fs/jbd2/jbd2.ko; do echo $m; done;	\
+cat /dev/null ) > fs/jbd2/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/iomap/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/kernfs/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=fs/nfs/filelayout
+(for m in fs/nfs_common/grace.ko; do echo $m; done;	\
+cat /dev/null ) > fs/nfs_common/modules.builtin
+(for m in fs/lockd/lockd.ko; do echo $m; done;	\
+cat /dev/null ) > fs/lockd/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=security
+make -f ./scripts/Makefile.modbuiltin obj=fs/nls
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify
+make -f ./scripts/Makefile.modbuiltin obj=fs/proc
+(for m in fs/nfs/filelayout/nfs_layout_nfsv41_files.ko; do echo $m; done;	\
+cat /dev/null ) > fs/nfs/filelayout/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=fs/quota
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > ipc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify/dnotify
+(for m in fs/nls/nls_base.ko; do echo $m; done;	\
+cat /dev/null ) > fs/nls/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/proc/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/quota/modules.builtin
+(for m in fs/nfs/nfs.ko fs/nfs/nfsv2.ko fs/nfs/nfsv3.ko fs/nfs/nfsv4.ko; do echo $m; done;	\
+cat /dev/null fs/nfs/filelayout/modules.builtin) > fs/nfs/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/notify/dnotify/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=fs/ramfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/squashfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify/fanotify
+make -f ./scripts/Makefile.modbuiltin obj=fs/sysfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify/inotify
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/ramfs/modules.builtin
+(for m in fs/squashfs/squashfs.ko; do echo $m; done;	\
+cat /dev/null ) > fs/squashfs/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/notify/inotify/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/sysfs/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > fs/notify/fanotify/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null fs/notify/dnotify/modules.builtin fs/notify/fanotify/modules.builtin fs/notify/inotify/modules.builtin) > fs/notify/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=crypto
+(for m in fs/binfmt_script.ko fs/mbcache.ko; do echo $m; done;	\
+cat /dev/null fs/cramfs/modules.builtin fs/debugfs/modules.builtin fs/devpts/modules.builtin fs/exportfs/modules.builtin fs/ext2/modules.builtin fs/ext4/modules.builtin fs/iomap/modules.builtin fs/jbd2/modules.builtin fs/kernfs/modules.builtin fs/lockd/modules.builtin fs/nfs/modules.builtin fs/nfs_common/modules.builtin fs/nls/modules.builtin fs/notify/modules.builtin fs/proc/modules.builtin fs/quota/modules.builtin fs/ramfs/modules.builtin fs/squashfs/modules.builtin fs/sysfs/modules.builtin) > fs/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=security/keys
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > security/keys/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null security/keys/modules.builtin) > security/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/entry/vdso/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=block
+(for m in ; do echo $m; done;	\
+cat /dev/null arch/x86/entry/vdso/modules.builtin arch/x86/entry/vsyscall/modules.builtin) > arch/x86/entry/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null arch/x86/crypto/modules.builtin arch/x86/entry/modules.builtin arch/x86/events/modules.builtin arch/x86/kernel/modules.builtin arch/x86/mm/modules.builtin arch/x86/net/modules.builtin arch/x86/platform/modules.builtin arch/x86/realmode/modules.builtin) > arch/x86/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers
+make -f ./scripts/Makefile.modbuiltin obj=block/partitions
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > block/partitions/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null block/partitions/modules.builtin) > block/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=sound
+make -f ./scripts/Makefile.modbuiltin obj=drivers/acpi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/amba
+make -f ./scripts/Makefile.modbuiltin obj=drivers/ata
+make -f ./scripts/Makefile.modbuiltin obj=drivers/auxdisplay
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base
+make -f ./scripts/Makefile.modbuiltin obj=drivers/block
+make -f ./scripts/Makefile.modbuiltin obj=drivers/acpi/acpica
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/amba/modules.builtin
+(for m in drivers/ata/libata.ko drivers/ata/ahci.ko drivers/ata/libahci.ko drivers/ata/ata_piix.ko drivers/ata/sata_nv.ko drivers/ata/sata_sis.ko drivers/ata/sata_via.ko drivers/ata/pata_amd.ko drivers/ata/pata_atiixp.ko drivers/ata/pata_marvell.ko drivers/ata/pata_oldpiix.ko drivers/ata/pata_sis.ko drivers/ata/pata_via.ko drivers/ata/pata_mpiix.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/ata/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/auxdisplay/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base/firmware_loader
+(for m in drivers/block/brd.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/block/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/bus
+make -f ./scripts/Makefile.modbuiltin obj=drivers/acpi/dptf
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/acpi/acpica/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cdrom
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base/firmware_loader/builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/char
+make -f ./scripts/Makefile.modbuiltin obj=drivers/char/ipmi
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/cdrom/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/bus/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/acpi/dptf/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/char/agp
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/pci
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/char/ipmi/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/base/firmware_loader/builtin/modules.builtin
+(for m in drivers/acpi/processor.ko; do echo $m; done;	\
+cat /dev/null drivers/acpi/acpica/modules.builtin drivers/acpi/dptf/modules.builtin) > drivers/acpi/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > sound/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/char/agp/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clocksource
+(for m in drivers/base/firmware_loader/firmware_class.ko; do echo $m; done;	\
+cat /dev/null drivers/base/firmware_loader/builtin/modules.builtin) > drivers/base/firmware_loader/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/actions
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cpufreq
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/char/agp/modules.builtin) > drivers/char/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clocksource/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cpuidle
+(for m in drivers/cpufreq/cpufreq_performance.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/cpufreq/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/actions/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base/power
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/analogbits
+make -f ./scripts/Makefile.modbuiltin obj=drivers/crypto
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base/regmap
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cpuidle/governors
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/analogbits/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/base/power/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/bcm
+make -f ./scripts/Makefile.modbuiltin obj=drivers/crypto/hisilicon
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/base/regmap/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/cpuidle/governors/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/bcm/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/imgtec
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/crypto/hisilicon/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base/test
+make -f ./scripts/Makefile.modbuiltin obj=drivers/dma-buf
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/imx
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/imgtec/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/cpuidle/governors/modules.builtin) > drivers/cpuidle/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/crypto/hisilicon/modules.builtin) > drivers/crypto/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/base/test/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/pci/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/dma-buf/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/ingenic
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firewire
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/imx/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/base/firmware_loader/modules.builtin drivers/base/power/modules.builtin drivers/base/regmap/modules.builtin drivers/base/test/modules.builtin) > drivers/base/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/ingenic/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/firewire/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/hwmon
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/mediatek
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/power
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/vga
+(for m in drivers/hwmon/hwmon.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/hwmon/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/mediatek/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/hwtracing/intel_th
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/arm
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/vga/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/hwtracing/intel_th/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/bridge
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/arm/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/mvebu
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/hisilicon
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/renesas
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/ti
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/bridge/synopsys
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/hisilicon/modules.builtin
+(for m in crypto/crypto.ko crypto/crypto_algapi.ko crypto/aead.ko crypto/geniv.ko crypto/skcipher.ko crypto/crypto_hash.ko crypto/akcipher.ko crypto/kpp.ko crypto/crypto_acompress.ko crypto/cryptomgr.ko crypto/crypto_null.ko crypto/aes_generic.ko crypto/crc32c_generic.ko crypto/rng.ko; do echo $m; done;	\
+cat /dev/null ) > crypto/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/mvebu/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/renesas/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/broadcom
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/ti/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/bridge/synopsys/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/i2c
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/imx
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/x86
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/firmware/broadcom/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/omapdrm
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/i2c/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/gpu/drm/bridge/synopsys/modules.builtin) > drivers/gpu/drm/bridge/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/firmware/imx/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/clk/x86/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c/algos
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c/busses
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/omapdrm/displays
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/omapdrm/dss
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i3c
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/meson
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/i2c/algos/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/i2c/busses/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/clk/actions/modules.builtin drivers/clk/analogbits/modules.builtin drivers/clk/bcm/modules.builtin drivers/clk/imgtec/modules.builtin drivers/clk/imx/modules.builtin drivers/clk/ingenic/modules.builtin drivers/clk/mediatek/modules.builtin drivers/clk/mvebu/modules.builtin drivers/clk/renesas/modules.builtin drivers/clk/ti/modules.builtin drivers/clk/x86/modules.builtin) > drivers/clk/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/omapdrm/displays/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/i3c/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/firmware/meson/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/psci
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/omapdrm/dss/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c/muxes
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/tegra
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/xilinx
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/gpu/drm/omapdrm/displays/modules.builtin drivers/gpu/drm/omapdrm/dss/modules.builtin) > drivers/gpu/drm/omapdrm/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/firmware/psci/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/video
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/i2c/muxes/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/firmware/tegra/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/panel
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/firmware/xilinx/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/rcar-du
+make -f ./scripts/Makefile.modbuiltin obj=drivers/idle
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/i2c/algos/modules.builtin drivers/i2c/busses/modules.builtin drivers/i2c/muxes/modules.builtin) > drivers/i2c/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/panel/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/rcar-du/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/idle/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/joystick
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/firmware/broadcom/modules.builtin drivers/firmware/imx/modules.builtin drivers/firmware/meson/modules.builtin drivers/firmware/psci/modules.builtin drivers/firmware/tegra/modules.builtin drivers/firmware/xilinx/modules.builtin) > drivers/firmware/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/keyboard
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/misc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/tilcdc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/tiny
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/input/joystick/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/tilcdc/modules.builtin
+(for m in drivers/input/keyboard/atkbd.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/input/keyboard/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/serio
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/gpu/drm/tiny/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/input/misc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iommu
+make -f ./scripts/Makefile.modbuiltin obj=drivers/irqchip
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/mouse
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/gpu/drm/arm/modules.builtin drivers/gpu/drm/bridge/modules.builtin drivers/gpu/drm/hisilicon/modules.builtin drivers/gpu/drm/i2c/modules.builtin drivers/gpu/drm/omapdrm/modules.builtin drivers/gpu/drm/panel/modules.builtin drivers/gpu/drm/rcar-du/modules.builtin drivers/gpu/drm/tilcdc/modules.builtin drivers/gpu/drm/tiny/modules.builtin) > drivers/gpu/drm/modules.builtin
+(for m in drivers/input/serio/serio.ko drivers/input/serio/i8042.ko drivers/input/serio/libps2.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/input/serio/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=net
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/iommu/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/irqchip/modules.builtin
+(for m in arch/x86/video/fbdev.ko; do echo $m; done;	\
+cat /dev/null ) > arch/x86/video/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/input/mouse/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/leds
+make -f ./scripts/Makefile.modbuiltin obj=drivers/macintosh
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/gpu/drm/modules.builtin drivers/gpu/vga/modules.builtin) > drivers/gpu/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media
+(for m in drivers/input/input-core.ko drivers/input/input-leds.ko drivers/input/mousedev.ko; do echo $m; done;	\
+cat /dev/null drivers/input/joystick/modules.builtin drivers/input/keyboard/modules.builtin drivers/input/misc/modules.builtin drivers/input/mouse/modules.builtin) > drivers/input/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/leds/trigger
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/macintosh/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mfd
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/leds/trigger/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/firewire
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/cardreader
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/mfd/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/i2c
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/b2c2
+(for m in drivers/leds/led-class.ko; do echo $m; done;	\
+cat /dev/null drivers/leds/trigger/modules.builtin) > drivers/leds/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/power/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/firewire/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/i2c/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/misc/cardreader/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=lib
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/common/b2c2/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/cb710
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/saa7146
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mmc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net
+make -f ./scripts/Makefile.modbuiltin obj=net/802
+make -f ./scripts/Makefile.modbuiltin obj=net/8021q
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/misc/cb710/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/common/saa7146/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/eeprom
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/802/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/mmc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/dsa
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/lis3lv02d
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/8021q/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/siano
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/misc/eeprom/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/v4l2-tpg
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/dsa/b53
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/misc/lis3lv02d/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=net/bpf
+make -f ./scripts/Makefile.modbuiltin obj=net/core
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/common/siano/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/dsa/b53/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/3com
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/bpf/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/core/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/common/v4l2-tpg/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mic
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/phy
+(for m in drivers/net/ethernet/3com/3c59x.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/3com/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/dsa/microchip
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/dsa/mv88e6xxx
+make -f ./scripts/Makefile.modbuiltin obj=net/dns_resolver
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mic/bus
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/videobuf2
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/dsa/microchip/modules.builtin
+(for m in drivers/net/phy/libphy.ko drivers/net/phy/realtek.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/phy/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/dsa/mv88e6xxx/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/8390
+(for m in net/dns_resolver/dns_resolver.ko; do echo $m; done;	\
+cat /dev/null ) > net/dns_resolver/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/misc/mic/bus/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/common/videobuf2/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/adaptec
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/ti-st
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/8390/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/dsa/ocelot
+make -f ./scripts/Makefile.modbuiltin obj=net/ethernet
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/misc/mic/bus/modules.builtin) > drivers/misc/mic/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/common/b2c2/modules.builtin drivers/media/common/saa7146/modules.builtin drivers/media/common/siano/modules.builtin drivers/media/common/v4l2-tpg/modules.builtin drivers/media/common/videobuf2/modules.builtin) > drivers/media/common/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/misc/ti-st/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/adaptec/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/dsa/ocelot/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=net/ipv4
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/ethernet/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/mmc
+make -f ./scripts/Makefile.modbuiltin obj=net/ipv6
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/misc/cardreader/modules.builtin drivers/misc/cb710/modules.builtin drivers/misc/eeprom/modules.builtin drivers/misc/lis3lv02d/modules.builtin drivers/misc/mic/modules.builtin drivers/misc/ti-st/modules.builtin) > drivers/misc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/alteon
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/amd
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/dsa/sja1105
+(for m in net/ipv4/tcp_cubic.ko; do echo $m; done;	\
+cat /dev/null ) > net/ipv4/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/mmc/siano
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/ipv6/modules.builtin
+(for m in drivers/net/ethernet/amd/pcnet32.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/amd/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nfc
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/dsa/sja1105/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/alteon/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/mmc/siano/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=arch/x86/lib
+make -f ./scripts/Makefile.modbuiltin obj=net/netlink
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/nfc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/atheros
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nvme
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/net/dsa/b53/modules.builtin drivers/net/dsa/microchip/modules.builtin drivers/net/dsa/mv88e6xxx/modules.builtin drivers/net/dsa/ocelot/modules.builtin drivers/net/dsa/sja1105/modules.builtin) > drivers/net/dsa/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/mmc/siano/modules.builtin) > drivers/media/mmc/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/netlink/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nvme/host
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/atheros/alx
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/atheros/atl1c
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pci
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci
+make -f ./scripts/Makefile.modbuiltin obj=net/sched
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/nvme/host/modules.builtin
+(for m in drivers/net/ethernet/atheros/alx/alx.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/atheros/alx/modules.builtin
+(for m in drivers/net/ethernet/atheros/atl1c/atl1c.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/atheros/atl1c/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pci/controller
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/b2c2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nvme/target
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/sched/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/atheros/atl1e
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/atheros/atlx
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pci/controller/dwc
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/b2c2/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/nvme/target/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=net/strparser
+(for m in drivers/net/ethernet/atheros/atlx/atl1.ko drivers/net/ethernet/atheros/atlx/atl2.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/atheros/atlx/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/pci/controller/dwc/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > arch/x86/lib/modules.builtin
+(for m in drivers/net/ethernet/atheros/atl1e/atl1e.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/atheros/atl1e/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/ddbridge
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > net/strparser/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/nvme/host/modules.builtin drivers/nvme/target/modules.builtin) > drivers/nvme/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/dm1105
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pci/pcie
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/pci/controller/dwc/modules.builtin) > drivers/pci/controller/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/net/ethernet/atheros/alx/modules.builtin drivers/net/ethernet/atheros/atl1c/modules.builtin drivers/net/ethernet/atheros/atl1e/modules.builtin drivers/net/ethernet/atheros/atlx/modules.builtin) > drivers/net/ethernet/atheros/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/ddbridge/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=net/sunrpc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/perf
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/dm1105/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pci/switch
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/pci/pcie/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/intel
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/broadcom
+make -f ./scripts/Makefile.modbuiltin obj=net/sunrpc/auth_gss
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/perf/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/mantis
+make -f ./scripts/Makefile.modbuiltin obj=virt
+make -f ./scripts/Makefile.modbuiltin obj=lib/crypto
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/pci/switch/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/intel/ipu3
+(for m in drivers/net/ethernet/broadcom/b44.ko drivers/net/ethernet/broadcom/tg3.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/broadcom/modules.builtin
+(for m in net/sunrpc/auth_gss/auth_rpcgss.ko; do echo $m; done;	\
+cat /dev/null ) > net/sunrpc/auth_gss/modules.builtin
+(for m in lib/crypto/libaes.ko lib/crypto/libcurve25519.ko; do echo $m; done;	\
+cat /dev/null ) > lib/crypto/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/mantis/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/netup_unidvb
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/pci/controller/modules.builtin drivers/pci/pcie/modules.builtin drivers/pci/switch/modules.builtin) > drivers/pci/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/intel/ipu3/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/brocade
+(for m in net/sunrpc/sunrpc.ko; do echo $m; done;	\
+cat /dev/null net/sunrpc/auth_gss/modules.builtin) > net/sunrpc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=lib/fonts
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/ngene
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/netup_unidvb/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/platform
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/pci/intel/ipu3/modules.builtin) > drivers/media/pci/intel/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/brocade/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=net/unix
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/ngene/modules.builtin
+(for m in lib/fonts/font.ko; do echo $m; done;	\
+cat /dev/null ) > lib/fonts/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/pluto2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/pt1
+make -f ./scripts/Makefile.modbuiltin obj=drivers/platform/x86
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/chelsio
+(for m in net/unix/unix.ko net/unix/unix_diag.ko; do echo $m; done;	\
+cat /dev/null ) > net/unix/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/pluto2/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/pt3
+(for m in ; do echo $m; done;	\
+make -f ./scripts/Makefile.modbuiltin obj=lib/lz4
+cat /dev/null ) > drivers/media/pci/pt1/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/platform/x86/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/chelsio/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null net/802/modules.builtin net/8021q/modules.builtin net/bpf/modules.builtin net/core/modules.builtin net/dns_resolver/modules.builtin net/ethernet/modules.builtin net/ipv4/modules.builtin net/ipv6/modules.builtin net/netlink/modules.builtin net/sched/modules.builtin net/strparser/modules.builtin net/sunrpc/modules.builtin net/unix/modules.builtin) > net/modules.builtin
+make -f ./scripts/Makefile.build obj=scripts/mod
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/pt3/modules.builtin
+(for m in lib/lz4/lz4_decompress.ko; do echo $m; done;	\
+cat /dev/null ) > lib/lz4/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/cirrus
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/platform/x86/modules.builtin) > drivers/platform/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=virt/lib
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/cisco
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/saa7146
+make -f ./scripts/Makefile.modbuiltin obj=lib/lzo
+make -f ./scripts/Makefile.modbuiltin obj=lib/math
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > virt/lib/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/cirrus/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/cisco/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/smipcie
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/saa7146/modules.builtin
+(for m in lib/lzo/lzo_decompress.ko; do echo $m; done;	\
+cat /dev/null ) > lib/lzo/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > lib/math/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/ttpci
+(for m in ; do echo $m; done;	\
+cat /dev/null virt/lib/modules.builtin) > virt/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/dec
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/smipcie/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=lib/xz
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/pci/ttpci/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=lib/zlib_deflate
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/dec/tulip
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pnp
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/rc
+(for m in lib/xz/xz_dec.ko; do echo $m; done;	\
+cat /dev/null ) > lib/xz/modules.builtin
+(for m in lib/zlib_deflate/zlib_deflate.ko; do echo $m; done;	\
+cat /dev/null ) > lib/zlib_deflate/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/cros-ec-cec
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pnp/pnpacpi
+(for m in drivers/net/ethernet/dec/tulip/tulip.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/dec/tulip/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/pci/b2c2/modules.builtin drivers/media/pci/ddbridge/modules.builtin drivers/media/pci/dm1105/modules.builtin drivers/media/pci/intel/modules.builtin drivers/media/pci/mantis/modules.builtin drivers/media/pci/netup_unidvb/modules.builtin drivers/media/pci/ngene/modules.builtin drivers/media/pci/pluto2/modules.builtin drivers/media/pci/pt1/modules.builtin drivers/media/pci/pt3/modules.builtin drivers/media/pci/saa7146/modules.builtin drivers/media/pci/smipcie/modules.builtin drivers/media/pci/ttpci/modules.builtin) > drivers/media/pci/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=lib/zlib_inflate
+make -f ./scripts/Makefile.modbuiltin obj=drivers/power
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/cros-ec-cec/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/rc/keymaps
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/pnp/pnpacpi/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/net/ethernet/dec/tulip/modules.builtin) > drivers/net/ethernet/dec/modules.builtin
+set -e; mkdir -p scripts/mod/; { 	 echo "#ifndef __DEVICETABLE_OFFSETS_H__"; echo "#define __DEVICETABLE_OFFSETS_H__"; echo "/*"; echo " * DO NOT MODIFY."; echo " *"; echo " * This file was generated by Kbuild"; echo " */"; echo ""; sed -ne 	's:^[[:space:]]*\.ascii[[:space:]]*"\(.*\)".*:\1:; /^->/{s:->#\(.*\):/* \1 */:; s:^->\([^ ]*\) [\$#]*\([^ ]*\) \(.*\):#define \1 \2 /* \3 */:; s:->::; p;}' < scripts/mod/devicetable-offsets.s; echo ""; echo "#endif"; } > scripts/mod/devicetable-offsets.h.tmp; if [ -r scripts/mod/devicetable-offsets.h ] && cmp -s scripts/mod/devicetable-offsets.h scripts/mod/devicetable-offsets.h.tmp; then rm -f scripts/mod/devicetable-offsets.h.tmp; else : '  UPD     scripts/mod/devicetable-offsets.h'; mv -f scripts/mod/devicetable-offsets.h.tmp scripts/mod/devicetable-offsets.h; fi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/spi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/power/supply
+(for m in lib/zlib_inflate/zlib_inflate.ko; do echo $m; done;	\
+cat /dev/null ) > lib/zlib_inflate/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/pnp/pnpacpi/modules.builtin) > drivers/pnp/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/rc/keymaps/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/davinci
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/spi/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/dlink
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/power/supply/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/emulex
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/davinci/modules.builtin
+(for m in lib/bitrev.ko lib/crc-ccitt.ko lib/crc16.ko lib/crc32.ko lib/oid_registry.ko; do echo $m; done;	\
+cat /dev/null lib/crypto/modules.builtin lib/fonts/modules.builtin lib/lz4/modules.builtin lib/lzo/modules.builtin lib/math/modules.builtin lib/xz/modules.builtin lib/zlib_deflate/modules.builtin lib/zlib_inflate/modules.builtin) > lib/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/dlink/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/rc/keymaps/modules.builtin) > drivers/media/rc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/tuners
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/power/supply/modules.builtin) > drivers/power/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/emulex/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pps
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/meson
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/tuners/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/ptp
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/i825xx
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/intel
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pps/clients
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/meson/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pps/generators
+(for m in ; do echo $m; done;	\
+(for m in drivers/ptp/ptp.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/i825xx/modules.builtin
+cat /dev/null ) > drivers/ptp/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/omap
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/intel/e1000
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/pps/clients/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/b2c2
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/pps/generators/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/omap/modules.builtin
+  /home/paul/git/minimyth/gar-minimyth/images/ccache/usr/bin/i586-minimyth-linux-gnu-clang -Wp,-MD,scripts/mod/.empty.o.d  -nostdinc -isystem /home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/lib/clang/9.0.1/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -include ./include/linux/compiler_types.h -D__KERNEL__ -Qunused-arguments -Wall -Wundef -Werror=strict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -fshort-wchar -fno-PIE -Werror=implicit-function-declaration -Werror=implicit-int -Wno-format-security -std=gnu89 -no-integrated-as -Werror=unknown-warning-option -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -msoft-float -mregparm=3 -freg-struct-return -fno-pic -march=pentium-mmx -ffreestanding -Wno-sign-compare -fno-asynchronous-unwind-tables -Os -fstack-protector-strong -Wno-format-invalid-specifier -Wno-gnu -Wno-tautological-compare -mno-global-merge -fno-omit-frame-pointer -fno-optimize-sibling-calls -Wdeclaration-after-statement -Wvla -Wno-pointer-sign -Wno-initializer-overrides -Wno-format -Wno-sign-compare -Wno-format-zero-length    -DKBUILD_BASENAME='"empty"' -DKBUILD_MODNAME='"empty"' -c -o scripts/mod/empty.o scripts/mod/empty.c
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/b2c2/modules.builtin
+(for m in drivers/net/ethernet/intel/e1000/e1000.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/intel/e1000/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/dvb-usb
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/intel/e1000e
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/dvb-usb-v2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/stm32
+(for m in drivers/pps/pps_core.ko; do echo $m; done;	\
+cat /dev/null drivers/pps/clients/modules.builtin drivers/pps/generators/modules.builtin) > drivers/pps/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/sunxi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/ti-vpe
+(for m in drivers/net/ethernet/intel/e1000e/e1000e.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/intel/e1000e/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/dvb-usb/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/stm32/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/dvb-usb-v2/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/ti-vpe/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/s2255
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/sunxi/sun4i-csi
+(for m in drivers/net/ethernet/intel/e100.ko; do echo $m; done;	\
+cat /dev/null drivers/net/ethernet/intel/e1000/modules.builtin drivers/net/ethernet/intel/e1000e/modules.builtin) > drivers/net/ethernet/intel/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/sunxi/sun6i-csi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/sunxi/sun8i-di
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/marvell
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/sunxi/sun4i-csi/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/s2255/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pwm
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/sunxi/sun6i-csi/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/marvell/octeontx2
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/platform/sunxi/sun8i-di/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/mellanox
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/pwm/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/siano
+make -f ./scripts/Makefile.modbuiltin obj=drivers/ras
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/marvell/octeontx2/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/platform/sunxi/sun4i-csi/modules.builtin drivers/media/platform/sunxi/sun6i-csi/modules.builtin drivers/media/platform/sunxi/sun8i-di/modules.builtin) > drivers/media/platform/sunxi/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/micrel
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/myricom
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/mellanox/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/siano/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/ras/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/platform/cros-ec-cec/modules.builtin drivers/media/platform/davinci/modules.builtin drivers/media/platform/meson/modules.builtin drivers/media/platform/omap/modules.builtin drivers/media/platform/stm32/modules.builtin drivers/media/platform/sunxi/modules.builtin drivers/media/platform/ti-vpe/modules.builtin) > drivers/media/platform/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/micrel/modules.builtin
+(for m in drivers/net/ethernet/marvell/mvmdio.ko drivers/net/ethernet/marvell/skge.ko drivers/net/ethernet/marvell/sky2.ko; do echo $m; done;	\
+cat /dev/null drivers/net/ethernet/marvell/octeontx2/modules.builtin) > drivers/net/ethernet/marvell/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/rtc
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/myricom/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/stkwebcam
+make -f ./scripts/Makefile.modbuiltin obj=drivers/scsi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/natsemi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/nvidia
+make -f ./scripts/Makefile.modbuiltin obj=drivers/ssb
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/rtc/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/stkwebcam/modules.builtin
+(for m in drivers/scsi/scsi_mod.ko drivers/scsi/sd_mod.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/scsi/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/amlogic
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/natsemi/modules.builtin
+(for m in drivers/net/ethernet/nvidia/forcedeth.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/nvidia/modules.builtin
+(for m in drivers/ssb/ssb.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/ssb/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/ttusb-budget
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/amlogic/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/ttusb-dec
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/oki-semi
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/ttusb-dec/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/bcm
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/zr364xx
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/ttusb-budget/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/hp
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/qlogic
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/oki-semi/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/staging/hp/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/media/usb/zr364xx/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/bcm/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/qlogic/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/fsl
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/media
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal/broadcom
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/usb/b2c2/modules.builtin drivers/media/usb/dvb-usb/modules.builtin drivers/media/usb/dvb-usb-v2/modules.builtin drivers/media/usb/s2255/modules.builtin drivers/media/usb/siano/modules.builtin drivers/media/usb/stkwebcam/modules.builtin drivers/media/usb/ttusb-budget/modules.builtin drivers/media/usb/ttusb-dec/modules.builtin drivers/media/usb/zr364xx/modules.builtin) > drivers/media/usb/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/fsl/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty/ipwireless
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/staging/media/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/common
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/thermal/broadcom/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/media/common/modules.builtin drivers/media/firewire/modules.builtin drivers/media/i2c/modules.builtin drivers/media/mmc/modules.builtin drivers/media/pci/modules.builtin drivers/media/platform/modules.builtin drivers/media/rc/modules.builtin drivers/media/spi/modules.builtin drivers/media/tuners/modules.builtin drivers/media/usb/modules.builtin) > drivers/media/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/qualcomm
+i586-minimyth-linux-gnu-as: Unknown command line argument '--32'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Unknown command line argument '-I'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Unknown command line argument '-I'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Unknown command line argument '-I'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Unknown command line argument '-I'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Unknown command line argument '-I'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Unknown command line argument '-I'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Unknown command line argument '-I'.  Try: '/home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help'
+i586-minimyth-linux-gnu-as: Did you mean '  -d'?
+i586-minimyth-linux-gnu-as: Too many positional arguments specified!
+Can specify at most 1 positional arguments: See: /home/paul/git/minimyth/gar-minimyth/images/toolchain/usr/bin/i586-minimyth-linux-gnu-as --help
+clang-9: error: assembler command failed with exit code 1 (use -v to see invocation)
+scripts/Makefile.build:265: recipe for target 'scripts/mod/empty.o' failed
+make[2]: *** [scripts/mod/empty.o] Error 1
+Makefile:1112: recipe for target 'prepare0' failed
+make[1]: *** [prepare0] Error 2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/rdc
+make[1]: *** Waiting for unfinished jobs....
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/tty/ipwireless/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/mediatek
+(for m in drivers/usb/common/usb-common.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/usb/common/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/qualcomm/emac
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal/intel
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/staging/hp/modules.builtin drivers/staging/media/modules.builtin) > drivers/staging/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/rdc/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/qualcomm/emac/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/mediatek/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty/serial
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/thermal/intel/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty/vt
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/core
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/backlight
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/qcom
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/net/ethernet/qualcomm/emac/modules.builtin) > drivers/net/ethernet/qualcomm/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/renesas
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal/samsung
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/tty/serial/modules.builtin
+(for m in drivers/usb/core/usbcore.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/usb/core/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/qcom/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/tty/vt/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/video/backlight/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/renesas/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/thermal/samsung/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/realtek
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/host
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/sunxi
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/tty/ipwireless/modules.builtin drivers/tty/serial/modules.builtin drivers/tty/vt/modules.builtin) > drivers/tty/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/ti
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/seeq
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/console
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal/st
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/sunxi/modules.builtin
+(for m in drivers/usb/host/ehci-hcd.ko drivers/usb/host/ehci-pci.ko drivers/usb/host/ohci-hcd.ko drivers/usb/host/ohci-pci.ko drivers/usb/host/uhci-hcd.ko drivers/usb/host/xhci-hcd.ko drivers/usb/host/xhci-pci.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/usb/host/modules.builtin
+(for m in drivers/net/ethernet/realtek/8139too.ko drivers/net/ethernet/realtek/r8169.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/realtek/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/video/console/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/seeq/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/silan
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/ti/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/thermal/st/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/xilinx
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/silan/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/misc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/sis
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/phy
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/storage
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal/tegra
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/soc/xilinx/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/core
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/usb/phy/modules.builtin
+(for m in drivers/net/ethernet/sis/sis190.ko drivers/net/ethernet/sis/sis900.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/sis/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/usb/misc/modules.builtin
+(for m in drivers/usb/storage/usb-storage.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/usb/storage/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/thermal/tegra/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/smsc
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/soc/amlogic/modules.builtin drivers/soc/bcm/modules.builtin drivers/soc/fsl/modules.builtin drivers/soc/mediatek/modules.builtin drivers/soc/qcom/modules.builtin drivers/soc/renesas/modules.builtin drivers/soc/sunxi/modules.builtin drivers/soc/ti/modules.builtin drivers/soc/xilinx/modules.builtin) > drivers/soc/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2
+(for m in drivers/video/fbdev/core/fb.ko drivers/video/fbdev/core/cfbfillrect.ko drivers/video/fbdev/core/cfbcopyarea.ko drivers/video/fbdev/core/cfbimgblt.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/video/fbdev/core/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/stmicro
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/sun
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/thermal/broadcom/modules.builtin drivers/thermal/intel/modules.builtin drivers/thermal/samsung/modules.builtin drivers/thermal/st/modules.builtin drivers/thermal/tegra/modules.builtin) > drivers/thermal/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/smsc/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/usb/common/modules.builtin drivers/usb/core/modules.builtin drivers/usb/host/modules.builtin drivers/usb/misc/modules.builtin drivers/usb/phy/modules.builtin drivers/usb/storage/modules.builtin) > drivers/usb/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/stmicro/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/tehuti
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2/omapfb
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/ti
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/sun/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ethernet/via
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2/omapfb/displays
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2/omapfb/dss
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/ti/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/tehuti/modules.builtin
+(for m in drivers/net/ethernet/via/via-rhine.ko drivers/net/ethernet/via/via-velocity.ko; do echo $m; done;	\
+cat /dev/null ) > drivers/net/ethernet/via/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/video/fbdev/omap2/omapfb/dss/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null ) > drivers/video/fbdev/omap2/omapfb/displays/modules.builtin
+(for m in drivers/net/ethernet/jme.ko; do echo $m; done;	\
+cat /dev/null drivers/net/ethernet/3com/modules.builtin drivers/net/ethernet/8390/modules.builtin drivers/net/ethernet/adaptec/modules.builtin drivers/net/ethernet/alteon/modules.builtin drivers/net/ethernet/amd/modules.builtin drivers/net/ethernet/atheros/modules.builtin drivers/net/ethernet/broadcom/modules.builtin drivers/net/ethernet/brocade/modules.builtin drivers/net/ethernet/chelsio/modules.builtin drivers/net/ethernet/cirrus/modules.builtin drivers/net/ethernet/cisco/modules.builtin drivers/net/ethernet/dec/modules.builtin drivers/net/ethernet/dlink/modules.builtin drivers/net/ethernet/emulex/modules.builtin drivers/net/ethernet/i825xx/modules.builtin drivers/net/ethernet/intel/modules.builtin drivers/net/ethernet/marvell/modules.builtin drivers/net/ethernet/mellanox/modules.builtin drivers/net/ethernet/micrel/modules.builtin drivers/net/ethernet/myricom/modules.builtin drivers/net/ethernet/natsemi/modules.builtin drivers/net/ethernet/nvidia/modules.builtin drivers/net/ethernet/oki-semi/modules.builtin drivers/net/ethernet/qlogic/modules.builtin drivers/net/ethernet/qualcomm/modules.builtin drivers/net/ethernet/rdc/modules.builtin drivers/net/ethernet/realtek/modules.builtin drivers/net/ethernet/seeq/modules.builtin drivers/net/ethernet/silan/modules.builtin drivers/net/ethernet/sis/modules.builtin drivers/net/ethernet/smsc/modules.builtin drivers/net/ethernet/stmicro/modules.builtin drivers/net/ethernet/sun/modules.builtin drivers/net/ethernet/tehuti/modules.builtin drivers/net/ethernet/ti/modules.builtin drivers/net/ethernet/via/modules.builtin) > drivers/net/ethernet/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/video/fbdev/omap2/omapfb/displays/modules.builtin drivers/video/fbdev/omap2/omapfb/dss/modules.builtin) > drivers/video/fbdev/omap2/omapfb/modules.builtin
+(for m in drivers/net/mii.ko drivers/net/mdio.ko; do echo $m; done;	\
+cat /dev/null drivers/net/dsa/modules.builtin drivers/net/ethernet/modules.builtin drivers/net/phy/modules.builtin) > drivers/net/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/video/fbdev/omap2/omapfb/modules.builtin) > drivers/video/fbdev/omap2/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/video/fbdev/core/modules.builtin drivers/video/fbdev/omap2/modules.builtin) > drivers/video/fbdev/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/video/backlight/modules.builtin drivers/video/console/modules.builtin drivers/video/fbdev/modules.builtin) > drivers/video/modules.builtin
+(for m in ; do echo $m; done;	\
+cat /dev/null drivers/acpi/modules.builtin drivers/amba/modules.builtin drivers/ata/modules.builtin drivers/auxdisplay/modules.builtin drivers/base/modules.builtin drivers/block/modules.builtin drivers/bus/modules.builtin drivers/cdrom/modules.builtin drivers/char/modules.builtin drivers/char/ipmi/modules.builtin drivers/clk/modules.builtin drivers/clocksource/modules.builtin drivers/cpufreq/modules.builtin drivers/cpuidle/modules.builtin drivers/crypto/modules.builtin drivers/dma-buf/modules.builtin drivers/firewire/modules.builtin drivers/firmware/modules.builtin drivers/gpu/modules.builtin drivers/hwmon/modules.builtin drivers/hwtracing/intel_th/modules.builtin drivers/i2c/modules.builtin drivers/i3c/modules.builtin drivers/idle/modules.builtin drivers/input/modules.builtin drivers/input/serio/modules.builtin drivers/iommu/modules.builtin drivers/irqchip/modules.builtin drivers/leds/modules.builtin drivers/macintosh/modules.builtin drivers/media/modules.builtin drivers/mfd/modules.builtin drivers/misc/modules.builtin drivers/mmc/modules.builtin drivers/net/modules.builtin drivers/nfc/modules.builtin drivers/nvme/modules.builtin drivers/pci/modules.builtin drivers/perf/modules.builtin drivers/platform/modules.builtin drivers/pnp/modules.builtin drivers/power/modules.builtin drivers/pps/modules.builtin drivers/ptp/modules.builtin drivers/pwm/modules.builtin drivers/ras/modules.builtin drivers/rtc/modules.builtin drivers/scsi/modules.builtin drivers/soc/modules.builtin drivers/ssb/modules.builtin drivers/staging/modules.builtin drivers/thermal/modules.builtin drivers/tty/modules.builtin drivers/usb/modules.builtin drivers/video/modules.builtin) > drivers/modules.builtin
+make[1]: Leaving directory '/home/paul/git/minimyth/gar-minimyth/script/kernel-5.5/linux/work/main.d/linux-5.5.1'
+make: *** [../../gar.lib.mk:317: build-work/main.d/linux-5.5.1/Makefile] Error 2

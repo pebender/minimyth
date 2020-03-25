@@ -18,7 +18,8 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--disable-static \
-	--enable-shared
+	--enable-shared \
+	--disable-asm
 
 include ../../gar.mk
 

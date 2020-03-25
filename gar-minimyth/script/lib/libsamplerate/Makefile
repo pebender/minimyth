@@ -3,7 +3,8 @@ GARVERSION = 0.1.9
 CATEGORIES = lib
 MASTER_SITES = http://www.mega-nerd.com/SRC/
 DISTFILES = $(DISTNAME).tar.gz
-LICENSE = LGPL2_1
+LICENSE = $(GARNAME)
+$(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
 
 DESCRIPTION =
 define BLURB
@@ -23,11 +24,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-sndfile
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

@@ -1,10 +1,10 @@
 GARNAME = unifdef
 GARVERSION = 2.11
 CATEGORIES = utils
-MASTER_SITES = https://dotat.at/prog/$(GARNAME)/
+MASTER_SITES = https://dotat.at/prog/unifdef/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME).patch
-LICENSE = GPL2
+LICENSE = BSD_3_Clause
 
 DESCRIPTION = 
 define BLURB

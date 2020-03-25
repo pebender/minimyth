@@ -1,0 +1,22 @@
+diff -Naur e2fsprogs-1.45.5-old/configure.ac e2fsprogs-1.45.5-new/configure.ac
+--- e2fsprogs-1.45.5-old/configure.ac	2020-01-06 15:10:17.000000000 -0800
++++ e2fsprogs-1.45.5-new/configure.ac	2020-03-16 15:42:36.446362003 -0700
+@@ -873,7 +873,7 @@
+ AC_SUBST(PACKAGE)
+ AC_SUBST(VERSION)
+ 
+-AM_GNU_GETTEXT
++AM_GNU_GETTEXT([external])
+ dnl
+ dnl End of configuration options
+ dnl
+@@ -1598,9 +1598,6 @@
+ if test -n "$CPPFLAGS" ; then
+ 	INCLUDES="$INCLUDES $CPPFLAGS"
+ fi
+-if test "$USE_INCLUDED_LIBINTL" = "yes" ; then
+-	INCLUDES=$INCLUDES' -I$(top_builddir)/intl -I$(top_srcdir)/intl'
+-fi
+ if test -n "$WITH_DIET_LIBC" ; then
+ 	INCLUDES="$INCLUDES -D_REENTRANT"
+ fi

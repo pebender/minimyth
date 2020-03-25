@@ -288,19 +288,6 @@ include ../../gar.mk
 CFLAGS  :=
 LDFLAGS := $(LDFLAGS) -lfribidi
 
-svn//%/$(DISTNAME).tar.bz2:
-	@$(call FETCH_SVN, svn://$*, $(GARVERSION), $(DISTNAME))
-	@cd $(PARTIALDIR) ; tar -jxf $(DISTNAME).tar.bz2 ; rm -r $(DISTNAME).tar.bz2
-	@cd $(PARTIALDIR) ; rm -rf $(DISTNAME)/ffmpeg
-	@cd $(PARTIALDIR) ; rm -rf $(DISTNAME)/libdvdnav
-	@cd $(PARTIALDIR) ; rm -rf $(DISTNAME)/libdvdread4
-	@cd $(PARTIALDIR) ; tar -jcf $(DISTNAME).tar.bz2 $(DISTNAME)
-	@cd $(PARTIALDIR) ; rm -rf $(DISTNAME)
-	@$(MAKECOOKIE)
-
-x-checksum-$(DISTNAME).tar.bz2:
-	@$(MAKECOOKIE)
-
 post-patch:
 	@mv    $(wildcard $(WORKDIR)/ffmpeg-*)     $(WORKSRC)/ffmpeg
 	@mv    $(wildcard $(WORKDIR)/libdvdnav-*)  $(WORKSRC)/libdvdnav

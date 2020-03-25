@@ -1,5 +1,5 @@
 GARNAME = iputils
-GARVERSION = s20121221
+GARVERSION = s20151218
 CATEGORIES = net
 MASTER_SITES = http://www.skbuff.net/iputils/
 DISTFILES = $(DISTNAME).tar.bz2

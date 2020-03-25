@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lib/freetype lib/zlib utils/bzip2 \
+DEPENDS = lang/c build-tool/make lib/freetype lib/zlib utils/bzip2 \
 	xorg/libfontenc \
 	xorg/xorgproto \
 	xorg/xtrans
@@ -38,6 +38,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-fop \
 	--with-bzip2
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 post-install:

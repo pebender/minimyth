@@ -1,0 +1,652 @@
+diff -Naur perl-5.30.1-old/cflags.SH perl-5.30.1-new/cflags.SH
+--- perl-5.30.1-old/cflags.SH	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/cflags.SH	2020-01-25 09:08:39.446780976 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@build_DESTDIR@@build_ebindir@/sh
+ 
+ # Generate the cflags script, which is used to determine what cflags
+ # to pass to the compiler for compiling the core perl.
+diff -Naur perl-5.30.1-old/config_h.SH perl-5.30.1-new/config_h.SH
+--- perl-5.30.1-old/config_h.SH	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/config_h.SH	2020-01-25 09:09:14.730781321 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # THIS IS A GENERATED FILE
+ # DO NOT HAND-EDIT
+diff -Naur perl-5.30.1-old/Configure perl-5.30.1-new/Configure
+--- perl-5.30.1-old/Configure	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/Configure	2020-01-25 09:21:55.484788766 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # If these # comments don't work, trim them. Don't worry about any other
+ # shell scripts, Configure will trim # comments from them for you.
+@@ -3085,7 +3085,7 @@
+ 	case "$targetrun" in
+ 	ssh|rsh)
+ 	    cat >$run <<EOF
+-#!/bin/sh
++#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh
+ env=''
+ case "\$1" in
+ -cwd)
+@@ -3120,7 +3120,7 @@
+ 	case "$targetmkdir" in
+ 	*/Cross/mkdir)
+ 	    cat >$targetmkdir <<EOF
+-#!/bin/sh
++#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh
+ $targetrun -p $targetport -l $targetuser $targethost "mkdir -p \$@"
+ EOF
+ 	    $chmod a+rx $targetmkdir
+@@ -3132,7 +3132,7 @@
+ 	case "$targetto" in
+ 	scp|rcp)
+ 	    cat >$to <<EOF
+-#!/bin/sh
++#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh
+ for f in \$@
+ do
+   case "\$f" in
+@@ -3150,7 +3150,7 @@
+ EOF
+ 	    ;;
+ 	cp) cat >$to <<EOF
+-#!/bin/sh
++#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh
+ for f in \$@
+ do
+   case "\$f" in
+@@ -3174,7 +3174,7 @@
+ 	case "$targetfrom" in
+ 	scp|rcp)
+ 	  cat >$from <<EOF
+-#!/bin/sh
++#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh
+ for f in \$@
+ do
+   $rm -f \$f
+@@ -3184,7 +3184,7 @@
+ EOF
+ 	    ;;
+ 	cp) cat >$from <<EOF
+-#!/bin/sh
++#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh
+ for f in \$@
+ do
+   $rm -f \$f
+diff -Naur perl-5.30.1-old/configure.com perl-5.30.1-new/configure.com
+--- perl-5.30.1-old/configure.com	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/configure.com	2020-01-25 09:22:09.371788902 -0800
+@@ -5831,7 +5831,7 @@
+ $!
+ $! ##BEGIN WRITE NEW CONSTANTS HERE##
+ $!
+-$ WC "#!/bin/sh"
++$ WC "#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh"
+ $ WC "#"
+ $ WC "# This file was produced by Configure.COM on a ''osname' system."
+ $ WC "#"
+diff -Naur perl-5.30.1-old/configure.gnu perl-5.30.1-new/configure.gnu
+--- perl-5.30.1-old/configure.gnu	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/configure.gnu	2020-01-25 09:10:43.268782187 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # GNU configure-like front end to metaconfig's Configure.
+ #
+diff -Naur perl-5.30.1-old/cpan/Test-Harness/t/source_tests/source_args.sh perl-5.30.1-new/cpan/Test-Harness/t/source_tests/source_args.sh
+--- perl-5.30.1-old/cpan/Test-Harness/t/source_tests/source_args.sh	2019-10-24 13:18:01.000000000 -0700
++++ perl-5.30.1-new/cpan/Test-Harness/t/source_tests/source_args.sh	2020-01-25 09:10:50.962782263 -0800
+@@ -1,3 +1,3 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ echo "1..1"
+ echo "ok 1 - source_args.sh $1"
+diff -Naur perl-5.30.1-old/cpan/Test-Harness/t/source_tests/source.sh perl-5.30.1-new/cpan/Test-Harness/t/source_tests/source.sh
+--- perl-5.30.1-old/cpan/Test-Harness/t/source_tests/source.sh	2019-10-24 13:18:01.000000000 -0700
++++ perl-5.30.1-new/cpan/Test-Harness/t/source_tests/source.sh	2020-01-25 09:10:58.981782341 -0800
+@@ -1,3 +1,3 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ echo "1..1"
+ echo "ok 1 - source.sh"
+diff -Naur perl-5.30.1-old/cpan/Test-Harness/t/subclass_tests/non_perl_source perl-5.30.1-new/cpan/Test-Harness/t/subclass_tests/non_perl_source
+--- perl-5.30.1-old/cpan/Test-Harness/t/subclass_tests/non_perl_source	2019-10-24 13:18:01.000000000 -0700
++++ perl-5.30.1-new/cpan/Test-Harness/t/subclass_tests/non_perl_source	2020-01-25 09:11:11.960782468 -0800
+@@ -1,3 +1,3 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ echo "1..1"
+ echo "ok 1 - this is a test"
+diff -Naur perl-5.30.1-old/Cross/cflags-cross-arm perl-5.30.1-new/Cross/cflags-cross-arm
+--- perl-5.30.1-old/Cross/cflags-cross-arm	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Cross/cflags-cross-arm	2020-01-25 09:11:21.788782564 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ # Extra warnings, used e.g. for gcc.
+ warn="-Wall -ansi   -W -Wextra -Wdeclaration-after-statement -Wendif-labels -Wc++-compat"
+diff -Naur perl-5.30.1-old/Cross/config.sh-arm-linux perl-5.30.1-new/Cross/config.sh-arm-linux
+--- perl-5.30.1-old/Cross/config.sh-arm-linux	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/Cross/config.sh-arm-linux	2020-01-25 09:22:20.229789008 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # This file was produced by running the Configure script. It holds all the
+ # definitions figured out by Configure. Should you modify one of these values,
+@@ -1072,7 +1072,7 @@
+ st_ino_sign='1'
+ st_ino_size='4'
+ startperl='#!/usr/bin/perl'
+-startsh='#!/bin/sh'
++startsh='#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh'
+ static_ext=' '
+ stdchar='char'
+ stdio_base='((fp)->_IO_read_base)'
+diff -Naur perl-5.30.1-old/Cross/config.sh-arm-linux-n770 perl-5.30.1-new/Cross/config.sh-arm-linux-n770
+--- perl-5.30.1-old/Cross/config.sh-arm-linux-n770	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/Cross/config.sh-arm-linux-n770	2020-01-25 09:22:29.377789098 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # This file was produced by running the Configure script. It holds all the
+ # definitions figured out by Configure. Should you modify one of these values,
+@@ -1070,7 +1070,7 @@
+ st_ino_sign='1'
+ st_ino_size='4'
+ startperl='#!/usr/bin/perl'
+-startsh='#!/bin/sh'
++startsh='#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh'
+ static_ext='DynaLoader '
+ stdchar='char'
+ stdio_base='((fp)->_IO_read_base)'
+diff -Naur perl-5.30.1-old/Cross/Makefile-cross-SH perl-5.30.1-new/Cross/Makefile-cross-SH
+--- perl-5.30.1-old/Cross/Makefile-cross-SH	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Cross/Makefile-cross-SH	2020-01-25 09:11:53.052782870 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ # This file is used to create generic Makefile for cross-compile
+ # (borrowed from Makefile.SH)
+@@ -129,7 +129,7 @@
+ 	    if test -f $archlib/CORE/$libperl; then
+ 		rm -f preload
+ 		cat <<'EOT' > preload
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ lib=$1
+ shift
+ test -r $lib && export LD_PRELOAD="$lib $LD_PRELOAD"
+diff -Naur perl-5.30.1-old/Cross/Makefile.SH.patch perl-5.30.1-new/Cross/Makefile.SH.patch
+--- perl-5.30.1-old/Cross/Makefile.SH.patch	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Cross/Makefile.SH.patch	2020-01-25 09:12:06.764783005 -0800
+@@ -7,7 +7,7 @@
+ -	    if test -f $archlib/CORE/$libperl; then
+ -		rm -f preload
+ -		cat <<'EOT' > preload
+--#! /bin/sh
++-#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ -lib=$1
+ -shift
+ -test -r $lib && export LD_PRELOAD="$lib $LD_PRELOAD"
+diff -Naur perl-5.30.1-old/Cross/warp perl-5.30.1-new/Cross/warp
+--- perl-5.30.1-old/Cross/warp	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Cross/warp	2020-01-25 09:12:18.992783124 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh -x
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh -x
+ 
+ ## This script contains an rm -rf.  This may alarm you.
+ ## These directories need to be recursively deleted.
+diff -Naur perl-5.30.1-old/djgpp/djgppsed.sh perl-5.30.1-new/djgpp/djgppsed.sh
+--- perl-5.30.1-old/djgpp/djgppsed.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/djgpp/djgppsed.sh	2020-01-25 09:12:26.672783199 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ # Change some files to work under DOS
+ # Most of this stuff does .xx -> _xx and aa.bb.ccc -> aa_bb.cc conversion
+diff -Naur perl-5.30.1-old/ext/SDBM_File/grind perl-5.30.1-new/ext/SDBM_File/grind
+--- perl-5.30.1-old/ext/SDBM_File/grind	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/ext/SDBM_File/grind	2020-01-25 09:12:33.181783263 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ rm -f /tmp/*.dir /tmp/*.pag
+ awk -e '{
+         printf "%s\t", $0
+diff -Naur perl-5.30.1-old/hints/catamount.sh perl-5.30.1-new/hints/catamount.sh
+--- perl-5.30.1-old/hints/catamount.sh	2019-10-24 14:27:56.000000000 -0700
++++ perl-5.30.1-new/hints/catamount.sh	2020-01-25 09:12:50.024783428 -0800
+@@ -107,7 +107,7 @@
+ esac
+ run=$BUILD/run.sh
+ cat > $run <<'__EOF2__'
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # $run
+ #
+@@ -128,7 +128,7 @@
+ 
+ cc=$BUILD/cc.sh
+ cat > $cc <<__EOF3a__
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # $0
+ #
+diff -Naur perl-5.30.1-old/hints/cygwin.sh perl-5.30.1-new/hints/cygwin.sh
+--- perl-5.30.1-old/hints/cygwin.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/cygwin.sh	2020-01-25 09:12:57.327783499 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ # cygwin.sh - hints for building perl using the Cygwin environment for Win32
+ #
+ 
+diff -Naur perl-5.30.1-old/hints/dos_djgpp.sh perl-5.30.1-new/hints/dos_djgpp.sh
+--- perl-5.30.1-old/hints/dos_djgpp.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/dos_djgpp.sh	2020-01-25 09:13:21.475783736 -0800
+@@ -8,7 +8,7 @@
+ archname='dos-djgpp'
+ archobjs='djgpp.o'
+ path_sep=\;
+-startsh="#! /bin/sh"
++startsh="#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh"
+ 
+ cc='gcc'
+ ld='gcc'
+diff -Naur perl-5.30.1-old/hints/gnukfreebsd.sh perl-5.30.1-new/hints/gnukfreebsd.sh
+--- perl-5.30.1-old/hints/gnukfreebsd.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/gnukfreebsd.sh	2020-01-25 09:13:56.722784081 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh
+ 
+ # Support for Debian GNU/kFreeBSD (kfreebsd-gnu)
+ # A port of the Debian GNU system using the FreeBSD kernel.
+diff -Naur perl-5.30.1-old/hints/gnuknetbsd.sh perl-5.30.1-new/hints/gnuknetbsd.sh
+--- perl-5.30.1-old/hints/gnuknetbsd.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/gnuknetbsd.sh	2020-01-25 09:14:02.648784139 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh
+ 
+ # Support for Debian GNU/NetBSD (netbsd-i386 and netbsd-alpha)
+ # A port of the Debian GNU system using the NetBSD kernel.
+diff -Naur perl-5.30.1-old/hints/hpux.sh perl-5.30.1-new/hints/hpux.sh
+--- perl-5.30.1-old/hints/hpux.sh	2019-10-24 14:27:56.000000000 -0700
++++ perl-5.30.1-new/hints/hpux.sh	2020-01-25 09:14:09.065784201 -0800
+@@ -1,4 +1,4 @@
+-#!/usr/bin/sh
++#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh
+ 
+ ### SYSTEM ARCHITECTURE
+ 
+diff -Naur perl-5.30.1-old/hints/linux-android.sh perl-5.30.1-new/hints/linux-android.sh
+--- perl-5.30.1-old/hints/linux-android.sh	2019-10-24 14:27:56.000000000 -0700
++++ perl-5.30.1-new/hints/linux-android.sh	2020-01-25 09:14:25.624784363 -0800
+@@ -160,7 +160,7 @@
+ from=$from-$targetfrom
+ 
+ $cat >$run <<EOF
+-#!/bin/sh
++#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh
+ doexit="echo \\\$? >$targetdir/output.status"
+ env=''
+ case "\$1" in
+@@ -215,13 +215,13 @@
+ $chmod a+rx $run
+ 
+ $cat >$targetmkdir <<EOF
+-#!/bin/sh
++#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh
+ adb -s $targethost shell "mkdir -p \$@"
+ EOF
+ $chmod a+rx $targetmkdir
+ 
+ $cat >$to <<EOF
+-#!/bin/sh
++#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh
+ for f in \$@
+ do
+   case "\$f" in
+@@ -238,7 +238,7 @@
+ $chmod a+rx $to
+ 
+ $cat >$from <<EOF
+-#!/bin/sh
++#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh
+ for f in \$@
+ do
+   $rm -f \$f
+diff -Naur perl-5.30.1-old/hints/os2.sh perl-5.30.1-new/hints/os2.sh
+--- perl-5.30.1-old/hints/os2.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/os2.sh	2020-01-25 09:22:50.304789303 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!GAR_build_DSTDIR@@GAR_build_ebindir@/sh
+ # hints/os2.sh
+ # This file reflects the tireless work of
+ # Ilya Zakharevich <ilya@math.ohio-state.edu>
+@@ -20,7 +20,7 @@
+ 
+ if test -f $sh.exe; then sh=$sh.exe; fi
+ 
+-startsh="#!$sh"
++startsh="#!@GAR_build_DESTDIR@GAR_build_ebindir@/sh"
+ cc='gcc'
+ 
+ # Make denser object files and DLL
+diff -Naur perl-5.30.1-old/hints/posix-bc.sh perl-5.30.1-new/hints/posix-bc.sh
+--- perl-5.30.1-old/hints/posix-bc.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/posix-bc.sh	2020-01-25 09:15:12.024784818 -0800
+@@ -60,7 +60,7 @@
+ additional modules!"
+ 
+ cat > $bs2000_ld <<EOF
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # Perl's wrapper for genso by Thomas.Dorner@start.de
+ 
+diff -Naur perl-5.30.1-old/hints/qnx.sh perl-5.30.1-new/hints/qnx.sh
+--- perl-5.30.1-old/hints/qnx.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/qnx.sh	2020-01-25 09:15:19.404784890 -0800
+@@ -198,7 +198,7 @@
+ 
+ 	EOF
+ 	cat >./UU/nm <<-'EOF'
+-	  #! /bin/sh
++	  #!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 	  #__USAGE
+ 	  #%C	<lib> [<lib> ...]
+ 	  #	Designed to mimic Unix's nm utility to list
+diff -Naur perl-5.30.1-old/hints/riscos.sh perl-5.30.1-new/hints/riscos.sh
+--- perl-5.30.1-old/hints/riscos.sh	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.1-new/hints/riscos.sh	2020-01-25 09:15:41.022785101 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ # riscos.sh - hints for building perl using the gccsdk cross compiler for RISC OS
+ #
+ 
+diff -Naur perl-5.30.1-old/makedepend.SH perl-5.30.1-new/makedepend.SH
+--- perl-5.30.1-old/makedepend.SH	2019-10-24 13:18:06.000000000 -0700
++++ perl-5.30.1-new/makedepend.SH	2020-01-25 09:15:47.756785167 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ case $PERL_CONFIG_SH in
+ '')
+ 	if test -f config.sh; then TOP=.;
+diff -Naur perl-5.30.1-old/Makefile.SH perl-5.30.1-new/Makefile.SH
+--- perl-5.30.1-old/Makefile.SH	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/Makefile.SH	2020-01-25 09:15:58.985785277 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ # quote() - Creates a shell literal
+ # Usage:  echo "...` quote "..." `..."
+@@ -161,7 +161,7 @@
+ 	    if test -f $archlib/CORE/$libperl; then
+ 		rm -f preload
+ 		cat <<'EOT' > preload
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ lib=$1
+ shift
+ test -r $lib && export LD_PRELOAD="$lib $LD_PRELOAD"
+diff -Naur perl-5.30.1-old/metaconfig.SH perl-5.30.1-new/metaconfig.SH
+--- perl-5.30.1-old/metaconfig.SH	2019-10-24 13:18:06.000000000 -0700
++++ perl-5.30.1-new/metaconfig.SH	2020-01-25 09:16:04.796785334 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ # This is a placeholder file for symbols that should be exported
+ # into config_h.SH and Porting/Glossary. See also metaconfig.h
+diff -Naur perl-5.30.1-old/myconfig.SH perl-5.30.1-new/myconfig.SH
+--- perl-5.30.1-old/myconfig.SH	2019-10-24 13:18:06.000000000 -0700
++++ perl-5.30.1-new/myconfig.SH	2020-01-25 09:16:11.234785397 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ case $PERL_CONFIG_SH in
+ '')
+diff -Naur perl-5.30.1-old/NetWare/config.wc perl-5.30.1-new/NetWare/config.wc
+--- perl-5.30.1-old/NetWare/config.wc	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/NetWare/config.wc	2020-01-25 09:16:32.395785604 -0800
+@@ -1036,7 +1036,7 @@
+ st_ino_sign='1'
+ st_ino_size='4'
+ startperl='#!perl'
+-startsh='#!/bin/sh'
++startsh='#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh'
+ static_ext='DynaLoader'
+ stdchar='char'
+ stdio_base='((fp)->_base)'
+diff -Naur perl-5.30.1-old/plan9/config_sh.sample perl-5.30.1-new/plan9/config_sh.sample
+--- perl-5.30.1-old/plan9/config_sh.sample	2019-10-24 14:27:56.000000000 -0700
++++ perl-5.30.1-new/plan9/config_sh.sample	2020-01-25 09:23:19.739789591 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # This file was produced by running the Configure script. It holds all the
+ # definitions figured out by Configure. Should you modify one of these values,
+@@ -1043,7 +1043,7 @@
+ st_ino_sign='1'
+ st_ino_size='4'
+ startperl='#!/bin/perl'
+-startsh='#!/bin/sh'
++startsh='@GAR_build_DESTDIR@GAR_build_ebindir@/sh'
+ static_ext='B ByteLoader Cwd Data/Dumper Devel/DProf Devel/PPPort Devel/Peek Digest/MD5 Encode Fcntl File/Glob Filter/Util/Call IO List/Util MIME/Base64 Opcode POSIX PerlIO/encoding PerlIO/scalar PerlIO/via SDBM_File Socket Storable Sys/Hostname Sys/Syslog Time/HiRes Unicode/Collate Unicode/Normalize attributes re threads threads/shared Encode/Byte Encode/CN Encode/EBCDIC Encode/JP Encode/KR Encode/Symbol Encode/TW Encode/Unicode'
+ stdchar='char'
+ stdio_base='((fp)->_base)'
+diff -Naur perl-5.30.1-old/pod/buildtoc perl-5.30.1-new/pod/buildtoc
+--- perl-5.30.1-old/pod/buildtoc	2019-10-24 13:18:09.000000000 -0700
++++ perl-5.30.1-new/pod/buildtoc	2020-01-25 09:17:21.144786081 -0800
+@@ -114,7 +114,7 @@
+ write_or_die('pod/perltoc.pod', $OUT);
+ 
+ write_or_die('pod/roffitall', <<'EOH' . $roffitall . <<'EOT');
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # Usage: roffitall [-nroff|-psroff|-groff]
+ #
+diff -Naur perl-5.30.1-old/pod/perlrun.pod perl-5.30.1-new/pod/perlrun.pod
+--- perl-5.30.1-old/pod/perlrun.pod	2019-10-24 14:27:57.000000000 -0700
++++ perl-5.30.1-new/pod/perlrun.pod	2020-01-25 09:23:30.238789693 -0800
+@@ -77,7 +77,7 @@
+ The sequences "-*" and "- " are specifically ignored so that you could,
+ if you were so inclined, say
+ 
+-    #!/bin/sh
++    @GAR_build_DESTDIR@GAR_build_ebindir@/sh
+     #! -*-perl-*-
+     eval 'exec perl -x -wS $0 ${1+"$@"}'
+         if 0;
+diff -Naur perl-5.30.1-old/Policy_sh.SH perl-5.30.1-new/Policy_sh.SH
+--- perl-5.30.1-old/Policy_sh.SH	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Policy_sh.SH	2020-01-25 09:17:41.389786279 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ case $PERL_CONFIG_SH in
+ '') . ./config.sh ;;
+diff -Naur perl-5.30.1-old/Porting/bisect-example.sh perl-5.30.1-new/Porting/bisect-example.sh
+--- perl-5.30.1-old/Porting/bisect-example.sh	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Porting/bisect-example.sh	2020-01-25 09:17:48.433786348 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ echo >&2 You need to edit this to run your test case
+ exit 1
+ 
+diff -Naur perl-5.30.1-old/Porting/config_h.pl perl-5.30.1-new/Porting/config_h.pl
+--- perl-5.30.1-old/Porting/config_h.pl	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Porting/config_h.pl	2020-01-25 09:18:00.113786463 -0800
+@@ -70,7 +70,7 @@
+ 
+ open  $ch, '>', $cSH or die "Cannot write $cSH: $!\n";
+ print $ch <<EOW;
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # THIS IS A GENERATED FILE
+ # DO NOT HAND-EDIT
+diff -Naur perl-5.30.1-old/Porting/config.sh perl-5.30.1-new/Porting/config.sh
+--- perl-5.30.1-old/Porting/config.sh	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/Porting/config.sh	2020-01-25 09:23:59.929789984 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # This file was produced by running the Configure script. It holds all the
+ # definitions figured out by Configure. Should you modify one of these values,
+@@ -1096,7 +1096,7 @@
+ st_ino_sign='1'
+ st_ino_size='8'
+ startperl='#!/opt/perl/bin/perl5.30.1'
+-startsh='#!/bin/sh'
++startsh='@GAR_build_DESTDIR@GAR_build_ebindir@/sh'
+ static_ext=' '
+ stdchar='char'
+ stdio_base='((fp)->_IO_read_base)'
+diff -Naur perl-5.30.1-old/Porting/git-make-p4-refs perl-5.30.1-new/Porting/git-make-p4-refs
+--- perl-5.30.1-old/Porting/git-make-p4-refs	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Porting/git-make-p4-refs	2020-01-25 09:18:37.834786832 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ # this script creates a tag for every p4raw-id
+ # the output can be appended to .git/packed-refs, but make sure to back up
+diff -Naur perl-5.30.1-old/Porting/mksample perl-5.30.1-new/Porting/mksample
+--- perl-5.30.1-old/Porting/mksample	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Porting/mksample	2020-01-25 09:18:45.744786909 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #
+ # This script can be used to keep Porting/config_H (which is an example
+ # config.h) up-to-date with the latest Configure.
+diff -Naur perl-5.30.1-old/Porting/rt_list_patches perl-5.30.1-new/Porting/rt_list_patches
+--- perl-5.30.1-old/Porting/rt_list_patches	2019-10-24 13:17:57.000000000 -0700
++++ perl-5.30.1-new/Porting/rt_list_patches	2020-01-25 09:18:53.129786981 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ if [ -z "$RTUSER" ]; then
+     echo "You need to set the environment variable RTUSER to your rt.perl.org username"
+diff -Naur perl-5.30.1-old/qnx/ar perl-5.30.1-new/qnx/ar
+--- perl-5.30.1-old/qnx/ar	2019-10-24 13:18:13.000000000 -0700
++++ perl-5.30.1-new/qnx/ar	2020-01-25 09:19:00.310787052 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #__USAGE
+ #%C	key library name ...
+ #	Crude cover for wlib to be compatible with ar
+diff -Naur perl-5.30.1-old/qnx/cpp perl-5.30.1-new/qnx/cpp
+--- perl-5.30.1-old/qnx/cpp	2019-10-24 13:18:13.000000000 -0700
++++ perl-5.30.1-new/qnx/cpp	2020-01-25 09:19:07.022787117 -0800
+@@ -1,4 +1,4 @@
+-#! /bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ #__USAGE
+ #%C	[-P] [-C] other options
+ #	cpp is a wrapper for wcc to make it work like other cpp's
+diff -Naur perl-5.30.1-old/README.bs2000 perl-5.30.1-new/README.bs2000
+--- perl-5.30.1-old/README.bs2000	2019-10-24 14:27:53.000000000 -0700
++++ perl-5.30.1-new/README.bs2000	2020-01-25 09:19:27.610787319 -0800
+@@ -70,7 +70,7 @@
+ really the following script:
+ 
+ -----8<-----/usr/local/bin/yacc-----8<-----
+-#! /usr/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ # Bison as a reentrant yacc:
+ 
+diff -Naur perl-5.30.1-old/runtests.SH perl-5.30.1-new/runtests.SH
+--- perl-5.30.1-old/runtests.SH	2019-10-24 13:18:14.000000000 -0700
++++ perl-5.30.1-new/runtests.SH	2020-01-25 09:19:36.576787407 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ 
+ case $PERL_CONFIG_SH in
+ '')
+diff -Naur perl-5.30.1-old/uconfig64.sh perl-5.30.1-new/uconfig64.sh
+--- perl-5.30.1-old/uconfig64.sh	2019-10-24 14:27:57.000000000 -0700
++++ perl-5.30.1-new/uconfig64.sh	2020-01-25 09:19:46.267787501 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ Author=''
+ _a='.a'
+ _o='.o'
+diff -Naur perl-5.30.1-old/uconfig.sh perl-5.30.1-new/uconfig.sh
+--- perl-5.30.1-old/uconfig.sh	2019-10-24 14:27:57.000000000 -0700
++++ perl-5.30.1-new/uconfig.sh	2020-01-25 09:19:55.364787591 -0800
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh
+ Author=''
+ _a='.a'
+ _o='.o'
+diff -Naur perl-5.30.1-old/win32/config.ce perl-5.30.1-new/win32/config.ce
+--- perl-5.30.1-old/win32/config.ce	2019-10-24 14:27:58.000000000 -0700
++++ perl-5.30.1-new/win32/config.ce	2020-01-25 09:20:17.306787805 -0800
+@@ -1027,7 +1027,7 @@
+ st_ino_sign='1'
+ st_ino_size='4'
+ startperl='#!perl'
+-startsh='#!/bin/sh'
++startsh='#!@GAR_build_DESTDIR@@GAR_build_ebindir@/sh'
+ static_ext='DynaLoader'
+ stdchar='char'
+ stdio_base=''
+diff -Naur perl-5.30.1-old/win32/config.gc perl-5.30.1-new/win32/config.gc
+--- perl-5.30.1-old/win32/config.gc	2019-10-24 13:18:22.000000000 -0700
++++ perl-5.30.1-new/win32/config.gc	2020-01-25 09:20:48.154788107 -0800
+@@ -1067,7 +1067,7 @@
+ st_ino_sign='1'
+ st_ino_size='4'
+ startperl='#!perl'
+-startsh='#!/bin/sh'
++startsh='@GAR_build_DESTDIR@@GAR_build_ebindir@/sh'
+ static_ext=' '
+ stdchar='char'
+ stdio_base='((fp)->_base)'
+diff -Naur perl-5.30.1-old/win32/config.vc perl-5.30.1-new/win32/config.vc
+--- perl-5.30.1-old/win32/config.vc	2019-10-24 13:18:22.000000000 -0700
++++ perl-5.30.1-new/win32/config.vc	2020-01-25 09:20:58.168788205 -0800
+@@ -1066,7 +1066,7 @@
+ st_ino_sign='1'
+ st_ino_size='4'
+ startperl='#!perl'
+-startsh='#!/bin/sh'
++startsh='@GAR_build_DESTDIR@@GAR_build_ebindir@/sh'
+ static_ext=' '
+ stdchar='char'
+ stdio_base='((fp)->_base)'

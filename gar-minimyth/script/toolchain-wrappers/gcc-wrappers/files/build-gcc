@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#
+# gcc hash: @TOOL_HASH@
+#
+
+compiler_options=""
+compiler_options="$compiler_options -idirafter /usr/include"
+
+@GAR_build_DESTDIR@@GAR_build_bindir@/gcc $compiler_options "$@"

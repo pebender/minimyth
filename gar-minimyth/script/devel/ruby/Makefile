@@ -3,16 +3,13 @@ GARVERSION = 2.6.5
 CATEGORIES = devel
 MASTER_SITES = https://cache.ruby-lang.org/pub/ruby/2.6/
 DISTFILES = $(DISTNAME).tar.gz
-xPATCHFILES = \
-	$(DISTNAME)-perl.patch.gar \
-	$(DISTNAME).patch
 LICENSE = GPL2/LGPL2_1
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS   = lang/c
+DEPENDS   = lang/c build-tool/autotools
 BUILDDEPS = devel/ruby-mini
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure

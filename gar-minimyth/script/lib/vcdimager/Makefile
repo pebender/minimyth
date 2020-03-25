@@ -1,7 +1,7 @@
 GARNAME = vcdimager
-GARVERSION = 0.7.24
+GARVERSION = 2.0.1
 CATEGORIES = lib
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/vcdimager/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \

@@ -18,7 +18,7 @@ BUILD_ARGS   = \
 	OPT="$(CFLAGS)" \
 	HOST="$(GARCH_FAMILY)-Linux" \
 	RELEASE="$(LINUX_VERSION)" \
-	CROSS_COMPILE="$(compiler_prefix)" \
+	CROSS_COMPILE="$(GARHOST)-" \
 	ZLIB="no" \
 	DNS="no" \
 	SHARED="yes" \
@@ -39,7 +39,7 @@ INSTALL_ARGS = \
 	OPT="$(CFLAGS)" \
 	HOST="$(GARCH_FAMILY)-dummy-linux" \
 	RELEASE="$(LINUX_VERSION)" \
-	CROSS_COMPILE="$(compiler_prefix)" \
+	CROSS_COMPILE="$(GARHOST)-" \
 	ZLIB="no" \
 	DNS="no" \
 	SHARED="yes" \
@@ -65,5 +65,5 @@ include ../../gar.mk
 #LDFLAGS := $(LDFLAGS) -fPIC
 
 # pciutils 3.3.1 fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
-#LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
+#CFLAGS  := $(filter-out -flto, $(CFLAGS))
+#LDFLAGS := $(filter-out -flto, $(LDFLAGS))

@@ -1,7 +1,7 @@
 GARNAME = lirc
-GARVERSION = 0.10.0
+GARVERSION = 0.10.1
 CATEGORIES = system
-MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/LIRC/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/lirc/files/LIRC/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-disable_python35.patch
 LICENSE = GPL2
@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c kernel/kernel lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python system/iguanair xorg/xorg
+DEPENDS = lang/c kernel/kernel lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python system/iguanair xorg/libX11
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -39,9 +39,9 @@ include ../../gar.mk
 PARALLELMFLAGS := -j1
 
 # lirc 0.9.0 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+CFLAGS   := $(filter-out -flto, $(CFLAGS))
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)

@@ -34,27 +34,38 @@ build_rootdir ?= $(mm_HOME)/images/build
 build_DESTDIR_swapped ?= $(mm_HOME)/images/build
 build_rootdir_swapped ?=
 
-toolchain_DESTDIR ?= $(mm_HOME)/images/toolchain
-toolchain_rootdir ?=
-toolchain_prefix ?= $(toolchain_rootdir)/usr
-toolchain_bindir ?= $(toolchain_prefix)/bin
-toolchain_libdir ?= $(toolchain_prefix)/lib
+clang_target_DESTDIR ?= $(mm_HOME)/images/clang-target
+clang_target_rootdir ?=
+clang_target_prefix ?= $(clang_target_rootdir)/usr
+clang_target_bindir ?= $(clang_target_prefix)/bin
+clang_target_libdir ?= $(clang_target_prefix)/lib
+clang_target_includedir ?= $(clang_target_prefix)/include
 
-clang_DESTDIR ?= $(mm_HOME)/images/clang
-clang_rootdir ?=
-clang_prefix ?= $(clang_rootdir)/usr
-clang_bindir ?= $(clang_prefix)/bin
-clang_libdir ?= $(clang_prefix)/lib
-clang_includedir ?= $(clang_prefix)/include
+clang_build_DESTDIR ?= $(mm_HOME)/images/clang-build
+clang_build_rootdir ?=
+clang_build_prefix ?= $(clang_build_rootdir)/usr
+clang_build_bindir ?= $(clang_build_prefix)/bin
+clang_build_libdir ?= $(clang_build_prefix)/lib
+clang_build_includedir ?= $(clang_build_prefix)/include
 
-gcc_DESTDIR ?= $(mm_HOME)/images/gcc
-gcc_rootdir ?=
-gcc_prefix ?= $(gcc_rootdir)/usr
-gcc_bindir ?= $(gcc_prefix)/bin
-gcc_libdir ?= $(gcc_prefix)/lib
-gcc_includedir ?= $(gcc_prefix)/include
-gcc_exec_prefix ?= $(gcc_rootdir)/usr
-gcc_libexecdir ?= $(gcc_exec_prefix)/lib
+gcc_target_DESTDIR ?= $(mm_HOME)/images/gcc-target
+gcc_target_rootdir ?=
+gcc_target_prefix ?= $(gcc_target_rootdir)/usr
+gcc_target_bindir ?= $(gcc_target_prefix)/bin
+gcc_target_libdir ?= $(gcc_target_prefix)/lib
+gcc_target_includedir ?= $(gcc_target_prefix)/include
+gcc_target_exec_prefix ?= $(gcc_target_rootdir)/usr
+gcc_target_libexecdir ?= $(gcc_target_exec_prefix)/lib
+
+gcc_build_DESTDIR ?= $(mm_HOME)/images/gcc-build
+gcc_build_rootdir ?=
+gcc_build_prefix ?= $(gcc_build_rootdir)/usr
+gcc_build_bindir ?= $(gcc_build_prefix)/bin
+gcc_build_libdir ?= $(gcc_build_prefix)/lib
+gcc_build_elibdir ?= $(gcc_build_libdir)
+gcc_build_includedir ?= $(gcc_build_prefix)/include
+gcc_build_exec_prefix ?= $(gcc_build_rootdir)/usr
+gcc_build_libexecdir ?= $(gcc_build_exec_prefix)/lib
 
 ccache_DESTDIR ?= $(mm_HOME)/images/ccache
 ccache_rootdir ?=
@@ -63,12 +74,12 @@ ccache_bindir ?= $(ccache_prefix)/bin
 ccache_libdir ?= $(ccache_prefix)/lib
 ccache_includedir ?= $(ccache_prefix)/include
 
-cc_DESTDIR ?= $(mm_HOME)/images/cc
-cc_rootdir ?=
-cc_prefix ?= $(cc_rootdir)/usr
-cc_bindir ?= $(cc_prefix)/bin
-cc_libdir ?= $(cc_prefix)/lib
-cc_includedir ?= $(cc_prefix)/include
+cc_build_DESTDIR ?= $(mm_HOME)/images/cc-build
+cc_build_rootdir ?=
+cc_build_prefix ?= $(cc_build_rootdir)/usr
+cc_build_bindir ?= $(cc_build_prefix)/bin
+cc_build_libdir ?= $(cc_build_prefix)/lib
+cc_build_includedir ?= $(cc_prefix)/include
 
 native_DESTDIR ?= $(mm_HOME)/images/native
 native_rootdir ?=
@@ -153,68 +164,75 @@ build_GARCH_FAMILY := $(strip \
 build_GARHOST := $(GARBUILD)
 
 # Compiler tools.
-main_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/clang
-main_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/clang++
-main_LD ?= $(toolchain_DESTDIR)$(toolchain_bindir)/ld.lld
-main_OBJDUMP ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-objdump
-main_OBJCOPY ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-objcopy
-main_STRIP ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-strip
-main_RANLIB ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-ranlib
-main_READELF ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-readelf
-main_NM ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-nm
-main_AS ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-as
-main_AR ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-ar
-main_CPP ?= $(toolchain_DESTDIR)$(toolchain_bindir)/clang-cpp
+main_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/$(main_GARHOST)-clang
+main_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/$(main_GARHOST)-clang++
+main_LD ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ld.lld
+main_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-objdump
+main_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-objcopy
+main_STRIP ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-strip
+main_RANLIB ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ranlib
+main_READELF ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-readelf
+main_NM ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-nm
+main_AS ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-as
+main_AR ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ar
+main_CPP ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-cpp
 
-build_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/clang
-build_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/clang++
-build_LD ?= $(toolchain_DESTDIR)$(toolchain_bindir)/ld.lld
-build_OBJDUMP ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-objdump
-build_OBJCOPY ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-objcopy
-build_STRIP ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-strip
-build_RANLIB ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-ranlib
-build_READELF ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-readelf
-build_NM ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-nm
-build_AS ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-as
-build_AR ?= $(toolchain_DESTDIR)$(toolchain_bindir)/llvm-ar
-build_CPP ?= $(toolchain_DESTDIR)$(toolchain_bindir)/clang-cpp
+build_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-clang
+build_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-clang++
+build_LD ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ld.lld
+build_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objdump
+build_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objcopy
+build_STRIP ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-strip
+build_RANLIB ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ranlib
+build_READELF ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-readelf
+build_NM ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-nm
+build_AS ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-as
+build_AR ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ar
+build_CPP ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-cpp
 
-RPATH_LINK_FLAG = -Wl,-rpath-link=
-RPATH_FLAG = -Wl,-rpath=
+RPATH_FLAG = -Wl,-rpath,
+RPATH_LINK_FLAG = -Wl,-rpath-link,
 
-# Flags for the compiler tools.
-main_CPPFLAGS ?= \
-	-nostdinc++ -cxx-isystem $(main_DESTDIR)$(main_includedir)/c++/v1
-main_CFLAGS ?= $(mm_CFLAGS)
-main_CXXFLAGS ?= $(mm_CFLAGS)
-# Make sure that the build system finds the correct libraries at link time.
+main_CPPFLAGS ?=
+main_CFLAGS ?= \
+	-pipe \
+	$(mm_CFLAGS)
+main_CXXFLAGS ?= \
+	-pipe \
+	$(mm_CFLAGS)
 main_LDFLAGS ?= \
-	$(subst :,$(RPATH_LINK_FLAG),$(subst :, :,:$(TARGET_LINKTIME_PATH))) \
-	-flto
+	$(subst :, -L,:$(TARGET_LINKTIME_PATH)) \
+	-fno-lto
 
-build_CPPFLAGS ?= \
-	-nostdinc++ -cxx-isystem $(build_DESTDIR)$(build_includedir)/c++/v1 \
-	-idirafter /usr/include
+build_CPPFLAGS ?=
 build_CFLAGS ?= \
+	-pipe \
 	-march=$(build_GARCH) \
 	-O2 \
 	$(if $(filter i386,$(build_GARCH_FAMILY)),-m32) \
 	$(if $(filter x86_64,$(build_GARCH_FAMILY)),-m64)
 build_CXXFLAGS ?= \
+	-pipe \
 	-march=$(build_GARCH) \
 	-O2 \
 	$(if $(filter i386,$(build_GARCH_FAMILY)),-m32) \
 	$(if $(filter x86_64,$(build_GARCH_FAMILY)),-m64)
+build_LDFLAGS ?= \
+	$(subst :, -L,:$(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)) \
+	$(subst :, $(RPATH_LINK_FLAG),:$(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)) \
+	$(subst :, $(RPATH_FLAG),:$(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH))
+
 # Make sure that the build system finds the correct libraries at link time.
 # We embed the paths so that it can find them at runtime as well so that programs
 # use the correct libraries when running on the build system.
-build_LDFLAGS ?= \
-	$(subst :,$(RPATH_LINK_FLAG),$(subst :, :,:$(TARGET_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH))) \
-	$(subst :,$(RPATH_FLAG),$(subst :, :,:$(TARGET_LINKTIME_PATH)))
 
 # This is for foo-config chaos
 SHELL = $(if $(wildcard $(build_DESTDIR)$(build_ebindir)/bash),$(build_DESTDIR)$(build_ebindir)/bash,/bin/sh)
 CONFIG_SHELL = $(SHELL)
+PKG_CONFIG = $(if $(wildcard $(build_DESTDIR)$(build_bindir)/pkg-config), \
+	$(build_DESTDIR)$(build_bindir)/pkg-config, \
+	$(native_DESTDIR)$(native_bindir)/pkg-config \
+)
 PKG_CONFIG_PATH = $(DESTDIR)$(libdir)/pkgconfig:$(DESTDIR)$(datadir)/pkgconfig:$(DESTDIR)$(qt5libdir)/pkgconfig
 PKG_CONFIG_LIBDIR = $(DESTDIR)$(libdir)/pkgconfig
 PKG_CONFIG_SYSROOT_DIR = $(DESTDIR)
@@ -238,7 +256,7 @@ MANIFEST_ENV += $(foreach TTT,$(STAGE_EXPORTS),$(TTT)="$($(TTT))")
 export GARBUILD
 export BUILD_SYSTEM_PATH GAR_SYSTEM_PATH PATH LIBRARY_PATH LD_LIBRARY_PATH #LD_PRELOAD
 export SHELL CONFIG_SHELL
-export PKG_CONFIG_PATH PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR
+export PKG_CONFIG PKG_CONFIG_PATH PKG_CONFIG_LIBDIR PKG_CONFIG_SYSROOT_DIR
 export PERLLIB PERL5LIB
 
 GARCHIVEROOT ?= $(mm_HOME)/source

@@ -1,7 +1,7 @@
 GARNAME = usbutils
 GARVERSION = 012
 CATEGORIES = utils
-MASTER_SITES = https://www.kernel.org/pub/linux/utils/usb/$(GARNAME)/
+MASTER_SITES = https://www.kernel.org/pub/linux/utils/usb/usbutils/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2
 

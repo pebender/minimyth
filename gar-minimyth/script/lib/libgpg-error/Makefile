@@ -27,22 +27,21 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-nls \
 	--disable-rpath \
 	--disable-languages \
-	--disable-doc \
-	--with-gnu-ld
+	--disable-doc
 
 include ../../gar.mk
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
+	@#$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
-	@rm -f $(DESTDIR)$(bindir)-config/gpg-error-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)gpg-error-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/gpg-error-config $(DESTDIR)$(bindir)-config/gpg-error-config
-	@$(if $(compiler_prefix), ln -sf gpg-error-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)gpg-error-config)
+	@rm -f $(DESTDIR)$(bindir)/config/gpg-error-config
+	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-gpg-error-config
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/gpg-error-config $(DESTDIR)$(bindir)/config/gpg-error-config
+	@ln -sf gpg-error-config $(DESTDIR)$(bindir)/config/$(GARHOST)-gpg-error-config
 	@$(MAKECOOKIE)
 	@$(MAKECOOKIE)

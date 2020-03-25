@@ -10,13 +10,17 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c build-tool/autotools
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
+	--disable-zlib \
+	--disable-zlib-dynamic \
 	--disable-static-utils
 
 include ../../gar.mk
@@ -28,8 +32,6 @@ libdir  := $(elibdir)
 LDFLAGS := $(LDFLAGS) -fwhole-program
 
 pre-configure:
-	@touch $(WORKSRC)/*.5
-	@touch $(WORKSRC)/*.8
 	@$(call RUN_AUTOTOOLS)
 	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
 	@$(MAKECOOKIE)

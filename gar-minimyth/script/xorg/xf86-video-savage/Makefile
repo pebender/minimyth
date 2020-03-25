@@ -15,9 +15,9 @@ DEPENDS = lang/c \
 	xorg/libpciaccess \
 	xorg/util-macros \
 	xorg/xorg-server \
-	xorg/xorgproto
-BUILDDEPS = \
+	xorg/xorgproto \
 	xorg/xorg-sgml-doctools
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -31,6 +31,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-dri \
 	--disable-xaa
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 git//%$(DISTNAME).tar.bz2:

@@ -25,10 +25,6 @@ include ../../gar.mk
 LDFLAGS_BAD = -Wl,--as-needed
 LDFLAGS := $(filter-out $(LDFLAGS_BAD), $(LDFLAGS))
 
-svn//%/$(DISTNAME).tar.bz2:
-	@$(call FETCH_SVN, http://$*, $(GARVERSION), $(DISTNAME))
-	@$(MAKECOOKIE)
-
 checksum-$(DISTNAME).tar.bz2:
 	@$(MAKECOOKIE)
 

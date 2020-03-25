@@ -1,5 +1,5 @@
 GARNAME = pci.ids
-GARVERSION = 20191125
+GARVERSION = 20200317
 CATEGORIES = data
 MASTER_SITES = https://pci-ids.ucw.cz/v2.2/
 DISTFILES = pci.ids
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS =
 
 INSTALL_SCRIPTS = pci.ids
 

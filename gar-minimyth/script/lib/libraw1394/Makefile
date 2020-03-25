@@ -1,10 +1,8 @@
 GARNAME = libraw1394
-GARVERSION = 2.1.0
+GARVERSION = 2.1.2
 CATEGORIES = lib
 MASTER_SITES = https://www.kernel.org/pub/linux/libs/ieee1394/
-DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = LGPL2_1
 
 DESCRIPTION = 
@@ -18,15 +16,11 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-shared \
 	--disable-static
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c xorg/xorg
+DEPENDS = lang/c xorg/libX11 xorg/libXext xorg/libXinerama xorg/libXt
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -37,10 +37,10 @@ include ../../gar.mk
 LDFLAGS := $(LDFLAGS) -fwhole-program
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/libxosd.la
-	@rm -f $(DESTDIR)$(bindir)-config/xosd-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)xosd-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/xosd-config $(DESTDIR)$(bindir)-config/xosd-config
-	@$(if $(compiler_prefix), ln -s xosd-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)xosd-config)
+	@rm -fv $(DESTDIR)$(libdir)/libxosd.la
+	@rm -fv $(DESTDIR)$(bindir)/config/xosd-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-xosd-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config
+	@mv -fv $(DESTDIR)$(bindir)/xosd-config $(DESTDIR)$(bindir)/config/xosd-config
+	@ln -sfv xosd-config $(DESTDIR)$(bindir)/config/$(GARHOST)-xosd-config
 	@$(MAKECOOKIE)

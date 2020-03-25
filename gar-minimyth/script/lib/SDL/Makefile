@@ -127,9 +127,9 @@ post-install:
 	@rm -f $(DESTDIR)$(libdir)/libSDL.la
 	@rm -f $(DESTDIR)$(libdir)/libSDLmain.la
 	@rm -f $(DESTDIR)$(libdir)/libSDLmain.a
-	@rm -f $(DESTDIR)$(bindir)-config/sdl-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)sdl-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/sdl-config $(DESTDIR)$(bindir)-config/sdl-config
-	@$(if $(compiler_prefix), ln -s sdl-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)sdl-config)
+	@rm -f $(DESTDIR)$(bindir)/config/sdl-config
+	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-sdl-config
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/sdl-config $(DESTDIR)$(bindir)/config/sdl-config
+	@ln -s sdl-config $(DESTDIR)$(bindir)/config/$(GARHOST)-sdl-config
 	@$(MAKECOOKIE)

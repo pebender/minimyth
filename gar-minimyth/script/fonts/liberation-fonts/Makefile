@@ -1,7 +1,7 @@
 GARNAME = liberation-fonts
-GARVERSION = 2.00.5
+GARVERSION = 2.1.0
 CATEGORIES = fonts
-MASTER_SITES = https://github.com/liberationfonts/$(GARNAME)/files/2926169/
+MASTER_SITES = https://github.com/liberationfonts/liberation-fonts/files/4178407/
 DISTFILES = $(GARNAME)-ttf-$(GARVERSION).tar.gz
 LICENSE = OFL1_1
 

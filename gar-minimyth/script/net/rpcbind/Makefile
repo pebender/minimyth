@@ -1,7 +1,7 @@
 GARNAME = rpcbind
 GARVERSION = 1.2.5
 CATEGORIES = net
-MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/rpcbind/files/rpcbind/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = BSD_3_Clause
 

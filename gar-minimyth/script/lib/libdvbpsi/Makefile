@@ -1,10 +1,8 @@
 GARNAME = libdvbpsi
-GARVERSION = 0.2.2
+GARVERSION = 1.3.3
 CATEGORIES = lib
 MASTER_SITES = https://download.videolan.org/pub/videolan/libdvbpsi/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION = 
@@ -18,15 +16,14 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-shared \
-	--disable-static
+	--disable-static \
+	--disable-debug \
+	--disable-gcc-sanitize \
+	--enable-release
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libdvbpsi.la

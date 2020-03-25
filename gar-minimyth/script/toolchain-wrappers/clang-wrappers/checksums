@@ -1,0 +1,8 @@
+36b0da565f9afbbf5ab5cc0f00d924d2  download/build-clang
+c02f0bb66a72bd9d227d90fbfd6ad370  download/build-clangxx
+15fb4705135be1097e44d3b65397e9f9  download/build-cpp
+d34434d4a0fd6b4f17dbc85d072e6cc3  download/build-ld.lld
+755746fe50327792c5adaccf176ad322  download/main-clang
+6313ed376ad22c798afe11f8e9c80046  download/main-clangxx
+6350ddc59bc154bb8ff7872308b5082d  download/main-cpp
+04d82d0e37afac67413a02a2fc2751b9  download/main-ld.lld

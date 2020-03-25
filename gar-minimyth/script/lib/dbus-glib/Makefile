@@ -1,5 +1,5 @@
 GARNAME = dbus-glib
-GARVERSION = 0.104
+GARVERSION = 0.110
 CATEGORIES = lib
 MASTER_SITES = https://dbus.freedesktop.org/releases/dbus-glib/
 DISTFILES = $(DISTNAME).tar.gz
@@ -9,15 +9,15 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lang/c lib/expat lib/dbus lib/glib
-BUILDDEPS  = lib/dbus
+DEPENDS    = lang/c build-tool/make lib/expat lib/dbus lib/glib
+BUILDDEPS = lib/dbus
 ifneq ($(DESTIMG),build)
 BUILDDEPS += lib/dbus-glib
 endif
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -39,10 +39,6 @@ CONFIGURE_ARGS += \
 endif
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call FIX_LIBTOOL,$(WORKSRC),configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -rf $(DESTDIR)$(libdir)/libdbus-glib-1.la

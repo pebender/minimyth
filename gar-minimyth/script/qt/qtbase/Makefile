@@ -1,5 +1,5 @@
 GARNAME = qtbase-everywhere-src
-GARVERSION = 5.14.0
+GARVERSION = $(QT5_VERSION)
 CATEGORIES = qt
 MASTER_SITES = https://download.qt.io/archive/qt/5.14/$(GARVERSION)/submodules/
 DISTFILES = $(DISTNAME).tar.xz
@@ -11,11 +11,10 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lang/c lang/cxx db/mariadb lib/alsa-lib lib/dbus lib/glib lib/freetype lib/fontconfig lib/libjpeg lib/libmng lib/mtdev lib/pcre2 lib/libpng lib/libtiff lib/openssl lib/zlib X11/libxkbcommon xorg/xorg
+DEPENDS = lang/c lang/cxx build-tool/qmake db/mariadb lib/alsa-lib lib/dbus lib/glib lib/freetype lib/fontconfig lib/libjpeg lib/libmng lib/mtdev lib/pcre2 lib/libpng lib/libtiff lib/openssl lib/zlib X11/libxkbcommon xorg/xorg
 BUILDDEPS  = devel/bison devel/flex
 ifneq ($(DESTIMG),build)
-DEPENDS   += lib/libinput system/udev
-BUILDDEPS += qt/qtbase
+DEPENDS += lib/libinput system/udev
 endif
 
 PWD := $(shell pwd)
@@ -50,7 +49,6 @@ CONFIGURE_ARGS = \
 	-no-rpath \
 	-no-pch \
 	-sysroot $(DESTDIR) \
-	-gcc-sysroot \
 	-no-compile-examples \
 	-dbus-linked \
 	-accessibility \
@@ -81,10 +79,10 @@ CONFIGURE_ARGS = \
 	-kms \
 	-linuxfb \
 	-system-xcb \
-	$(if $(filter build, $(DESTIMG)),-no-libudev,-libudev) \
+	$(if $(filter $(GARBUILD),$(GARHOST)),-no-libudev,-libudev) \
 	-evdev \
 	-no-imf \
-	$(if $(filter build, $(DESTIMG)),-no-libinput,-libinput) \
+	$(if $(filter $(GARBUILD),$(GARHOST)),-no-libinput,-libinput) \
 	-mtdev \
 	-no-tslib \
 	-xcb-xinput \
@@ -94,7 +92,7 @@ CONFIGURE_ARGS = \
 	-system-libpng \
 	-system-libjpeg \
 	-sql-mysql \
-	-mysql_config "$(DESTDIR)$(bindir)-config/mysql_config" \
+	-mysql_config "$(DESTDIR)$(bindir)/config/mysql_config" \
 	-sql-sqlite \
 	-qt-sqlite
 ifeq ($(DESTIMG),build)
@@ -107,7 +105,7 @@ CONFIGURE_ARGS += \
 	-hostbindir $(build_DESTDIR)$(build_qt5bindir) \
 	-hostlibdir $(build_DESTDIR)$(build_qt5libdir) \
 	-hostdatadir $(build_DESTDIR)$(build_qt5prefix) \
-	-device-option CROSS_COMPILE=$(compiler_prefix)
+	-device-option CROSS_COMPILE=$(GARHOST)-
 endif
 
 GAR_EXTRA_CONF += devel/gcc/package-api.mk devel/glibc/package-api.mk
@@ -174,29 +172,14 @@ CREATE_PLATFORM   = \
 	$(call UPDATE_PLATFORM, $(1), QMAKE_CFLAGS        , , $($(strip $(3))CFLAGS)) ; \
 	$(call UPDATE_PLATFORM, $(2), QMAKE_LFLAGS        , , $($(strip $(3))LDFLAGS)) ; \
 	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR        , , $($(strip $(3))DESTDIR)$($(strip $(3))includedir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR        , , $($(strip $(4))DESTDIR)$($(strip $(3))libdir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR_X11    , , $($(strip $(4))DESTDIR)$($(strip $(3))includedir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR_X11    , , $($(strip $(4))DESTDIR)$($(strip $(3))libdir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR_OPENGL , , $($(strip $(4))DESTDIR)$($(strip $(3))includedir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR_OPENGL , , $($(strip $(4))DESTDIR)$($(strip $(3))libdir)) ; \
-
-pre-configure:
-	$(call CREATE_PLATFORM, $(PLATFORM_GARBUILD_BASE_PATH), $(PLATFORM_GARBUILD_PATH), build_)
-	$(call CREATE_PLATFORM, $(PLATFORM_GARHOST_BASE_PATH) , $(PLATFORM_GARHOST_PATH) ,       )
-	@$(MAKECOOKIE)
-
-x-configure-%/configure:
-	@cd $* && $(CONFIGURE_ENV) /configure $(CONFIGURE_ARGS)
-	@$(MAKECOOKIE)
-
-pre-install:
-	@rm -rf $(DESTDIR)$(qt5prefix)
-	@$(MAKECOOKIE)
+	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR        , , $($(strip $(3))DESTDIR)$($(strip $(3))libdir)) ; \
+	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR_X11    , , $($(strip $(3))DESTDIR)$($(strip $(3))includedir)) ; \
+	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR_X11    , , $($(strip $(3))DESTDIR)$($(strip $(3))libdir)) ; \
+	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR_OPENGL , , $($(strip $(3))DESTDIR)$($(strip $(3))includedir)) ; \
+	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR_OPENGL , , $($(strip $(3))DESTDIR)$($(strip $(3))libdir)) ; \
 
 post-install:
 	@rm -fv $(DESTDIR)$(qt5libdir)/*.la
-	@rm -fv $(PLATFORM_DEFAULT_PATH)
-	@ln -sfv $(PLATFORM_GARBUILD_NAME) $(PLATFORM_DEFAULT_PATH)
 	@$(call GLIBC_ADD_LIB_PATH, $(qt5libdir))
 	@files=`ls -1 $(DESTDIR)$(qt5libdir)/pkgconfig/*.pc` ; \
 	 for file in $${files} ; do \

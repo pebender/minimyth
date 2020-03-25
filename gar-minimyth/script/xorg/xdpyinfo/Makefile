@@ -31,4 +31,5 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-dmx \
 	--without-xprint
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

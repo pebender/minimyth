@@ -17,6 +17,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c xorg/xorg lib/freetype lib/libpng system/lirc mediaplayers/xine-lib
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -60,8 +61,8 @@ pre-configure:
 clean-all:
 	@$(MAKE) -C ../xine-lib clean
 	@$(MAKE) -C ../xine-ui  clean
-	@rm -rf $(DESTDIR)$(bindir)-config/xine-config
-	@rm -rf $(DESTDIR)$(bindir)-config/$(compiler_prefix)xine-config
+	@rm -rf $(DESTDIR)$(bindir)/config/xine-config
+	@rm -rf $(DESTDIR)$(bindir)/config/$(GARHOST)-xine-config
 	@rm -rf $(DESTDIR)$(includedir)/xine
 	@rm -rf $(DESTDIR)$(includedir)/xine.h
 	@rm -rf $(DESTDIR)$(libdir)/xine

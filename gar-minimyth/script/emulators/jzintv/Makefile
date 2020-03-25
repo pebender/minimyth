@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx lib/SDL
+DEPENDS = lang/c lang/cxx build-tool/make lib/SDL
 
 BUILD_SCRIPTS   = $(WORKSRC)/src/Makefile
 INSTALL_SCRIPTS = custom

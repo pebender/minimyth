@@ -1,29 +1,27 @@
 GARNAME = fribidi
-GARVERSION = 0.19.5
+GARVERSION = 1.0.8
 CATEGORIES = lib
-MASTER_SITES = https://github.com/$(GARNAME)/$(GARNAME)/releases/download/$(GARVERSION)/
-DISTFILES = $(DISTNAME).tar.bz2
+MASTER_SITES = https://github.com/fribidi/fribidi/archive/
+DISTFILES = v$(GARVERSION).tar.gz
 LICENSE = LGPL2_1
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c build-tool/make
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
 	--disable-debug \
-	--disable-deprecated \
-	--disable-malloc \
-	--enable-charsets \
-	--without-glib
+	--disable-deprecated
 
 include ../../gar.mk
 

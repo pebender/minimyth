@@ -13,17 +13,17 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c \
+DEPENDS = lang/c build-tool/make \
 	xorg/libxcb \
 	xorg/util-macros \
 	xorg/xorgproto \
-	xorg/xtrans
-BUILDDEPS = \
+	xorg/xtrans \
 	xorg/xorg-sgml-doctools
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS  = $(WORKSRC)/configure
-BUILD_SCRIPTS      = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS    = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -43,16 +43,12 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-xkb \
 	--disable-composecache \
 	--enable-malloc0returnsnull \
+	--with-keysymdefdir="$(DESTDIR)$(includedir)/X11" \
 	--without-xmlto \
 	--without-fop \
 	--without-launchd
 
-CONFIGURE_ENV = \
-	CC_FOR_BUILD="$(build_CC)" \
-	CPPFLAGS_FOR_BUILD="$(build_CPPFLAGS)" \
-	CFLAGS_FOR_BUILD="$(build_CFLAGS)" \
-	LDFLAGS_FOR_BUILD="$(build_LDFLAGS)"
-
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 post-install:

@@ -11,7 +11,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c \
+DEPENDS = lang/c build-tool/make \
 	xorg/font-util \
 	xorg/util-macros
 BUILDDEPS = xorg/bdftopcf \
@@ -42,4 +42,5 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-koi8-r \
 	--disable-jisx0201
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

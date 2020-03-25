@@ -13,6 +13,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c lib/openssl lib/zlib net/librtmp
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -43,7 +44,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-smtp \
 	--disable-gophper \
 	--disable-manual \
-	--enable-libgcc \
+	--disable-libgcc \
 	--disable-ipv6 \
 	--enable-versioned-symbols \
 	--enable-threaded-resolver \
@@ -88,10 +89,10 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/libcurl.la
-	@rm -f $(DESTDIR)$(bindir)-config/curl-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)curl-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/curl-config $(DESTDIR)$(bindir)-config/curl-config
-	@$(if $(compiler_prefix), ln -s curl-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)curl-config)
+	@rm -fv $(DESTDIR)$(libdir)/libcurl.la
+	@rm -fv $(DESTDIR)$(bindir)/config/curl-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-curl-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/curl-config $(DESTDIR)$(bindir)/config/curl-config
+	@ln -sfv curl-config $(DESTDIR)$(bindir)/config/$(GARHOST)-curl-config
 	@$(MAKECOOKIE)

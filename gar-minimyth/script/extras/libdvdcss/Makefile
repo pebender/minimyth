@@ -1,5 +1,5 @@
 GARNAME = libdvdcss
-GARVERSION = 1.2.13
+GARVERSION = 1.4.2
 CATEGORIES = extras
 MASTER_SITES = https://download.videolan.org/pub/libdvdcss/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
@@ -9,7 +9,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c
+DEPENDS = lang/c build-tool/make
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -23,11 +24,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 include ../extras.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(extras_libdir)/libdvdcss.la

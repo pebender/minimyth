@@ -1,18 +1,22 @@
 GARNAME = busybox
-GARVERSION = 1.20.2
+GARVERSION = 1.31.1
 CATEGORIES = utils
 MASTER_SITES = http://www.busybox.net/downloads/
 MASTER_SITES += http://www.busybox.net/downloads/fixes-$(GARVERSION)/
 CONFIGFILE = $(DISTNAME).config
-DISTFILES = $(DISTNAME).tar.bz2 $(CONFIGFILE)
-PATCHFILES  = \
+DISTFILES = $(DISTNAME).tar.bz2
+DISTFILES += $(CONFIGFILE)
+PATCHFILES = \
+	$(DISTNAME)-werror.patch \
+	$(DISTNAME)-be5a505d.patch
+#PATCHFILES  = \
 	$(DISTNAME)-kernel_ver.patch \
 	$(DISTNAME)-ntpd.patch \
 	$(DISTNAME)-pkg-config-selinux.patch \
 	$(DISTNAME)-sys-resource.patch
-PATCHFILES += \
+#PATCHFILES += \
 	$(DISTNAME)-sys_resource_h.patch
-PATCHFILES += \
+#PATCHFILES += \
 	$(DISTNAME)-check_cc.patch \
 	$(DISTNAME)-dhcp_log_server.patch \
 	$(DISTNAME)-dhcp_tcode.patch \
@@ -26,26 +30,42 @@ endef
 DEPENDS = lang/c
 
 CONFIGURE_SCRIPTS = custom
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = custom
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = custom
 
 DEFAULT_ARGS = \
 	ARCH="$(GARCH_FAMILY)" \
+	CC="$(CC)" \
+	CXX="$(CXX)" \
+	CFLAGS="$(CFLAGS)" \
+	CXXFLAGS="$(CXXFLAGS)" \
 	HOSTCC="$(build_CC)" \
 	HOSTCXX="$(build_CXX)" \
-	HOSTCFLAGS="$(build_CFLAGS)" \
-	HOSTCXXFLAGS="$(build_CXXFLAGS)" \
-	CROSS_COMPILE="$(compiler_prefix)" \
+	xHOSTCFLAGS="$(build_CFLAGS)" \
+	xHOSTCXXFLAGS="$(build_CXXFLAGS)" \
+	CROSS_COMPILE="$(GARHOST)-" \
 	KBUILD_VERBOSE="1" \
+	V="1" \
 	SKIP_STRIP="y"
 
 CONFIGURE_ARGS = $(DEFAULT_ARGS)
-BUILD_ARGS     = $(DEFAULT_ARGS)
-INSTALL_ARGS   = $(DEFAULT_ARGS)
+BUILD_ARGS = $(DEFAULT_ARGS)
+INSTALL_ARGS = $(DEFAULT_ARGS)
+
+CONFIGURE_ENV = $(DEFAULT_ARGS)
+BUILD_ENV = $(DEFAULT_ARGS)
+INSTALL_ENV = $(DEFAULT_ARGS)
 
 include ../../gar.mk
 
-LDFLAGS += -fwhole-program
+LDFLAGS += -Wno-constant-logical-operand
+LDFLAGS += -Wno-format-security
+LDFLAGS += -Wno-ignored-attributes
+LDFLAGS += -Wno-string-plus-int
+build_CFLAGS += $(LDFLAGS)
+build_CXXFLAGS += $(LDFLAGS)
+CFLAGS += $(LDFLAGS)
+CXXFLAGS += $(LDFLAGS)
 
 extract-$(CONFIGFILE):
 	@cat $(DOWNLOADDIR)/$(CONFIGFILE) \
@@ -70,4 +90,4 @@ configure-custom:
 	@$(MAKECOOKIE)
 
 install-custom:
-	@$(INSTALL_ENV) $(MAKE) $(INSTALL_ARGS) -C $(WORKSRC) CONFIG_PREFIX="$(DESTDIR)$(rootdir)" install
+	@$(INSTALL_ENV) $(INSTALL_ENV) $(MAKE) $(INSTALL_ARGS) -C $(WORKSRC) CONFIG_PREFIX="$(DESTDIR)$(rootdir)" install

@@ -1,9 +1,9 @@
 GARNAME = libdvdread
-GARVERSION = 4.2.0
+GARVERSION = 6.0.2
 CATEGORIES = lib
-MASTER_SITES = https://download.videolan.org/pub/videolan/libdvdread/
+MASTER_SITES = https://download.videolan.org/pub/videolan/libdvdread/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = $(DISTNAME)-destdir.patch
+#PATCHFILES = $(DISTNAME)-destdir.patch
 LICENSE = GPL2
 
 DESCRIPTION = 
@@ -16,27 +16,14 @@ CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
+	--enable-shared \
+	--disable-static \
+	--disable-apidoc
 
 include ../../gar.mk
 
-svn//%/$(DISTNAME).tar.bz2:
-	@$(call FETCH_SVN, svn://$*, $(GARVERSION), $(DISTNAME))
-	@$(MAKECOOKIE)
-
-x-checksum-$(DISTNAME).tar.bz2:
-	@$(MAKECOOKIE)
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libdvdread.la
-	@rm -f $(DESTDIR)$(bindir)-config/dvdread-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)dvdread-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/dvdread-config $(DESTDIR)$(bindir)-config/dvdread-config
-	@$(if $(compiler_prefix), ln -s dvdread-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)dvdread-config)
 	@$(MAKECOOKIE)

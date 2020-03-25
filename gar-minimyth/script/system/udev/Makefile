@@ -1,7 +1,7 @@
 GARNAME = eudev
 GARVERSION = 3.2.9
 CATEGORIES = system
-MASTER_SITES = https://dev.gentoo.org/~blueness/$(GARNAME)/
+MASTER_SITES = https://dev.gentoo.org/~blueness/eudev/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = GPL2
 

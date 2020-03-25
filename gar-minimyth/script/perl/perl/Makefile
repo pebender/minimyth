@@ -3,11 +3,12 @@ GARVERSION = $(PERL_VERSION)
 CATEGORIES = perl
 MASTER_SITES = https://www.cpan.org/src/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES  = $(DISTNAME)-dash.patch $(DISTNAME)-perl.patch.gar $(DISTNAME)-path.patch $(DISTNAME)-perl5lib.patch
+#PATCHFILES  = $(DISTNAME)-dash.patch $(DISTNAME)-perl.patch.gar $(DISTNAME)-path.patch $(DISTNAME)-perl5lib.patch
 ifneq ($(DESTIMG),build)
-PATCHFILES += $(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar $(DISTNAME)-cross.patch.gar
+#PATCHFILES += $(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar $(DISTNAME)-cross.patch.gar
+#PATCHFILES += $(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar $(DISTNAME)-cross.patch.gar
 else
-PATCHFILES += $(DISTNAME)-cbuilder.patch $(DISTNAME)-xsloader.patch $(DISTNAME)-dynaloader.patch $(DISTNAME)-errno.patch
+#PATCHFILES += $(DISTNAME)-cbuilder.patch $(DISTNAME)-xsloader.patch $(DISTNAME)-dynaloader.patch $(DISTNAME)-errno.patch
 endif
 LICENSE = Artistic
 
@@ -22,9 +23,9 @@ BUILDDEPS += perl/perl
 endif
 
 ifneq ($(DESTIMG),build)
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure check-version
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = config $(WORKSRC)/Makefile
+#CONFIGURE_SCRIPTS = $(WORKSRC)/configure check-version
+#BUILD_SCRIPTS     = $(WORKSRC)/Makefile
+#INSTALL_SCRIPTS   = config $(WORKSRC)/Makefile
 else
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -39,6 +40,8 @@ else
 CONFIGURE_ARGS = \
 	-d \
 	-e \
+	-Duserelocatableinc='true' \
+	-Dinitialinstalllocation="$(bindir)" \
 	-Dprefix="$(prefix)" \
 	-Dman1dir='$(mandir)/man1' \
 	-Dman3dir='$(mandir)/man3' \
@@ -78,8 +81,6 @@ GAR_EXTRA_CONF += devel/glibc/package-api.mk
 GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk
 include ../../gar.mk
 
-PARALLELMFLAGS := -j1
-
 CPPFLAGS := $(PERL_CPPFLAGS)
 CFLAGS   := $(PERL_CFLAGS)
 CXXFLAGS := $(PERL_CXXFLAGS)
@@ -93,19 +94,16 @@ PERL_config_sh_GCC_VERSION=$(call PERL_config_sh_var,gccversion)
 PERL_config_sh_GLIBC_VERSION=$(call PERL_config_sh_var,gnulibc_version)
 PERL_config_sh_LINUX_VERSION=$(call PERL_config_sh_var,osvers)
 
-PERL_libpth := `$(CC) -print-search-dirs \
-	| grep '^libraries' \
-	| sed -e 's%^libraries: *%%' -e 's%:% %g' -e 's%=%%g' -e 's%//*%/%g' -e 's%/ % %g' -e 's%/$$%%' \
-	| sed -e 's%[^ ]*/lib/gcc/$(GARHOST)[^ ]*%%g'`
+PERL_libpth := $(LIBRARY_PATH)
 
 pre-configure:
 	@ln -sf Configure $(WORKSRC)/configure
 	@$(MAKECOOKIE)
 
 configure-check-version:
-	@$(call PERL_config_sh_check,gcc,GCC_VERSION)
-	@$(call PERL_config_sh_check,glibc,GLIBC_VERSION)
-	@$(call PERL_config_sh_check,linux,LINUX_VERSION)
+	@#$(call PERL_config_sh_check,gcc,GCC_VERSION)
+	@#$(call PERL_config_sh_check,glibc,GLIBC_VERSION)
+	@#$(call PERL_config_sh_check,linux,LINUX_VERSION)
 	@$(MAKECOOKIE)
 
 post-configure:

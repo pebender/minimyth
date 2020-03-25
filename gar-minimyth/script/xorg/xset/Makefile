@@ -25,4 +25,5 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-xf86misc \
 	--without-fontcache
 
+GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk

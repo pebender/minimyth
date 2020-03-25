@@ -11,12 +11,12 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+#DEPENDS = lang/c
 BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-compat \
@@ -26,6 +26,11 @@ INSTALL_ARGS = \
 	instroot="$(DESTDIR)"
 
 include ../../gar.mk
+
+pre-configure:
+	@$(call RUN_AUTOTOOLS)
+	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
+	@$(MAKECOOKIE)
 
 x-post-install:
 	@rm -rf $(DESTDIR)$(libdir)/libelf.a

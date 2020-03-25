@@ -24,7 +24,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-gui
 
 CONFIGURE_ENV = \
-	SDL2_CONFIG=$(DESTDIR)$(prefix)/bin-config/sdl2-config
+	SDL2_CONFIG=$(DESTDIR)$(bindir)/config/sdl2-config
 
 include ../../gar.mk
 

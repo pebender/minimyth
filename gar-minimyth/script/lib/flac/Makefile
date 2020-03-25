@@ -1,5 +1,5 @@
 GARNAME = flac
-GARVERSION = 1.3.1
+GARVERSION = 1.3.3
 CATEGORIES = lib
 MASTER_SITES = https://downloads.xiph.org/releases/flac/
 DISTFILES = $(DISTNAME).tar.xz
@@ -9,12 +9,12 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lang/cxx lib/libogg
+DEPENDS   = lang/c lang/cxx build-tool/make lib/libogg
 BUILDDEPS = devel/nasm
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -30,14 +30,10 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-# flac 1.3.1 fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
-
-pre-configure:
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
-	@$(MAKECOOKIE)
+# flac 1.3.3 fails to compile with gcc 9.2.0's link time optimization enabled.
+CFLAGS := $(filter-out -flto, $(CFLAGS))
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+LDFLAGS := $(filter-out -flto, $(LDFLAGS))
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libFLAC.la

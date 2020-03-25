@@ -57,6 +57,9 @@ sbindir := $(esbindir)
 patch-%: normal-patch-%
 	@$(MAKECOOKIE)
 
+pre-configure:
+	echo $(PATH)
+
 post-install:
 	@ln -sfv bash $(DESTDIR)$(bindir)/sh
 	@$(MAKECOOKIE)

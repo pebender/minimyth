@@ -3,7 +3,7 @@ GARVERSION = 0.28
 CATEGORIES = net
 MASTER_SITES = http://0pointer.de/lennart/projects/ifplugd/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = $(DISTNAME)-interface_c.patch
+PATCHFILES = $(DISTNAME)-interface_c.patch $(DISTNAME)-musl-fix-types.patch
 LICENSE = GPL2
 
 DESCRIPTION =

@@ -79,6 +79,7 @@ $(PARTIALDIR)/$(DISTNAME)/source/gar-minimyth: $(abspath $(GARDIR)/..) | $(PARTI
 	@rm -rf $@~~
 	@mkdir -m 0755 -p $@~~
 	@tar  -C $(<D) \
+		--exclude '$(<F)/ccache/*' \
 		--exclude '$(<F)/images/*' \
 		--exclude '$(<F)/source/*' \
 		--exclude '$(<F)/script/*/*/cookies' \

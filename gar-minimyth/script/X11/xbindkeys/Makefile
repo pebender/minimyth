@@ -11,7 +11,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c xorg/xorg
+DEPENDS = lang/c xorg/libX11
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -26,7 +27,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-x
 
 CONFIGURE_ENV  =
-ifneq ("$(DESTIMG)","build")
+ifneq ($(DESTIMG),build)
 CONFIGURE_ENV += \
 	ac_cv_func_fork=yes \
 	ac_cv_func_fork_works=yes \

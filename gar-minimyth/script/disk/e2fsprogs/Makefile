@@ -1,16 +1,16 @@
 GARNAME = e2fsprogs
-GARVERSION = 1.45.4
+GARVERSION = 1.45.5
 CATEGORIES = disk
 MASTER_SITES = https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
-PATCHFILES = $(DISTNAME)-gettext.patch
 LICENSE = GPL2/LGPL2
 
 DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c utils/util-linux
+DEPENDS = lang/c build-tool/make utils/util-linux
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -42,13 +42,16 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-tdb \
 	--disable-bmap-stats \
 	--disable-bmap-stats-ops \
-	--enable-nls \
+	--disable-nls \
 	--disable-rpath \
 	--disable-fuse2fs \
-	--enable-lto \
+	--disable-lto \
 	--disable-ubsan \
 	--disable-addrsan \
-	--disable-threadsan
+	--disable-threadsan \
+	BUILD_CC="$(build_CC)" \
+	BUILD_CFLAGS="$(build_CFLAGS)" \
+	BUILD_LDFLAGS="$(build_LDFLAGS)"
 
 include ../../gar.mk
 

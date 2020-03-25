@@ -12,8 +12,8 @@ endef
 DEPENDS = lang/c lib/alsa-lib lib/faad2 lib/ffmpeg lib/freetype lib/libbluray lib/libcdio lib/libdca lib/libdvdnav lib/libjpeg lib/libmad lib/libmng lib/libpng lib/vcdimager lib/zlib X11/libva X11/libvdpau xorg/xorg
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 # Linux is only used for dha-kmod, which is disabled.
 # Therefore, --with-linux-path is set to '/dev/null'.
@@ -136,13 +136,13 @@ pre-configure:
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(libdir)/libxine.la
-	@rm -f $(DESTDIR)$(libdir)/libxine-interface.la
-	@rm -f $(DESTDIR)$(bindir)-config/xine-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)xine-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/xine-config $(DESTDIR)$(bindir)-config/xine-config
-	@$(if $(compiler_prefix), ln -s xine-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)xine-config)
+	@rm -fv $(DESTDIR)$(libdir)/libxine.la
+	@rm -fv $(DESTDIR)$(libdir)/libxine-interface.la
+	@rm -fv $(DESTDIR)$(bindir)/config/xine-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-xine-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config
+	@mv -fv $(DESTDIR)$(bindir)/xine-config $(DESTDIR)$(bindir)/config/xine-config
+	@ln -sfv xine-config $(DESTDIR)$(bindir)/config/$(GARHOST)-xine-config
 	@$(MAKECOOKIE)
 
 clean-all:

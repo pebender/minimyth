@@ -1,5 +1,5 @@
 GARNAME = popt
-GARVERSION = 1.16
+GARVERSION = $(POPT_VERSION)
 CATEGORIES = lib
 MASTER_SITES = https://fossies.org/linux/misc/
 DISTFILES = $(DISTNAME).tar.gz
@@ -13,6 +13,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c
+BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -22,6 +23,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
+	--disable-nls \
 	--disable-rpath
 
 include ../../gar.mk

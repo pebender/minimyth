@@ -25,13 +25,14 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-zlib \
 	--with-bzip2 \
 	--without-png \
-	--without-harfbuzz \
-	--with-gnu-ld
+	--without-harfbuzz
 
 CONFIGURE_ENV  = \
 	CC_BUILD="$(build_CC) $(build_CFLAGS)"
 
 include ../../gar.mk
+
+PARALLELMFLAGS := -j1
 
 pre-configure:
 	@cd $(WORKSRC)/builds/unix ; aclocal -I . --force
@@ -43,9 +44,9 @@ pre-configure:
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libfreetype.la
 	@ln -sf freetype2/freetype $(DESTDIR)$(includedir)/freetype
-	@rm -f $(DESTDIR)$(bindir)-config/freetype-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)freetype-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/freetype-config $(DESTDIR)$(bindir)-config/freetype-config
-	@$(if $(compiler_prefix), ln -s freetype-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)freetype-config)
+	@rm -f $(DESTDIR)$(bindir)/config/freetype-config
+	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-freetype-config
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@mv $(DESTDIR)$(bindir)/freetype-config $(DESTDIR)$(bindir)/config/freetype-config
+	@ln -s freetype-config $(DESTDIR)$(bindir)/config/$(GARHOST)-freetype-config
 	@$(MAKECOOKIE)

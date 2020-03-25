@@ -13,35 +13,42 @@ endef
 DEPENDS   = lang/c lib/zlib
 BUILDDEPS = perl/perl
 
+CONFIGURE_SCRIPTS = $(WORKSRC)/configure
+
 CONFIGURE_SCRIPTS = $(WORKSRC)/Configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
+DEFAULT_ARGS   = \
+	AR="$(AR)" \
+	AS="$(AS)" \
+	CC="$(CC)" \
+	CFLAGS="$(CFLAGS)" \
+	CXX="$(CXX)" \
+	CXXFLAGS="$(CXXFLAGS)" \
+	CPP="$(CPP)" \
+	CPPFLAGS="$(CPPFLAGS)" \
+	LD="$(LD)" \
+	LDFLAGS="$(LDFLAGS)" \
+	PERL="$(build_DESTDIR)$(build_bindir)/perl"
 CONFIGURE_ARGS = \
 	--prefix=$(prefix) \
 	--openssldir=$(sysconfdir)/pki/tls \
+	--libdir=$(libdir) \
 	shared \
 	zlib \
 	zlib-dynamic \
 	$(if $(filter i386,  $(GARCH_FAMILY)),no-asm 386 linux-x86) \
-	$(if $(filter x86_64,$(GARCH_FAMILY)),           linux-x86_64)
-
-BUILD_ARGS = \
-	AR="$(AR)" \
-	AS="$(AS)" \
-	CC="$(CC)" \
-	CXX="$(CXX)" \
-	CPP="$(CPP)" \
-	LD="$(LD)" \
-	RANLIB="$(RANLIB)"
+	$(if $(filter x86_64,$(GARCH_FAMILY)),           linux-x86_64) \
+	$(DEFAULT_ARGS)
+BUILD_ARGS    = $(DEFAULT_ARGS)
+INSTALL_ARGS  = $(DEFAULT_ARGS)
 
 include ../../gar.mk
 
-PARALLELMFLAGS := -j1
-
 configure-%/Configure: 
 	@echo " ==> Running Configure in $*"
-	@cd $* && $(CONFIGURE_ENV) ./Configure $(CONFIGURE_ARGS)
+	@cd $* && $(CONFIGURE_ENV) $(build_DESTDIR)$(build_bindir)/perl ./Configure $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
 
 post-install:

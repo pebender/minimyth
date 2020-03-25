@@ -9,9 +9,9 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c
+DEPENDS = lang/c
 
-BUILD_SCRIPTS   = $(WORKSRC)/src/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/src/Makefile
 INSTALL_SCRIPTS = custom
 
 BUILD_ARGS = \
@@ -19,7 +19,7 @@ BUILD_ARGS = \
 	CC="$(CC)" \
 	CPP="$(CC) -E" \
 	AS="$(AS)" \
-	LD="$(compiler_prefix)ld.bfd" \
+	LD="ld.lld" \
 	SIZE="$(SIZE)" \
 	AR="$(AR)" \
 	RANLIB="$(RANLIB)" \
@@ -27,7 +27,7 @@ BUILD_ARGS = \
 	NM="$(NM)" \
 	OBJDUMP="$(OBJDUMP)" \
 	PERL="$(build_DESTDIR)$(build_bindir)/perl" \
-	CROSS_COMPILE="$(compiler_prefix)" \
+	CROSS_COMPILE="$(GARHOST)-" \
 	NO_WERROR="1" \
 	ARCH="$(GARCH_FAMILY)" \
 	BINUTILS_DIR="$(prefix)" \

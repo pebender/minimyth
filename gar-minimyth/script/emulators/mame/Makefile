@@ -1,8 +1,8 @@
 GARNAME = mame
-GARVERSION = 0.163
+GARVERSION = 0.217
 CATEGORIES = emulators
-MASTER_SITES = https://github.com/mamedev/mame/releases/download/$(GARNAME)$(subst .,,$(GARVERSION))/
-DISTFILES = $(GARNAME)$(subst .,,$(GARVERSION))s.zip
+MASTER_SITES = https://github.com/mamedev/mame/archive/
+DISTFILES = $(GARNAME)$(subst .,,$(GARVERSION)).tar.gz
 PATCHFILES = \
 	$(DISTNAME)-ar.patch \
 	$(DISTNAME).patch.gar
@@ -12,57 +12,66 @@ DESCRIPTION =
 define BLURB
 endef
 
-# mame 0.162 will build against SDL 2.0 as well.
-# when enabling SDL 2.0, use dependencies lib/SDL2 and lib/SDL2_tff, and set SDL_LIBVER="sdl2" below.
-DEPENDS   = lang/c lang/cxx lib/SDL lib/SDL_ttf xorg/xorg
+DEPENDS = lang/c lang/cxx build-tool/make db/sqlite lib/expat lib/flac lib/libjpeg lib/SDL2 lib/SDL2_ttf lib/zlib xorg/xorg
 BUILDDEPS = python/python
+
+WORKSRC = $(WORKDIR)/mame-$(GARNAME)$(subst .,,$(GARVERSION))
 
 BUILD_SCRIPTS   = $(WORKSRC)/makefile
 INSTALL_SCRIPTS = custom
 
 BUILD_ARGS  = \
 	VERBOSE="1" \
-	NOWERROR="1" \
-	CROSS_BUILD="$(CROSS_BUILD)" \
 	OVERRIDE_CC="$(CC)" \
 	OVERRIDE_CXX="$(CXX)" \
 	OVERRIDE_LD="$(CXX)" \
 	OVERRIDE_AR="$(AR)" \
+	PYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python" \
+	CROSS_BUILD="$(CROSS_BUILD)" \
+	NOWERROR="1" \
+	USE_QTDEBUG="0" \
+	OPTIMIZE="$(OPTIMIZE)" \
 	ARCHOPTS="$(ARCHOPTS)" \
+	TARGETOS="linux" \
 	OPT_FLAGS="$(OPT_FLAGS)" \
 	LDOPTS="$(LDOPTS)" \
-	TARGETOS="linux" \
 	PTR64="$(PTR64)" \
 	LTO="$(LTO)" \
-	OPTIMIZE="$(OPTIMIZE)" \
-	SDL_LIBVER="sdl" \
-	USE_QTDEBUG="0"
+	SDL_LIBVER="sdl2" \
+	USE_SYSTEM_LIB_ASIO="0" \
+	USE_SYSTEM_LIB_EXPAT="1" \
+	USE_SYSTEM_LIB_ZLIB="1" \
+	USE_SYSTEM_LIB_JPEG="1" \
+	USE_SYSTEM_LIB_FLAC="1" \
+	USE_SYSTEM_LIB_LUA="0" \
+	USE_SYSTEM_LIB_SQLITE3="1" \
+	USE_SYSTEM_LIB_PORTMIDI="0" \
+	USE_SYSTEM_LIB_PORTAUDIO="0" \
+	USE_BUNDLED_LIB_SDL2="0" \
+	USE_SYSTEM_LIB_UTF8PROC="0" \
+	USE_SYSTEM_LIB_GLM="0" \
+	USE_SYSTEM_LIB_RAPIDJSON="0" \
+	USE_SYSTEM_LIB_PUGIXML="0"
+
+# MESA_INSTALL_ROOT = /opt/mesa
+# SDL_INSTALL_ROOT = /opt/sdl2
+# SDL_FRAMEWORK_PATH = $(HOME)/Library/Frameworks
+# USE_LIBSDL = 1
+# CYGWIN_BUILD = 1
 
 include ../../gar.mk
 
-# mame 0.163 fails to compile (or takes very long to complete) with gcc 5.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
-
-CROSS_BUILD := $(if $(filter build,$(DESTIMG)),0,1)
-OPTIMIZE    := $(subst -O,,$(filter -O%,$(CFLAGS)))
-ARCHOPTS    := $(CFLAGS) $(CXXFLAGS)
-OPT_FLAGS   := $(CFLAGS) $(CXXFLAGS)
-LDOPTS      := $(CFLAGS) $(CXXFLAGS) $(LDFLAGS)
-PTR64       := $(if $(filter x86_64,$(GARCH_FAMILY)),1,0)
-LTO         := $(if $(filter -flto,$(LDFLAGS)),1,0)
+CROSS_BUILD := $(if $(filter $(GARBUILD),$(GARHOST)),0,1)
+OPTIMIZE := $(subst -O,,$(filter -O%,$(CFLAGS)))
+ARCHOPTS := $(CFLAGS) $(CXXFLAGS) $(LDFLAGS)
+OPT_FLAGS := $(CFLAGS) $(CXXFLAGS) $(LDFLAGS)
+LDOPTS := $(CFLAGS) $(CXXFLAGS) $(LDFLAGS)
+PTR64 := $(if $(filter x86_64,$(GARCH_FAMILY)),1,0)
+LTO := $(if $(filter -flto,$(LDFLAGS)),1,0)
 
 CFLAGS   :=
 CXXFLAGS :=
 LDFLAGS  :=
-
-post-extract:
-	@echo " ==> Extracting $(EXTRACTDIR)/mame.zip"
-	@mkdir -p $(WORKSRC)
-	@unzip $(EXTRACTDIR)/mame.zip -d $(WORKSRC)
-	@rm -f $(EXTRACTDIR)/mame.zip
-	@$(MAKECOOKIE)
 
 install-custom:
 	@mkdir -p $(DESTDIR)$(bindir)

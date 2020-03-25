@@ -1,7 +1,13 @@
-GARNAME = ncursesw
-GARVERSION = $(NCURSES_VERSION)
+GARNAME = ncurses
+GARVERSION = $(NCURSESW_VERSION)
 CATEGORIES = lib
-SOURCEPKG = lib/ncurses
+MASTER_SITES  = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/
+MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/$(GARVERSION)/
+DISTFILES = $(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).tar.gz 
+PATCHFILES = \
+	$(DISTNAME)-includesubdir.patch \
+	$(DISTNAME).patch.gar
 LICENSE = MIT_Modified
 
 DESCRIPTION =
@@ -11,6 +17,9 @@ endef
 DEPENDS = lang/c lang/cxx
 
 WORKSRC = $(WORKDIR)/ncurses-$(GARVERSION)
+ifneq ($(DESTIMG),build)
+BUILDDEPS = lib/ncursesw
+endif
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -47,26 +56,38 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-widec
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
-	--without-progs
+	TIC=$(build_DESTDIR)$(build_bindir)/tic
 endif
 
-GAR_EXTRA_CONF += lib/ncurses/package-api.mk
+PARALLELMFLAGS := -j1
+LIBRARY_PATH :=
+LD_LIBRARY_PATH :=
+
+GAR_EXTRA_CONF += lib/ncursesw/package-api.mk
 include ../../gar.mk
+
+PARALLELMFLAGS := -j1
+LIBRARY_PATH :=
+LD_LIBRARY_PATH :=
+
+CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
 
 pre-configure:
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@rm -fv $(DESTDIR)$(bindir)-config/ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)-config/ncurses6-config
-	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses6-config
-	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)-config/ncurses6-config
-	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)-config/ncursesw6-config
-	@$(if $(compiler_prefix), ln -sfv ncursesw6-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncursesw6-config)
-	@$(if $(compiler_prefix), ln -sfv ncurses6-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)ncurses6-config)
+	@mkdir -p $(DESTDIR)$(bindir)/config
+	@rm -fv $(DESTDIR)$(bindir)/config/ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config/ncurses6-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
+	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)/config/ncurses6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/ncursesw6-config
+	@ln -sfv ncursesw6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
 	@$(foreach lib, ncurses form panel menu, ln -sfv ${lib}.pc $(PKG_CONFIG_LIBDIR)/${lib}w.pc;)
 	@$(foreach lib, ncurses form panel menu, ln -sfv lib${lib}.so $(DESTDIR)$(libdir)/lib${lib}w.so;)
 	@#$(foreach lib, ncurses form panel menu, rm -fv $(DESTDIR)$(libdir)/lib${lib}.a $(DESTDIR)$(libdir)/lib${lib}_g.a;)

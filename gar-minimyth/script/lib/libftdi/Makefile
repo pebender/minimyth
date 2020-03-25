@@ -1,44 +1,46 @@
-GARNAME = libftdi
-GARVERSION = 0.20
+GARNAME = libftdi1
+GARVERSION = 1.4
 CATEGORIES = lib
-MASTER_SITES = https://www.intra2net.com/en/developer/$(GARNAME)/download/
-DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch \
-	$(DISTNAME).patch.gar
+MASTER_SITES = https://www.intra2net.com/en/developer/libftdi/download/
+DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = LGPL2
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/c lib/libusb-compat
+DEPENDS = lang/c lib/libusb-compat lib/libconfuse
 
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
+BUILD_SCRIPTS = $(WORKSRC)/cmake
+INSTALL_SCRIPTS = $(WORKSRC)/cmake
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--enable-shared \
-	--disable-static \
-	--disable-libftdipp \
-	--disable-python-binding \
-	--without-examples \
-	--without-boost \
-	--without-docs
+CONFIGURE_ARGS = \
+	-DCMAKE_BUILD_TYPE=RELEASE \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_SYSROOT="$(DESTDIR)" \
+	-DCMAKE_INSTALL_PREFIX="$(prefix)" \
+	-DCMAKE_STAGING_PREFIX="$(DESTDIR)$(prefix)" \
+	-DCMAKE_INSTALL_LIBDIR="lib" \
+	-DCMAKE_C_COMPILER="$(CC)" \
+	-DCMAKE_CXX_COMPILER="$(CXX)" \
+	-DCMAKE_ASM_COMPILER="$(CC)" \
+	-DCMAKE_C_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_CXX_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_ASM_COMPILER_TARGET="$(GARHOST)" \
+	-DCMAKE_LINKER="$(LD)" \
+	-DCMAKE_C_FLAGS="$(CFLAGS)" \
+	-DCMAKE_CXX_FLAGS="$(CXXFLAGS)" \
+	-DCMAKE_EXE_LINKER_FLAGS="$(LDFLAGS)" \
+	-DCMAKE_SHARED_LINKER_FLAGS="$(LDFLAGS)" \
+	-DCMAKE_AR="$(AR)" \
+	-DCMAKE_AS="$(AS)" \
+	-DCMAKE_NM="$(NM)" \
+	-DCMAKE_OBJCOPY="$(OBJCOPY)" \
+	-DCMAKE_OBJDUMP="$(OBJDUMP)" \
+	-DCMAKE_RANLIB="$(RANLIB)" \
+	-DCMAKE_STRIP="$(STRIP)" \
+	-DPYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python"
 
+GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
-
-post-install:
-	@rm -f $(DESTDIR)$(libdir)/libftdi.la
-	@rm -f $(DESTDIR)$(bindir)-config/libftdi-config
-	@rm -f $(DESTDIR)$(bindir)-config/$(compiler_prefix)libftdi-config
-	@mkdir -p $(DESTDIR)$(bindir)-config
-	@mv $(DESTDIR)$(bindir)/libftdi-config $(DESTDIR)$(bindir)-config/libftdi-config
-	@$(if $(compiler_prefix), ln -s libftdi-config $(DESTDIR)$(bindir)-config/$(compiler_prefix)libftdi-config)
-	@$(MAKECOOKIE)

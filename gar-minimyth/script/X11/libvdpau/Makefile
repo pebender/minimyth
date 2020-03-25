@@ -21,7 +21,6 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--enable-dri2 \
 	--disable-documentation \
-	--with-sysroot="$(DESTDIR)" \
 	--with-module-dir="$(libdir)/vdpau"
 
 include ../../gar.mk

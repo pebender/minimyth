@@ -207,15 +207,29 @@ gar-patch-%:
 	@cat $(DOWNLOADDIR)/$* \
 		| sed 's%@GAR_GARBUILD@%$(GARBUILD)%g' \
 		| sed 's%@GAR_GARHOST@%$(GARHOST)%g' \
+		| sed 's%@GAR_compiler_dir@%$(compiler_dir)%g' \
 		| sed 's%@GAR_build_DESTDIR@%$(build_DESTDIR)%g' \
 		| sed 's%@GAR_build_rootdir@%$(build_rootdir)%g' \
 		| sed 's%@GAR_build_prefix@%$(build_prefix)%g' \
 		| sed 's%@GAR_build_bindir@%$(build_bindir)%g' \
+		| sed 's%@GAR_build_datadir@%$(build_datadir)%g' \
+		| sed 's%@GAR_build_docdir@%$(build_docdir)%g' \
 		| sed 's%@GAR_build_ebindir@%$(build_ebindir)%g' \
 		| sed 's%@GAR_build_elibdir@%$(build_elibdir)%g' \
 		| sed 's%@GAR_build_esbindir@%$(build_esbindir)%g' \
 		| sed 's%@GAR_build_includedir@%$(build_includedir)%g' \
+		| sed 's%@GAR_build_infodir@%$(build_infodir)%g' \
+		| sed 's%@GAR_build_libdir@%$(build_libdir)%g' \
+		| sed 's%@GAR_build_libexecdir@%$(build_libexecdir)%g' \
+		| sed 's%@GAR_build_localstatedir@%$(build_localstatedir)%g' \
+		| sed 's%@GAR_build_mandir@%$(build_mandir)%g' \
+		| sed 's%@GAR_build_sbindir@%$(build_sbindir)%g' \
+		| sed 's%@GAR_build_sharedstatedir@%$(build_sharedstatedir)%g' \
+		| sed 's%@GAR_build_sourcedir@%$(build_sourcedir)%g' \
+		| sed 's%@GAR_build_sysconfdir@%$(build_sysconfdir)%g' \
+		| sed 's%@GAR_build_qt5prefix@%$(build_qt5prefix)%g' \
 		| sed 's%@GAR_build_qt5bindir@%$(build_qt5bindir)%g' \
+		| sed 's%@GAR_build_qt5includedir@%$(build_qt5includedir)%g' \
 		| sed 's%@GAR_build_qt5libdir@%$(build_qt5libdir)%g' \
 		| sed 's%@GAR_build_qt5elibdir@%$(build_qt5elibdir)%g' \
 		| sed 's%@GAR_DESTDIR@%$(DESTDIR)%g' \
@@ -244,6 +258,20 @@ gar-patch-%:
 		| sed 's%@GAR_qt5elibdir@%$(qt5elibdir)%g' \
 		| sed 's%@GAR_GARCH@%$(GARCH)%g' \
 		| sed 's%@GAR_GARCH_FAMILY@%$(GARCH_FAMILY)%g' \
+		| sed 's%@GAR_build_CPP@%$(build_CPP)%g' \
+		| sed 's%@GAR_build_CC@%$(build_CC)%g' \
+		| sed 's%@GAR_build_CXX@%$(build_CXX)%g' \
+		| sed 's%@GAR_build_LD@%$(build_LD)%g' \
+		| sed 's%@GAR_build_AS@%$(build_AS)%g' \
+		| sed 's%@GAR_build_AR@%$(build_AR)%g' \
+		| sed 's%@GAR_build_RANLIB@%$(build_RANLIB)%g' \
+		| sed 's%@GAR_build_OBJCOPY@%$(build_OBJCOPY)%g' \
+		| sed 's%@GAR_build_NM@%$(build_NM)%g' \
+		| sed 's%@GAR_build_STRIP@%$(build_STRIP)%g' \
+		| sed 's%@GAR_build_CPPLAGS@%$(build_CPPFLAGS)%g' \
+		| sed 's%@GAR_build_CFLAGS@%$(build_CFLAGS)%g' \
+		| sed 's%@GAR_build_CXXFLAGS@%$(build_CXXFLAGS)%g' \
+		| sed 's%@GAR_build_LDFLAGS@%$(build_LDFLAGS)%g' \
 		| sed 's%@GAR_CPP@%$(CPP)%g' \
 		| sed 's%@GAR_CC@%$(CC)%g' \
 		| sed 's%@GAR_CXX@%$(CXX)%g' \
@@ -258,5 +286,6 @@ gar-patch-%:
 		| sed 's%@GAR_CFLAGS@%$(CFLAGS)%g' \
 		| sed 's%@GAR_CXXFLAGS@%$(CXXFLAGS)%g' \
 		| sed 's%@GAR_LDFLAGS@%$(LDFLAGS)%g' \
+		| sed 's%@GAR_LIBRARY_DIRS@%$(LIBRARY_DIRS)%g' \
 		| $(GARPATCH)
 	@$(MAKECOOKIE)

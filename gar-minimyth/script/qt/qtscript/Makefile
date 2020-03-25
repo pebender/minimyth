@@ -11,7 +11,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c lang/cxx
+DEPENDS = lang/c lang/cxx build-tool/qmake
 BUILDDEPS = qt/qtbase
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/qmake
