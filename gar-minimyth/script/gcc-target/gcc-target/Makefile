@@ -7,12 +7,10 @@ DESCRIPTION =
 define BLURB
 endef
 
-BUILDDEPS = \
+DEPENDS = \
 	gcc-target/binutils \
-	gcc-target/gcc
-
-CROSSIMG = main
-export CROSSIMG
+	gcc-target/gcc \
+	gcc-target/gcc-wrappers
 
 GAR_EXTRA_CONF += gcc-target/gcc-target/toolchain.mk
 include ../../gar.mk

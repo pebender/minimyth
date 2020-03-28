@@ -7,7 +7,7 @@
 compiler_options=""
 compiler_options="$compiler_options --gcc-toolchain=@GAR_build_DESTDIR@@GAR_build_prefix@"
 compiler_options="$compiler_options -target @GAR_GARHOST@"
-compiler_options="$compiler_options --sysroot=@GAR_DESTDIR@@GAR_rootdir@"
+compiler_options="$compiler_options --sysroot=@GAR_DESTDIR@"
 compiler_options="$compiler_options -idirafter /usr/include"
 
 @GAR_build_DESTDIR@@GAR_build_bindir@/clang $compiler_options "$@"

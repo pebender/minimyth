@@ -11,6 +11,7 @@ endef
 BUILDDEPS = toolchain/clang
 
 
+BUILD_SCRIPTS = wrappers
 INSTALL_SCRIPTS = wrappers
 
 build_DESTDIR = $(build_DESTDIR_swapped)

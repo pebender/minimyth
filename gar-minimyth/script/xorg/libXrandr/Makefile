@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c devel-tool/make \
+DEPENDS = lang/c build-tool/make \
 	xorg/libX11 \
 	xorg/libXext \
 	xorg/libXrender \

@@ -9,6 +9,7 @@ BUILDDEPS = lang/c \
 	native/native \
 	cc-build/ccache \
 	toolchain/toolchain \
+	binutils/binutils \
 	lang/libc \
 	lang/libcxx \
 	utils/bash \

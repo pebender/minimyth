@@ -8,21 +8,29 @@ DESCRIPTION =
 define BLURB
 endef
 
-CROSSIMG = main
+CROSSIMG ?= $(DESTIMG)
 GARTARGET = $($(CROSSIMG)_GARHOST)
 
+ifeq ($(DESTIMG),build)
 DEPENDS =
 BUILDDEPS = \
 	native/native \
-	gcc-build/ccache \
+	cc-build/ccache \
 	gcc-build/gcc-build
+else
+export CROSSIMG
+BUILDDEPS = \
+	gcc-target/binutils
+endif
 
 WORKDIR = $(WORKROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
 COOKIEDIR = $(COOKIEROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
 
+ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile remove-lib-wrappers
+endif
 
 CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARBUILD) --target=$(GARTARGET) \
 	--enable-plugins \
@@ -41,7 +49,7 @@ GAR_EXTRA_CONF += gcc-target/gcc-target/toolchain.mk
 GAR_EXTRA_CONF += gcc-build/binutils/package-api.mk
 include ../../gar.mk
 
-post-install:
+install-remove-lib-wrappers:
 	@rm -f $(DESTDIR)$(libdir)/libbfd.la
 	@rm -f $(DESTDIR)$(libdir)/libopcodes.la
 	@$(MAKECOOKIE)

@@ -9,9 +9,11 @@ DESCRIPTION =
 define BLURB
 endef
 
+ifndef ($(DESTIMG),build)
 DEPENDS = lang/c \
 	lang/musl-static
 BUILDEPS =
+endif
 
 WORKSRC = $(WORKDIR)/$(GARNAME)
 

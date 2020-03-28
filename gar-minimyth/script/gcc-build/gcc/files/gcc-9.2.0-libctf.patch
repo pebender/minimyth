@@ -1,0 +1,12 @@
+diff -Naur gcc-9.2.0-old/configure gcc-9.2.0-new/configure
+--- gcc-9.2.0-old/configure	2019-04-14 02:52:22.000000000 -0700
++++ gcc-9.2.0-new/configure	2020-03-25 13:44:21.591360068 -0700
+@@ -2781,7 +2781,7 @@
+ 
+ # these libraries are used by various programs built for the host environment
+ #f
+-host_libs="intl libiberty opcodes bfd readline tcl tk itcl libgui zlib libbacktrace libcpp libdecnumber gmp mpfr mpc isl libelf libiconv"
++host_libs="intl libiberty opcodes bfd readline tcl tk itcl libgui zlib libbacktrace libcpp libdecnumber gmp mpfr mpc isl libelf libiconv libctf"
+ 
+ # these tools are built for the host environment
+ # Note, the powerpc-eabi build depends on sim occurring before gdb in order to

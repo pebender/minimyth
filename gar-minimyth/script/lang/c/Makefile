@@ -7,6 +7,7 @@ endef
 
 DEPENDS = lang/c-build \
 	toolchain-wrappers/clang-wrappers \
+	binutils/binutils \
 	lang/libc \
 	lang/libcxx \
 	build-tool/make \

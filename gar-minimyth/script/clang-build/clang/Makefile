@@ -11,7 +11,8 @@ endef
 BUILDDEPS = \
 	native/native \
 	cc-build/ccache \
-	gcc-build/gcc-build
+	gcc-build/gcc-build \
+	clang-build/libstdcxx-from-gcc
 
 WORKSRC = $(WORKDIR)/llvm
 
@@ -51,6 +52,7 @@ CONFIGURE_ARGS  = \
 	-DLLVM_DEFAULT_TARGET_TRIPLE="$(GARHOST)" \
 	-DLLVM_ENABLE_LIBCXX=ON \
 	-DLLVM_USE_LINKER="bfd" \
+	-DLLVM_ENABLE_LTO=OFF \
 	-DLLVM_ENABLE_FFI=OFF \
 	-DLLVM_ENABLE_TERMINFO=OFF \
 	-DLLVM_ENABLE_LIBXML2=OFF \
@@ -86,36 +88,19 @@ build_rootdir = $(gcc_build_rootdir)
 DESTDIR = $(clang_build_DESTDIR)
 rootdir = $(clang_build_rootdir)
 
-build_CC = $(ccache_DESTDIR)$(ccache_bindir)/gcc
-build_CXX = $(ccache_DESTDIR)$(ccache_bindir)/g++
-build_LD = $(gcc_build_DESTDIR)$(gcc_build_bindir)/ld.bfd
-build_OBJDUMP = $(gcc_build_DESTDIR)$(gcc_build_bindir)/objdump
-build_OBJCOPY = $(gcc_build_DESTDIR)$(gcc_build_bindir)/objcopy
-build_STRIP = $(gcc_build_DESTDIR)$(gcc_build_bindir)/strip
-build_RANLIB = $(gcc_build_DESTDIR)$(gcc_build_bindir)/ranlib
-build_READELF = $(gcc_build_DESTDIR)$(gcc_build_bindir)/readelf
-build_NM = $(gcc_build_DESTDIR)$(gcc_build_bindir)/nm
-build_AS = $(gcc_build_DESTDIR)$(gcc_build_bindir)/as
-build_AR = $(gcc_build_DESTDIR)$(gcc_build_bindir)/ar
-build_CPP = $(gcc_build_DESTDIR)$(gcc_build_bindir)/cpp
+build_CC = $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-gcc
+build_CXX = $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-g++
+build_CPP = $(build_DESTDIR)$(build_bindir)/wrapper/$(build_GARHOST)-cpp
+build_LD = $(build_DESTDIR)$(build_bindir)/wrapper/$(build_GARHOST)-ld.bfd
+build_OBJDUMP = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objdump
+build_OBJCOPY = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objcopy
+build_STRIP = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-strip
+build_RANLIB = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ranlib
+build_READELF = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-readelf
+build_NM = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-nm
+build_AS = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-as
+build_AR = $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ar
 
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 GAR_EXTRA_CONF += llvm/llvm/package-api.mk
 include ../../gar.mk
-
-PATH := $(gcc_build_DESTDIR)$(gcc_build_bindir):$(PATH)
-
-post-install: post-install-cc-links post-install-ccache-links
-
-post-install-cc-links:
-	@ln -sfv clang $(DESTDIR)$(bindir)/cc
-	@ln -sfv clang++ $(DESTDIR)$(bindir)/c++
-	@ln -sfv clang-cpp $(DESTDIR)$(bindir)/cpp
-	@$(MAKECOOKIE)
-
-post-install-ccache-links:
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/clang
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/clang++
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/cc
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/c++
-	@$(MAKECOOKIE)

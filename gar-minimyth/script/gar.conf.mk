@@ -166,33 +166,32 @@ build_GARHOST := $(GARBUILD)
 # Compiler tools.
 main_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/$(main_GARHOST)-clang
 main_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/$(main_GARHOST)-clang++
-main_LD ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ld.lld
-main_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-objdump
-main_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-objcopy
-main_STRIP ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-strip
-main_RANLIB ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ranlib
-main_READELF ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-readelf
-main_NM ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-nm
-main_AS ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-as
-main_AR ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ar
-main_CPP ?= $(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-cpp
+main_CPP ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(main_GARHOST)-clang-cpp
+main_LD ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(main_GARHOST)-ld.lld
+main_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/llvm-objdump
+main_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/llvm-objcopy
+main_STRIP ?= $(build_DESTDIR)$(build_bindir)/llvm-strip
+main_RANLIB ?= $(build_DESTDIR)$(build_bindir)/llvm-ranlib
+main_READELF ?= $(build_DESTDIR)$(build_bindir)/lvm-readelf
+main_NM ?= $(build_DESTDIR)$(build_bindir)/llvm-nm
+main_AS ?= $(build_DESTDIR)$(build_bindir)/llvm-as
+main_AR ?= $(build_DESTDIR)$(build_bindir)/llvm-ar
 
 build_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-clang
 build_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-clang++
-build_LD ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ld.lld
-build_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objdump
-build_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objcopy
-build_STRIP ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-strip
-build_RANLIB ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ranlib
-build_READELF ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-readelf
-build_NM ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-nm
-build_AS ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-as
-build_AR ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ar
-build_CPP ?= $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-cpp
+build_CPP ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(build_GARHOST)-clang-cpp
+build_LD ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(build_GARHOST)-ld.lld
+build_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/llvm-objdump
+build_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/llvm-objcopy
+build_STRIP ?= $(build_DESTDIR)$(build_bindir)/llvm-strip
+build_RANLIB ?= $(build_DESTDIR)$(build_bindir)/llvm-ranlib
+build_READELF ?= $(build_DESTDIR)$(build_bindir)/llvm-readelf
+build_NM ?= $(build_DESTDIR)$(build_bindir)/llvm-nm
+build_AS ?= $(build_DESTDIR)$(build_bindir)/llvm-as
+build_AR ?= $(build_DESTDIR)$(build_bindir)/llvm-ar
 
 RPATH_FLAG = -Wl,-rpath,
 RPATH_LINK_FLAG = -Wl,-rpath-link,
-
 main_CPPFLAGS ?=
 main_CFLAGS ?= \
 	-pipe \
@@ -201,7 +200,6 @@ main_CXXFLAGS ?= \
 	-pipe \
 	$(mm_CFLAGS)
 main_LDFLAGS ?= \
-	$(subst :, -L,:$(TARGET_LINKTIME_PATH)) \
 	-fno-lto
 
 build_CPPFLAGS ?=
@@ -219,8 +217,7 @@ build_CXXFLAGS ?= \
 	$(if $(filter x86_64,$(build_GARCH_FAMILY)),-m64)
 build_LDFLAGS ?= \
 	$(subst :, -L,:$(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)) \
-	$(subst :, $(RPATH_LINK_FLAG),:$(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH)) \
-	$(subst :, $(RPATH_FLAG),:$(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH))
+	$(subst :, $(RPATH_LINK_FLAG),:$(BUILD_LINKTIME_PATH):$(NATIVE_LINKTIME_PATH))
 
 # Make sure that the build system finds the correct libraries at link time.
 # We embed the paths so that it can find them at runtime as well so that programs

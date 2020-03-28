@@ -23,7 +23,7 @@ LINUX_MAKE_ARGS = \
 	HOSTCXXFLAGS="$(build_CPPFLAGS) $(build_CXXFLAGS)" \
 	HOSTLDFLAGS="$(build_LDFLAGS)" \
 	CROSS_COMPILE="$(GARHOST)-" \
-	AS="$(CC)" \
+	AS="$(AS)" \
 	LD="$(LD)" \
 	CC="$(CC)" \
 	CPP="$(CC) -E" \
@@ -37,3 +37,21 @@ LINUX_MAKE_ARGS = \
 
 LINUX_MAKE_ENV = \
 	KBUILD_VERBOSE="1"
+
+build_AS = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-as"
+build_LD = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ld.bfd"
+build_AR = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ar"
+build_NM = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-nm"
+build_STRIP = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-strip"
+build_RANLIB = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ranlib"
+build_OBJCOPY = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objcopy"
+build_OBJDUMP = "$(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-objdump"
+
+main_AS = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-as"
+main_LD = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ld.bfd"
+main_AR = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ar"
+main_NM = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-nm"
+main_STRIP = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-strip"
+main_RANLIB = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-ranlib"
+main_OBJCOPY = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-objcopy"
+main_OBJDUMP = "$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-objdump"

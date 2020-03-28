@@ -16,17 +16,11 @@ else
 BUILDDEPS = devel/cmake
 endif
 
-build_DESTDIR = $(build_DESTDIR_swapped)
-build_rootdir = $(build_rootdir_swapped)
-#DESTDIR = $(build_DESTDIR_swapped)
-#rootdir = $(build_rootdir_swapped)
-
 ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 endif
-
 
 CONFIGURE_ARGS = \
 	--verbose \
@@ -34,10 +28,16 @@ CONFIGURE_ARGS = \
 	--no-system-libs \
 	--no-qt-gui \
 	--openssl \
-	--prefix="$(prefix)" \
+	--prefix="$(DESTDIR)$(prefix)" \
 	--datadir="$(subst $(prefix),,$(datadir)/CMake)" \
 	--docdir="$(subst $(prefix),,$(docdir)/CMake)" \
 	--mandir="$(subst $(prefix),,$(mandir))"
+
+BUILD_ARGS = DESTDIR=
+INSTALL_ARGS = DESTDIR=
+CONFIGURE_ENV = DESTDIR=
+BUILD_ENV = DESTDIR=
+INSTALL_ENV = DESTDIR=
 
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk

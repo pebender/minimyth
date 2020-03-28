@@ -12,7 +12,7 @@ DISTFILES += gmp-$(GMP_VERSION).tar.xz
 DISTFILES += isl-$(ISL_VERSION).tar.xz
 DISTFILES += mpc-$(MPC_VERSION).tar.gz
 DISTFILES += mpfr-$(MPFR_VERSION).tar.xz
-PATCHFILES = $(DISTNAME)-disable_multilib_i386_linux64.patch
+PATCHFILES = $(DISTNAME)-libctf.patch $(DISTNAME)-disable_multilib_i386_linux64.patch
 LICENSE = GPL2/GPL3/LGPL2_1/LGPL3
 
 DESCRIPTION =
@@ -40,7 +40,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-ld=default \
 	--enable-languages=c,c++ \
 	--disable-decimal-float \
-	--disable-libatomic \
 	--disable-libgomp \
 	--disable-libquadmath \
 	--disable-libquadmath-support \
@@ -49,35 +48,31 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-multiarch \
 	--disable-multilib \
 	--disable-nls \
-	--disable-werror
+	--disable-werror \
+	--with-sysroot=/ \
+	--with-local-prefix=$(patsubst %/include,%,$($(DESTIMG)_includedir)) \
+	--with-build-time-tools="$(DESTDIR)$(bindir)"
 
 build_DESTDIR = $(cc_build_DESTDIR)
 build_rootdir = $(cc_build_rootdir)
-DESTDIR =
-rootdir = $(gcc_build_DESTDIR)$(gcc_build_rootdir)
+DESTDIR = $(gcc_build_DESTDIR)
+rootdir = $(gcc_build_rootdir)
 
 build_CC = $(ccache_DESTDIR)$(ccache_bindir)/cc
 build_CXX = $(ccache_DESTDIR)$(ccache_bindir)/c++
-build_LD = $(cc_build_DESTDIR)$(cc_build_bindir)/ld
-build_OBJDUMP = $(cc_build_DESTDIR)$(cc_build_bindir)/objdump
-build_OBJCOPY = $(cc_build_DESTDIR)$(cc_build_bindir)/objcopy
-build_STRIP = $(cc_build_DESTDIR)$(cc_build_bindir)/strip
-build_RANLIB = $(cc_build_DESTDIR)$(cc_build_bindir)/ranlib
-build_READELF = $(cc_build_DESTDIR)$(cc_build_bindir)/readelf
-build_NM = $(cc_build_DESTDIR)$(cc_build_bindir)/nm
-build_AS = $(cc_build_DESTDIR)$(cc_build_bindir)/as
-build_AR = $(cc_build_DESTDIR)$(cc_build_bindir)/ar
-build_CPP = $(cc_build_DESTDIR)$(cc_build_bindir)/cpp
-
-build_CPPFLAGS =
-build_CFLAGS =
-build_CXXFLAGS =
-build_LDFLAGS =
+build_LD = $(DESTDIR)$(bindir)/$(build_GARHOST)-ld.bfd
+build_OBJDUMP = $(DESTDIR)$(bindir)/$(build_GARHOST)-objdump
+build_OBJCOPY = $(DESTDIR)$(bindir)/$(build_GARHOST)-objcopy
+build_STRIP = $(DESTDIR)$(bindir)/$(build_GARHOST)-strip
+build_RANLIB = $(DESTDIR)$(bindir)/$(build_GARHOST)-ranlib
+build_READELF = $(DESTDIR)$(bindir)/$(build_GARHOST)-readelf
+build_NM = $(DESTDIR)$(bindir)/$(build_GARHOST)-nm
+build_AS = $(DESTDIR)$(bindir)/$(build_GARHOST)-as
+build_AR = $(DESTDIR)$(bindir)/$(build_GARHOST)-ar
+build_CPP = $(build_DESTDIR)$(build_bindir)/cpp
 
 GAR_EXTRA_CONF += gcc-build/gcc/package-api.mk
 include ../../gar.mk
-
-PATH := $(cc_build_DESTDIR)$(cc_build_bindir):$(PATH)
 
 post-extract:
 	@rm -rfv $(WORKSRC)/gmp
@@ -142,4 +137,7 @@ post-install-ccache-links:
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/g++
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/cc
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/c++
+	@$(if $(filter $(DESTIMG),build), \
+		ln -sfv cpp $(DESTDIR)$(bindir)/$(GARHOST)-cpp \
+	)
 	@$(MAKECOOKIE)

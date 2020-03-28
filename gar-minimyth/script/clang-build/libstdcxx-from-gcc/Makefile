@@ -14,21 +14,17 @@ BUILDDEPS = \
 
 INSTALL_SCRIPTS = custom
 
-GAR_EXTRA_CONF += clang-build/clang-build/toolchain.mk
+build_DESTDIR = $(gcc_build_DESTDIR)
+build_rootdir = $(gcc_build_rootdir)
+DESTDIR = $(clang_build_DESTDIR)
+rootdir = $(clang_build_rootdir)
+
 GAR_EXTRA_CONF += gcc-build/gcc/package-api.mk
 include ../../gar.mk
 
 install-custom:
 	@mkdir -pv $(DESTDIR)$(elibdir)
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc.a   ),cp -af $(file) $(DESTDIR)$(elibdir) ; )
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc.so  ),cp -af $(file) $(DESTDIR)$(elibdir) ; )
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc.so.*),cp -af $(file) $(DESTDIR)$(elibdir) ; )
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc_s.so  ),cp -af $(file) $(DESTDIR)$(elibdir) ; )
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc_s.so.*),cp -af $(file) $(DESTDIR)$(elibdir) ; )
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc_eh.a   ),cp -af $(file) $(DESTDIR)$(elibdir) ; )
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc_eh.so  ),cp -af $(file) $(DESTDIR)$(elibdir) ; )
-	$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_elibdir)/libgcc_eh.so.*),cp -af $(file) $(DESTDIR)$(elibdir) ; )
+	@install -v --mode=0755 $(build_DESTDIR)$(build_elibdir)/libgcc_s.so.* $(DESTDIR)$(elibdir)
 	@mkdir -pv $(DESTDIR)$(libdir)
-	@$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_libdir)/libstdc++.so  ),cp -af $(file) $(DESTDIR)$(libdir) ; )
-	@$(foreach file,$(wildcard $(gcc_build_DESTDIR)$(gcc_build_libdir)/libstdc++.so.*),cp -af $(file) $(DESTDIR)$(libdir) ; )
+	@install -v --mode=0755 $(build_DESTDIR)$(build_libdir)/libstdc++.so.* $(DESTDIR)$(elibdir)
 	@$(MAKECOOKIE)

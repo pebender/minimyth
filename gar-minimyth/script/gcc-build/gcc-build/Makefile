@@ -13,6 +13,7 @@ DEPENDS = \
 	gcc-build/ncursesw
 DEPENDS += \
 	gcc-build/gcc \
+	gcc-build/gcc-wrappers \
 	gcc-build/bash \
 	gcc-build/coreutils \
 	gcc-build/make \

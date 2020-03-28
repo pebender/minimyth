@@ -31,11 +31,8 @@ DEPENDS = \
 	net/ifplugd \
 	system/iguanair \
 	X11/libva-intel-driver \
+	net/inetutils \
 	utils/intel-microcode2ucode \
-	net/iputils \
-	utils/ir-keytable \
-	system/irclient \
-	system/irserver \
 	system/irxkeys \
 	kernel/kernel \
 	system/lcdproc \

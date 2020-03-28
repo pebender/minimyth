@@ -1,10 +1,10 @@
 GARNAME = irserver
-GARVERSION = 20120627
+GARVERSION = 6.10.23
 CATEGORIES = system
 # This site lacks a version number so we will download it from www.minimyth.org.
 #MASTER_SITES = http://www.irtrans.de/download/Server/Linux/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = $(DISTNAME)-lirc_0.8.6.patch
+#PATCHFILES = $(DISTNAME)-lirc_0.8.6.patch
 LICENSE = BSD_3_Clause
 
 DESCRIPTION =

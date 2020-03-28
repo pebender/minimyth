@@ -1,0 +1,11 @@
+diff -Naur iguanaIR-1.1.0-old/pipes.c iguanaIR-1.1.0-new/pipes.c
+--- iguanaIR-1.1.0-old/pipes.c	2013-07-22 10:09:53.000000000 -0700
++++ iguanaIR-1.1.0-new/pipes.c	2020-03-26 22:06:00.354009463 -0700
+@@ -19,6 +19,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <errno.h>
++#include <sys/select.h>
+ #include <sys/stat.h>
+ 
+ #include "pipes.h"

@@ -11,7 +11,8 @@ endef
 BUILDDEPS = \
 	native/native \
 	cc-build/ccache \
-	gcc-build/gcc
+	gcc-build/gcc \
+	gcc-build/gcc-wrappers
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile

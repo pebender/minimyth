@@ -7,7 +7,9 @@ DESCRIPTION =
 define BLURB
 endef
 
+ifndef ($(DESTIMG),build)
 INSTALL_SCRIPTS = libs
+endif
 
 GAR_EXTRA_CONF += lang/lang/toolchain.mk
 include ../../gar.mk

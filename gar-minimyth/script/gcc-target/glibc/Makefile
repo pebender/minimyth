@@ -13,22 +13,26 @@ DESCRIPTION =
 define BLURB
 endef
 
+ifneq ($(DESTIMG),build)
 DEPENDS = \
-	gcc-target/kernel-headers
+	gcc-target/kernel-headers \
+	gcc-target/gcc-static \
+	gcc-target/gcc-wrappers \
+	gcc-target/binutils
 BUILDDEPS = \
 	native/native \
-	gcc-build/ccache \
-	gcc-target/gcc-static \
-	gcc-target/binutils \
-	gcc-target/python
+	cc-build/ccache
+endif
 
 WORKBLD = $(WORKSRC)_build
 
-CONFIGURE_SCRIPTS = custom
+ifneq ($(DESTIMG),build)
+CONFIGURE_SCRIPTS = fix-configs custom
 BUILD_SCRIPTS = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS = $(WORKBLD)/Makefile
+INSTALL_SCRIPTS = $(WORKBLD)/Makefile extract-charmaps
+endif
 
-CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--cache-file=config.cache \
 	--enable-bind-now \
 	--enable-kernel=5.4.0 \
@@ -37,7 +41,7 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-add-ons=nptl \
 	--with-tls \
 	--with-__thread
-INSTALL_ARGS    = \
+INSTALL_ARGS = \
 	install_root=$(DESTDIR)
 
 CONFIGURE_ENV = \
@@ -45,12 +49,13 @@ CONFIGURE_ENV = \
 	BUILD_CPPFLAGS="$(build_CPPFLAGS)" \
 	BUILD_CFLAGS="$(build_CFLAGS)" \
 	BUILD_LDFLAGS="$(build_LDFLAGS)"
-BUILD_ENV     = \
+	AR=$(AR)
+BUILD_ENV = \
 	BUILD_CC="$(build_CC)" \
 	BUILD_CPPFLAGS="$(build_CPPFLAGS)" \
 	BUILD_CFLAGS="$(build_CFLAGS)" \
 	BUILD_LDFLAGS="$(build_LDFLAGS)"
-INSTALL_ENV   = \
+INSTALL_ENV = \
 	BUILD_CC="$(build_CC)" \
 	BUILD_CPPFLAGS="$(build_CPPFLAGS)" \
 	BUILD_CFLAGS="$(build_CFLAGS)" \
@@ -61,13 +66,13 @@ GAR_EXTRA_CONF += devel/glibc/package-api.mk
 include ../../gar.mk
 
 # glibc 2.30 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS  := $(filter-out -flto, $(CFLAGS))  -fno-lto
+CFLAGS  := $(filter-out -flto, $(CFLAGS)) -fno-lto
 LDFLAGS := $(filter-out -flto, $(LDFLAGS)) -fno-lto
 
 CFLAGS := $(filter-out -ffast-math, $(CFLAGS))
 CFLAGS := $(filter-out -O%, $(CFLAGS)) -O3
 
-pre-configure:
+configure-fix-configs:
 	@mkdir -p $(WORKBLD)
 	@rm -rf $(WORKBLD)/configparms
 	@echo "slibdir=$(elibdir)" >> $(WORKBLD)/configparms
@@ -82,6 +87,6 @@ configure-custom:
 	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
 
-post-install:
+install-extract-charmaps:
 	@cd $(DESTDIR)$(datadir)/i18n/charmaps ; gzip -df *.gz
 	@$(MAKECOOKIE)

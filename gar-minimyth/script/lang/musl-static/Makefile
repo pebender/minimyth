@@ -8,12 +8,16 @@ DESCRIPTION =
 define BLURB
 endef
 
+ifndef ($(DESTIMG),build)
 DEPENDS = lang/c build-tool/make \
 	kernel-headers/linux-headers
+endif
 
+ifndef ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile
+endif
 
 CONFIGURE_ARGS = --build=$(GARBUILD) --host=$(GARHOST) \
 	--prefix=$(prefix) \

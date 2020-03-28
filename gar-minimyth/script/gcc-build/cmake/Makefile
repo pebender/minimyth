@@ -12,6 +12,7 @@ BUILDDEPS = \
 	native/native \
 	cc-build/ccache \
 	gcc-build/gcc \
+	gcc-build/gcc-wrappers \
 	gcc-build/bash \
 	gcc-build/coreutils \
 	gcc-build/make \

@@ -3,6 +3,7 @@ GARVERSION = $(LLVM_VERSION)
 CATEGORIES = toolchain
 SOURCEPKG = llvm/llvm
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE.TXT
+LICENSE = $(GARNAME)
 
 DESCRIPTION = 
 define BLURB
@@ -12,6 +13,7 @@ BUILDDEPS = \
 	native/native \
 	cc-build/ccache \
 	clang-build/clang-build \
+	toolchain/libc-crt \
 	toolchain/gcc-for-clang
 
 WORKSRC = $(WORKDIR)/llvm
@@ -53,8 +55,17 @@ CONFIGURE_ARGS  = \
 	-DLLVM_ENABLE_LIBCXX=ON \
 	-DLLVM_USE_LINKER="lld" \
 	-DLLVM_ENABLE_LTO=OFF \
+	-DLLVM_ENABLE_FFI=OFF \
+	-DLLVM_ENABLE_TERMINFO=OFF \
+	-DLLVM_ENABLE_LIBXML2=OFF \
+	-DLLVM_ENABLE_LIBEDIT=OFF \
+	-DLLVM_ENABLE_LIBPFM=OFF \
+	-DLLVM_ENABLE_THREADS=ON \
+	-DLLVM_ENABLE_ZLIB=OFF \
+ 	-DCOMPILER_RT_BUILD_XRAY=OFF \
+ 	-DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
 	-DLLVM_INSTALL_TOOLCHAIN_ONLY=OFF \
-	-DLLVM_INSTALL_BINUTILS_SYMLINKS=ON \
+	-DLLVM_INSTALL_BINUTILS_SYMLINKS=OFF \
 	-DLLVM_ENABLE_PROJECTS="lld;clang;polly;libcxx;libcxxabi;libunwind;compiler-rt" \
 	-DCLANG_DEFAULT_LINKER="lld" \
 	-DCLANG_DEFAULT_CXX_STDLIB="libc++" \
@@ -84,8 +95,6 @@ rootdir = $(build_rootdir_swapped)
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 GAR_EXTRA_CONF += llvm/llvm/package-api.mk
 include ../../gar.mk
-
-PATH := $(build_DESTDIR)$(build_bindir)):$(PATH)
 
 post-install: post-install-cc-links post-install-ccache-links
 

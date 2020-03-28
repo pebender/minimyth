@@ -75,6 +75,7 @@ $(DESTIMG)_GARHOST ?= $(main_GARHOST)
 # Default compiler tools
 $(DESTIMG)_CC ?= clang
 $(DESTIMG)_CXX ?= clang++
+$(DESTIMG)_CPP ?= clang-cpp
 $(DESTIMG)_LD ?= ld.lld
 $(DESTIMG)_OBJDUMP ?= llvm-objdump
 $(DESTIMG)_OBJCOPY ?= llvm-objcopy
@@ -84,7 +85,6 @@ $(DESTIMG)_READELF ?= llvm-readelf
 $(DESTIMG)_NM ?= llvm-nm
 $(DESTIMG)_AS ?= llvm-as
 $(DESTIMG)_AR ?= llvm-ar
-$(DESTIMG)_CPP ?= clang-cpp
 
 # Filesystem structure
 DESTDIR ?= $($(DESTIMG)_DESTDIR)
@@ -131,6 +131,7 @@ GARTARGET ?= $(GARHOST)
 # Tools
 CC = $($(DESTIMG)_CC)
 CXX = $($(DESTIMG)_CXX)
+CPP = $($(DESTIMG)_CPP)
 LD = $($(DESTIMG)_LD)
 OBJDUMP = $($(DESTIMG)_OBJDUMP)
 OBJCOPY = $($(DESTIMG)_OBJCOPY)
@@ -140,7 +141,6 @@ READELF = $($(DESTIMG)_READELF)
 NM = $($(DESTIMG)_NM)
 AS = $($(DESTIMG)_AS)
 AR = $($(DESTIMG)_AR)
-CPP = $($(DESTIMG)_CPP)
 
 # Tool options -- These are append-mode assignments so that packages may
 # provide additional tool options.
@@ -173,6 +173,7 @@ STAGINGDIR ?= $(build_DESTDIR)$(build_prefix)/staging
 # allow us to use programs we just built
 BUILD_SYSTEM_PATH := $(if $(BUILD_SYSTEM_PATH),$(BUILD_SYSTEM_PATH),$(PATH))
 GAR_SYSTEM_PATH = $(ccache_DESTDIR)$(ccache_bindir)$(strip \
+	:$(build_DESTDIR)$(build_bindir)/wrapper)$(strip \
 	:$(DESTDIR)$(bindir)/config)$(strip \
 	:$(build_DESTDIR)$(build_esbindir):$(build_DESTDIR)$(build_ebindir):$(build_DESTDIR)$(build_sbindir):$(build_DESTDIR)$(build_bindir))$(strip \
 	:$(native_DESTDIR)/$(native_bindir))

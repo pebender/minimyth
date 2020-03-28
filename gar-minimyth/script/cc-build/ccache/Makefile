@@ -47,7 +47,7 @@ build_CPP = $(build_DESTDIR)$(build_bindir)/cpp
 
 include ../../gar.mk
 
-PATH := $(native_DESTDIR)$(native_bindir):$(cc_build_DESTDIR)/$(cc_build_bindir):$(PATH)
+PATH := $(native_DESTDIR)$(native_bindir):$(PATH)
 
 LDFLAGS += -Wl,--strip-all
 

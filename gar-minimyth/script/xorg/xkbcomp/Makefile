@@ -1,5 +1,5 @@
 GARNAME = xkbcomp
-GARVERSION = 1.4.2
+GARVERSION = 1.4.3
 CATEGORIES = xorg
 MASTER_SITES = https://www.x.org/releases/individual/app/
 DISTFILES = $(DISTNAME).tar.bz2

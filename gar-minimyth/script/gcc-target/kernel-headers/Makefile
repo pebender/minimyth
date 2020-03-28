@@ -10,7 +10,7 @@ endef
 
 BUILDDEPS = \
 	native/native \
-	gcc-build/ccache \
+	cc-build/ccache \
 	gcc-build/gcc-build
 
 WORKSRC = $(WORKDIR)/linux-$(GARVERSION)
@@ -24,11 +24,6 @@ INSTALL_ENV = $(LINUX_MAKE_ENV)
 GAR_EXTRA_CONF += gcc-target/gcc-target/toolchain.mk
 GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk
 include ../../gar.mk
-
-build_CPPFLAGS := --sysroot=$(DESTDIR) -idirafter /usr/include
-build_CFLAGS := --sysroot=$(DESTDIR) $(build_CPPFLAGS)
-build_CXXFLAGS := --sysroot=$(DESTDIR) $(build_CPPFLAGS)
-build_LDFLAGS := --sysroot=$(DESTDIR)
 
 install-custom:
 	@$(INSTALL_ENV) $(MAKE) $(INSTALL_ARGS) -C $(WORKSRC) headers

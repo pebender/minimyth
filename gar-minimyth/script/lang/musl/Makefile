@@ -9,13 +9,17 @@ DESCRIPTION =
 define BLURB
 endef
 
+ifndef ($(DESTIMG),build)
 DEPENDS = lang/c build-tool/make \
 	lang/musl-static \
 	lang/compiler-rt
+endif
 
+ifndef ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile
+endif
 
 CONFIGURE_ARGS = --build=$(GARBUILD) --host=$(GARHOST) \
 	--prefix=$(prefix) \

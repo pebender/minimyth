@@ -1,9 +1,8 @@
 GARNAME = iputils
-GARVERSION = s20151218
+GARVERSION = s20190709
 CATEGORIES = net
-MASTER_SITES = http://www.skbuff.net/iputils/
-DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = $(DISTNAME).patch
+MASTER_SITES = https://github.com/iputils/iputils/archive/
+DISTFILES = $(GARVERSION).tar.gz
 LICENSE = BSD_4_Clause
 
 DESCRIPTION =
@@ -24,7 +23,7 @@ BUILD_ARGS   = \
 
 include ../../gar.mk
 
-LDFLAGS := $(LDFLAGS) -fwhole-program
+#LDFLAGS := $(LDFLAGS) -fwhole-program
 
 install-custom:
 	@mkdir -p $(DESTDIR)$(ebindir)

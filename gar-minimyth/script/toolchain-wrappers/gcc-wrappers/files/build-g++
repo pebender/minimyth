@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#
+# g++ hash: @TOOL_HASH@
+#
+
+compiler_options=""
+compiler_options="$compiler_options --sysroot=@GAR_DESTDIR@"
+compiler_options="$compiler_options -idirafter /usr/include"
+
+@GAR_build_DESTDIR@@GAR_build_bindir@/@GAR_GARHOST@-g++ $compiler_options "$@"

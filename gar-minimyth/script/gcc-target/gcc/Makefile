@@ -13,17 +13,23 @@ DESCRIPTION =
 define BLURB
 endef
 
-CROSSIMG = main
+CROSSIMG ?= $(DESTIMG)
 GARTARGET = $($(CROSSIMG)_GARHOST)
 
+ifeq ($(DESTIMG),build)
 IMGDEPS += $(CROSSIMG)
 $(CROSSIMG)_DEPENDS = \
+	gcc-target/binutils \
 	gcc-target/glibc
 BUILDDEPS = \
 	native/native \
-	gcc-build/ccache \
-	gcc-build/gcc-build \
-	gcc-target/binutils
+	cc-build/ccache \
+	gcc-build/gcc-build
+else
+export CROSSIMG
+BUILDDEPS = \
+	gcc-target/gcc
+endif
 
 WORKDIR = $(WORKROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
 COOKIEDIR = $(COOKIEROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
@@ -32,12 +38,13 @@ WORKSRC = $(WORKDIR)/gcc-$(GARVERSION)
 
 WORKBLD = $(WORKSRC)_build
 
+ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = custom
 BUILD_SCRIPTS = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS = $(WORKBLD)/Makefile
+INSTALL_SCRIPTS = $(WORKBLD)/Makefile lib-locations ccache-links
+endif
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GARTARGET) \
-	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir)) \
 	--enable-plugin \
 	--enable-gold \
 	--enable-ld=default \
@@ -57,6 +64,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GA
 	--disable-nls \
 	--enable-shared \
 	--enable-threads=posix \
+	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir)) \
 	--with-sysroot=$($(CROSSIMG)_DESTDIR)
 
 GAR_EXTRA_CONF += gcc-target/gcc-target/toolchain.mk
@@ -68,9 +76,7 @@ configure-custom:
 	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
 
-post-install: post-install-lib-locations post-install-ccache-links
-
-post-install-lib-locations:
+install-lib-locations:
 	@mkdir -pv $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir)
 	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc.a   ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
 	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc.so  ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
@@ -85,7 +91,7 @@ post-install-lib-locations:
 	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libstdc++.so.*),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_libdir) ; )
 	@$(MAKECOOKIE)
 
-post-install-ccache-links:
+install-ccache-links:
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/$(GARTARGET)-gcc
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/$(GARTARGET)-g++
 	@$(MAKECOOKIE)

@@ -1,27 +1,31 @@
-GARNAME = libcxx-from-clang
+GARNAME = libstdcxx-from-gcc
 GARVERSION = $(LLVM_VERSION)
 CATEGORIES = toolchain
-LICENSE =
+$(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE.TXT
+LICENSE = $(GARNAME)
 
-DESCRIPTION = 
+DESCRIPTION =
 define BLURB
 endef
 
 BUILDDEPS = \
+	native/native \
+	cc-build/ccache \
 	clang-build/clang-build
 
-INSTALL_SCRIPTS = libcxx
+INSTALL_SCRIPTS = custom
 
-GAR_EXTRA_CONF += toolchain/toolchain/toolchain.mk
+build_DESTDIR = $(gcc_build_DESTDIR)
+build_rootdir = $(gcc_build_rootdir)
+DESTDIR = $(clang_build_DESTDIR)
+rootdir = $(clang_build_rootdir)
+
 GAR_EXTRA_CONF += llvm/llvm/package-api.mk
 include ../../gar.mk
 
-install-libcxx:
+install-custom:
 	@mkdir -pv $(DESTDIR)$(libdir)
-	@$(foreach file,$(wildcard $(clang_build_DESTDIR)$(clang_build_libdir)/libunwind.so  ),cp -afv $(file) $(DESTDIR)$(libdir) ; )
-	@$(foreach file,$(wildcard $(clang_build_DESTDIR)$(clang_build_libdir)/libunwind.so.*),cp -afv $(file) $(DESTDIR)$(libdir) ; )
-	@$(foreach file,$(wildcard $(clang_build_DESTDIR)$(clang_build_libdir)/libc++abi.so  ),cp -afv $(file) $(DESTDIR)$(libdir) ; )
-	@$(foreach file,$(wildcard $(clang_build_DESTDIR)$(clang_build_libdir)/libc++abi.so.*),cp -afv $(file) $(DESTDIR)$(libdir) ; )
-	@$(foreach file,$(wildcard $(clang_build_DESTDIR)$(clang_build_libdir)/libc++.so  ),cp -afv $(file) $(DESTDIR)$(libdir) ; )
-	@$(foreach file,$(wildcard $(clang_build_DESTDIR)$(clang_build_libdir)/libc++.so.*),cp -afv $(file) $(DESTDIR)$(libdir) ; )
+	@install -v --mode=0755 $(build_DESTDIR)$(build_libdir)/libc++.so.* $(DESTDIR)$(libdir)
+	@install -v --mode=0755 $(build_DESTDIR)$(build_libdir)/libc++abi.so.* $(DESTDIR)$(libdir)
+	@install -v --mode=0755 $(build_DESTDIR)$(build_libdir)/libunwind.so.* $(DESTDIR)$(libdir)
 	@$(MAKECOOKIE)

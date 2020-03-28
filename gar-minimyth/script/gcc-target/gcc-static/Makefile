@@ -4,27 +4,28 @@ CATEGORIES = gcc-target
 SOURCEPKG = gcc-build/gcc
 LICENSE = GPL2/GPL3/LGPL2_1/LGPL3
 
-DESCRIPTION =
-define BLURB
-endef
-LICENSE = GPL2/GPL3/LGPL2_1/LGPL3
-
 DESCRIPTION = 
 define BLURB
 endef
 
-CROSSIMG = main
+CROSSIMG ?= $(DESTIMG)
 GARTARGET = $($(CROSSIMG)_GARHOST)
 
+ifeq ($(DESTIMG),build)
 IMGDEPS += $(CROSSIMG)
 $(CROSSIMG)_DEPENDS = \
 	gcc-target/kernel-headers\
-	gcc-target/glibc-headers
+	gcc-target/glibc-headers \
+	gcc-target/binutils
 BUILDDEPS = \
 	native/native \
-	gcc-build/ccache \
-	gcc-build/gcc-build \
-	gcc-target/binutils
+	cc-build/ccache \
+	gcc-build/gcc-build
+else
+export CROSSIMG
+BUILDDEPS = \
+	gcc-target/gcc-static
+endif
 
 WORKDIR = $(WORKROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
 COOKIEDIR = $(COOKIEROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
@@ -33,13 +34,14 @@ WORKSRC = $(WORKDIR)/gcc-$(GARVERSION)
 
 WORKBLD = $(WORKSRC)_build
 
+ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = custom
 BUILD_SCRIPTS = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS = $(WORKBLD)/Makefile
+INSTALL_SCRIPTS = $(WORKBLD)/Makefile ccache-links
+endif
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GARTARGET) \
 	--with-newlib \
-	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir)) \
 	--enable-plugin \
 	--disable-gold \
 	--enable-ld=default \
@@ -60,6 +62,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GA
 	--disable-shared \
 	--disable-host-shared \
 	--enable-threads=no \
+	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir)) \
 	--with-sysroot=$($(CROSSIMG)_DESTDIR)
 
 GAR_EXTRA_CONF += gcc-target/gcc-target/toolchain.mk
@@ -71,9 +74,7 @@ configure-custom:
 	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
 
-post-install: post-install-ccache-links
-
-post-install-ccache-links:
+install-ccache-links:
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/$(GARTARGET)-gcc
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/$(GARTARGET)-g++
 	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/gcc

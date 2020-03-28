@@ -1,8 +1,8 @@
-36b0da565f9afbbf5ab5cc0f00d924d2  download/build-clang
-c02f0bb66a72bd9d227d90fbfd6ad370  download/build-clangxx
-15fb4705135be1097e44d3b65397e9f9  download/build-cpp
-d34434d4a0fd6b4f17dbc85d072e6cc3  download/build-ld.lld
-755746fe50327792c5adaccf176ad322  download/main-clang
-6313ed376ad22c798afe11f8e9c80046  download/main-clangxx
-6350ddc59bc154bb8ff7872308b5082d  download/main-cpp
-04d82d0e37afac67413a02a2fc2751b9  download/main-ld.lld
+f4cff49ed408fc281761d3c84153a0e9  download/build-clang
+83c04beba84ae1ca42545ddab8555213  download/build-clang++
+f17dd5c08b0577e45b51b345d6304304  download/build-clang-cpp
+77c879269fc4bafd809c1614f4492374  download/build-ld.lld
+156e72c8f1b6aadfe583fc558356e639  download/main-clang
+342b79a3ed578eb8cbfd63fae231049c  download/main-clang++
+1dc54c6e9b0aec1573b6cf7003eab6d4  download/main-clang-cpp
+77c879269fc4bafd809c1614f4492374  download/main-ld.lld

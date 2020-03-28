@@ -8,10 +8,10 @@ DESCRIPTION =
 define BLURB
 endef
 
+BUILDDEPS = gcc-build/gcc
+
 BUILD_SCRIPTS = wrappers
 INSTALL_SCRIPTS = wrappers
-
-BUILDDEPS = gcc-build/gcc
 
 GAR_EXTRA_CONF += gcc-build/gcc-build/toolchain.mk
 GAR_EXTRA_CONF += toolchain-wrappers/gcc-wrappers/package-api.mk

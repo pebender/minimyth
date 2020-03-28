@@ -1,20 +1,16 @@
 GARNAME = mesa
-GARVERSION = 18.2.8
+GARVERSION = 20.0.2
 CATEGORIES = xorg
 MASTER_SITES  = https://mesa.freedesktop.org/archive/
-MASTER_SITES += https://mesa.freedesktop.org/archive/18.0.0/
+MASTER_SITES += https://mesa.freedesktop.org/archive/20.0.0/
 DISTFILES = $(DISTNAME).tar.xz
-PATCHFILES = \
-	$(DISTNAME)-disable_intel_tools.patch \
-	$(DISTNAME)-libxv.patch \
-	$(DISTNAME)-meson_libxv.patch
 LICENSE = LGPL2/MIT
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/meson devel-target-llvm/llvm lib/expat lib/libelf lib/zlib utils/lm_sensors X11/libva-mini X11/libvdpau \
+DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/zlib utils/lm_sensors X11/libva-mini X11/libvdpau \
 	xorg/libdrm \
 	xorg/libpthread-stubs \
 	xorg/libX11 \
@@ -29,7 +25,8 @@ DEPENDS = lang/c lang/cxx build-tool/meson devel-target-llvm/llvm lib/expat lib/
 	xorg/libXxf86vm \
 	xorg/xorgproto
 BUILDDEPS = lib/libxml2 \
-	xorg/makedepend
+	xorg/makedepend \
+	python/python-mako
 
 PWD := $(shell pwd)
 
@@ -39,8 +36,10 @@ CONFIGURE_SCRIPTS = $(WORKBLD)/meson
 BUILD_SCRIPTS     = $(WORKBLD)/ninja
 INSTALL_SCRIPTS   = $(WORKBLD)/ninja source
 
-LDFLAGS := $(LDFLAGS) -lLLVv
+#LDFLAGS := $(LDFLAGS) -lLLVv
 
+#	-Dgallium-drivers='radeonsi,r300,r600,nouveau,swrast,svga' \
+	#
 CONFIGURE_ARGS  = \
 	$(filter-out --exec_prefix=% --oldincludedir=%, $(DIRPATHS)) \
 	--buildtype=release \
@@ -49,7 +48,7 @@ CONFIGURE_ARGS  = \
 	-Dplatforms='x11,drm' \
 	-Ddri3=true \
 	-Ddri-drivers='i915,i965,nouveau,r100,,r200' \
-	-Dgallium-drivers='radeonsi,r300,r600,nouveau,swrast,svga' \
+	-Dgallium-drivers='r300,r600,nouveau,svga' \
 	-Dgallium-vdpau=true \
 	-Dvdpau-libs-path='$(libdir)/vdpau' \
 	-Dgallium-xvmc=true \
@@ -72,8 +71,9 @@ CONFIGURE_ARGS  = \
 	-Dglvnd=false \
 	-Dasm=true \
 	-Dglx-read-only-text=false \
+	-Dllvm=false \
 	-Dvalgrind=false \
-	-Dlibunwind=false \
+	-Dlibunwind=true \
 	-Dlmsensors=true \
 	-Dbuild-tests=false \
 	-Dselinux=false \
@@ -83,7 +83,8 @@ CONFIGURE_ARGS  = \
 	-Dxlib-lease=false
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
-	--cross-file $(GARHOST)
+	--cross-file $(GARHOST) \
+	-Dlibunwind=false
 endif
 
 GAR_EXTRA_CONF += xorg/xorg/package-api.mk

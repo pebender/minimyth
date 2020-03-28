@@ -12,13 +12,12 @@ WORKSRC = $(WORKDIR)/glibc-$(GARVERSION)
 WORKBLD = $(WORKSRC)_build
 
 DEPENDS = \
-	gcc-target/kernel-headers
+	gcc-target/kernel-headers \
+	gcc-target/binutils
 BUILDDEPS = \
 	native/native \
-	gcc-build/ccache \
-	gcc-build/gcc-build \
-	gcc-target/binutils \
-	gcc-target/python
+	cc-build/ccache \
+	gcc-build/gcc-build
 
 CONFIGURE_SCRIPTS = custom
 INSTALL_SCRIPTS = custom
@@ -55,20 +54,26 @@ INSTALL_ENV  = \
 	BUILD_LDFLAGS="$(build_LDFLAGS)"
 
 GAR_EXTRA_CONF += gcc-target/gcc-target/toolchain.mk
+GAR_EXTRA_CONF += gcc-target/glibc/package-api.mk
 include ../../gar.mk
 
-CPP := $(build_CPP)
 CC := $(build_CC)
 CXX := $(build_CXX)
 LD := $(build_LD)
-AR := $(build_AR)
-AS := $(build_AS)
 OBJDUMP := $(build_OBJDUMP)
+OBJCOPY := $(build_OBJCOPY)
+STRIP = :$(build_STRIP)
 RANLIB := $(build_RANLIB)
-CPPFLAGS :=
-CFLAGS :=
-CXXFLAGS :=
-LDFLAGS :=
+READELF := $(build_READELF)
+NM := $(build_NM)
+AS := $(build_AS)
+AR := $(build_AR)
+CPP := $(build_CPP)
+
+CPPFLAGS := $(build_CPPFLAGS)
+CFLAGS := $(build_CFLAGS)
+CXXFLAGS := $(build_CXXFLAGS)
+LDFLAGS := $(build_LDFLAGS)
 
 pre-configure:
 	@mkdir -p $(WORKBLD)

@@ -8,6 +8,8 @@ xPATCHFILES = \
 	$(DISTNAME)-dash.patch \
 	$(DISTNAME)-cflags.patch \
 	$(DISTNAME)-fwhole_program.patch
+PATCHFILES = \
+	$(DISTNAME)-musl.patch
 LICENSE = GPL2/LGPL2_1
 
 build_DESTDIR = $(build_DESTDIR_swapped)
@@ -22,7 +24,7 @@ BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake
-INSTALL_SCRIPTS = $(WORKSRC)/cmake
+INSTALL_SCRIPTS = custom
 
 CONFIGURE_ARGS = \
 	-DCMAKE_BUILD_TYPE=RELEASE \
@@ -44,4 +46,10 @@ CONFIGURE_ARGS = \
 	-DCMAKE_STRIP="$(STRIP)"
 
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
-include ../../gar.mk
+include ../../gar.mk 
+LDFLAGS += -largp
+
+install-custom:
+	@echo " ==> Running install in $(WORKSRC)_build"
+	@$(INSTALL_ENV) cmake --install $(WORKSRC)_build $(INSTALL_ARGS)
+	@$(MAKECOOKIE)

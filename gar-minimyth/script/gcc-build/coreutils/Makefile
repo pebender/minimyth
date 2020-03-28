@@ -12,6 +12,7 @@ DEPENDS = \
 	native/native \
 	cc-build/ccache \
 	gcc-build/gcc \
+	gcc-build/gcc-wrappers \
 	gcc-build/bash
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure

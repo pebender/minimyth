@@ -5,6 +5,6 @@
 #
 
 compiler_options=""
-compiler_options="$compiler_options --sysroot=@GAR_DESTDIR@@GAR_rootdir@"
+compiler_options="$compiler_options --sysroot=@GAR_DESTDIR@"
 
-@GAR_build_DESTDIR@@GAR_build_bindir@/cpp $compiler_options "$@"
+@GAR_build_DESTDIR@@GAR_build_bindir@/@GAR_GARHOST@-cpp $compiler_options "$@"

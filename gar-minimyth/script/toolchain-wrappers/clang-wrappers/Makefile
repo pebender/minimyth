@@ -2,9 +2,9 @@ GARNAME = clang-wrappers
 GARVERSION = unknown
 CATEGORIES = toolchain-wrappers
 DISTFILES = \
-	$(DESTIMG)-cpp \
+	$(DESTIMG)-clang-cpp \
 	$(DESTIMG)-clang \
-	$(DESTIMG)-clangxx \
+	$(DESTIMG)-clang++ \
 	$(DESTIMG)-ld.lld
 LICENSE = 
 
@@ -14,6 +14,7 @@ endef
 
 BUILDDEPS = toolchain/toolchain
 
+BUILD_SCRIPTS = wrappers
 INSTALL_SCRIPTS = wrappers
 
 build_DESTDIR = $(build_DESTDIR_swapped)

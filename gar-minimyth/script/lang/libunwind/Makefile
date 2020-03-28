@@ -9,15 +9,19 @@ DESCRIPTION =
 define BLURB
 endef
 
+ifndef ($(DESTIMG),build)
 DEPENDS = lang/c \
 	lang/libc
 BUILDEPS =
+endif
 
 WORKSRC = $(WORKDIR)/$(GARNAME)
 
+ifndef ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake
 INSTALL_SCRIPTS = $(WORKSRC)/cmake
+endif
 
 CONFIGURE_ARGS = \
 	-DCMAKE_BUILD_TYPE=RELEASE \

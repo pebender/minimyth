@@ -1,0 +1,14 @@
+diff -Naur inetutils-1.9.4-old/ifconfig/system/linux.c inetutils-1.9.4-new/ifconfig/system/linux.c
+--- inetutils-1.9.4-old/ifconfig/system/linux.c	2015-05-12 05:09:01.000000000 -0700
++++ inetutils-1.9.4-new/ifconfig/system/linux.c	2020-03-27 11:49:47.338315089 -0700
+@@ -48,6 +48,10 @@
+ #include <unused-parameter.h>
+ 
+ #include "../ifconfig.h"
++
++#ifndef PATH_PROCNET_DEV
++	#define PATH_PROCNET_DEV "/proc/net/dev"
++#endif
+ 
+ 
+ /* ARPHRD stuff.  */

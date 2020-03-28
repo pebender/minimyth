@@ -31,6 +31,16 @@ INSTALL_ENV = $(LINUX_MAKE_ENV) INSTALL_PATH="$(DESTDIR)$(LINUX_DIR)" INSTALL_MO
 
 include ../../gar.mk
 
+PARALLELMFLAGS := -j1
+
+#CPPFLAGS += -no-integrated-assembler
+#CFLAGS += -no-integrated-assembler
+#LDFLAGS += -no-integrated-assembler
+
+CPPFLAGS += -v
+CFLAGS += -v
+LDFLAGS += -v
+
 configure-custom:
 	@$(CONFIGURE_ENV) $(MAKE) $(CONFIGURE_ARGS) -C $(WORKSRC) mrproper
 	@cp $(if $(mm_KERNEL_CONFIG),$(HOME)/.minimyth/$(mm_KERNEL_CONFIG),$(DOWNLOADDIR)/$(CONFIGFILE)) $(WORKSRC)/.config
