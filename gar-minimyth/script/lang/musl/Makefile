@@ -12,7 +12,7 @@ endef
 ifndef ($(DESTIMG),build)
 DEPENDS = lang/c build-tool/make \
 	lang/musl-static \
-	lang/compiler-rt
+	lang/compiler-rt-builtins
 endif
 
 ifndef ($(DESTIMG),build)

@@ -1,0 +1,19 @@
+build_DESTDIR = $(tainted_build_DESTDIR)
+build_rootdir = $(tainted_build_rootdir)
+main_DESTDIR = $(tainted_main_DESTDIR)
+main_DESTDIR = $(tainted_main_DESTDIR)
+DESTDIR = $(build_DESTDIR)
+rootdir = $(build_rootdir)
+
+build_CC = $(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-gcc
+build_CXX = $(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-g++
+build_CPP = $(build_DESTDIR)$(build_bindir)/wrapper.d/$(build_GARHOST)-cpp
+build_LD = $(build_DESTDIR)$(build_bindir)/wrapper.d/$(build_GARHOST)-ld.bfd
+build_OBJDUMP = $(build_DESTDIR)$(build_bindir)/objdump
+build_OBJCOPY = $(build_DESTDIR)$(build_bindir)/objcopy
+build_STRIP = $(build_DESTDIR)$(build_bindir)/strip
+build_RANLIB = $(build_DESTDIR)$(build_bindir)/ranlib
+build_READELF = $(build_DESTDIR)$(build_bindir)/readelf
+build_NM = $(build_DESTDIR)$(build_bindir)/nm
+build_AS = $(build_DESTDIR)$(build_bindir)/as
+build_AR = $(build_DESTDIR)$(build_bindir)/ar

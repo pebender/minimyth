@@ -34,52 +34,23 @@ build_rootdir ?= $(mm_HOME)/images/build
 build_DESTDIR_swapped ?= $(mm_HOME)/images/build
 build_rootdir_swapped ?=
 
-clang_target_DESTDIR ?= $(mm_HOME)/images/clang-target
-clang_target_rootdir ?=
-clang_target_prefix ?= $(clang_target_rootdir)/usr
-clang_target_bindir ?= $(clang_target_prefix)/bin
-clang_target_libdir ?= $(clang_target_prefix)/lib
-clang_target_includedir ?= $(clang_target_prefix)/include
+tainted_main_DESTDIR ?= $(mm_HOME)/images/tainted-main
+tainted_main_rootdir ?=
+tainted_main_prefix ?= $(tainted_main_rootdir)/usr
+tainted_main_bindir ?= $(tainted_main_prefix)/bin
+tainted_main_libdir ?= $(tainted_main_prefix)/lib
+tainted_main_includedir ?= $(tainted_main_prefix)/include
+tainted_main_exec_prefix ?= $(tainted_main_rootdir)/usr
+tainted_main_libexecdir ?= $(tainted_main_exec_prefix)/lib
 
-clang_build_DESTDIR ?= $(mm_HOME)/images/clang-build
-clang_build_rootdir ?=
-clang_build_prefix ?= $(clang_build_rootdir)/usr
-clang_build_bindir ?= $(clang_build_prefix)/bin
-clang_build_libdir ?= $(clang_build_prefix)/lib
-clang_build_includedir ?= $(clang_build_prefix)/include
-
-gcc_target_DESTDIR ?= $(mm_HOME)/images/gcc-target
-gcc_target_rootdir ?=
-gcc_target_prefix ?= $(gcc_target_rootdir)/usr
-gcc_target_bindir ?= $(gcc_target_prefix)/bin
-gcc_target_libdir ?= $(gcc_target_prefix)/lib
-gcc_target_includedir ?= $(gcc_target_prefix)/include
-gcc_target_exec_prefix ?= $(gcc_target_rootdir)/usr
-gcc_target_libexecdir ?= $(gcc_target_exec_prefix)/lib
-
-gcc_build_DESTDIR ?= $(mm_HOME)/images/gcc-build
-gcc_build_rootdir ?=
-gcc_build_prefix ?= $(gcc_build_rootdir)/usr
-gcc_build_bindir ?= $(gcc_build_prefix)/bin
-gcc_build_libdir ?= $(gcc_build_prefix)/lib
-gcc_build_elibdir ?= $(gcc_build_libdir)
-gcc_build_includedir ?= $(gcc_build_prefix)/include
-gcc_build_exec_prefix ?= $(gcc_build_rootdir)/usr
-gcc_build_libexecdir ?= $(gcc_build_exec_prefix)/lib
-
-ccache_DESTDIR ?= $(mm_HOME)/images/ccache
-ccache_rootdir ?=
-ccache_prefix ?= $(ccache_rootdir)/usr
-ccache_bindir ?= $(ccache_prefix)/bin
-ccache_libdir ?= $(ccache_prefix)/lib
-ccache_includedir ?= $(ccache_prefix)/include
-
-cc_build_DESTDIR ?= $(mm_HOME)/images/cc-build
-cc_build_rootdir ?=
-cc_build_prefix ?= $(cc_build_rootdir)/usr
-cc_build_bindir ?= $(cc_build_prefix)/bin
-cc_build_libdir ?= $(cc_build_prefix)/lib
-cc_build_includedir ?= $(cc_prefix)/include
+tainted_build_DESTDIR ?= $(mm_HOME)/images/tainted-build
+tainted_build_rootdir ?=
+tainted_build_prefix ?= $(tainted_build_rootdir)/usr
+tainted_build_bindir ?= $(tainted_build_prefix)/bin
+tainted_build_libdir ?= $(tainted_build_prefix)/lib
+tainted_build_includedir ?= $(tainted_build_prefix)/include
+tainted_build_exec_prefix ?= $(tainted_build_rootdir)/usr
+tainted_build_libexecdir ?= $(tainted_build_exec_prefix)/lib
 
 native_DESTDIR ?= $(mm_HOME)/images/native
 native_rootdir ?=
@@ -164,10 +135,10 @@ build_GARCH_FAMILY := $(strip \
 build_GARHOST := $(GARBUILD)
 
 # Compiler tools.
-main_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/$(main_GARHOST)-clang
-main_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/$(main_GARHOST)-clang++
-main_CPP ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(main_GARHOST)-clang-cpp
-main_LD ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(main_GARHOST)-ld.lld
+main_CC ?= $(build_DESTDIR)$(build_bindir)/ccache.d/$(main_GARHOST)-clang
+main_CXX ?= $(build_DESTDIR)$(build_bindir)/ccache.d/$(main_GARHOST)-clang++
+main_CPP ?= $(build_DESTDIR)$(build_bindir)/wrapper.d/$(main_GARHOST)-clang-cpp
+main_LD ?= $(build_DESTDIR)$(build_bindir)/wrapper.d/$(main_GARHOST)-ld.lld
 main_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/llvm-objdump
 main_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/llvm-objcopy
 main_STRIP ?= $(build_DESTDIR)$(build_bindir)/llvm-strip
@@ -177,10 +148,10 @@ main_NM ?= $(build_DESTDIR)$(build_bindir)/llvm-nm
 main_AS ?= $(build_DESTDIR)$(build_bindir)/llvm-as
 main_AR ?= $(build_DESTDIR)$(build_bindir)/llvm-ar
 
-build_CC ?= $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-clang
-build_CXX ?= $(ccache_DESTDIR)$(ccache_bindir)/$(build_GARHOST)-clang++
-build_CPP ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(build_GARHOST)-clang-cpp
-build_LD ?= $(build_DESTDIR)$(build_bindir)/wrapper/$(build_GARHOST)-ld.lld
+build_CC ?= $(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-clang
+build_CXX ?= $(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-clang++
+build_CPP ?= $(build_DESTDIR)$(build_bindir)/wrapper.d/$(build_GARHOST)-clang-cpp
+build_LD ?= $(build_DESTDIR)$(build_bindir)/wrapper.d/$(build_GARHOST)-ld.lld
 build_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/llvm-objdump
 build_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/llvm-objcopy
 build_STRIP ?= $(build_DESTDIR)$(build_bindir)/llvm-strip

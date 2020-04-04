@@ -9,6 +9,7 @@ PATCHFILES = \
 	$(DISTNAME)-configure.patch \
 	$(DISTNAME)-strrchr.patch \
 	$(DISTNAME)-x86_64.patch \
+	$(DISTNAME)-cheats_cpp.patch \
 	$(DISTNAME)-debugger.patch
 LICENSE = GPL2
 

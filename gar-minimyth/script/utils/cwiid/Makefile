@@ -1,7 +1,7 @@
 GARNAME = cwiid
 GARVERSION = svn_history
 CATEGORIES = utils
-MASTER_SITES = https://github.com/abstrakraft/$(GARNAME)/archive/
+MASTER_SITES = https://github.com/abstrakraft/cwiid/archive/
 DISTFILES = $(GARVERSION).tar.gz
 PATCHFILES = $(DISTNAME)-no_gtk.patch $(DISTNAME)-ldlibs.patch $(DISTNAME)-rootdir.patch $(DISTNAME)-ioctl_ui_set_phys.patch $(DISTNAME)-wait_forever_sleep.patch $(DISTNAME)-abs_only.patch
 LICENSE = GPL2

@@ -1,0 +1,12 @@
+diff -Naur powernowd-1.00-old/powernowd.c powernowd-1.00-new/powernowd.c
+--- powernowd-1.00-old/powernowd.c	2008-01-27 10:56:31.000000000 -0800
++++ powernowd-1.00-new/powernowd.c	2020-04-01 15:54:31.702965339 -0700
+@@ -322,7 +322,7 @@
+ /*
+  * The heart of the program... decide to raise or lower the speed.
+  */
+-enum modes inline decide_speed(cpuinfo_t *cpu)
++enum modes decide_speed(cpuinfo_t *cpu)
+ {
+ 	int err;
+ 	float pct;

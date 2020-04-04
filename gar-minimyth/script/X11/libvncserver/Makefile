@@ -63,3 +63,6 @@ CONFIGURE_ARGS = \
 
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk
+
+CFLAGS += -pthread
+CXXFLAGS += -pthread

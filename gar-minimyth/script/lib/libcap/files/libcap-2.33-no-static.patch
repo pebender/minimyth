@@ -1,0 +1,69 @@
+diff -Naur old/contrib/bug400591/Makefile new/contrib/bug400591/Makefile
+--- old/contrib/bug400591/Makefile	2020-03-29 18:15:13.229634737 -0700
++++ new/contrib/bug400591/Makefile	2020-03-29 20:27:01.892203618 -0700
+@@ -2,7 +2,7 @@
+ 
+ bug: bug.c ../../libcap Makefile
+ 	make -C ../../libcap
+-	cc -g -I../../libcap/include --static -o $@ $< -L../../libcap -lcap
++	cc -g -I../../libcap/include -o $@ $< -L../../libcap -lcap
+ 	./bug
+ 
+ clean:
+diff -Naur old/pam_cap/Makefile new/pam_cap/Makefile
+--- old/pam_cap/Makefile	2020-03-29 18:15:13.232634737 -0700
++++ new/pam_cap/Makefile	2020-03-29 20:27:12.764203025 -0700
+@@ -22,7 +22,7 @@
+ 	$(CC) $(CFLAGS) $(IPATH) -c $< -o $@
+ 
+ test_pam_cap: test_pam_cap.c pam_cap.c
+-	$(CC) $(CFLAGS) $(IPATH) -o $@ test_pam_cap.c $(LIBCAPLIB) $(LDFLAGS) --static
++	$(CC) $(CFLAGS) $(IPATH) -o $@ test_pam_cap.c $(LIBCAPLIB) $(LDFLAGS)
+ 
+ testlink: test.c pam_cap.o
+ 	$(CC) $(CFLAGS) -o $@ $+ -lpam -ldl $(LIBCAPLIB) $(LDFLAGS)
+diff -Naur old/progs/Makefile new/progs/Makefile
+--- old/progs/Makefile	2020-03-29 18:15:13.232634737 -0700
++++ new/progs/Makefile	2020-03-29 20:27:32.109201971 -0700
+@@ -8,10 +8,6 @@
+ 
+ BUILD=$(PROGS)
+ 
+-ifneq ($(DYNAMIC),yes)
+-LDFLAGS += --static
+-endif
+-
+ DEPS=../libcap/libcap.a ../libcap/libpsx.a
+ 
+ all: $(BUILD)
+diff -Naur old/tests/Makefile new/tests/Makefile
+--- old/tests/Makefile	2020-03-29 18:15:13.232634737 -0700
++++ new/tests/Makefile	2020-03-29 20:26:49.308204304 -0700
+@@ -32,23 +32,23 @@
+ 	./libcap_psx_test
+ 
+ libcap_psx_test: libcap_psx_test.c $(DEPS)
+-	$(CC) $(CFLAGS) $(IPATH) $< -o $@ $(LIBCAPLIB) $(LIBPSXLIB) -Wl,-wrap,pthread_create --static
++	$(CC) $(CFLAGS) $(IPATH) $< -o $@ $(LIBCAPLIB) $(LIBPSXLIB) -Wl,-wrap,pthread_create
+ 
+ run_libcap_launch_test: libcap_launch_test libcap_psx_launch_test noop
+ 	sudo ./libcap_launch_test
+ 	sudo ./libcap_psx_launch_test
+ 
+ libcap_launch_test: libcap_launch_test.c $(DEPS)
+-	$(CC) $(CFLAGS) $(IPATH) $< -o $@ $(LIBCAPLIB) --static
++	$(CC) $(CFLAGS) $(IPATH) $< -o $@ $(LIBCAPLIB)
+ 
+ # this varies only slightly from the above insofar as it currently
+ # only links in the pthreads fork support. TODO() we need to change
+ # the source to do something interesting with pthreads.
+ libcap_psx_launch_test: libcap_launch_test.c $(DEPS)
+-	$(CC) $(CFLAGS) $(IPATH) -DWITH_PTHREADS $< -o $@ $(LIBCAPLIB) $(LIBPSXLIB) -Wl,-wrap,pthread_create --static
++	$(CC) $(CFLAGS) $(IPATH) -DWITH_PTHREADS $< -o $@ $(LIBCAPLIB) $(LIBPSXLIB) -Wl,-wrap,pthread_create
+ 
+ noop: noop.c
+-	$(CC) $(CFLAGS) $< -o $@ --static
++	$(CC) $(CFLAGS) $< -o $@
+ 
+ clean:
+ 	rm -f psx_test psx_test_wrap libcap_psx_test libcap_launch_test *~

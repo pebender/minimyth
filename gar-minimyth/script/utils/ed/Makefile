@@ -1,7 +1,7 @@
 GARNAME = ed
 GARVERSION = 1.15
 CATEGORIES = utils
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/ed/
 DISTFILES = $(DISTNAME).tar.lz
 LICENSE = GPL3/FDL1_3
 
@@ -13,8 +13,8 @@ DEPENDS = lang/c
 BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = \
 	--prefix="$(prefix)" \

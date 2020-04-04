@@ -1,7 +1,7 @@
 GARNAME = bzip2
 GARVERSION = 1.0.8
 CATEGORIES = utils
-MASTER_SITES = https://sourceware.org/pub/$(GARNAME)/
+MASTER_SITES = https://sourceware.org/pub/bzip2/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-perl.patch.gar $(DISTNAME).patch
 LICENSE = bzip2
@@ -13,7 +13,7 @@ endef
 
 DEPENDS = lang/c
 
-BUILD_SCRIPTS   = custom
+BUILD_SCRIPTS = custom
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile shared
 
 BUILD_ARGS   = \

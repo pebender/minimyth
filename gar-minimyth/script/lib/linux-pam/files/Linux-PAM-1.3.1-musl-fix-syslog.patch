@@ -1,0 +1,22 @@
+diff -Naur Linux-PAM-1.3.1-old/modules/pam_lastlog/pam_lastlog.c Linux-PAM-1.3.1-new/modules/pam_lastlog/pam_lastlog.c
+--- Linux-PAM-1.3.1-old/modules/pam_lastlog/pam_lastlog.c	2020-03-29 14:05:19.352452086 -0700
++++ Linux-PAM-1.3.1-new/modules/pam_lastlog/pam_lastlog.c	2020-03-29 14:08:45.164440867 -0700
+@@ -10,6 +10,7 @@
+ 
+ #include "config.h"
+ 
++#include <paths.h>
+ #include <fcntl.h>
+ #include <time.h>
+ #include <errno.h>
+@@ -50,6 +51,10 @@
+ # define _PATH_BTMP "/var/log/btmp"
+ #endif
+ 
++#ifndef __GLIBC__
++#define logwtmp(args...)
++#endif
++
+ /* XXX - time before ignoring lock. Is 1 sec enough? */
+ #define LASTLOG_IGNORE_LOCK_TIME     1
+ 

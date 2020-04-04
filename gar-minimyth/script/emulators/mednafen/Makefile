@@ -1,5 +1,5 @@
 GARNAME = mednafen
-GARVERSION = 0.9.48
+GARVERSION = 1.24.1
 CATEGORIES = emulators
 MASTER_SITES = https://mednafen.github.io/releases/files/
 DISTFILES = $(DISTNAME).tar.xz
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/make lib/alsa-lib lib/libsndfile lib/SDL lib/SDL_net
+DEPENDS = lang/c lang/cxx build-tool/make lib/alsa-lib lib/libsndfile lib/SDL2 lib/SDL2_net
 BUILDDEPS =
 
 WORKSRC = $(WORKDIR)/$(GARNAME)
@@ -20,10 +20,8 @@ INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
-	--enable-shared \
-	--disable-static \
 	--disable-rpath \
-	--enable-nls \
+	--disable-nls \
 	--enable-threads=posix \
 	--disable-debugger \
 	--disable-cjk-fonts \
@@ -54,8 +52,11 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-libsndfile
 
 CONFIGURE_ENV = \
-	SDL_CONFIG=$(DESTDIR)$(bindir)/config/sdl-config
+	SDL_CONFIG=$(DESTDIR)$(bindir)/config/sdl2-config
 
 include ../../gar.mk
 
-LDFLAGS := $(LDFLAGS) -fwhole-program
+CPPFLAGS :=
+CFLAGS :=
+CXXFLAGS :=
+LDFLAGS :=

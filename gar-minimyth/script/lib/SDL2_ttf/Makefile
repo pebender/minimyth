@@ -1,5 +1,5 @@
 GARNAME = SDL2_ttf
-GARVERSION = 2.0.12
+GARVERSION = 2.0.15
 CATEGORIES = lib
 MASTER_SITES = https://www.libsdl.org/projects/SDL_ttf/release/
 DISTFILES = $(DISTNAME).tar.gz

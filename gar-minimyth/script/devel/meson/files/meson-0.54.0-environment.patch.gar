@@ -1,0 +1,70 @@
+diff -Naur meson-0.54.0-old/cross/@GAR_GARHOST@ meson-0.54.0-new/cross/@GAR_GARHOST@
+--- meson-0.54.0-old/cross/@GAR_GARHOST@	1969-12-31 16:00:00.000000000 -0800
++++ meson-0.54.0-new/cross/@GAR_GARHOST@	2020-03-31 14:14:19.045002957 -0700
+@@ -0,0 +1,37 @@
++[binaries]
++c = '@GAR_CC@'
++cpp = '@GAR_CXX@'
++ld = '@GAR_LD@'
++ar = '@GAR_AR@'
++ranlib = '@GAR_RANLIB@'
++objcopy = '@GAR_OBJCOPY@'
++as = '@GAR_AS@'
++strip = '@GAR_STRIP@'
++pkgconfig = 'pkg-config'
++
++[properties]
++needs_exe_wrapper = true
++sys_root = '@GAR_DESTDIR@'
++c_args = ['-march=@GAR_GARCH@', '-mtune=generic']
++cpp_args = ['-march=@GAR_GARCH@', '-mtune=generic']
++
++[host_machine]
++system = 'linux'
++cpu_family = '@GAR_GARCH_FAMILY@'
++cpu = '@GAR_GARCH@'
++endian = 'little'
++
++[paths]
++prefix='@GAR_prefix@'
++bindir='@GAR_bindir@'
++datadir='@GAR_datadir@'
++includedir='@GAR_includedir@'
++infodir='@GAR_infodir@'
++libdir='@GAR_libdir@'
++libexecdir='@GAR_libexecdir@'
++localedir='@GAR_datadir@/locale'
++localstatedir='@GAR_localstatedir@'
++mandir='@GAR_mandir@'
++sbindir='@GAR_sbindir@'
++sharedstatedir='@GAR_sharedstatedir@'
++sysconfdir='@GAR_sysconfdir@'
+diff -Naur meson-0.54.0-old/native/@GAR_GARBUILD@ meson-0.54.0-new/native/@GAR_GARBUILD@
+--- meson-0.54.0-old/native/@GAR_GARBUILD@	1969-12-31 16:00:00.000000000 -0800
++++ meson-0.54.0-new/native/@GAR_GARBUILD@	2020-03-31 14:14:19.046002957 -0700
+@@ -0,0 +1,25 @@
++[binaries]
++c = '@GAR_build_CC@'
++cpp = '@GAR_build_CXX@'
++ld = '@GAR_build_LD@'
++ar = '@GAR_build_AR@'
++ranlib = '@GAR_build_RANLIB@'
++objcopy = '@GAR_build_OBJCOPY@'
++as = '@GAR_build_AS@'
++strip = '@GAR_build_STRIP@'
++pkgconfig = 'pkg-config'
++
++[paths]
++prefix='@GAR_build_prefix@'
++bindir='@GAR_build_bindir@'
++datadir='@GAR_build_datadir@'
++includedir='@GAR_build_includedir@'
++infodir='@GAR_build_infodir@'
++libdir='@GAR_build_libdir@'
++libexecdir='@GAR_build_libexecdir@'
++localedir='@GAR_build_datadir@/locale'
++localstatedir='@GAR_build_localstatedir@'
++mandir='@GAR_build_mandir@'
++sbindir='@GAR_build_sbindir@'
++sharedstatedir='@GAR_build_sharedstatedir@'
++sysconfdir='@GAR_build_sysconfdir@'

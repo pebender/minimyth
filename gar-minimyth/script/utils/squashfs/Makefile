@@ -1,6 +1,6 @@
 GARNAME = squashfs-tools
 GARVERSION = 4.4
-CATEGORIES = lib
+CATEGORIES = utils
 MASTER_SITES = https://github.com/plougher/squashfs-tools/archive/
 DISTFILES = $(GARVERSION).tar.gz
 PATCHFILES = $(DISTNAME).patch.gar
@@ -12,7 +12,7 @@ endef
 
 DEPENDS = lang/c lib/zlib utils/xz
 
-BUILD_SCRIPTS   = $(WORKSRC)/squashfs-tools/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/squashfs-tools/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/squashfs-tools/Makefile
 
 include ../../gar.mk

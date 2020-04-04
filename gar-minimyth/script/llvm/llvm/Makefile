@@ -3,15 +3,7 @@ GARVERSION = $(LLVM_VERSION)
 CATEGORIES = llvm
 MASTER_SITES = https://www.llvm.org/releases/$(GARVERSION)/
 MASTER_SITES += https://github.com/llvm/llvm-project/releases/download/llvmorg-$(GARVERSION)/
-DISTFILES += llvm-$(GARVERSION).src.tar.xz
-DISTFILES += lldb-$(GARVERSION).src.tar.xz
-DISTFILES += lld-$(GARVERSION).src.tar.xz
-DISTFILES += clang-$(GARVERSION).src.tar.xz
-DISTFILES += compiler-rt-$(GARVERSION).src.tar.xz
-DISTFILES += libcxx-$(GARVERSION).src.tar.xz
-DISTFILES += libcxxabi-$(GARVERSION).src.tar.xz
-DISTFILES += libunwind-$(GARVERSION).src.tar.xz
-DISTFILES += polly-$(GARVERSION).src.tar.xz
+DISTFILES = llvm-project-$(LLVM_VERSION).tar.xz
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE.TXT
 
 DESCRIPTION = 
@@ -30,7 +22,7 @@ DEPENDS = lang/c lang/cxx build-tool/cmake \
 	lib/zlib \
 	lib/ncursesw
 
-WORKSRC = $(WORKDIR)/llvm
+WORKSRC = $(WORKDIR)/llvm-project-$(LLVM_VERSION)/$(GARNAME)
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake
@@ -71,7 +63,7 @@ CONFIGURE_ARGS  = \
 	-DLLVM_ENABLE_LTO="thin" \
 	-DLLVM_INSTALL_TOOLCHAIN_ONLY=OFF \
 	-DLLVM_INSTALL_BINUTILS_SYMLINKS=ON \
-	-DLLVM_ENABLE_PROJECTS="libcxx;libcxxabi;libunwind;compiler-rt" \
+	-DLLVM_ENABLE_PROJECTS="" \
 	-DLIBCXX_CXX_ABI="default" \
 	-DLIBCXX_USE_COMPILER_RT=ON \
 	-DLIBCXXABI_USE_COMPILER_RT=ON \
@@ -100,19 +92,3 @@ endif
 GAR_EXTRA_CONF += llvm/llvm/toolchain.mk
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk
-
-CPPFLAGS += -nostdinc++
-CFLAGS += -nostdinc++
-CXXFLAGS += -nostdinc++
-
-post-extract:
-	@mv -fv $(WORKDIR)/llvm-$(GARVERSION).src $(WORKDIR)/llvm
-	@mv -fv $(WORKDIR)/lldb-$(GARVERSION).src $(WORKDIR)/lldb
-	@mv -fv $(WORKDIR)/lld-$(GARVERSION).src $(WORKDIR)/lld
-	@mv -fv $(WORKDIR)/clang-$(GARVERSION).src $(WORKDIR)/clang
-	@mv -fv $(WORKDIR)/polly-$(GARVERSION).src $(WORKDIR)/polly
-	@mv -fv $(WORKDIR)/libcxx-$(GARVERSION).src $(WORKDIR)/libcxx
-	@mv -fv $(WORKDIR)/libcxxabi-$(GARVERSION).src $(WORKDIR)/libcxxabi
-	@mv -fv $(WORKDIR)/libunwind-$(GARVERSION).src $(WORKDIR)/libunwind
-	@mv -fv $(WORKDIR)/compiler-rt-$(GARVERSION).src $(WORKDIR)/compiler-rt
-	@$(MAKECOOKIE)

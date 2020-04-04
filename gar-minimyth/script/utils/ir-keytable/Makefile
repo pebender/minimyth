@@ -1,7 +1,7 @@
 GARNAME = v4l-utils
 GARVERSION = 1.18.0
 CATEGORIES = utils
-MASTER_SITES = https://linuxtv.org/downloads/$(GARNAME)/
+MASTER_SITES = https://linuxtv.org/downloads/v4l-utils/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-rc_keymaps.patch

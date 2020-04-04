@@ -1,7 +1,7 @@
 GARNAME = grep
 GARVERSION = 3.4
 CATEGORIES = utils
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/grep/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL3
 
@@ -12,8 +12,8 @@ endef
 DEPENDS = lang/c
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \

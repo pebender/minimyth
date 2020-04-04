@@ -1,5 +1,5 @@
 GARNAME = avahi
-GARVERSION = 0.7
+GARVERSION = 0.8
 CATEGORIES = lib
 MASTER_SITES = https://avahi.org/download/
 DISTFILES = $(DISTNAME).tar.gz
@@ -20,11 +20,14 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
+	--disable-nls \
 	--disable-glib \
 	--disable-gobject \
 	--disable-introspection \
+	--disable-libevent \
 	--disable-qt3 \
 	--disable-qt4 \
+	--disable-qt5 \
 	--disable-gtk \
 	--disable-gtk3 \
 	--enable-dbus \

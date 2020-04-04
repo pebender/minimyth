@@ -3,9 +3,8 @@ GARVERSION = 1.3.6
 CATEGORIES = lib
 MASTER_SITES = https://ftp.osuosl.org/pub/xiph/releases/vorbis/
 DISTFILES = $(DISTNAME).tar.xz
-xPATCHFILES = \
-	$(DISTNAME)-automake_1.13.patch \
-	$(DISTNAME)-configure.patch
+PATCHFILES = \
+	$(DISTNAME)-check-for-clang.patch
 LICENSE = xiph
 xiph_LICENSE_TEXT = $(WORKSRC)/COPYING
 
@@ -29,6 +28,11 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-oggtest
 
 include ../../gar.mk
+
+pre-configure:
+	@$(call RUN_AUTOTOOLS)
+	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
+	@$(MAKECOOKIE)
 
 post-install:
 	rm -f $(DESTDIR)$(libdir)/libvorbis.la

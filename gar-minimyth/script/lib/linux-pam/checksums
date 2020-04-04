@@ -1,0 +1,5 @@
+558ff53b0fc0563ca97f79e911822165  download/Linux-PAM-1.3.1.tar.xz
+756155ce0ce25a28d7fab1f8d74c995f  download/Linux-PAM-1.3.1-musl-fix-pam_exec.patch
+0699e1c3258b79c428f08ed83cc3668a  download/Linux-PAM-1.3.1-musl-fix-uint.patch
+af14785e2ae253ac7498549e4c5a11c6  download/Linux-PAM-1.3.1-musl-fix-syslog.patch
+3772d378aac08f1c3ceb2f5f99bcf930  download/Linux-PAM-1.3.1-disable-pam_rhosts.patch

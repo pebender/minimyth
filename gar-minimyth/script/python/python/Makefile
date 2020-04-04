@@ -31,8 +31,11 @@ CONFIGURE_ENV += \
 	PKG_CONFIG="$(build_DESTDIR)$(build_bindir)/pkg-config"
 
 ifneq ($(DESTIMG),build)
+CONFIGURE_ARGS += \
+	--without-ensurepip
 CONFIGURE_ENV += \
 	_PYTHON_HOST_PLATFORM=$(GARHOST) \
+	HOSTPYTHON="$(build_DESTDIR)$(build_bindir)/python" \
 	ax_cv_c_float_words_bigendian=no \
 	ac_cv_file_dev_ptc=no \
 	ac_cv_file_dev_ptmx=yes \
@@ -40,14 +43,15 @@ CONFIGURE_ENV += \
 	ac_cv_file__dev_ptmx=yes \
 	ac_cv_func_lchflags_works=no \
 	ac_cv_func_chflags_works=no \
-	ac_cv_func_printf_zd=yes
+	ac_cv_func_printf_zd=yes \
+	ac_cv_header_stropts_h=no
 endif
 
 include ../../gar.mk
 
-# Python 3.8.1 cannot find zlib without this.
-CPPFLAGS += -I$(DESTDIR)$(includedir)
-LDFLAGS += -L$(DESTDIR)$(libdir)
+# Python 3.8.2 cannot find zlib without this.
+#CPPFLAGS += -I$(DESTDIR)$(includedir)
+#LDFLAGS += -L$(DESTDIR)$(libdir)
 
 post-install: post-install-configs
 

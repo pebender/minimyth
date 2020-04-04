@@ -1,5 +1,5 @@
 GARNAME = e2fsprogs
-GARVERSION = 1.45.5
+GARVERSION = 1.45.6
 CATEGORIES = disk
 MASTER_SITES = https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
@@ -52,6 +52,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	BUILD_CC="$(build_CC)" \
 	BUILD_CFLAGS="$(build_CFLAGS)" \
 	BUILD_LDFLAGS="$(build_LDFLAGS)"
+
+build_DESTDIR = $(build_DESTDIR_swapped)
+build_rootdir = $(build_rootdir_swapped)
 
 include ../../gar.mk
 

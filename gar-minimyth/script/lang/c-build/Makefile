@@ -7,9 +7,7 @@ endef
 
 BUILDDEPS = lang/c \
 	native/native \
-	cc-build/ccache \
-	toolchain/toolchain \
-	binutils/binutils \
+	toolchain-build \
 	lang/libc \
 	lang/libcxx \
 	utils/bash \

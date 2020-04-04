@@ -45,7 +45,7 @@ sub start
             $command = $command . ' ' . q(-O domain);
             $command = $command . ' ' . q(-O broadcast);
             $command = $command . ' ' . q(-O ntpsrv);
-            $command = $command . ' ' . q(-O tcode);
+            $command = $command . ' ' . q(-O tzdbstr);
 
             $command = $command . ' ' .  q(-p /var/run/udhcpc.pid);
             $command = $command . ' ' .  q(-s /etc/udhcpc.script);

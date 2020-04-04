@@ -1,7 +1,7 @@
 GARNAME = bc
 GARVERSION = 1.06
 CATEGORIES = utils
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/bc/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = GPL2
 
@@ -12,8 +12,8 @@ endef
 DEPENDS = lang/c
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
 

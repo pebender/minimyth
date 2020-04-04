@@ -1,5 +1,5 @@
 GARNAME = fakeroot
-GARVERSION = 1.18.4
+GARVERSION = 1.22
 CATEGORIES = devel
 MASTER_SITES = https://mirrors.aliyun.com/oldubuntu-releases/ubuntu/pool/main/f/$(GARNAME)/
 DISTFILES = $(GARNAME)_$(GARVERSION).orig.tar.bz2
@@ -9,13 +9,14 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c
+DEPENDS = lang/c lib/libcap
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure shell
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--disable-silent-rules \
 	--enable-shared \
 	--disable-static
 BUILD_ARGS     = \
@@ -25,7 +26,11 @@ INSTALL_ARGS   = \
 
 include ../../gar.mk
 
-pre-configure:
+ifneq ($(DESTIMG),build)
+CFLAGS += -D_STAT_VER=0
+endif
+
+x-pre-configure:
 	@cd $(WORKSRC) ; mkdir -p build-aux
 	@$(call RUN_AUTOTOOLS)
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)

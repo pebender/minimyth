@@ -1,0 +1,24 @@
+diff -Naur ntp-4.2.8p14-old/ntpdc/Makefile.am ntp-4.2.8p14-new/ntpdc/Makefile.am
+--- ntp-4.2.8p14-old/ntpdc/Makefile.am	2017-03-21 06:04:18.000000000 -0700
++++ ntp-4.2.8p14-new/ntpdc/Makefile.am	2020-04-01 15:29:52.760045960 -0700
+@@ -126,7 +126,7 @@
+ ntpdc-layout.o: nl.c
+ 
+ layout.here: ntpdc-layout
+-	./ntpdc-layout > $@
++	ntp-ntpdc-layout > $@
+ 
+ check-layout: ntpdc-layout $(srcdir)/layout.std layout.here
+ 	cmp $(srcdir)/layout.std layout.here && echo stamp > $@
+diff -Naur ntp-4.2.8p14-old/ntpdc/Makefile.in ntp-4.2.8p14-new/ntpdc/Makefile.in
+--- ntp-4.2.8p14-old/ntpdc/Makefile.in	2020-03-03 17:40:11.000000000 -0800
++++ ntp-4.2.8p14-new/ntpdc/Makefile.in	2020-04-01 15:29:52.760045960 -0700
+@@ -1205,7 +1205,7 @@
+ ntpdc-layout.o: nl.c
+ 
+ layout.here: ntpdc-layout
+-	./ntpdc-layout > $@
++	ntp-ntpdc-layout > $@
+ 
+ check-layout: ntpdc-layout $(srcdir)/layout.std layout.here
+ 	cmp $(srcdir)/layout.std layout.here && echo stamp > $@

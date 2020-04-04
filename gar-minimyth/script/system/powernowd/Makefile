@@ -3,6 +3,7 @@ GARVERSION = 1.00
 CATEGORIES = system
 MASTER_SITES = http://www.deater.net/john/
 DISTFILES = $(DISTNAME).tar.gz
+PATCHFILES = $(DISTNAME)-inline.patch
 LICENSE = GPL2
 
 DESCRIPTION =
@@ -15,8 +16,6 @@ BUILD_SCRIPTS   = custom
 INSTALL_SCRIPTS = custom
 
 include ../../gar.mk
-
-LDFLAGS := $(LDFLAGS) -fwhole-program
 
 build-custom:
 	cd $(WORKSRC) ; $(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o powernowd powernowd.c

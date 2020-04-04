@@ -1,0 +1,29 @@
+diff -Naur old/Make.Rules new/Make.Rules
+--- old/Make.Rules	2020-03-28 23:35:32.000000000 -0700
++++ new/Make.Rules	2020-03-29 18:33:08.871576101 -0700
+@@ -49,18 +49,18 @@
+ KERNEL_HEADERS := $(topdir)/libcap/include/uapi
+ IPATH += -fPIC -I$(KERNEL_HEADERS) -I$(topdir)/libcap/include
+ 
+-CC := gcc # -std=c99
+-CFLAGS := -O2 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+-BUILD_CC := $(CC)
+-BUILD_CFLAGS := $(CFLAGS) $(IPATH)
+-AR := ar
+-RANLIB := ranlib
++CC ?= gcc # -std=c99
++CFLAGS += -O2 -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
++BUILD_CC ?= $(CC)
++BUILD_CFLAGS += $(IPATH)
++AR ?= ar
++RANLIB ?= ranlib
+ DEBUG = -g #-DDEBUG
+ WARNINGS=-Wall -Wwrite-strings \
+         -Wpointer-arith -Wcast-qual -Wcast-align \
+         -Wstrict-prototypes -Wmissing-prototypes \
+         -Wnested-externs -Winline -Wshadow
+-LD=$(CC) -Wl,-x -shared
++LD := $(CC) -Wl,-x -shared
+ LDFLAGS := #-g
+ LIBCAPLIB := -L$(topdir)/libcap -lcap
+ LIBPSXLIB := -L$(topdir)/libcap -lpsx -lpthread

@@ -1,8 +1,8 @@
-GARNAME = libconfuse
+GARNAME = confuse
 GARVERSION = 3.2.2
 CATEGORIES = lib
-MASTER_SITES = https://github.com/martinh/libconfuse/archive/
-DISTFILES = v$(GARVERSION).tar.gz
+MASTER_SITES = https://github.com/martinh/libconfuse/releases/download/v$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL3
 
 DESCRIPTION = 
@@ -24,10 +24,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-rpath
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libconfuse.la

@@ -1,5 +1,5 @@
 GARNAME = xorg-server
-GARVERSION = 1.20.7
+GARVERSION = 1.20.8
 CATEGORIES = xorg
 MASTER_SITES = https://www.x.org/releases/individual/xserver/
 DISTFILES = $(DISTNAME).tar.bz2

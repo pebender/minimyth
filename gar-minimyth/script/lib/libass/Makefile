@@ -1,8 +1,8 @@
 GARNAME = libass
 GARVERSION = 0.14.0
 CATEGORIES = lib
-MASTER_SITES = https://github.com/libass/libass/archive/
-DISTFILES = $(GARVERSION).tar.gz
+MASTER_SITES = https://github.com/libass/libass/releases/download/$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = ISC
 
 DESCRIPTION =
@@ -25,10 +25,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 include ../../gar.mk
 
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
-	@$(MAKECOOKIE)
+LDFLAGS += -Wl,-z,notext
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libass.la

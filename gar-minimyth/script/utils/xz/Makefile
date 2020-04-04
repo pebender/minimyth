@@ -1,5 +1,5 @@
 GARNAME = xz
-GARVERSION = 5.2.4
+GARVERSION = 5.2.5
 CATEGORIES = utils
 MASTER_SITES = https://tukaani.org/xz/
 DISTFILES = $(DISTNAME).tar.bz2

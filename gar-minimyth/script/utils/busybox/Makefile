@@ -8,18 +8,8 @@ DISTFILES = $(DISTNAME).tar.bz2
 DISTFILES += $(CONFIGFILE)
 PATCHFILES = \
 	$(DISTNAME)-werror.patch \
-	$(DISTNAME)-be5a505d.patch
-#PATCHFILES  = \
-	$(DISTNAME)-kernel_ver.patch \
-	$(DISTNAME)-ntpd.patch \
-	$(DISTNAME)-pkg-config-selinux.patch \
-	$(DISTNAME)-sys-resource.patch
-#PATCHFILES += \
-	$(DISTNAME)-sys_resource_h.patch
-#PATCHFILES += \
-	$(DISTNAME)-check_cc.patch \
+	$(DISTNAME)-be5a505d.patch \
 	$(DISTNAME)-dhcp_log_server.patch \
-	$(DISTNAME)-dhcp_tcode.patch \
 	$(DISTNAME)-tftp_timeout.patch
 LICENSE = GPL2
 

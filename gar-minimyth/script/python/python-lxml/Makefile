@@ -1,5 +1,5 @@
 GARNAME = python-lxml
-GARVERSION = 3.0.2
+GARVERSION = 4.5.0
 CATEGORIES = python
 MASTER_SITES = http://lxml.de/files/
 DISTFILES = $(patsubst python-%,%,$(GARNAME))-$(GARVERSION).tgz
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS   = lang/c python/python
+DEPENDS = lang/c python/python lib/libxml2
 
 WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 
@@ -26,7 +26,7 @@ INSTALL_ENV    = \
 	PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
 
 ifneq ($(DESTIMG),build)
-BUILD_ARGS += --cross-compile
+#BUILD_ARGS += --cross-compile
 BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 endif
 

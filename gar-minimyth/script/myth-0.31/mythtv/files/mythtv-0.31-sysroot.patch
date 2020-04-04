@@ -1,0 +1,88 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/mytharchive/mytharchive/mytharchive.pro mythtv-0.31-20200322-c8c59f5-new/mythplugins/mytharchive/mytharchive/mytharchive.pro
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/mytharchive/mytharchive/mytharchive.pro	2020-03-28 16:53:43.921611118 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/mytharchive/mytharchive/mytharchive.pro	2020-03-28 16:53:46.270610990 -0700
+@@ -2,8 +2,8 @@
+ include ( ../../settings.pro )
+ include ( ../../programs-libs.pro )
+ 
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libavformat
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libswscale
++INCLUDEPATH += $${PREFIX}/include/mythtv/libavformat
++INCLUDEPATH += $${PREFIX}/include/mythtv/libswscale
+ DEPENDPATH *= $${INCLUDEPATH}
+ 
+ LIBS += -lmythswscale
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/mythmusic.pro mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/mythmusic.pro
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/mythmusic.pro	2020-03-28 16:53:43.939611117 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/mythmusic.pro	2020-03-28 16:53:46.270610990 -0700
+@@ -15,8 +15,8 @@
+ target.path = $${LIBDIR}/mythtv/plugins
+ INSTALLS += target
+ 
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/metadata
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/goom
++INCLUDEPATH += $${PREFIX}/include/mythtv/metadata
++INCLUDEPATH += $${PREFIX}/include/mythtv/goom
+ INCLUDEPATH += $${CONFIG_TAGLIB_INCLUDES}
+ 
+ LIBS += -lmythavformat
+@@ -64,8 +64,8 @@
+ SOURCES += lyricsview.cpp
+ 
+ cdio {
+-    INCLUDEPATH -= $${SYSROOT}/usr/include/cdda
+-    INCLUDEPATH *= $${SYSROOT}/usr/include/cdio
++    INCLUDEPATH -= /usr/include/cdda
++    INCLUDEPATH *= /usr/include/cdio
+     HEADERS += cddecoder.h cdrip.h cddb.h
+     SOURCES += cddecoder.cpp cdrip.cpp cddb.cpp
+     QT += network
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/programs-libs.pro mythtv-0.31-20200322-c8c59f5-new/mythplugins/programs-libs.pro
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/programs-libs.pro	2020-03-28 16:53:43.857611122 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/programs-libs.pro	2020-03-28 16:53:46.270610990 -0700
+@@ -1,11 +1,11 @@
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmythbase
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmythui
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmyth
+-INCLUDEPATH += $${SYSROOT}$${PREFIX}/include/mythtv/libmythservicecontracts
++INCLUDEPATH += $${PREFIX}/include/mythtv
++INCLUDEPATH += $${PREFIX}/include/mythtv/libmythbase
++INCLUDEPATH += $${PREFIX}/include/mythtv/libmythui
++INCLUDEPATH += $${PREFIX}/include/mythtv/libmyth
++INCLUDEPATH += $${PREFIX}/include/mythtv/libmythservicecontracts
+ DEPENDPATH *= $${INCLUDEPATH}
+ 
+-LIBS += -L$${SYSROOT}$${LIBDIR} $$EXTRA_LIBS -lmythbase-$$LIBVERSION
++LIBS += -L$${LIBDIR} $$EXTRA_LIBS -lmythbase-$$LIBVERSION
+ LIBS += -lmyth-$$LIBVERSION -lmythui-$$LIBVERSION -lmythupnp-$$LIBVERSION
+ LIBS += -lmythservicecontracts-$$LIBVERSION
+ LIBS += -lmythavcodec
+@@ -14,7 +14,7 @@
+ LIBS += -lmythswresample
+ 
+ # On Windows, libs are stored with the binaries:
+-mingw:LIBS += -L$${SYSROOT}$${PREFIX}/bin
++mingw:LIBS += -L$${PREFIX}/bin
+ 
+ # Trigger rebuilds if installed MythTV libs have changed
+ include (targetdep.pro)
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/settings.pro mythtv-0.31-20200322-c8c59f5-new/mythplugins/settings.pro
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/settings.pro	2020-03-28 16:53:43.857611122 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/settings.pro	2020-03-28 16:53:46.270610990 -0700
+@@ -4,12 +4,12 @@
+ 
+ LIBVERSION = 31
+ 
+-MY_INSTALL_INCLUDE = $${SYSROOT}$${PREFIX}/include
++MY_INSTALL_INCLUDE = $${PREFIX}/include
+ !contains(MY_INSTALL_INCLUDE, /usr/include$) {
+-    INCLUDEPATH += $${SYSROOT}$${PREFIX}/include
++    INCLUDEPATH += $${PREFIX}/include
+ }
+ 
+-LIBS *= -L$${SYSROOT}$${PREFIX}/$${LIBDIRNAME}
++LIBS *= -L$${PREFIX}/$${LIBDIRNAME}
+ 
+ isEmpty(TARGET_OS) : win32 {
+     CONFIG += mingw

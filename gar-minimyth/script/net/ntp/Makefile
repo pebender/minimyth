@@ -1,5 +1,5 @@
 GARNAME = ntp
-GARVERSION = 4.2.8p13
+GARVERSION = 4.2.8p14
 CATEGORIES = net
 MASTER_SITES = https://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/
 DISTFILES = $(DISTNAME).tar.gz
@@ -29,10 +29,12 @@ INSTALL_SCRIPTS   += cross
 endif
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+	--config-cache \
 	--disable-all-clocks \
 	--disable-ipv6 \
 	--without-rpath \
-	--without-crypto
+	--without-crypto \
+	--with-yielding-select=yes
 	
 include ../../gar.mk
 

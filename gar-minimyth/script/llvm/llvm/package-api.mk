@@ -1,4 +1,4 @@
-LLVM_VERSION = 9.0.1
+LLVM_VERSION = 10.0.0
 
 install-config:
 	@rm -fv $(DESTDIR)$(bindir)/config/llvm-config
@@ -26,10 +26,10 @@ install-links:
 	@ln -sfv clang++ $(DESTDIR)$(bindir)/$(GARHOST)-clang++
 	@ln -sfv clang-cpp $(DESTDIR)$(bindir)/$(GARHOST)-clang++
 	@ln -sfv ld.lld $(DESTDIR)$(bindir)/$(GARHOST)-ld.lld
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/$(GARHOST)-clang
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/$(GARHOST)-clang++
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/clang
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/clang++
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/cc
-	@ln -sfv ccache $(ccache_DESTDIR)$(ccache_bindir)/c++
+	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-clang
+	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-clang++
+	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/clang
+	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/clang++
+	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/cc
+	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/c++
 	@$(MAKECOOKIE)

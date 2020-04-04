@@ -1,5 +1,5 @@
 GARNAME = glew
-GARVERSION = 2.1.0
+GARVERSION = 2.2.0
 CATEGORIES = xorg
 MASTER_SITES = https://sourceforge.net/projects/glew/files/glew/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tgz
@@ -27,7 +27,7 @@ BUILD_ARGS  = \
 	CC="$(CC)" \
 	LD="$(CC)" \
 	AR="$(AR)" \
-	STRIP="$(STRIP)" \
+	STRIP="true" \
 	CFLAGS.EXTRA="$(CFLAGS)" \
 	LDFLAGS.EXTRA="$(LDFLAGS)"
 INSTALL_ARGS = \
@@ -39,7 +39,8 @@ INSTALL_ARGS = \
 	CC="$(CC)" \
 	LD="$(CC)" \
 	AR="$(AR)" \
-	STRIP="$(STRIP)" \
+	STRIP="true" \
+	CFLAGS.EXTRA="$(CFLAGS)" \
 	CFLAGS.EXTRA="$(CFLAGS)" \
 	LDFLAGS.EXTRA="$(LDFLAGS)"
 

@@ -1,0 +1,49 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythmetadata/globals.cpp mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythmetadata/globals.cpp
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythmetadata/globals.cpp	2020-03-28 16:53:48.353610877 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythmetadata/globals.cpp	2020-03-28 16:53:50.629610753 -0700
+@@ -44,5 +44,5 @@
+ #ifdef Q_OS_MAC
+ const QString DEFAULT_VIDEOSTARTUP_DIR = QDir::homePath() + "/Movies";
+ #else
+-const QString DEFAULT_VIDEOSTARTUP_DIR = "/share/Movies/dvd";
++const QString DEFAULT_VIDEOSTARTUP_DIR = "/mnt/video";
+ #endif
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/programs/mythfrontend/globalsettings.cpp mythtv-0.31-20200322-c8c59f5-new/mythtv/programs/mythfrontend/globalsettings.cpp
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/programs/mythfrontend/globalsettings.cpp	2020-03-28 16:53:48.550610866 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/programs/mythfrontend/globalsettings.cpp	2020-03-28 16:53:50.630610752 -0700
+@@ -1422,7 +1422,7 @@
+     gc->addSelection(PlaybackSettings::tr("Record date"), "Date");
+     gc->addSelection(PlaybackSettings::tr("Season/Episode"), "Season");
+     gc->addSelection(PlaybackSettings::tr("Original air date"), "OrigAirDate");
+-    gc->addSelection(PlaybackSettings::tr("Program ID"), "Id");
++    gc->addSelection(PlaybackSettings::tr("Program ID"), "Id", true);
+ 
+     gc->setHelpText(PlaybackSettings::tr("Selects how to sort a show's "
+                                          "episodes"));
+@@ -1725,7 +1725,7 @@
+     gc->setLabel(PlaybackSettings::tr("Action on playback exit"));
+ 
+     gc->addSelection(PlaybackSettings::tr("Just exit"), "0");
+-    gc->addSelection(PlaybackSettings::tr("Save position and exit"), "2");
++    gc->addSelection(PlaybackSettings::tr("Save position and exit"), "2", true);
+     gc->addSelection(PlaybackSettings::tr("Always prompt (excluding Live TV)"),
+                      "1");
+     gc->addSelection(PlaybackSettings::tr("Always prompt (including Live TV)"),
+@@ -1747,7 +1747,7 @@
+ 
+     gc->setLabel(PlaybackSettings::tr("Prompt at end of recording"));
+ 
+-    gc->setValue(false);
++    gc->setValue(true);
+ 
+     gc->setHelpText(PlaybackSettings::tr("If enabled, a menu will be displayed "
+                                          "allowing you to delete the recording "
+@@ -1845,7 +1845,7 @@
+ //
+ //     gc->setLabel(PlaybackSettings::tr("Display live preview of recordings"));
+ //
+-//     gc->setValue(true);
++//     gc->setValue(false);
+ //
+ //     gc->setHelpText(PlaybackSettings::tr("If enabled, a preview of the recording "
+ //                     "will play in a small window on the \"Watch a "

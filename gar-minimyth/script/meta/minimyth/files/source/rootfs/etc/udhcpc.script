@@ -59,7 +59,7 @@ case "${1}" in
         router=${MM_DHCP_ROUTERS:-${router}}
         hostname=${MM_DHCP_HOST_NAME:-${hostname}}
         domain=${MM_DHCP_DOMAIN_NAME:-${domain}}
-        tcode=${MM_DHCP_TCODE:-${tcode}}
+        tzdbstr=${MM_DHCP_TCODE:-${tzdbstr}}
         dns=${MM_DHCP_DOMAIN_NAME_SERVERS:-${dns}}
         ntpsrv=${MM_DHCP_NTP_SERVERS:-${ntpsrv}}
         logsrv=${MM_DHCP_LOG_SERVERS:-${logsrv}}
@@ -100,18 +100,18 @@ case "${1}" in
         fi
 
         # Set time zone.
-        if   /usr/bin/test -z "${tcode}" ; then
+        if   /usr/bin/test -z "${tzdbstr}" ; then
             /bin/rm -f ${TZ_CONF}
-        elif /usr/bin/test ! -r /usr/share/zoneinfo/${tcode} ; then
+        elif /usr/bin/test ! -r /usr/share/zoneinfo/${tzdbstr} ; then
             /bin/rm -f ${TZ_CONF}
             /usr/bin/logger -s -t udhcpc -p "daemon.err" \
-                "error: TCode (MM_DHCP_TCODE) '${tcode}' not valid."
+                "error: TCode (MM_DHCP_TCODE) '${tzdbstr}' not valid."
         else
             if /usr/bin/test ! -e ${TZ_CONF} ; then
-                /bin/ln -s /usr/share/zoneinfo/${tcode} ${TZ_CONF}
+                /bin/ln -s /usr/share/zoneinfo/${tzdbstr} ${TZ_CONF}
             else
-                if /usr/bin/test ! `/usr/bin/readlink -f ${TZ_CONF}` = /usr/share/zoneinfo/${tcode} ; then
-                    /bin/ln -sf /usr/share/zoneinfo/${tcode} ${TZ_CONF}
+                if /usr/bin/test ! `/usr/bin/readlink -f ${TZ_CONF}` = /usr/share/zoneinfo/${tzdbstr} ; then
+                    /bin/ln -sf /usr/share/zoneinfo/${tzdbstr} ${TZ_CONF}
                 fi
             fi
         fi

@@ -16,10 +16,12 @@ DEPENDS    =
 BUILDDEPS  = devel/qmake
 endif
 
-CONFIGURE_SCRIPTS = platform-mkspec
 ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = platform-mkspec $(WORKSRC)/configure
-INSTALL_SCRIPTS = qmake mkspecs default-mkspec
+INSTALL_SCRIPTS = qmake mkspecs platform-mkspec default-mkspec
+else
+CONFIGURE_SCRIPTS = platform-mkspec
+INSTALL_SCRIPTS = platform-mkspec
 endif
 
 CONFIGURE_ARGS = \
@@ -109,55 +111,49 @@ include ../../gar.mk
 #LDFLAGS  :=
 
 MKSPECS_BUILD_DIR   = $(WORKSRC)/mkspecs
-MKSPECS_INSTALL_DIR = $(build_DESTDIR)$(build_qt5libdir)/mkspecs
+MKSPECS_INSTALL_DIR = $(build_DESTDIR)$(build_qt5prefix)/mkspecs
+MKSPECS_PARENT = $(strip \
+	$(if $(filter i386,$(GARCH_FAMILY)),linux-clang-libc++-32) \
+	$(if $(filter x86_64,$(GARCH_FAMILY)),linux-clang-libc++) \
+)
 
-UPDATE_PLATFORM = sed -e 's%^\($(strip $(1))[ \t]*$(strip $(2))=[ \t]*\).*%\1$(strip $(3))%g' -i $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf~
 # We should not need to provide QMAKE_INCDIR or QMAKE_LIBDIR since they are compiled into the compiler and linker.
 # However, the QT configure program does not find the supported libraries without them.
 # We add --preserve=timestamps to QMAKE_COPY so that files installed using qmake generated make files keep their
 # original dates. This keeps the dates of the MythTV themes with their original dates so that themecahes are not
 # needlessly regenerated when MiniMyth is updated.
 configure-platform-mkspec:
-	mkdir -pv $(MKSPECS_BUILD_DIR)
-	rm -rfv $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)
-	$(if $(filter i386,$(GARCH_FAMILY)),cd $(MKSPECS_BUILD_DIR) && cp -rfv linux-g++-32 minimyth-$(DESTIMG),)
-	$(if $(filter x86_64,$(GARCH_FAMILY)),cd $(MKSPECS_BUILD_DIR) && cp -rfv linux-g++-64 minimyth-$(DESTIMG),)
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && echo "QMAKE_CFLAGS_RELEASE = $(CFLAGS)"                                 >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat qmake.conf                   | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat ../common/linux.conf         | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat ../common/gcc-base-unix.conf | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat ../common/gcc-base.conf      | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat ../common/sanitize.conf      | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat ../common/g++-unix.conf      | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat ../common/g++-base.conf      | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && cat ../common/unix.conf          | grep -v '^include' | grep -v '^load' >> qmake.conf~
-	cd $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG) && echo 'load(qt_config)'                                                  >> qmake.conf~
-	$(call UPDATE_PLATFORM, QMAKE_COPY           , , cp -f --preserve=timestamps)
-	$(call UPDATE_PLATFORM, QMAKE_YACC           , , bison -y)
-	$(call UPDATE_PLATFORM, QMAKE_COMPILER       , , $(CC))
-	$(call UPDATE_PLATFORM, QMAKE_CC             , , $(CC))
-	$(call UPDATE_PLATFORM, QMAKE_CXX            , , $(CXX))
-	$(call UPDATE_PLATFORM, QMAKE_LINK           , , $(CXX))
-	$(call UPDATE_PLATFORM, QMAKE_LINK_SHLIB     , , $(CXX))
-	$(call UPDATE_PLATFORM, QMAKE_CFLAGS_RELEASE ,+,)
-	$(call UPDATE_PLATFORM, QMAKE_CFLAGS_RELEASE ,-,)
-	$(call UPDATE_PLATFORM, QMAKE_AR             , , $(AR) cqs)
-	$(call UPDATE_PLATFORM, QMAKE_AR_LTCG        , , $(AR) cqs)
-	$(call UPDATE_PLATFORM, QMAKE_NM             , , $(NM) -P)
-	$(call UPDATE_PLATFORM, QMAKE_NM_LTCG        , , $(NM) -P)
-	$(call UPDATE_PLATFORM, QMAKE_RANLIB         , , $(RANLIB))
-	$(call UPDATE_PLATFORM, QMAKE_OBJCOPY        , , $(OBJCOPY))
-	$(call UPDATE_PLATFORM, QMAKE_STRIP          , , $(STRIP))
-	$(call UPDATE_PLATFORM, QMAKE_CFLAGS         , , $(CFLAGS))
-	$(call UPDATE_PLATFORM, QMAKE_LFLAGS         , , $(LDFLAGS))
-	$(call UPDATE_PLATFORM, QMAKE_INCDIR         , , $(DESTDIR)$(includedir))
-	$(call UPDATE_PLATFORM, QMAKE_LIBDIR         , , $(DESTDIR)$(libdir))
-	$(call UPDATE_PLATFORM, QMAKE_INCDIR_X11     , , $(DESTDIR)$(includedir))
-	$(call UPDATE_PLATFORM, QMAKE_LIBDIR_X11     , , $(DESTDIR)$(libdir))
-	$(call UPDATE_PLATFORM, QMAKE_INCDIR_OPENGL  , , $(DESTDIR)$(includedir))
-	$(call UPDATE_PLATFORM, QMAKE_LIBDIR_OPENGL  , , $(DESTDIR)$(libdir))
-	rm -fv $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
-	mv -fv $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf~ $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@mkdir -pv $(MKSPECS_BUILD_DIR)
+	@rm -rfv $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)
+	@mkdir -pv $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)
+	@echo "include(../$(MKSPECS_PARENT)/qmake.conf)"           >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo '#include "../$(MKSPECS_PARENT)/qplatformdefs.h"'    >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qplatformdefs.h
+	@echo "QMAKE_COPY           = cp -f --preserve=timestamps" >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_YACC           = bison -y"                    >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_CC             = $(CC)"                       >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_CXX            = $(CXX)"                      >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_C_LINK         = $(CC)"                       >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_C_LINK_SHLIB   = $(CCC)"                      >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_LINK           = $(CXX)"                      >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_LINK_SHLIB     = $(CXX)"                      >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_CFLAGS         = $(CFLAGS)"                   >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_CXXFLAGS       = $(CXXFLAGS)"                 >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_AR             = $(AR) cqs"                   >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_AR_LTCG        = $(AR) cqs"                   >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_NM             = $(NM) -P"                    >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_NM_LTCG        = $(NM) -P"                    >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_RANLIB         = $(RANLIB)"                   >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_OBJCOPY        = $(OBJCOPY)"                  >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_STRIP          = $(STRIP)"                    >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_CFLAGS         = $(CFLAGS)"                   >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_LFLAGS         = $(LDFLAGS)"                  >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_INCDIR         ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_LIBDIR         ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_INCDIR_X11     ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_LIBDIR_X11     ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_INCDIR_OPENGL  ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_LIBDIR_OPENGL  ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "load(qt_config)"                                      >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
 	@$(MAKECOOKIE)
 
 $(WORKSRC)/configure: configure-platform-spec

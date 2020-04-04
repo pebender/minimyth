@@ -1,5 +1,5 @@
 GARNAME = kmod
-GARVERSION = 26
+GARVERSION = 27
 CATEGORIES = lib
 MASTER_SITES = https://www.kernel.org/pub/linux/utils/kernel/kmod/
 DISTFILES = $(DISTNAME).tar.xz

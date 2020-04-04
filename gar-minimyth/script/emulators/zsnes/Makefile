@@ -1,8 +1,7 @@
 GARNAME = zsnes
 GARVERSION = 1.51
 CATEGORIES = emulators
-MASTER_SITES = http://downloads.sourceforge.net/project/$(GARNAME)/$(GARNAME)/ZSNES%20v$(GARVERSION)/
-              https://sourceforge.net/projects/zsnes/files/zsnes/ZSNES%20v4$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/zsnes/files/zsnes/ZSNES%20v$(GARVERSION)/
 DISTFILES = $(GARNAME)$(subst .,,$(GARVERSION))src.tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-gcc_4.3.patch \

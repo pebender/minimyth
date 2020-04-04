@@ -1,8 +1,8 @@
 GARNAME = fribidi
-GARVERSION = 1.0.8
+GARVERSION = 1.0.9
 CATEGORIES = lib
-MASTER_SITES = https://github.com/fribidi/fribidi/archive/
-DISTFILES = v$(GARVERSION).tar.gz
+MASTER_SITES = https://github.com/fribidi/fribidi/releases/download/v$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = LGPL2_1
 
 DESCRIPTION =
@@ -21,18 +21,17 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-debug \
-	--disable-deprecated
+	--disable-deprecated \
+	CC_FOR_BUILD="$(build_CC)" \
+	CPPFLAGS_FOR_BUILD="$(build_CPPFLAGS)" \
+	CFLAGS_FOR_BUILD="$(build_CFLAGS)" \
+	LDFLAGS_FOR_BUILD="$(build_LDFLAGS)"
 
 include ../../gar.mk
 
 ifeq ($(DESTIMG),build)
 CPPFLAGS += -DFRIBIDI_CHUNK_SIZE=4080
 endif
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL_LIBPATH,$(WORKSRC),configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libfribidi.la

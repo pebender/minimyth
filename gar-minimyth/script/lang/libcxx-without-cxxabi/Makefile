@@ -15,7 +15,7 @@ DEPENDS = lang/c \
 	lang/libunwind
 endif
 
-WORKSRC = $(WORKDIR)/$(GARNAME)
+WORKSRC = $(WORKDIR)/llvm-project-$(LLVM_VERSION)/$(GARNAME)
 
 ifneq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
@@ -55,7 +55,7 @@ CONFIGURE_ARGS += \
 	-DCMAKE_CROSSCOMPILING=ON \
 	-DCMAKE_SYSTEM_NAME="Linux" \
 	-DPYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python" \
-	-DLIBCXX_HAS_MUSL_LIBC=ON
+	-DxLIBCXX_HAS_MUSL_LIBC=ON
 endif
 
 build_CPPFLAGS = \

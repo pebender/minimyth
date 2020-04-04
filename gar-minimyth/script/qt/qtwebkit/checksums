@@ -1,4 +1,6 @@
-1fc0ed873cc9326b823a8a83126714f5  download/qtwebkit-opensource-src-5.9.0.tar.xz
 2d48205da6376a776df7b06c92031b30  download/qtwebkit-opensource-src-5.9.0-icu_59.patch
-2900f5fa7a164bd57a9929046c44a446  download/v5.212.0-alpha3.tar.gz
-47d2d7dd725c5cd186bc7c8d21470a12  download/v5.5.1.tar.gz
+5b61a72497f06e51db09d57edc3c35fb  download/qtwebkit-5.212.0-alpha4.tar.xz
+92ec9dd5e4cff9470727551f860ab872  download/qt_lib_webkit.pri
+d28db0f0bd6eb25e3d3772552f52f2ef  download/qt_lib_webkit_private.pri
+85f134bd25ca06bfce38c5b6e4e7c62c  download/qt_lib_webkitwidgets.pri
+c1f23e5eb67007d94f47c012c10db184  download/qt_lib_webkitwidgets_private.pri

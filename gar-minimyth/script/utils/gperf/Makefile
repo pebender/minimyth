@@ -1,7 +1,7 @@
 GARNAME = gperf
 GARVERSION = 3.1
 CATEGORIES = utils
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/gperf/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = GPL3
 
@@ -12,8 +12,8 @@ endef
 DEPENDS = lang/c lang/cxx
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST)
 

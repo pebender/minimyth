@@ -1,4 +1,4 @@
-d2e96355ad47244c675bce38db2b48a9  download/xorg-server-1.20.7.tar.bz2
-f6631dc7cec51a9ee7323f81c6d99bb6  download/xorg-server-1.20.7-perl.patch.gar
-f7200f3b641a1ce1406370a201b6bcd2  download/xorg-server-1.20.7-pkg_config.patch
-9bf05ae74ac555a30bf54cdca007e3b6  download/xorg-server-1.20.7-detect_radeon.patch
+a770aec600116444a953ff632f51f839  download/xorg-server-1.20.8.tar.bz2
+2aabb6f54ee340a40935690beb4151f8  download/xorg-server-1.20.8-perl.patch.gar
+6bf9221fddc12069a900513c2c81ddaf  download/xorg-server-1.20.8-pkg_config.patch
+5aa01687068ce4abcc9936c3ed59e844  download/xorg-server-1.20.8-detect_radeon.patch

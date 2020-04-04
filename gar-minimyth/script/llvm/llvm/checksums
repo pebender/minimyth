@@ -1,9 +1,1 @@
-31eb9ce73dd2a0f8dcab8319fb03f8fc  download/llvm-9.0.1.src.tar.xz
-b2b656b0c34a486c61e4891e374b1b2a  download/lldb-9.0.1.src.tar.xz
-63d74ba4d80edf0199ca3d00f9285ba1  download/lld-9.0.1.src.tar.xz
-13468e4a44940efef1b75e8641752f90  download/clang-9.0.1.src.tar.xz
-5fe12339a88b56cd7dc4b1183aec4716  download/polly-9.0.1.src.tar.xz
-689a42dbae917ed2a20b92deb4fd6de7  download/libcxx-9.0.1.src.tar.xz
-1395b30a937e28779cd9707c6357b801  download/libcxxabi-9.0.1.src.tar.xz
-13bd6106d0a3f77182d0b10a710d44d6  download/libunwind-9.0.1.src.tar.xz
-1b39b9b90007a2170ebe77d6214ec581  download/compiler-rt-9.0.1.src.tar.xz
+ea075bc5ba3930739ae7e1ae790eb97f  download/llvm-project-10.0.0.tar.xz

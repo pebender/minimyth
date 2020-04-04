@@ -11,7 +11,7 @@ MYTHTV_INSTALL_ENV   = \
 MYTHTV_PLUGINS_CONFIGURE_ARGS = \
 	--prefix="$(DESTDIR)$(prefix)" \
 	--sysroot="$(DESTDIR)$(rootdir)" \
-	--qmake="$(DESTDIR)$(qt4bindir)/qmake" \
+	--qmake="$(build_DESTDIR)$(build_qt5bindir)/qmake" \
 	--libdir-name="$(patsubst $(prefix)/%,%,$(libdir))" \
 	--disable-all \
 	--enable-opengl

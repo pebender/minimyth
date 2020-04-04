@@ -1,23 +1,21 @@
 GARNAME = qtscript-everywhere-src
-GARVERSION = 5.14.0
+GARVERSION = $(QT5_VERSION)
 CATEGORIES = qt
 MASTER_SITES = https://download.qt.io/archive/qt/5.14/$(GARVERSION)/submodules/
 DISTFILES = $(DISTNAME).tar.xz
-xPATCHFILES = \
-	$(DISTNAME).patch.gar
 LICENSE = LGPL2_1
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/qmake
-BUILDDEPS = qt/qtbase
+DEPENDS = lang/c lang/cxx build-tool/qmake qt/qtbase
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/qmake
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
+GAR_EXTRA_CONF += qt/qtbase/package-api.mk
 include ../../gar.mk
 
 configure-%/qmake: 

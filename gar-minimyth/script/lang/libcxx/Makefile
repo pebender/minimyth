@@ -12,11 +12,12 @@ endef
 ifneq ($(DESTIMG),build)
 DEPENDS = lang/c \
 	lang/libc \
+	lang/compiler-rt-builtins \
 	lang/libunwind \
 	lang/libcxxabi
 endif
 
-WORKSRC = $(WORKDIR)/$(GARNAME)
+WORKSRC = $(WORKDIR)/llvm-project-$(LLVM_VERSION)/$(GARNAME)
 
 ifneq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
@@ -47,7 +48,7 @@ CONFIGURE_ARGS  = \
 	-DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY \
 	-DLIBCXX_ENABLE_EXPERIMENTAL_LIBRARY=OFF \
 	-DLIBCXX_CXX_ABI="libcxxabi" \
-	-DLIBCXX_CXX_ABI_INCLUDE_PATHS="$(PWD)/../libcxxabi/$(WORKDIR)/libcxxabi/include" \
+	-DLIBCXX_CXX_ABI_INCLUDE_PATHS="$(PWD)/../libcxxabi/$(WORKDIR)/llvm-project-$(LLVM_VERSION)/libcxxabi/include" \
 	-DLIBCXX_USE_COMPILER_RT=ON \
 	-DLIBCXXABI_USE_LLVM_UNWINDER=ON \
 	-DLIBCXX_INCLUDE_BENCHMARKS=OFF
@@ -59,7 +60,7 @@ CONFIGURE_ARGS += \
 	-DCMAKE_CROSSCOMPILING=ON \
 	-DCMAKE_SYSTEM_NAME="Linux" \
 	-DPYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python" \
-	-DLIBCXX_HAS_MUSL_LIBC=ON
+	-DxLIBCXX_HAS_MUSL_LIBC=ON
 endif
 
 GAR_EXTRA_CONF += lang/lang/toolchain.mk

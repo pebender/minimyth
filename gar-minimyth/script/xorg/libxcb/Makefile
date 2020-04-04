@@ -1,8 +1,8 @@
 GARNAME = libxcb
-GARVERSION = 1.13.1
+GARVERSION = 1.14
 CATEGORIES = xorg
 MASTER_SITES = https://www.x.org/releases/individual/xcb/
-DISTFILES = $(DISTNAME).tar.bz2
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING
 

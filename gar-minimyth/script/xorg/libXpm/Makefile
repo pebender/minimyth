@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c devel-make \
+DEPENDS = lang/c build-tool/make \
 	xorg/libX11 \
 	xorg/libXext \
 	xorg/libXt \
@@ -29,6 +29,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
+
+LDFLAGS += -lintl
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

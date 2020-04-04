@@ -26,7 +26,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
   	--enable-unversioned-libpng-pc \
 	--disable-unversioned-libpng-config \
 	--enable-hardware-optimizations \
-	--with-pkgconfigdir \
 	--without-binconfigs
 
 CONFIGURE_ENV = \

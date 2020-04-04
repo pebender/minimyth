@@ -1,5 +1,5 @@
 GARNAME = unifdef
-GARVERSION = 2.11
+GARVERSION = 2.12
 CATEGORIES = utils
 MASTER_SITES = https://dotat.at/prog/unifdef/
 DISTFILES = $(DISTNAME).tar.gz

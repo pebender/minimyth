@@ -172,8 +172,8 @@ STAGINGDIR ?= $(build_DESTDIR)$(build_prefix)/staging
 
 # allow us to use programs we just built
 BUILD_SYSTEM_PATH := $(if $(BUILD_SYSTEM_PATH),$(BUILD_SYSTEM_PATH),$(PATH))
-GAR_SYSTEM_PATH = $(ccache_DESTDIR)$(ccache_bindir)$(strip \
-	:$(build_DESTDIR)$(build_bindir)/wrapper)$(strip \
+GAR_SYSTEM_PATH = $(strip $(build_DESTDIR)$(build_bindir)/ccache.d)$(strip \
+	:$(build_DESTDIR)$(build_bindir)/wrapper.d)$(strip \
 	:$(DESTDIR)$(bindir)/config)$(strip \
 	:$(build_DESTDIR)$(build_esbindir):$(build_DESTDIR)$(build_ebindir):$(build_DESTDIR)$(build_sbindir):$(build_DESTDIR)$(build_bindir))$(strip \
 	:$(native_DESTDIR)/$(native_bindir))

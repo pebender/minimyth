@@ -20,12 +20,10 @@ endif
 PWD := $(shell pwd)
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = \
-	-L $(DESTDIR)$(libdir) \
-	-I $(DESTDIR)$(includedir) \
 	-verbose \
 	-recheck-all \
 	-prefix $(qt5prefix) \
@@ -45,7 +43,8 @@ CONFIGURE_ARGS = \
 	-confirm-license \
 	-release \
 	-no-strip \
-	-platform $(PLATFORM_GARBUILD_BASE_NAME) \
+	-platform minimyth-build \
+	-no-reduce-relocations \
 	-no-rpath \
 	-no-pch \
 	-sysroot $(DESTDIR) \
@@ -100,7 +99,7 @@ xBUILD_ENV = \
 	LD_LIBRARY_PATH="$(PWD)/$(WORKSRC)/lib:$(LD_LIBRARY_PATH)"
 else
 CONFIGURE_ARGS += \
-	-xplatform $(PLATFORM_GARHOST_BASE_NAME) \
+	-xplatform minimyth-main \
 	-hostprefix $(build_DESTDIR)$(build_qt5prefix) \
 	-hostbindir $(build_DESTDIR)$(build_qt5bindir) \
 	-hostlibdir $(build_DESTDIR)$(build_qt5libdir) \
@@ -112,71 +111,20 @@ GAR_EXTRA_CONF += devel/gcc/package-api.mk devel/glibc/package-api.mk
 include ../../gar.mk
 
 # qt 5.12.6 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+#CFLAGS   := $(filter-out -flto, $(CFLAGS))
+#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
 
-LDFLAGS  :=
+#LDFLAGS  :=
 
-PLATFORM_GARBUILD_BASE_NAME = $(strip \
-	$(if $(filter i386,$(build_GARCH_FAMILY)),linux-g++-32,) \
-	$(if $(filter x86_64,$(build_GARCH_FAMILY)),linux-g++-64,))
-PLATFORM_GARHOST_BASE_NAME = $(strip \
-	$(if $(filter i386,$(GARCH_FAMILY)),linux-g++-32,) \
-	$(if $(filter x86_64,$(GARCH_FAMILY)),linux-g++-64,))
-PLATFORM_GARBUILD_NAME      = $(PLATFORM_GARBUILD_BASE_NAME)-garbuild
-PLATFORM_GARHOST_NAME       = $(PLATFORM_GARHOST_BASE_NAME)-garhost
-PLATFORM_DEFAULT_NAME       = default
-PLATFORM_GARBUILD_BASE_PATH = $(WORKSRC)/mkspecs/$(PLATFORM_GARBUILD_BASE_NAME)
-PLATFORM_GARHOST_BASE_PATH  = $(WORKSRC)/mkspecs/$(PLATFORM_GARHOST_BASE_NAME)
-PLATFORM_GARBUILD_PATH      = $(WORKSRC)/mkspecs/$(PLATFORM_GARBUILD_NAME)
-PLATFORM_GARHOST_PATH       = $(WORKSRC)/mkspecs/$(PLATFORM_GARHOST_NAME)
-PLATFORM_DEFAULT_PATH       = $(build_DESTDIR)$(build_qt5prefix)/mkspecs/$(PLATFORM_DEFAULT_NAME)
+pre-configure:
+	@cp -rfv $(build_DESTDIR)$(build_qt5prefix)/mkspecs/minimyth-build $(WORKSRC)/mkspecs/minimyth-build
+	@cp -rfv $(build_DESTDIR)$(build_qt5prefix)/mkspecs/minimyth-$(DESTIMG) $(WORKSRC)/mkspecs/minimyth-$(DESTIMG)
+	@$(MAKECOOKIE)
 
-UPDATE_PLATFORM   = sed -i 's%^\($(strip $(2))[ \t]*$(strip $(3))=[ \t]*\).*%\1$(strip $(4))%g' $(strip $(1))/qmake.conf 
-# We should not need to provide QMAKE_INCDIR or QMAKE_LIBDIR since they are compiled into the compiler and linker.
-# However, the QT configure program does not find the supported libraries without them.
-# We add --preserve=timestamps to QMAKE_COPY so that files installed using qmake generated make files keep their
-# original dates. This keeps the dates of the MythTV themes with their original dates so that themecahes are not
-# needlessly regenerated when MiniMyth is updated.
-# include(../common/gcc-base-unix.conf)
-# include(../common/g++-unix.conf)
-CREATE_PLATFORM   = \
-	rm -rf $(strip $(2)) ; \
-	cp -r $(strip $(1)) $(strip $(2)) ; \
-	echo "QMAKE_CFLAGS_RELEASE = $($(strip $(3))CFLAGS)"                                  >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/qmake.conf                   | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/../common/linux.conf         | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/../common/gcc-base-unix.conf | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/../common/gcc-base.conf      | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/../common/sanitize.conf      | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/../common/g++-unix.conf      | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/../common/g++-base.conf      | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	cat $(strip $(2))/../common/unix.conf          | grep -v '^include' | grep -v '^load' >> $(strip $(2))/qmake.conf~ ; \
-	echo 'load(qt_config)'                                                                >> $(strip $(2))/qmake.conf~ ; \
-	rm -f $(strip $(2))/qmake.conf ; \
-	mv -f $(strip $(2))/qmake.conf~ $(strip $(2))/qmake.conf ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_COPY          , , cp -f --preserve=timestamps) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_YACC          , , bison -y) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_COMPILER      , , $($(strip $(3))CC)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_CC            , , $($(strip $(3))CC)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_CXX           , , $($(strip $(3))CXX)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LINK          , , $($(strip $(3))CXX)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LINK_SHLIB    , , $($(strip $(3))CXX)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_AR            , , $($(strip $(3))AR) cqs) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_AR_LTCG       , , $($(strip $(3))AR) cqs) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_NM            , , $($(strip $(3))NM) -P) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_NM_LTCG       , , $($(strip $(3))NM) -P) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_RANLIB        , , $($(strip $(3))RANLIB)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_OBJCOPY       , , $($(strip $(3))OBJCOPY)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_STRIP         , , $($(strip $(3))STRIP)) ; \
-	$(call UPDATE_PLATFORM, $(1), QMAKE_CFLAGS        , , $($(strip $(3))CFLAGS)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LFLAGS        , , $($(strip $(3))LDFLAGS)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR        , , $($(strip $(3))DESTDIR)$($(strip $(3))includedir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR        , , $($(strip $(3))DESTDIR)$($(strip $(3))libdir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR_X11    , , $($(strip $(3))DESTDIR)$($(strip $(3))includedir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR_X11    , , $($(strip $(3))DESTDIR)$($(strip $(3))libdir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_INCDIR_OPENGL , , $($(strip $(3))DESTDIR)$($(strip $(3))includedir)) ; \
-	$(call UPDATE_PLATFORM, $(2), QMAKE_LIBDIR_OPENGL , , $($(strip $(3))DESTDIR)$($(strip $(3))libdir)) ; \
+x-pre-install:
+	@rm -rfv $(WORKSRC)/mkspecs/minimyth-build
+	@rm -rfv $(WORKSRC)/mkspecs/minimyth-$(DESTIMG)
+	@$(MAKECOOKIE)
 
 post-install:
 	@rm -fv $(DESTDIR)$(qt5libdir)/*.la

@@ -1,5 +1,5 @@
 GARNAME = pciutils
-GARVERSION = 3.6.2
+GARVERSION = 3.6.4
 CATEGORIES = utils
 MASTER_SITES = https://www.kernel.org/pub/software/utils/pciutils/
 DISTFILES  = $(DISTNAME).tar.xz

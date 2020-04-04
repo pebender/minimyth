@@ -1,7 +1,7 @@
 GARNAME = pmount
 GARVERSION = 0.9.23
 CATEGORIES = utils
-MASTER_SITES = http://http.debian.net/debian/pool/main/p/$(GARNAME)/
+MASTER_SITES = http://http.debian.net/debian/pool/main/p/pmount/
 DISTFILES = $(GARNAME)_$(GARVERSION).orig.tar.bz2
 PATCHFILES = \
 	$(DISTNAME)-automake_1.13.patch \
@@ -32,6 +32,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-cryptsetup-prog="$(esbindir)/cryptsetup"
 
 include ../../gar.mk
+
+LDFLAGS += -lintl
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)

@@ -8,6 +8,7 @@
 mm_VERSION                ?= $(mm_VERSION_MYTH)-$(mm_VERSION_MINIMYTH)$(mm_VERSION_EXTRA)
 mm_VERSION_MYTH           ?= $(strip \
                                 $(if $(filter 0.30  ,$(mm_MYTH_VERSION)),0.30.0) \
+                                $(if $(filter 0.31  ,$(mm_MYTH_VERSION)),0.31.0) \
                                 $(if $(filter master,$(mm_MYTH_VERSION)),master) \
                               )
 mm_VERSION_MINIMYTH       ?= 83
@@ -33,19 +34,17 @@ mm_DEBUG_BUILD            ?= no
 mm_GRAPHICS               ?= intel \
                              $(if $(filter i386,$(mm_GARCH_FAMILY)),geode) \
                              nouveau \
-                             nvidia \
                              $(if $(filter i386,$(mm_GARCH_FAMILY)),openchrome) \
                              radeon \
                              sis \
                              vmware
 # Lists the software to be supported.
-# Valid values for MM_SOFTWARE are zero or more of 'mythbrowser', 'mythgallery',
+# Valid values for MM_SOFTWARE are zero or more of 'mythbrowser',
 # 'mythgame', 'mythmusic', 'mythnetvision', 'mythnews',
 # 'mythweather', 'mythzoneminder', 'airplay',
 # 'mplayer-new', 'mplayer-vld', 'vlc' 'xine', 'mame', 'ps3remote', 'wiimote',
 # 'cec', 'backend','python', 'debug'.
 mm_SOFTWARE               ?= mythbrowser \
-                             mythgallery \
                              mythgame \
                              mythmusic \
                              mythnetvision \
@@ -100,18 +99,18 @@ mm_TFTP_ROOT              ?= /var/tftpboot/minimyth
 # installed in a subdirectory named 'minimyth-$(mm_VERSION)'.
 mm_NFS_ROOT               ?= /home/public/minimyth
 # The version of kernel headers to use.
-# Valid values are '5.5'
-mm_KERNEL_HEADERS_VERSION ?= 5.5
+# Valid values are '5.6'
+mm_KERNEL_HEADERS_VERSION ?= 5.6
 # The version of kernel to use.
-# Valid values are '5.5'.
-mm_KERNEL_VERSION         ?= 5.5
+# Valid values are '5.6'.
+mm_KERNEL_VERSION         ?= 5.6
 # The kernel configuration file to use.
 # When set, the kernel configuration file $(HOME)/.minimyth/$(mm_KERNEL_CONFIG) will be used.
 # When not set, a built-in kernel configuration file will be used.
 mm_KERNEL_CONFIG          ?=
 # The version of Myth to use.
-# Valid values are '0.30', 'master'.
-mm_MYTH_VERSION           ?= 0.30
+# Valid values are '0.31', 'master'.
+mm_MYTH_VERSION           ?= 0.31
 # The version of the NVIDIA driver.
 # Valid values are '304.125' (legacy), '340.76' (legacy), '352.21'.
 mm_NVIDIA_VERSION         ?= 304.125
@@ -144,25 +143,29 @@ mm_CCACHE_MAXSIZE         ?= 128
 # Variables that you are not likely to override.
 #-------------------------------------------------------------------------------
 mm_GARCH_FAMILY           ?= $(strip \
-                                 $(if $(filter atom       ,$(mm_GARCH)),x86_64) \
-                                 $(if $(filter c3         ,$(mm_GARCH)),i386  ) \
-                                 $(if $(filter c3-2       ,$(mm_GARCH)),i386  ) \
-                                 $(if $(filter pentium-mmx,$(mm_GARCH)),i386  ) \
-                                 $(if $(filter x86-64     ,$(mm_GARCH)),x86_64) \
+                                 $(if $(filter armv8-a+crc+simd,$(mm_GARCH)),arm8a ) \
+                                 $(if $(filter atom            ,$(mm_GARCH)),x86_64) \
+                                 $(if $(filter c3              ,$(mm_GARCH)),i386  ) \
+                                 $(if $(filter c3-2            ,$(mm_GARCH)),i386  ) \
+                                 $(if $(filter pentium-mmx     ,$(mm_GARCH)),i386  ) \
+                                 $(if $(filter x86-64          ,$(mm_GARCH)),x86_64) \
                               )
 mm_GARHOST                ?= $(strip \
-                                 $(if $(filter atom       ,$(mm_GARCH)),x86_64) \
-                                 $(if $(filter c3         ,$(mm_GARCH)),i586  ) \
-                                 $(if $(filter c3-2       ,$(mm_GARCH)),i586  ) \
-                                 $(if $(filter pentium-mmx,$(mm_GARCH)),i586  ) \
-                                 $(if $(filter x86-64     ,$(mm_GARCH)),x86_64) \
+                                 $(if $(filter armv8-a+crc+simd,$(mm_GARCH)),arm8a ) \
+                                 $(if $(filter atom            ,$(mm_GARCH)),x86_64) \
+                                 $(if $(filter c3              ,$(mm_GARCH)),i586  ) \
+                                 $(if $(filter c3-2            ,$(mm_GARCH)),i586  ) \
+                                 $(if $(filter pentium-mmx     ,$(mm_GARCH)),i586  ) \
+                                 $(if $(filter x86-64          ,$(mm_GARCH)),x86_64) \
+                                 $(if $(filter x86-64          ,$(mm_GARCH)),x86_64) \
                               )-minimyth-linux-gnu
 mm_CFLAGS                 ?= $(strip \
-                                 $(if $(filter atom        ,$(mm_GARCH)),-march=atom        -mtune=atom    -O2 -mfpmath=sse -ftree-vectorize -mmovbe) \
-                                 $(if $(filter c3          ,$(mm_GARCH)),-march=c3          -mtune=c3      -O2             ) \
-                                 $(if $(filter c3-2        ,$(mm_GARCH)),-march=c3-2        -mtune=c3-2    -O2 -mfpmath=sse) \
-                                 $(if $(filter pentium-mmx ,$(mm_GARCH)),-march=pentium-mmx -mtune=pentium-mmx    -O2             ) \
-                                 $(if $(filter x86-64      ,$(mm_GARCH)),-march=x86-64      -mtune=generic -O3 -mfpmath=sse) \
+			     	 $(if $(filter armv8-a+crc+simd,$(mm_GARCH)),-march=armv8-a+crc+simd -mtune=cortex-a72 -marm) \
+                                 $(if $(filter atom            ,$(mm_GARCH)),-march=atom        -mtune=atom    -O2 -mfpmath=sse -ftree-vectorize -mmovbe) \
+                                 $(if $(filter c3              ,$(mm_GARCH)),-march=c3          -mtune=c3      -O2             ) \
+                                 $(if $(filter c3-2            ,$(mm_GARCH)),-march=c3-2        -mtune=c3-2    -O2 -mfpmath=sse) \
+                                 $(if $(filter pentium-mmx     ,$(mm_GARCH)),-march=pentium-mmx -mtune=pentium-mmx    -O2             ) \
+                                 $(if $(filter x86-64          ,$(mm_GARCH)),-march=x86-64      -mtune=generic -O3 -mfpmath=sse) \
                                  $(if $(filter i386  ,$(mm_GARCH_FAMILY)),)                                              \
                                  $(if $(filter x86_64,$(mm_GARCH_FAMILY)),)                                              \
                                  $(if $(filter yes,$(mm_DEBUG)),-g)                                                          \

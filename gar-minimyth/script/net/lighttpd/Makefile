@@ -12,8 +12,8 @@ endef
 DEPENDS = lang/c lib/pcre
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -37,16 +37,16 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-webdav-locks \
 	--without-gdbm \
 	--without-memcache \
-	--without-lua
-CONFIGURE_ENV  = \
-	PCRECONFIG="$(build_DESTDIR)$(build_bindir)/pkg-config libpcre"
+	--without-lua \
+	CPP_FOR_BUILD="$(build_CPP)" \
+	CC_FOR_BUILD="$(build_CC)" \
+	CPPFLAGS_FOR_BUILD="$(build_CPPFLAGS)" \
+	CFLAGS_FOR_BUILD="$(build_CFLAGS)" \
+	LDFLAGS_FOR_BUILD="$(build_LDFLAGS)"
+CONFIGURE_ENV = \
+	PCRECONFIG="$(DESTDIR)$(bindir)/config/pcre-config"
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/mod_access.la

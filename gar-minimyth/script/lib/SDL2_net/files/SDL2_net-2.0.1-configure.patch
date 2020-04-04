@@ -1,0 +1,23 @@
+diff -Naur SDL2_net-2.0.1-old/configure.in SDL2_net-2.0.1-new/configure.in
+--- SDL2_net-2.0.1-old/configure.in	2016-01-02 23:57:09.000000000 -0800
++++ SDL2_net-2.0.1-new/configure.in	2020-04-03 19:51:05.780771880 -0700
+@@ -1,6 +1,8 @@
+ dnl Process this file with autoconf to produce a configure script.
+ AC_INIT(README.txt)
+ 
++AC_CONFIG_MACRO_DIR([acinclude])
++
+ dnl Set various version strings - taken gratefully from the GTk sources
+ 
+ # Making releases:
+diff -Naur SDL2_net-2.0.1-old/Makefile.am SDL2_net-2.0.1-new/Makefile.am
+--- SDL2_net-2.0.1-old/Makefile.am	2016-01-02 23:57:09.000000000 -0800
++++ SDL2_net-2.0.1-new/Makefile.am	2020-04-03 19:51:05.780771880 -0700
+@@ -1,5 +1,7 @@
+ # Makefile.am for the SDL sample image loading library and viewer
+ 
++ACLOCAL_AMFLAGS = -I acinclude
++
+ lib_LTLIBRARIES = libSDL2_net.la
+ 
+ libSDL2_netincludedir = $(includedir)/SDL2

@@ -1,0 +1,28 @@
+diff -Naur qtbase-everywhere-src-5.14.2-old/configure qtbase-everywhere-src-5.14.2-new/configure
+--- qtbase-everywhere-src-5.14.2-old/configure	2020-03-27 02:49:31.000000000 -0700
++++ qtbase-everywhere-src-5.14.2-new/configure	2020-04-02 09:26:02.719526109 -0700
+@@ -300,9 +300,9 @@
+ #-------------------------------------------------------------------------------
+ 
+ # need that throughout the script
+-UNAME_MACHINE=`(uname -m) 2>/dev/null` || UNAME_MACHINE=unknown
+-UNAME_RELEASE=`(uname -r) 2>/dev/null` || UNAME_RELEASE=unknown
+-UNAME_SYSTEM=`(uname -s) 2>/dev/null`  || UNAME_SYSTEM=unknown
++UNAME_MACHINE=@GAR_GARCH_FAMILY@
++UNAME_RELEASE=unknown
++UNAME_SYSTEM=linux
+ 
+ BUILD_ON_MAC=no
+ if [ -d /System/Library/Frameworks/Cocoa.framework ]; then
+diff -Naur qtbase-everywhere-src-5.14.2-old/src/corelib/global/global.pri qtbase-everywhere-src-5.14.2-new/src/corelib/global/global.pri
+--- qtbase-everywhere-src-5.14.2-old/src/corelib/global/global.pri	2020-03-27 02:49:31.000000000 -0700
++++ qtbase-everywhere-src-5.14.2-new/src/corelib/global/global.pri	2020-04-02 09:26:02.719526109 -0700
+@@ -85,7 +85,7 @@
+ if(linux*|hurd*):!cross_compile:!static:!*-armcc* {
+    QMAKE_LFLAGS += -Wl,-e,qt_core_boilerplate
+    prog=$$quote(if (/program interpreter: (.*)]/) { print $1; })
+-   DEFINES += ELF_INTERPRETER=\\\"$$system(LC_ALL=C readelf -l /bin/ls | perl -n -e \'$$prog\')\\\"
++   DEFINES += ELF_INTERPRETER=\\\"$$system(LC_ALL=C readelf -l @GAR_DESTDIR@@GAR_bindir@/Xorg | perl -n -e \'$$prog\')\\\"
+ }
+ 
+ linux:!static {

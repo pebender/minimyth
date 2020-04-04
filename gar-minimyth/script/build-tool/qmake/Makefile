@@ -6,10 +6,9 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = build-tool/make
-BUILDDEPS = devel/qmake
+DEPENDS = build-tool/make devel/qmake
 ifneq ($(GARHOST),$(default_GARHOST))
-BUILDDEPS += build-tool/qmake
+BUILDDEPS = build-tool/qmake
 endif
 
 include ../../gar.mk

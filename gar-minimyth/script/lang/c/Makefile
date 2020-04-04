@@ -6,8 +6,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c-build \
-	toolchain-wrappers/clang-wrappers \
-	binutils/binutils \
+	toolchain-$(DESTIMG) \
 	lang/libc \
 	lang/libcxx \
 	build-tool/make \

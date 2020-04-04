@@ -9,15 +9,13 @@ endef
 
 INSTALL_SCRIPTS = bins
 
+build_DESTDIR = $(native_DESTDIR)
+build_rootdir = $(native_rootdir)
+main_DESTDIR = $(native_DESTDIR)
+main_rootdir = $(native_rootdir)
+
 GAR_EXTRA_CONF += native/native/package-api.mk
 include ../../gar.mk
-
-build_DESTDIR := $(build_DESTDIR)$(build_rootdir)
-build_rootdir :=
-DESTDIR := $(native_DESTDIR)
-rootdir := $(native_rootdir)
-
-PATH := $(ccache_DESTDIR)$(ccache_bindir):$(native_DESTDIR)$(native_bindir):$(PATH)
 
 pre-install:
 	@rm -rfv $(DESTDIR)

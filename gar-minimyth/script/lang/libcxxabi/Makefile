@@ -16,7 +16,7 @@ DEPENDS = lang/c \
 	lang/libcxx-without-cxxabi
 endif
 
-WORKSRC = $(WORKDIR)/$(GARNAME)
+WORKSRC = $(WORKDIR)/llvm-project-$(LLVM_VERSION)/$(GARNAME)
 
 ifneq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake

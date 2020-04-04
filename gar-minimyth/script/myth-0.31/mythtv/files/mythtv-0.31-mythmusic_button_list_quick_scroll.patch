@@ -1,0 +1,16 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythui/mythuibuttonlist.cpp mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythui/mythuibuttonlist.cpp
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythui/mythuibuttonlist.cpp	2020-03-28 16:43:07.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythui/mythuibuttonlist.cpp	2020-03-28 16:53:42.746611182 -0700
+@@ -2614,6 +2614,12 @@
+         {
+             ShowSearchDialog();
+         }
++        else if (action == "0" || action == "1" || action == "2" || action == "3" ||
++                 action == "4" || action == "5" || action == "6" || action == "7" ||
++                 action == "8" || action == "9")
++        {
++            SetItemCurrent((int) ((GetCount() * (action.toInt() / 10.0))));
++        }
+         else
+             handled = false;
+     }

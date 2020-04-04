@@ -1,8 +1,8 @@
 GARNAME = lm_sensors
-GARVERSION = 3.4.0
+GARVERSION = 3.6.0
 CATEGORIES = utils
 MASTER_SITES = http://deb.debian.org/debian/pool/main/l/lm-sensors/
-DISTFILES   = lm-sensors_$(GARVERSION).orig.tar.bz2
+DISTFILES   = lm-sensors_$(GARVERSION).orig.tar.gz
 PATCHFILES = $(DISTNAME)-perl.patch.gar
 LICENSE = GPL2/LGPL2_1
 
@@ -11,6 +11,8 @@ define BLURB
 endef
 
 DEPENDS = lang/c
+
+WORKSRC = $(WORKDIR)/lm-sensors-$(subst .,-,$(GARVERSION))
 
 BUILD_SCRIPTS   = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/Makefile

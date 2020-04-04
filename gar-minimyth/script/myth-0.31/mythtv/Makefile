@@ -1,0 +1,241 @@
+GARNAME = mythtv
+GARVERSION = $(MYTHTV_GARVERSION)
+CATEGORIES = $(CATEGORY)
+MASTER_SITES = git://github.com/MythTV/
+DISTFILES = $(DISTNAME).tar.bz2
+PATCHFILES  =
+PATCHFILES += \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythmusic_button_list_quick_scroll.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-python_build.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-sysroot.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-networkcontrol.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).patch.gar \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-init.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-programid.patch
+LICENSE = GPL2
+
+DESCRIPTION = 
+define BLURB
+endef
+
+DEPENDS = \
+	lang/cxx \
+	db/mariadb \
+	lib/alsa-lib \
+	lib/avahi \
+	lib/exiv2 \
+	lib/fftw3 \
+	lib/fftw3f \
+	lib/freetype \
+	lib/lame \
+	lib/libass \
+	lib/libavc1394 \
+	lib/libcdio \
+	lib/libcdio-paranoia \
+	lib/libbluray \
+	lib/libcec \
+	lib/liblzo \
+	lib/libiec61883 \
+	lib/libsamplerate \
+	lib/libxml2 \
+	lib/openssl \
+	lib/taglib \
+	lib/zlib \
+	qt/qtbase \
+	qt/qtscript \
+	qt/qtwebkit \
+	system/lirc \
+	system/udev \
+	X11/libva \
+	X11/libvdpau \
+	xorg/xorg
+BUILDDEPS = \
+	devel/yasm \
+	python/python-lxml
+
+CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
+
+PWD := $(shell pwd)
+
+CONFIGURE_SCRIPTS = $(WORKSRC)/mythtv/configure
+BUILD_SCRIPTS     = $(WORKSRC)/mythtv/Makefile
+INSTALL_SCRIPTS   = $(WORKSRC)/mythtv/Makefile source
+
+CONFIGURE_ARGS = \
+	--compile-type=$(if $(filter yes,$(mm_DEBUG)),"debug","release") \
+	--prefix="$(DESTDIR)$(prefix)" \
+	--runprefix="$(prefix)" \
+	--libdir-name="$(patsubst $(prefix)/%,%,$(libdir))" \
+	--disable-ccache \
+	--disable-distcc \
+	--bindir="$(DESTDIR)$(bindir)" \
+	--datadir="$(DESTDIR)$(datadir)/mythtv" \
+	--libdir="$(DESTDIR)$(libdir)" \
+	--shlibdir="$(DESTDIR)$(libdir)" \
+	--incdir="$(DESTDIR)$(includedir)/mythtv" \
+	--mandir="$(DESTDIR)$(mandir)" \
+	$(if $(filter -Os,$(CFLAGS)),--enable-small) \
+	--cross-prefix="$(GARHOST)-" \
+	--enable-cross-compile \
+	--sysroot="$(DESTDIR)" \
+	--sysinclude="$(DESTDIR)$(includedir)" \
+	--target-os="linux" \
+	--nm="$(NM)" \
+	--as="$(CC)" \
+	--cc="$(CC)" \
+	--cxx="$(CXX)" \
+	--ld="$(CC)" \
+	--qmake="$(build_DESTDIR)$(build_qt5bindir)/qmake" \
+	--host-cc="$(build_CC)" \
+	--host-cflags="$(build_CFLAGS)" \
+	--host-ldflags="$(build_LDFLAGS)" \
+	--extra-cflags="$(CFLAGS)" \
+	--extra-cxxflags="$(CXXFLAGS)" \
+	--extra-ldflags="$(LDFLAGS) -Wl,-z,notext" \
+	--enable-symbol-visibility \
+	--arch=$(GARCH_FAMILY) \
+	--tune=$(GARCH) \
+	--cpu=$(GARCH) \
+	--disable-altivec \
+	--enable-amd3dnow \
+	--enable-amd3dnowext \
+	--enable-mmx \
+	--enable-mmxext \
+	--enable-sse \
+	--enable-sse2 \
+	--enable-sse3 \
+	--enable-sse4 \
+	--enable-sse42 \
+	--enable-ssse3 \
+	--enable-avx \
+	--enable-x86asm \
+	--enable-pic \
+	--disable-proc-opt \
+	--enable-audio-oss \
+	--enable-audio-alsa \
+	--disable-audio-jack \
+	--disable-audio-pulseoutput \
+	--disable-valgrind \
+	--enable-lirc \
+	--enable-joystick-menu \
+	--enable-libcec \
+	--libcec-path="$(DESTDIR)$(includedir)" \
+	--enable-firewire \
+	--disable-hdhomerun \
+	--disable-ceton \
+	--enable-v4l2 \
+	--enable-ivtv \
+	--enable-hdpvr \
+	--enable-dvb \
+	--dvb-path="$(DESTDIR)$(includedir)" \
+	--disable-asi \
+	--enable-x11 \
+	--x11-path="$(DESTDIR)$(includedir)" \
+	--enable-xrandr \
+	--enable-vdpau \
+	--enable-vaapi \
+	--disable-dxva2 \
+	--enable-libass \
+	--disable-mac-bundle \
+	--enable-libxml2 \
+	--libxml2-path="$(DESTDIR)$(includedir)/libxml2" \
+	--enable-libdns_sd \
+	--enable-libcrypto \
+	--without-bindings="perl" \
+	--without-bindings="php" \
+	--without-bindings="python" \
+	--disable-libmp3lame \
+	--disable-libvpx \
+	--disable-libxvid \
+	--disable-sdl
+
+BUILD_ARGS = \
+	Q=""
+
+CONFIGURE_ENV  = $(MYTHTV_CONFIGURE_ENV)
+BUILD_ENV      = $(MYTHTV_BUILD_ENV)
+INSTALL_ENV    = $(MYTHTV_INSTALL_ENV)
+
+CONFIGURE_ENV += pkg_config=pkg-config
+BUILD_ENV     += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
+INSTALL_ENV   += PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
+
+GAR_EXTRA_CONF += python/python/package-api.mk
+include ../../gar.mk
+
+# MythTV does not look in the default include install directory for dns_sd.h.
+CPPFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
+CFLAGS   += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
+CXXFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
+
+# mythtv 0.30's ffmpeg fails to compile with gcc 9.2.0's link time optimization enabled.
+CFLAGS   := $(filter-out -flto, $(CFLAGS))
+CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
+
+# <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63745>
+# <http://www.gossamer-threads.com/lists/mythtv/users/584449>
+CFLAGS   += -fno-devirtualize
+CXXFLAGS += -fno-devirtualize
+LDFLAGS  += -fno-devirtualize
+
+git//%/$(DISTNAME).tar.bz2:
+	$(call FETCH_GIT, $*/mythtv.git, $(word 3,$(subst -, ,$(GARVERSION))), $(DISTNAME))
+
+checksum-$(DISTNAME).tar.bz2:
+	@$(MAKECOOKIE)
+
+install-source:
+	@rm -rf $(DESTDIR)$(MYTHTV_SOURCEDIR)
+	@mkdir -p $(DESTDIR)$(MYTHTV_SOURCEDIR)
+	@rm -rf $(DESTDIR)$(MYTHTV_SOURCEDIR)
+	@ln -sf $(PWD)/$(WORKSRC)/mythtv $(DESTDIR)$(MYTHTV_SOURCEDIR)
+	@$(MAKECOOKIE)
+
+post-install: post-install-mythtv-version
+	@rm -f $(DESTDIR)$(bindir)/mythtv
+	@mv $(DESTDIR)$(bindir)/mythavtest $(DESTDIR)$(bindir)/mythtv
+	@$(MAKECOOKIE)
+
+clean-all:
+	@rm -rf $(DESTDIR)$(bindir)/mtd
+	@rm -rf $(DESTDIR)$(bindir)/myth*
+	@rm -rf $(DESTDIR)$(datadir)/myth*
+	@rm -rf $(DESTDIR)$(includedir)/myth*
+	@rm -rf $(DESTDIR)$(libdir)/libmyth*
+	@rm -rf $(DESTDIR)$(libdir)/myth*
+	@rm -rf $(DESTDIR)$(libdir)/python*/site-packages/MythTV
+	@rm -rf $(DESTDIR)$(libdir)/python*/site-packages/MythTV-*
+	@$(foreach dir,$(filter-out %/Makefile,$(wildcard ../../myth/* ../../myth-*/*)),$(MAKE) -C $(dir) clean ; )
+
+source-update:
+	@$(MAKE) source-update-source
+	@$(MAKE) source-update-patches
+
+source-update-source:
+	@$(MAKE) clean
+	@$(MAKE) fetch
+	@$(MAKE) $(GARCHIVEDIR)/$(DISTNAME).tar.bz2
+	@$(MAKE) clean
+
+source-update-patches:
+	@$(MAKE) clean
+	@$(MAKE) extract
+	@$(foreach PATCHFILE, $(PATCHFILES), \
+		cd $(WORKDIR) || exit 1 ; \
+		mv $(DISTNAME) $(DISTNAME)-old || exit 1 ; \
+		cp -r $(DISTNAME)-old $(DISTNAME)-new || exit 1 ; \
+		cd $(DISTNAME)-new || exit 1 ; \
+		SIMPLE_BACKUP_SUFFIX=.gar-source-update-patches patch -p1 < ../../../files/$(PATCHFILE) || exit 1 ; \
+		cd ../ || exit 1 ; \
+		find $(DISTNAME)-new -name *.gar-source-update-patches -exec rm {} \; || exit 1 ; \
+		( diff -Naur $(DISTNAME)-old $(DISTNAME)-new > ../../files/$(PATCHFILE) ; test $$? -lt 2 ) || exit 1 ; \
+		rm -fr $(DISTNAME)-old || exit 1 ; \
+		mv $(DISTNAME)-new $(DISTNAME) || exit 1 ; \
+		cd ../../ || exit 1 ; \
+		rm -f checksums~ || exit 1 ; \
+		cat checksums | grep -v $(DOWNLOADDIR)/$(PATCHFILE) > checksums~ || true ; \
+		md5sum $(DOWNLOADDIR)/$(PATCHFILE) >> checksums~ || exit 1 ; \
+		rm -f checksums || exit 1 ; \
+		mv -f checksums~ checksums || exit 1 ; )
+	@$(MAKE) clean

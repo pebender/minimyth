@@ -14,8 +14,10 @@ DEPENDS = lang/c \
 	lang/libc
 BUILDEPS =
 endif
+DEPENDS += \
+	lang/compiler-rt-builtins
 
-WORKSRC = $(WORKDIR)/$(GARNAME)
+WORKSRC = $(WORKDIR)/llvm-project-$(LLVM_VERSION)/$(GARNAME)
 
 ifndef ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake

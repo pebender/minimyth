@@ -29,7 +29,6 @@ DEPENDS = \
 	system/g15daemon \
 	disk/hdparm \
 	net/ifplugd \
-	system/iguanair \
 	X11/libva-intel-driver \
 	net/inetutils \
 	utils/intel-microcode2ucode \
@@ -44,7 +43,6 @@ DEPENDS = \
 	utils/kmod \
 	myth-$(mm_MYTH_VERSION)/mythtv \
 	lib/ncursesw \
-	net/nfs-utils \
 	net/ntp \
 	net/openssh \
 	net/rpcbind \
@@ -57,9 +55,7 @@ DEPENDS = \
 	utils/regionset \
 	X11/rxvt \
 	utils/SDL-Test \
-	system/splashutils \
 	utils/squashfs \
-	net/syslinux \
 	system/sysvinit \
 	system/udev \
 	X11/unclutter \
@@ -74,14 +70,11 @@ DEPENDS = \
 	X11/xosd \
 	X11/xscreensaver \
 	X11/xvattr \
-	utils/xwiimote \
 	system/zoneinfo \
 	$(if $(filter nvidia,$(mm_GRAPHICS)), \
 		nvidia/nvidia-$(mm_NVIDIA_VERSION)) \
 	$(if $(filter mythbrowser,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythbrowser),myth-$(mm_MYTH_VERSION)/mythbrowser)) \
-	$(if $(filter mythgallery,$(mm_SOFTWARE)), \
-		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythgallery),myth-$(mm_MYTH_VERSION)/mythgallery)) \
 	$(if $(filter mythgame,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythgame),myth-$(mm_MYTH_VERSION)/mythgame) \
 		emulators/fceu \
@@ -89,7 +82,6 @@ DEPENDS = \
 		emulators/mednafen \
 		emulators/stella \
 		$(if $(filter mame,$(mm_SOFTWARE)),emulators/mame) \
-		emulators/VisualBoyAdvance \
 		$(if $(filter i386,$(mm_GARCH_FAMILY)),emulators/zsnes)) \
 	$(if $(filter mythmusic,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythmusic),myth-$(mm_MYTH_VERSION)/mythmusic)) \
@@ -97,8 +89,7 @@ DEPENDS = \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnetvision),myth-$(mm_MYTH_VERSION)/mythnetvision) \
 		$(if $(filter python,$(mm_SOFTWARE)), \
 			python/python-lxml \
-			python/python-MySQL-python \
-			python/python-pycurl)) \
+			python/python-MySQL-python )) \
 	$(if $(filter mythnews,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnews),myth-$(mm_MYTH_VERSION)/mythnews)) \
 	$(if $(filter mythphone,$(mm_SOFTWARE)), \
