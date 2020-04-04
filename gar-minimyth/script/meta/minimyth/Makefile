@@ -86,20 +86,13 @@ DEPENDS = \
 	$(if $(filter mythmusic,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythmusic),myth-$(mm_MYTH_VERSION)/mythmusic)) \
 	$(if $(filter mythnetvision,$(mm_SOFTWARE)), \
-		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnetvision),myth-$(mm_MYTH_VERSION)/mythnetvision) \
-		$(if $(filter python,$(mm_SOFTWARE)), \
-			python/python-lxml \
-			python/python-MySQL-python )) \
+		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnetvision),myth-$(mm_MYTH_VERSION)/mythnetvision)) \
 	$(if $(filter mythnews,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnews),myth-$(mm_MYTH_VERSION)/mythnews)) \
 	$(if $(filter mythphone,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythphone),myth-$(mm_MYTH_VERSION)/mythphone)) \
 	$(if $(filter mythstream,$(mm_SOFTWARE)), \
-		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythstream),myth-$(mm_MYTH_VERSION)/mythstream) \
-		perl/perl-HTML-Parser \
-		perl/perl-libwww-perl \
-		perl/perl-XML-DOM \
-		perl/perl-XML-XQL) \
+		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythstream),myth-$(mm_MYTH_VERSION)/mythstream)) \
 	$(if $(filter mythweather,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythweather),myth-$(mm_MYTH_VERSION)/mythweather)) \
 	$(if $(filter mythzoneminder,$(mm_SOFTWARE)), \
@@ -107,16 +100,6 @@ DEPENDS = \
 	$(if $(filter airplay,$(mm_SOFTWARE)), \
 		lib/dbus \
 		lib/avahi) \
-	$(if $(filter mplayer-new,$(mm_SOFTWARE)), \
-		mediaplayers/mplayer-new \
-		mediaplayers/mplayer-resumer) \
-	$(if $(filter mplayer-vld,$(mm_SOFTWARE)), \
-		mediaplayers/mplayer-vld \
-		mediaplayers/mplayer-resumer) \
-	$(if $(filter vlc,$(mm_SOFTWARE)), \
-		mediaplayers/vlc) \
-	$(if $(filter xine,$(mm_SOFTWARE)), \
-		mediaplayers/xine-ui) \
 	$(if $(filter wiimote,$(mm_SOFTWARE)), \
 		utils/cwiid) \
 	$(if $(filter debug,$(mm_SOFTWARE)), \

@@ -62,13 +62,13 @@ include ../../gar.mk
 
 install-pri:
 	@mkdir -pv $(DESTDIR)$(qt5prefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit.pri $(DESTDIR)$(qt5pefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit_private.pri $(DESTDIR)$(qt5pefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets.pri $(DESTDIR)$(qt5pefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets_private.pri $(DESTDIR)$(qt5pefix)/mkspecs
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit.pri $(DESTDIR)$(qt5prefix)/mkspecs/modules/qt_lib_webkit.pri
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit_private.pri $(DESTDIR)$(qt5prefix)/mkspecs/modules/qt_lib_webkit_private.pri
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets.pri $(DESTDIR)$(qt5prefix)/mkspecs/modules/qt_lib_webkitwidgets.pri
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets_private.pri $(DESTDIR)$(qt5prefix)/mkspecs/modules/qt_lib_webkitwidgets_private.pri
 	@mkdir -pv $(build_DESTDIR)$(build_qt5prefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit.pri $(build_DESTDIR)$(build_qt5pefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit_private.pri $(build_DESTDIR)$(build_qt5pefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets.pri $(build_DESTDIR)$(build_qt5pefix)/mkspecs
-	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets_private.pri $(build_DESTDIR)$(build_qt5pefix)/mkspecs
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit.pri $(build_DESTDIR)$(build_qt5prefix)/mkspecs/modules/qt_lib_webkit.pri
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkit_private.pri $(build_DESTDIR)$(build_qt5prefix)/mkspecs/qt_lib_webkit_private.pri
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets.pri $(build_DESTDIR)$(build_qt5prefix)/mkspecs/modules/qt_lib_webkitwidgets.pri
+	@install -v --mode=0644 $(DOWNLOADDIR)/qt_lib_webkitwidgets_private.pri $(build_DESTDIR)$(build_qt5prefix)/mkspecs/modules/qt_lib_webkitwidgets_private.pri
 	@$(MAKECOOKIE)

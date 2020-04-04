@@ -1,9 +1,10 @@
 GARNAME = mame
-GARVERSION = 0.217
+GARVERSION = 0.219
 CATEGORIES = emulators
 MASTER_SITES = https://github.com/mamedev/mame/archive/
 DISTFILES = $(GARNAME)$(subst .,,$(GARVERSION)).tar.gz
 PATCHFILES = \
+	$(DISTNAME)-clang-detection.patch \
 	$(DISTNAME)-ar.patch \
 	$(DISTNAME).patch.gar
 LICENSE = BSD_3_Clause/LGPL2_1/GPL3
@@ -12,7 +13,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/make db/sqlite lib/expat lib/flac lib/libjpeg lib/SDL2 lib/SDL2_ttf lib/zlib xorg/xorg
+DEPENDS = lang/c lang/cxx build-tool/make db/sqlite lib/expat lib/flac lib/libjpeg lib/SDL2 lib/SDL2_ttf lib/zlib xorg/libXi xorg/libXinerama
 BUILDDEPS = python/python
 
 WORKSRC = $(WORKDIR)/mame-$(GARNAME)$(subst .,,$(GARVERSION))
@@ -37,7 +38,7 @@ BUILD_ARGS  = \
 	LDOPTS="$(LDOPTS)" \
 	PTR64="$(PTR64)" \
 	LTO="$(LTO)" \
-	SDL_LIBVER="sdl2" \
+	xSDL_LIBVER="sdl2" \
 	USE_SYSTEM_LIB_ASIO="0" \
 	USE_SYSTEM_LIB_EXPAT="1" \
 	USE_SYSTEM_LIB_ZLIB="1" \

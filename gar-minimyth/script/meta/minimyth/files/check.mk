@@ -136,26 +136,14 @@ x-mm-all:
 	done
 	@echo "    mm_SOFTWARE"
 	@for software in $(mm_SOFTWARE) ; do \
-		if [ ! "$${software}" = "mythaudio"      ] && \
 		   [ ! "$${software}" = "mythbrowser"    ] && \
-		   [ ! "$${software}" = "mythdvd"        ] && \
-		   [ ! "$${software}" = "mythgallery"    ] && \
 		   [ ! "$${software}" = "mythgame"       ] && \
 		   [ ! "$${software}" = "mythmusic"      ] && \
 		   [ ! "$${software}" = "mythnetvision"  ] && \
 		   [ ! "$${software}" = "mythnews"       ] && \
-		   [ ! "$${software}" = "mythphone"      ] && \
-		   [ ! "$${software}" = "mythstream"     ] && \
-		   [ ! "$${software}" = "mythvideo"      ] && \
 		   [ ! "$${software}" = "mythweather"    ] && \
 		   [ ! "$${software}" = "mythzoneminder" ] && \
 		   [ ! "$${software}" = "airplay"        ] && \
-		   [ ! "$${software}" = "flash"          ] && \
-		   [ ! "$${software}" = "hulu"           ] && \
-		   [ ! "$${software}" = "mplayer-new"    ] && \
-		   [ ! "$${software}" = "mplayer-vld"    ] && \
-		   [ ! "$${software}" = "vlc"            ] && \
-		   [ ! "$${software}" = "xine"           ] && \
 		   [ ! "$${software}" = "mame"           ] && \
 		   [ ! "$${software}" = "ps3remote"      ] && \
 		   [ ! "$${software}" = "wiimote"        ] && \

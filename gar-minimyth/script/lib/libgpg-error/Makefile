@@ -24,17 +24,12 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
-	--enable-nls \
+	--disable-nls \
 	--disable-rpath \
 	--disable-languages \
 	--disable-doc
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@#$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la

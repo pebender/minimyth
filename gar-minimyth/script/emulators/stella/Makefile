@@ -1,16 +1,16 @@
 GARNAME = stella
-GARVERSION = 3.9.3
+GARVERSION = 6.1
 CATEGORIES = emulators
-MASTER_SITES = https://github.com/stella-emu/stella/releases/download/release-$(GARVERSION)/
-DISTFILES = $(DISTNAME)-src.tar.gz
-PATCHFILES = $(DISTNAME).patch
+MASTER_SITES = https://github.com/stella-emu/stella/releases/download/$(GARVERSION)/
+DISTFILES = $(DISTNAME)-src.tar.xz
+#PATCHFILES = $(DISTNAME).patch
 LICENSE = GPL2
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS = lang/cxx lib/SDL build-tool/make lib/zlib xorg/xorg
+DEPENDS = lang/cxx build-tool/make lib/libpng lib/SDL2 lib/zlib xorg/xorg
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -21,21 +21,20 @@ CONFIGURE_ARGS = \
 	--bindir="$(bindir)" \
 	--docdir="$(docdir)/stella" \
 	--datadir="$(datadir)" \
-	--enable-gl \
-	--enable-windowed \
+	--enable-gui \
 	--enable-sound \
 	--enable-debugger \
 	--enable-joystick \
 	--enable-cheats \
-	--enable-thumb \
+	--enable-png \
+	--enable-zip \
+	--disable-sqlite \
+	--enable-windowed \
 	--enable-shared \
 	--disable-static \
 	--disable-profile \
-	--with-zlib-prefix="$(DESTDIR)$(prefix)" \
-	--x-libraries="$(DESTDIR)$(libdir)"
+	--disable-debug
 
 include ../../gar.mk
 
 LDFLAGS := $(CXXFLAGS) $(LDFLAGS)
-
-LDFLAGS := $(LDFLAGS) -fwhole-program

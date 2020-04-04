@@ -42,7 +42,7 @@ mm_GRAPHICS               ?= intel \
 # Valid values for MM_SOFTWARE are zero or more of 'mythbrowser',
 # 'mythgame', 'mythmusic', 'mythnetvision', 'mythnews',
 # 'mythweather', 'mythzoneminder', 'airplay',
-# 'mplayer-new', 'mplayer-vld', 'vlc' 'xine', 'mame', 'ps3remote', 'wiimote',
+# 'mame', 'ps3remote', 'wiimote',
 # 'cec', 'backend','python', 'debug'.
 mm_SOFTWARE               ?= mythbrowser \
                              mythgame \

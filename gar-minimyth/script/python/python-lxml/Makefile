@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c python/python lib/libxml2
+DEPENDS = lang/c python/python lib/libxml2 lib/libxslt
 
 WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 
@@ -26,7 +26,7 @@ INSTALL_ENV    = \
 	PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
 
 ifneq ($(DESTIMG),build)
-#BUILD_ARGS += --cross-compile
+BUILD_ARGS += --cross-compile
 BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 endif
 

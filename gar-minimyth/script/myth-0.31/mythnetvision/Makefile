@@ -11,9 +11,7 @@ endef
 DEPENDS = \
 	lang/cxx \
 	$(CATEGORY)/mythtv \
-	python/python \
-	python/python-lxml \
-	python/python-oauth
+	python/python
 BUILDDEPS = \
 	python/python \
 	python/python-pycurl \
