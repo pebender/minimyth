@@ -11,7 +11,7 @@ endef
 ifneq ($(DESTIMG),build)
 DEPENDS = \
 	tainted-main/tainted-main \
-	kernel-headers/linux-headers
+	toolchain-main/linux-headers
 endif
 
 build_DESTDIR = $(tainted_build_DESTDIR)
@@ -28,7 +28,7 @@ endif
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--cache-file=config.cache \
 	--enable-bind-now \
-	--enable-kernel=5.4.0 \
+	--enable-kernel=5.6.0 \
 	--disable-obsolete-rpc \
 	--with-headers=$(DESTDIR)$(includedir) \
 	--enable-add-ons=nptl \

@@ -8,6 +8,7 @@ define BLURB
 endef
 
 DEPENDS = \
+	toolchain-main/linux-header \
 	toolchain-main/glibc \
 	toolchain-main/binutils \
 	toolchain-main/gcc \

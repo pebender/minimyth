@@ -96,8 +96,7 @@ COPY_FILES = \
 						mkdir -p $${target_dir} ; \
 						cp $${cp_flags} $${source_file} $${target_file} ; \
 						while file $${target_file} | grep -i -q 'symbolic link to' ; do \
-							link="`file $${source_file} | \
-								sed -e 's%^.* %%' -e 's%^.%%' -e 's%.$$%%'`" ; \
+							link="`readlink $${source_file}`" ; \
 							source_file="`dirname $${source_file}`/$${link}" ; \
 							target_file="`dirname $${target_file}`/$${link}" ; \
 							if [ ! -e $${source_file} ] ; then \
@@ -177,10 +176,14 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@# Copy the QT plugins needed by MythTV.
 	@rm -rf   $@~$(qt5prefix)/plugins
 	@mkdir -p $@~$(qt5prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/graphicssystems $@~$(qt5prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/iconengines     $@~$(qt5prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/imageformats    $@~$(qt5prefix)/plugins
-	@cp -pdR $(DESTDIR)$(qt5prefix)/plugins/sqldrivers      $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/bearer                $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/generic               $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/imageformats          $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/platforms             $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/platforminputcontexts $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/platformthemes        $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/sqldrivers            $@~$(qt5prefix)/plugins
+	@cp -pdR  $(DESTDIR)$(qt5prefix)/plugins/xcbglintegrations     $@~$(qt5prefix)/plugins
 	@# Copy HTML files.
 	@find $(top_source)/html -depth -type d \
 		| sed -e 's%^\$(top_source)/html%$@~/srv/www%' \
@@ -211,7 +214,7 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@sed -i 's%@GAR_datadir@%$(datadir)%g'                     $@~$(sysconfdir)/fonts/local.conf
 	@sed -i 's%@EXTRAS_ROOTDIR@%$(extras_rootdir)%'            $@~$(sysconfdir)/rc.d/init/extras.pm
 	@# Create the minimyth build configuration file.
-	@rm -rf   $@~$(versiondir)/minimyth.conf.mk
+	@rm -rf $@~$(versiondir)/minimyth.conf.mk
 	@mkdir -m 0755 -p $@~$(versiondir)
 	@$(foreach build_var,$(build_vars), \
 		echo "$(build_var)='$(strip $($(build_var)))'" >> $@~$(versiondir)/minimyth.conf.mk ; )
@@ -223,7 +226,7 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@# Make documentation links.
 	@mkdir -m 0755 -p $@~/srv/www/software
 	@ln -sf $(patsubst /%,%,$(call DIRSTODOTS,/srv/www/software))$(sourcedir)/gar-$(mm_NAME).tar.bz2 \
-		$@~/srv/www/software/gar-$(mm_NAME).tar.bz2
+	        $@~/srv/www/software/gar-$(mm_NAME).tar.bz2
 	@mkdir -m 0755 -p $@~/srv/www/software/base
 	@ln -sf $(patsubst /%,%,$(call DIRSTODOTS,/srv/www/software/base))$(versiondir) \
 	        $@~/srv/www/software/base/versions
@@ -257,22 +260,10 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 		index=$$(($${index}+2)) && \
 		ln -sf ../init/$(file).pm $@~$(sysconfdir)/rc.d/rc/K$${index}$(file) ; )
 	@# Make font file links.
-	@
-	@if [ $(mm_MYTH_VERSION) = "0.20" ]         || \
-	    [ $(mm_MYTH_VERSION) = "0.20-softpad" ] || \
-	    [ $(mm_MYTH_VERSION) = "0.21" ]         || \
-	    [ $(mm_MYTH_VERSION) = "0.22" ]         || \
-	    [ $(mm_MYTH_VERSION) = "0.23" ]         ; then \
-		for font in `cd $@~$(datadir)/fonts/X11/TTF ; ls -1 *.{TTF,ttf} 2> /dev/null` ; do \
-			ln -sf $(patsubst /%,%,$(call DIRSTODOTS,$(datadir)/mythtv))$(datadir)/fonts/X11/TTF/$${font} \
-			       $@~$(datadir)/mythtv/$${font} ; \
-	 	done ; \
-	else \
-		for font in `cd $@~$(datadir)/fonts/X11/TTF ; ls -1 *.{TTF,ttf} 2> /dev/null` ; do \
-			ln -sf $(patsubst /%,%,$(call DIRSTODOTS,$(datadir)/mythtv/fonts))$(datadir)/fonts/X11/TTF/$${font} \
-			       $@~$(datadir)/mythtv/fonts/$${font} ; \
-	 	done ; \
-	fi
+	@for font in `cd $@~$(datadir)/fonts/X11/TTF ; ls -1 *.{TTF,ttf} 2> /dev/null` ; do \
+		ln -sf $(patsubst /%,%,$(call DIRSTODOTS,$(datadir)/mythtv/fonts))$(datadir)/fonts/X11/TTF/$${font} \
+		        $@~$(datadir)/mythtv/fonts/$${font} ; \
+	done
 	@# Remove unneeded perl files.
 	@echo 'removing unneeded perl files'
 	@dirs='$(PERL_libdir)' ; \

@@ -37,3 +37,7 @@ xCONFIGURE_ARGS += \
 endif
 
 include ../../gar.mk
+
+post-install:
+	@rm -fv $(DESTDIR)$(libdir)/libbluetooth.la
+	@$(MAKECOOKIE)

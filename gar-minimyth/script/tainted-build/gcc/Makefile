@@ -89,13 +89,11 @@ configure-custom:
 	@$(MAKECOOKIE)
 
 install-lib-wrappers:
-	@rm -fv $(DESTDIR)$(libdir)/libbfd.la
 	@rm -fv $(DESTDIR)$(libdir)/libcc1.la
 	@rm -fv $(DESTDIR)$(libdir)/libasan.la
 	@rm -fv $(DESTDIR)$(libdir)/libatomic.la
 	@rm -fv $(DESTDIR)$(libdir)/libitm.la
 	@rm -fv $(DESTDIR)$(libdir)/liblsan.la
-	@rm -fv $(DESTDIR)$(libdir)/libopcodes.la
 	@rm -fv $(DESTDIR)$(libdir)/libstdc++.la
 	@rm -fv $(DESTDIR)$(libdir)/libstdc++fs.la
 	@rm -fv $(DESTDIR)$(libdir)/libsupc++.la

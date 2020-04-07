@@ -27,9 +27,11 @@ BUILDDEPS = \
 	tainted-build/coreutils \
 	tainted-build/make
 
+ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile lib-wrappers links
+endif
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-static-standard-libraries \
@@ -68,19 +70,20 @@ post-extract:
 	@mv -fv $(WORKDIR)/mpfr-$(MPFR_VERSION) $(WORKSRC)/mpfr
 	@$(MAKECOOKIE)
 
-post-install:
+install-lib-wrappers:
 	@rm -fv $(DESTDIR)$(libdir)/libbfd.la
 	@rm -fv $(DESTDIR)$(libdir)/libopcodes.la
-	@$(if $(filter $(DESTIMG),build), \
-		ln -sfv ld $(DESTDIR)$(bindir)/$(GARHOST)-ld && \
-		ln -sfv ld.bfd $(DESTDIR)$(bindir)/$(GARHOST)-ld.bfd && \
-		ln -sfv objdump $(DESTDIR)$(bindir)/$(GARHOST)-objdump && \
-		ln -sfv objcopy $(DESTDIR)$(bindir)/$(GARHOST)-objcopy && \
-		ln -sfv strip $(DESTDIR)$(bindir)/$(GARHOST)-strip && \
-		ln -sfv ranlib $(DESTDIR)$(bindir)/$(GARHOST)-ranlib && \
-		ln -sfv readelf $(DESTDIR)$(bindir)/$(GARHOST)-readelf && \
-		ln -sfv nm $(DESTDIR)$(bindir)/$(GARHOST)-nm && \
-		ln -sfv as $(DESTDIR)$(bindir)/$(GARHOST)-as && \
-		ln -sfv ar $(DESTDIR)$(bindir)/$(GARHOST)-ar \
-	)
+	@$(MAKECOOKIE)
+
+install-links:
+	@ln -sfv ld $(DESTDIR)$(bindir)/$(GARHOST)-ld
+	@ln -sfv ld.bfd $(DESTDIR)$(bindir)/$(GARHOST)-ld.bfd
+	@ln -sfv objdump $(DESTDIR)$(bindir)/$(GARHOST)-objdump
+	@ln -sfv objcopy $(DESTDIR)$(bindir)/$(GARHOST)-objcopy
+	@ln -sfv strip $(DESTDIR)$(bindir)/$(GARHOST)-strip
+	@ln -sfv ranlib $(DESTDIR)$(bindir)/$(GARHOST)-ranlib
+	@ln -sfv readelf $(DESTDIR)$(bindir)/$(GARHOST)-readelf
+	@ln -sfv nm $(DESTDIR)$(bindir)/$(GARHOST)-nm
+	@ln -sfv as $(DESTDIR)$(bindir)/$(GARHOST)-as
+	@ln -sfv ar $(DESTDIR)$(bindir)/$(GARHOST)-ar
 	@$(MAKECOOKIE)

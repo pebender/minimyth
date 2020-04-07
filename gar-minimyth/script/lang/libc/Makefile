@@ -9,7 +9,7 @@ endef
 
 ifneq ($(DESTIMG),build)
 #DEPENDS = lang/musl
-#DEPENDS = lang/glibc
+DEPENDS = lang/glibc
 endif
 
 GAR_EXTRA_CONF += lang/lang/toolchain.mk

@@ -1,0 +1,12 @@
+diff -Naur Socket6-0.29-old/Makefile.PL Socket6-0.29-new/Makefile.PL
+--- Socket6-0.29-old/Makefile.PL	2016-04-10 20:27:34.000000000 -0700
++++ Socket6-0.29-new/Makefile.PL	2020-04-06 15:19:15.609531419 -0700
+@@ -49,6 +49,8 @@
+         $cmd .= " $Config{sh}";
+     }
+     $cmd .= " ./configure";
++    $cmd .= " --build=@GAR_GARBUILD@";
++    $cmd .= " --host=@GAR_GARHOST@";
+     $cmd .= " --with-perl=$path_perl" if ($path_perl);
+     system($cmd);
+ }

@@ -28,7 +28,7 @@ COOKIEDIR = $(COOKIEROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
 ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS = $(WORKSRC)/Makefile remove-lib-wrappers
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile lib-wrappers
 endif
 
 CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARBUILD) --target=$(GARTARGET) \
@@ -51,7 +51,7 @@ GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain.mk
 GAR_EXTRA_CONF += tainted-build/binutils/package-api.mk
 include ../../gar.mk
 
-install-remove-lib-wrappers:
+install-lib-wrappers:
 	@rm -f $(DESTDIR)$(libdir)/libbfd.la
 	@rm -f $(DESTDIR)$(libdir)/libopcodes.la
 	@$(MAKECOOKIE)

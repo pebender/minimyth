@@ -122,6 +122,8 @@ pre-configure:
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libSDL2.la
+	@rm -f $(DESTDIR)$(libdir)/libSDL2main.la
+	@rm -f $(DESTDIR)$(libdir)/libSDL2_test.la
 	@rm -f $(DESTDIR)$(libdir)/libSDL2.a
 	@rm -f $(DESTDIR)$(libdir)/libSDL2main.a
 	@rm -f $(DESTDIR)$(libdir)/libSDL2_test.a

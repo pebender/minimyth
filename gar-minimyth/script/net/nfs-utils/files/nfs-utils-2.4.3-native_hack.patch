@@ -1,0 +1,17 @@
+diff -Naur nfs-utils-2.4.3-old/tools/locktest/Makefile.am nfs-utils-2.4.3-new/tools/locktest/Makefile.am
+--- nfs-utils-2.4.3-old/tools/locktest/Makefile.am	2020-02-09 11:41:19.000000000 -0800
++++ nfs-utils-2.4.3-new/tools/locktest/Makefile.am	2020-04-06 16:24:21.304318511 -0700
+@@ -2,8 +2,10 @@
+ 
+ noinst_PROGRAMS = testlk
+ testlk_SOURCES = testlk.c
+-testlk_CFLAGS=$(CFLAGS_FOR_BUILD)
+-testlk_CPPFLAGS=$(CPPFLAGS_FOR_BUILD)
+-testlk_LDFLAGS=$(LDFLAGS_FOR_BUILD)
++CC = @CC_FOR_BUILD@
++CPP = @CPP_FOR_BUILD@
++CFLAGS = @CFLAGS_FOR_BUILD@
++CPPFLAGS = @CPPFLAGS_FOR_BUILD@
++LDFLAGS = @LDFLAGS_FOR_BUILD@
+ 
+ MAINTAINERCLEANFILES = Makefile.in

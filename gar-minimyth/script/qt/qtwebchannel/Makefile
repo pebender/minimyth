@@ -22,3 +22,7 @@ configure-%/qmake:
 	@echo " ==> Running qmake in $*"
 	@cd $* && $(CONFIGURE_ENV) $(build_DESTDIR)$(build_qt5bindir)/qmake $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
+
+post-install:
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5WebChannel.la
+	@$(MAKECOOKIE)

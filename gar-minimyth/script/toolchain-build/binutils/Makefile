@@ -14,7 +14,7 @@ BUILDDEPS = \
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS = $(WORKSRC)/Makefile remove-lib-wrappers host-links
+INSTALL_SCRIPTS = $(WORKSRC)/Makefile lib-wrappers links
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARBUILD) --target=$(GARTARGET) \
 	--with-static-standard-libraries \
@@ -46,12 +46,12 @@ RANLIB := $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-ranlib
 READELF := $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-readelf
 NM := $(build_DESTDIR)$(build_bindir)/$(build_GARHOST)-nm
 
-install-remove-lib-wrappers:
+install-lib-wrappers:
 	@rm -f $(DESTDIR)$(libdir)/libbfd.la
 	@rm -f $(DESTDIR)$(libdir)/libopcodes.la
 	@$(MAKECOOKIE)
 
-install-host-links:
+install-links:
 	@ln -sfv ld $(DESTDIR)$(bindir)/$(GARHOST)-ld
 	@ln -sfv ld.bfd $(DESTDIR)$(bindir)/$(GARHOST)-ld.bfd
 	@ln -sfv objdump $(DESTDIR)$(bindir)/$(GARHOST)-objdump

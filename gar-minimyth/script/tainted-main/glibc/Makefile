@@ -62,7 +62,6 @@ INSTALL_ENV = \
 	BUILD_LDFLAGS="$(build_LDFLAGS)"
 
 GAR_EXTRA_CONF += tainted-main/tainted-main/toolchain.mk
-GAR_EXTRA_CONF += devel/glibc/package-api.mk
 include ../../gar.mk
 
 # glibc 2.30 fails to compile with gcc 9.2.0's link time optimization enabled.

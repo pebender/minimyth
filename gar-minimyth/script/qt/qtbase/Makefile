@@ -121,11 +121,6 @@ pre-configure:
 	@cp -rfv $(build_DESTDIR)$(build_qt5prefix)/mkspecs/minimyth-$(DESTIMG) $(WORKSRC)/mkspecs/minimyth-$(DESTIMG)
 	@$(MAKECOOKIE)
 
-x-pre-install:
-	@rm -rfv $(WORKSRC)/mkspecs/minimyth-build
-	@rm -rfv $(WORKSRC)/mkspecs/minimyth-$(DESTIMG)
-	@$(MAKECOOKIE)
-
 post-install:
 	@rm -fv $(DESTDIR)$(qt5libdir)/*.la
 	@$(call GLIBC_ADD_LIB_PATH, $(qt5libdir))
@@ -139,6 +134,35 @@ post-install:
 		sed -e 's%-I$(DESTDIR)$(qt5prefix)%-I$(qt5prefix)%g'              -i $${file} ; \
 		sed -e 's%-L$(DESTDIR)$(qt5prefix)%-L$(qt5prefix)%g'              -i $${file} ; \
 	 done
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5AccessibilitySupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Bootstrap.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5BootstrapDBus.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Concurrent.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Core.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5DBus.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5DeviceDiscoverySupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5EdidSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5EventDispatcherSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5FbSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5FontDatabaseSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5GlxSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Gui.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5InputSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5KmsSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Network.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5OpenGLExtensions.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5OpenGL.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5PlatformCompositorSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5PrintSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5ServiceSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Sql.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Test.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5ThemeSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Widgets.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5XcbQpa.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5XkbCommonSupport.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/libQt5Xml.la
+	@rm -fv $(DESTDIR)$(qt5libdir)/Qt5Zlib.la
 	@$(MAKECOOKIE)
 
 clean-all:

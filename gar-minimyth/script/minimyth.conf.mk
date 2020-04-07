@@ -98,12 +98,6 @@ mm_TFTP_ROOT              ?= /var/tftpboot/minimyth
 # file system for mounting using NFS. The MiniMyth root file system will be
 # installed in a subdirectory named 'minimyth-$(mm_VERSION)'.
 mm_NFS_ROOT               ?= /home/public/minimyth
-# The version of kernel headers to use.
-# Valid values are '5.6'
-mm_KERNEL_HEADERS_VERSION ?= 5.6
-# The version of kernel to use.
-# Valid values are '5.6'.
-mm_KERNEL_VERSION         ?= 5.6
 # The kernel configuration file to use.
 # When set, the kernel configuration file $(HOME)/.minimyth/$(mm_KERNEL_CONFIG) will be used.
 # When not set, a built-in kernel configuration file will be used.
@@ -160,15 +154,14 @@ mm_GARHOST                ?= $(strip \
                                  $(if $(filter x86-64          ,$(mm_GARCH)),x86_64) \
                               )-minimyth-linux-gnu
 mm_CFLAGS                 ?= $(strip \
-			     	 $(if $(filter armv8-a+crc+simd,$(mm_GARCH)),-march=armv8-a+crc+simd -mtune=cortex-a72 -marm) \
-                                 $(if $(filter atom            ,$(mm_GARCH)),-march=atom        -mtune=atom    -O2 -mfpmath=sse -ftree-vectorize -mmovbe) \
+                                 $(if $(filter atom            ,$(mm_GARCH)),-march=atom        -mtune=atom    -O2 -mfpmath=sse -ftree-vectorize -mmovbe                          ) \
                                  $(if $(filter c3              ,$(mm_GARCH)),-march=c3          -mtune=c3      -O2             ) \
                                  $(if $(filter c3-2            ,$(mm_GARCH)),-march=c3-2        -mtune=c3-2    -O2 -mfpmath=sse) \
-                                 $(if $(filter pentium-mmx     ,$(mm_GARCH)),-march=pentium-mmx -mtune=pentium-mmx    -O2             ) \
+                                 $(if $(filter pentium-mmx     ,$(mm_GARCH)),-march=pentium-mmx -mtune=pentium-mmx    -O2      ) \
                                  $(if $(filter x86-64          ,$(mm_GARCH)),-march=x86-64      -mtune=generic -O3 -mfpmath=sse) \
-                                 $(if $(filter i386  ,$(mm_GARCH_FAMILY)),)                                              \
-                                 $(if $(filter x86_64,$(mm_GARCH_FAMILY)),)                                              \
-                                 $(if $(filter yes,$(mm_DEBUG)),-g)                                                          \
+                                 $(if $(filter i386  ,$(mm_GARCH_FAMILY)),)                                                      \
+                                 $(if $(filter x86_64,$(mm_GARCH_FAMILY)),)                                                      \
+                                 $(if $(filter yes,$(mm_DEBUG)),-g)                                                                  \
                               )
 mm_DESTDIR                ?= $(mm_HOME)/images/mm
 

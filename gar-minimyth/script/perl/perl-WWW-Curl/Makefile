@@ -1,5 +1,5 @@
 GARNAME             = perl-WWW-Curl
-GARVERSION          = 4.15
+GARVERSION          = 4.17
 MASTER_SITES        = https://cpan.metacpan.org/authors/id/S/SZ/SZBALINT/
 PERL_MODULE_PATCHES = gar.patch.gar
 PERL_MODULE_SO      = true

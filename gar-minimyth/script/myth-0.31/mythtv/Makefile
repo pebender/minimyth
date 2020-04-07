@@ -5,6 +5,7 @@ MASTER_SITES = git://github.com/MythTV/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES  =
 PATCHFILES += \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-disable_perl_inet6_check.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythmusic_button_list_quick_scroll.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-python_build.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-sysroot.patch \
@@ -20,17 +21,15 @@ endef
 
 DEPENDS = \
 	lang/cxx \
-	db/mariadb \
 	lib/alsa-lib \
 	lib/avahi \
 	lib/exiv2 \
 	lib/fftw3 \
 	lib/fftw3f \
+	lib/fontconfig \
 	lib/freetype \
-	lib/lame \
 	lib/libass \
 	lib/libavc1394 \
-	lib/libcdio \
 	lib/libcdio-paranoia \
 	lib/libbluray \
 	lib/libcec \
@@ -41,16 +40,32 @@ DEPENDS = \
 	lib/openssl \
 	lib/taglib \
 	lib/zlib \
+	perl/perl \
+		perl/perl-DBD-mysql \
+		perl/perl-DBI \
+		perl/perl-HTTP-Message \
+		perl/perl-IO-Socket-INET6 \
+		perl/perl-libwww-perl \
+		perl/perl-Net-UPnP \
+		perl/perl-XML-Simple \
 	qt/qtbase \
 	qt/qtscript \
 	qt/qtwebkit \
 	system/lirc \
 	system/udev \
+	utils/util-linux \
 	X11/libva \
 	X11/libvdpau \
-	xorg/xorg
+	xorg/libdrm \
+	xorg/libX11 \
+	xorg/libXext \
+	xorg/libXinerama \
+	xorg/libXrandr \
+	xorg/libXxf86vm \
+	xorg/Mesa
 BUILDDEPS = \
 	devel/yasm \
+	python/python \
 	python/python-lxml
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
@@ -68,31 +83,33 @@ CONFIGURE_ARGS = \
 	--libdir-name="$(patsubst $(prefix)/%,%,$(libdir))" \
 	--disable-ccache \
 	--disable-distcc \
-	--bindir="$(DESTDIR)$(bindir)" \
-	--datadir="$(DESTDIR)$(datadir)/mythtv" \
-	--libdir="$(DESTDIR)$(libdir)" \
-	--shlibdir="$(DESTDIR)$(libdir)" \
-	--incdir="$(DESTDIR)$(includedir)/mythtv" \
-	--mandir="$(DESTDIR)$(mandir)" \
-	$(if $(filter -Os,$(CFLAGS)),--enable-small) \
+--bindir="$(DESTDIR)$(bindir)" \
+--datadir="$(DESTDIR)$(datadir)/mythtv" \
+--libdir="$(DESTDIR)$(libdir)" \
+--shlibdir="$(DESTDIR)$(libdir)" \
+--incdir="$(DESTDIR)$(includedir)/mythtv" \
+--mandir="$(DESTDIR)$(mandir)" \
+$(if $(filter -Os,$(CFLAGS)),--enable-small) \
 	--cross-prefix="$(GARHOST)-" \
+	--cross-prefix-cc="$(GARHOST)-" \
 	--enable-cross-compile \
 	--sysroot="$(DESTDIR)" \
 	--sysinclude="$(DESTDIR)$(includedir)" \
-	--target-os="linux" \
-	--nm="$(NM)" \
-	--as="$(CC)" \
+--target-os="linux" \
+--nm="$(NM)" \
+--as="$(CC)" \
 	--cc="$(CC)" \
 	--cxx="$(CXX)" \
 	--ld="$(CC)" \
 	--qmake="$(build_DESTDIR)$(build_qt5bindir)/qmake" \
-	--host-cc="$(build_CC)" \
-	--host-cflags="$(build_CFLAGS)" \
-	--host-ldflags="$(build_LDFLAGS)" \
+--host-cc="$(build_CC)" \
+--host-cflags="$(build_CFLAGS)" \
+--host-ldflags="$(build_LDFLAGS)" \
 	--extra-cflags="$(CFLAGS)" \
 	--extra-cxxflags="$(CXXFLAGS)" \
-	--extra-ldflags="$(LDFLAGS) -Wl,-z,notext" \
+	--extra-ldflags="$(LDFLAGS)" \
 	--enable-symbol-visibility \
+	--enable-deprecation-warnings \
 	--arch=$(GARCH_FAMILY) \
 	--tune=$(GARCH) \
 	--cpu=$(GARCH) \
@@ -109,8 +126,10 @@ CONFIGURE_ARGS = \
 	--enable-ssse3 \
 	--enable-avx \
 	--enable-x86asm \
+	--enable-yasm \
 	--enable-pic \
 	--disable-proc-opt \
+	--enable-compdb \
 	--enable-audio-oss \
 	--enable-audio-alsa \
 	--disable-audio-jack \
@@ -122,6 +141,7 @@ CONFIGURE_ARGS = \
 	--libcec-path="$(DESTDIR)$(includedir)" \
 	--enable-firewire \
 	--disable-hdhomerun \
+	--disable-vbox \
 	--disable-ceton \
 	--enable-v4l2 \
 	--enable-ivtv \
@@ -134,25 +154,35 @@ CONFIGURE_ARGS = \
 	--enable-xrandr \
 	--enable-vdpau \
 	--enable-vaapi \
+	--disable-nvdec \
 	--disable-dxva2 \
+	--disable-mediacodec \
+	--disable-mmal \
 	--enable-libass \
+	--enable-systemd_notify \
+	--enable-systemd_journal \
 	--disable-mac-bundle \
 	--enable-libxml2 \
 	--libxml2-path="$(DESTDIR)$(includedir)/libxml2" \
 	--enable-libdns_sd \
 	--enable-libcrypto \
-	--without-bindings="perl" \
+	--with-bindings="perl" \
 	--without-bindings="php" \
 	--without-bindings="python" \
+	--disable-bdjava \
 	--disable-libmp3lame \
+	--disable-libx264 \
+	--disable-libx265 \
 	--disable-libvpx \
 	--disable-libxvid \
-	--disable-sdl
+	--disable-sdl \
+	--disable-sdl2 \
+	--disable-ffplay
 
 BUILD_ARGS = \
 	Q=""
 
-CONFIGURE_ENV  = $(MYTHTV_CONFIGURE_ENV)
+CONFIGURE_ENV  = $(MYTHTV_CONFIGURE_ENV) PERL5LIB=$(PERL_PERL5LIB)
 BUILD_ENV      = $(MYTHTV_BUILD_ENV)
 INSTALL_ENV    = $(MYTHTV_INSTALL_ENV)
 
@@ -160,6 +190,7 @@ CONFIGURE_ENV += pkg_config=pkg-config
 BUILD_ENV     += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 INSTALL_ENV   += PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
 
+GAR_EXTRA_CONF += perl/perl/package-api.mk
 GAR_EXTRA_CONF += python/python/package-api.mk
 include ../../gar.mk
 
@@ -178,6 +209,8 @@ LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
 CFLAGS   += -fno-devirtualize
 CXXFLAGS += -fno-devirtualize
 LDFLAGS  += -fno-devirtualize
+
+LDFLAGS  += -Wl,-z,notext
 
 git//%/$(DISTNAME).tar.bz2:
 	$(call FETCH_GIT, $*/mythtv.git, $(word 3,$(subst -, ,$(GARVERSION))), $(DISTNAME))

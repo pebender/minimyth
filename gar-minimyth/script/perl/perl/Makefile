@@ -3,12 +3,11 @@ GARVERSION = $(PERL_VERSION)
 CATEGORIES = perl
 MASTER_SITES = https://www.cpan.org/src/
 DISTFILES = $(DISTNAME).tar.gz
-#PATCHFILES  = $(DISTNAME)-dash.patch $(DISTNAME)-perl.patch.gar $(DISTNAME)-path.patch $(DISTNAME)-perl5lib.patch
-ifneq ($(DESTIMG),build)
-#PATCHFILES += $(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar $(DISTNAME)-cross.patch.gar
-#PATCHFILES += $(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar $(DISTNAME)-cross.patch.gar
+PATCHFILES  = $(DISTNAME)-dash.patch $(DISTNAME)-perl.patch.gar $(DISTNAME)-path.patch $(DISTNAME)-perl5lib.patch
+ifeq ($(DESTIMG),build)
+PATCHFILES += $(DISTNAME)-cbuilder.patch $(DISTNAME)-xsloader.patch $(DISTNAME)-dynaloader.patch $(DISTNAME)-errno.patch
 else
-#PATCHFILES += $(DISTNAME)-cbuilder.patch $(DISTNAME)-xsloader.patch $(DISTNAME)-dynaloader.patch $(DISTNAME)-errno.patch
+PATCHFILES += $(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar $(DISTNAME)-cross.patch.gar
 endif
 LICENSE = Artistic
 
@@ -16,16 +15,16 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS    = lang/c
-BUILDDEPS  = utils/bash
+DEPENDS = lang/c
+BUILDDEPS = utils/bash
 ifneq ($(DESTIMG),build)
 BUILDDEPS += perl/perl
 endif
 
 ifneq ($(DESTIMG),build)
-#CONFIGURE_SCRIPTS = $(WORKSRC)/configure check-version
-#BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-#INSTALL_SCRIPTS   = config $(WORKSRC)/Makefile
+CONFIGURE_SCRIPTS = $(WORKSRC)/configure check-version
+BUILD_SCRIPTS     = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS   = config $(WORKSRC)/Makefile
 else
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -41,7 +40,7 @@ CONFIGURE_ARGS = \
 	-d \
 	-e \
 	-Duserelocatableinc='true' \
-	-Dinitialinstalllocation="$(bindir)" \
+	-Dinitialinstalllocation="$(DESTDIR)$(bindir)" \
 	-Dprefix="$(prefix)" \
 	-Dman1dir='$(mandir)/man1' \
 	-Dman3dir='$(mandir)/man3' \
@@ -76,10 +75,13 @@ CONFIGURE_ENV = $(PERL_CONFIGURE_ENV)
 BUILD_ENV     = $(PERL_BUILD_ENV)
 INSTALL_ENV   = $(PERL_INSTALL_ENV)
 
-GAR_EXTRA_CONF += devel/gcc/package-api.mk
-GAR_EXTRA_CONF += devel/glibc/package-api.mk
-GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk
+GAR_EXTRA_CONF += tainted-build/gcc/package-api.mk
+GAR_EXTRA_CONF += tainted-main/glibc/package-api.mk
+GAR_EXTRA_CONF += kernel/linux/package-api.mk
 include ../../gar.mk
+
+# Perl insists on adding the path to AR.
+AR := $(notdir $(AR))
 
 CPPFLAGS := $(PERL_CPPFLAGS)
 CFLAGS   := $(PERL_CFLAGS)

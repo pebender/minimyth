@@ -10,8 +10,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-#DEPENDS = lang/c kernel/kernel lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python system/iguanair xorg/libX11
-DEPENDS = lang/c kernel/kernel lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python xorg/libX11
+#DEPENDS = lang/c kernel/linux lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python system/iguanair xorg/libX11
+DEPENDS = lang/c kernel/linux lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python xorg/libX11
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -34,7 +34,7 @@ BUILD_ENV     = $(LINUX_MAKE_ENV) \
 	HAVE_WORKING_POLL="1"
 INSTALL_ENV   = $(LINUX_MAKE_ENV)
 
-GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk
+GAR_EXTRA_CONF += kernel/linux/package-api.mk
 include ../../gar.mk
 
 PARALLELMFLAGS := -j1

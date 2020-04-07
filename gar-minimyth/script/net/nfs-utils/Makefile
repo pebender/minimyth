@@ -3,7 +3,7 @@ GARVERSION = 2.4.3
 CATEGORIES = net
 MASTER_SITES = https://sourceforge.net/projects/nfs/files/nfs-utils/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2
-#PATCHFILES = $(DISTNAME)-native_hack.patch
+PATCHFILES = $(DISTNAME)-native_hack.patch
 LICENSE = GPL2
 
 DESCRIPTION = 
@@ -53,9 +53,11 @@ CONFIGURE_ENV = \
 
 include ../../gar.mk
 
+CFLAGS += -Wno-format-nonliteral
+CXXFLAGS += -Wno-format-nonliteral
 LDFLAGS += -lintl
 
-x-pre-configure:
+pre-configure:
 	@$(call RUN_AUTOTOOLS)
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)

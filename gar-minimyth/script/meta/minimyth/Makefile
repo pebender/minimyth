@@ -15,6 +15,7 @@ DESTIMG = $(MINIMYTHIMG)
 
 DEPENDS = \
 	system/acpid \
+	system/aquosserver \
 	utils/alsa-utils \
 	system/bdremote-ng \
 	utils/bluez-tools \
@@ -38,15 +39,23 @@ DEPENDS = \
 	net/lighttpd \
 	fonts/liberation-fonts \
 	system/lirc \
-	utils/lm_sensors \
+	utils/lm-sensors \
 	utils/lsdvd \
 	utils/kmod \
 	myth-$(mm_MYTH_VERSION)/mythtv \
 	lib/ncursesw \
+	net/nfs-utils \
 	net/ntp \
 	net/openssh \
 	net/rpcbind \
 	utils/pciutils \
+	perl/perl \
+	perl/perl-Class-Inspector \
+	perl/perl-Date-Manip \
+	perl/perl-Lchown \
+	perl/perl-MiniMyth \
+	perl/perl-RFLibs \
+	perl/perl-Regexp-Wildcards \
 	utils/pmount \
 	system/powernowd \
 	utils/procps \
@@ -89,10 +98,6 @@ DEPENDS = \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnetvision),myth-$(mm_MYTH_VERSION)/mythnetvision)) \
 	$(if $(filter mythnews,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnews),myth-$(mm_MYTH_VERSION)/mythnews)) \
-	$(if $(filter mythphone,$(mm_SOFTWARE)), \
-		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythphone),myth-$(mm_MYTH_VERSION)/mythphone)) \
-	$(if $(filter mythstream,$(mm_SOFTWARE)), \
-		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythstream),myth-$(mm_MYTH_VERSION)/mythstream)) \
 	$(if $(filter mythweather,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythweather),myth-$(mm_MYTH_VERSION)/mythweather)) \
 	$(if $(filter mythzoneminder,$(mm_SOFTWARE)), \

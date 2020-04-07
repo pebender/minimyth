@@ -1,4 +1,5 @@
 6409173882e85eddf8064eedbb4a196a  download/mythtv-0.31-mythmusic_button_list_quick_scroll.patch
+44fa8484719db2bf32639f12f3fe0d50  download/mythtv-0.31-disable_perl_inet6_check.patch
 9d18a831022f12a8fab7fb0f538a52d9  download/mythtv-0.31-python_build.patch
 2aedd7818beb078cb8a7a1bf18165744  download/mythtv-0.31-sysroot.patch
 e4321312cdee439ae86181209b06fe75  download/mythtv-0.31-networkcontrol.patch

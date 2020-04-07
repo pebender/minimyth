@@ -25,3 +25,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--without-python
 
 include ../../gar.mk
+
+post-install:
+	@rm -fv $(DESTDIR)$(libdir)/libcrack.la
+	@$(MAKECOOKIE)

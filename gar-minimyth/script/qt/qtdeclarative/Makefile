@@ -22,3 +22,17 @@ configure-%/qmake:
 	@echo " ==> Running qmake in $*"
 	@cd $* && $(CONFIGURE_ENV) $(build_DESTDIR)$(build_qt5bindir)/qmake $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
+
+post-install:
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5PacketProtocol.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5Qml.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QmlDebug.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QmlDevTools.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QmlModels.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QmlWorkerScript.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5Quick.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QuickParticles.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QuickShapes.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QuickTest.la
+	@rf -fv $(DESTDIR)$(qt5libdir)/libQt5QuickWidgets.la
+	@$(MAKECOOKIE)

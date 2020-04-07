@@ -179,3 +179,6 @@ install-default-mkspec:
 	@rm -fv $(MKSPECS_INSTALL_DIR)/default
 	@ln -sfv minimyth-$(DESTIMG) $(MKSPECS_INSTALL_DIR)/default
 	@$(MAKECOOKIE)
+
+install-lib-wrappers:
+	@rm -fv

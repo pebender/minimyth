@@ -3,7 +3,7 @@ GARVERSION ?= $(mm_VERSION)
 
 all: mm-all
 
-GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk devel/build-system-bins/package-api.mk
+GAR_EXTRA_CONF += kernel/linux/package-api.mk devel/build-system-bins/package-api.mk
 include ../../gar.mk
 
 mm-all:
@@ -155,22 +155,6 @@ x-mm-all:
 			exit 1 ; \
 		fi ; \
 	done
-	@echo "    mm_KERNEL_HEADERS_VERSION"
-	@if [ ! "$(mm_KERNEL_HEADERS_VERSION)" = "5.6" ] ; then \
-		echo "error: mm_KERNEL_HEADERS_VERSION=\"$(mm_KERNEL_HEADERS_VERSION)\" is an invalid value." ; \
-		exit 1 ; \
-	fi
-	@echo "    mm_KERNEL_VERSION"
-	@if [ ! "$(mm_KERNEL_VERSION)" = "5.6" ] ; then \
-		echo "error: mm_KERNEL_VERSION=\"$(mm_KERNEL_VERSION)\" is an invalid value." ; \
-		exit 1 ; \
-	fi
-	@echo "    mm_KERNEL_VERSION >= mm_KERNEL_HEADERS_VERSION"
-	@if [ `echo ${mm_KERNEL_HEADERS_VERSION} | sed 's%5\.\(.*\)%\1%'` -gt \
-	      `echo ${mm_KERNEL_VERSION}         | sed 's%5\.\(.*\)%\1%'`     ] ; then \
-		echo "error: mm_KERNEL_HEADERS_VERSION is greater than mm_KERNEL_VERSION." ; \
-		exit 1 ; \
-	fi
 	@echo "    mm_MYTH_VERSION"
 	@if [ ! "$(mm_MYTH_VERSION)" = "0.31"   ] && \
 	    [ ! "$(mm_MYTH_VERSION)" = "master" ] ; then \

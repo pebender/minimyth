@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/zlib utils/lm_sensors X11/libva-mini X11/libvdpau \
+DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/zlib utils/lm-sensors X11/libva-mini X11/libvdpau \
 	xorg/libdrm \
 	xorg/libpthread-stubs \
 	xorg/libX11 \

@@ -3,7 +3,7 @@ GARVERSION = 10.4.12
 CATEGORIES = db
 MASTER_SITES = https://downloads.mariadb.org/interstitial/$(DISTNAME)/source/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = $(DISTNAME)-mysql_config.patch.gar $(DISTNAME)-my_global_h.patch
+PATCHFILES = $(DISTNAME)-mysql_config.patch.gar $(DISTNAME)-my_global_h.patch $(DISTNAME)-musl.patch
 LICENSE = GPL2/LGPL2_1
 
 DESCRIPTION = 

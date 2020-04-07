@@ -14,7 +14,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c lang/cxx build-tool/qmake lib/libwebp lib/icu qt/qtbase qt/qtdeclarative qt/qtwebchannel
-BUILDDEPS = devel/ruby
+BUILDDEPS = devel/ruby perl/perl
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake
@@ -49,6 +49,7 @@ CONFIGURE_ARGS = \
 	-DCMAKE_SYSTEM_PROCESSOR="$(GARCH_FAMILY)" \
 	-DCMAKE_CROSSCOMPILING=ON \
 	-DCMAKE_SYSTEM_NAME="Linux" \
+	-DPERL_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/perl" \
 	-DPYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python" \
 	-DPORT="Qt" \
 	-DENABLE_DEVICE_ORIENTATION=OFF \

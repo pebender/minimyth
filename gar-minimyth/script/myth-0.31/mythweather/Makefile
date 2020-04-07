@@ -10,9 +10,22 @@ endef
 
 DEPENDS   = \
 	lang/cxx \
-	$(CATEGORY)/mythtv
-BUILDDEPS = \
-	perl/perl-DateTime
+	$(CATEGORY)/mythtv \
+	perl/perl \
+	perl/perl-Data-Dumper \
+	perl/perl-Date-Manip \
+	perl/perl-DateTime-Format-ISO8601 \
+	perl/perl-Exporter-Tiny \
+	perl/perl-HTML-Tree \
+	perl/perl-HTTP-Cache-Transparent \
+	perl/perl-Image-Size \
+	perl/perl-JSON \
+	perl/perl-PerlMagick \
+	perl/perl-SOAP-Lite \
+	perl/perl-XML-Parser \
+	perl/perl-XML-SAX-Base \
+	perl/perl-XML-Simple \
+	perl/perl-XML-XPath
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 

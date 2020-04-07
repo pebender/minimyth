@@ -36,7 +36,7 @@ WORKBLD = $(WORKSRC)_build
 ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = custom
 BUILD_SCRIPTS = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS = $(WORKBLD)/Makefile ccache-links
+INSTALL_SCRIPTS = $(WORKBLD)/Makefile lib-wrappers ccache-links
 endif
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GARTARGET) \
@@ -73,11 +73,20 @@ configure-custom:
 	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
 
+install-lib-wrappers:
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libasan.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libatomic.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libitm.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libstdc++.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libstdc++fs.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libsupc++.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libubsan.la
+	@rm -fv $(build_DESTDIR)$(build_libdir)/gcc/$(GCC_VERSION)/plugin/libcc1plugin.la
+	@rm -fv $(build_DESTDIR)$(build_libdir)/gcc/$(GCC_VERSION)/plugin/libcp1plugin.la
+	@rm -fv $(build_DESTDIR)$(build_execlibdir)/gcc/$(GCC_VERSION)/liblto_plugin.la
+	@$(MAKECOOKIE)
+
 install-ccache-links:
 	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARTARGET)-gcc
 	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARTARGET)-g++
-	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/gcc
-	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/g++
-	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/cc
-	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/c++
 	@$(MAKECOOKIE)

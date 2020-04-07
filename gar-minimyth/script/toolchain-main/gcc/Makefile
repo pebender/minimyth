@@ -40,7 +40,7 @@ WORKBLD = $(WORKSRC)_build
 ifeq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = custom
 BUILD_SCRIPTS = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS = $(WORKBLD)/Makefile lib-locations ccache-links
+INSTALL_SCRIPTS = $(WORKBLD)/Makefile lib-wrappers ccache-links
 endif
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GARTARGET) \
@@ -62,7 +62,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GA
 	--enable-shared \
 	--enable-threads=posix \
 	--with-sysroot="$($(CROSSIMG)_DESTDIR)" \
-	--with-local-prefix=$(patsubst %/include,%,$($(DESTIMG)_includedir))
+	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir))
 
 GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain.mk
 GAR_EXTRA_CONF += tainted-build/gcc/package-api.mk
@@ -73,19 +73,17 @@ configure-custom:
 	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
 	@$(MAKECOOKIE)
 
-install-lib-locations:
-	@mkdir -pv $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir)
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc.a   ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc.so  ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc.so.*),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc_s.so  ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc_s.so.*),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc_eh.a   ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc_eh.so  ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libgcc_eh.so.*),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_elibdir) ; )
-	@mkdir -pv $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_libdir)
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libstdc++.so  ),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_libdir) ; )
-	@$(foreach file,$(wildcard $(CROSS_GCC_LIBDIR)/libstdc++.so.*),cp -afv $(file) $($(CROSSIMG)_DESTDIR)$($(CROSSIMG)_libdir) ; )
+install-lib-wrappers:
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libasan.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libatomic.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libitm.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libstdc++.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libstdc++fs.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libsupc++.la
+	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libubsan.la
+	@rm -fv $(build_DESTDIR)$(build_libdir)/gcc/$(GCC_VERSION)/plugin/libcc1plugin.la
+	@rm -fv $(build_DESTDIR)$(build_libdir)/gcc/$(GCC_VERSION)/plugin/libcp1plugin.la
+	@rm -fv $(build_DESTDIR)$(build_execlibdir)/gcc/$(GCC_VERSION)/liblto_plugin.la
 	@$(MAKECOOKIE)
 
 install-ccache-links:

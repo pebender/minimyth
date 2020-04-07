@@ -1,7 +1,7 @@
 GARNAME = glibc
 GARVERSION = $(GLIBC_VERSION)
 CATEGORIES = lang
-SOURCEPKG = gcc-target/glibc
+SOURCEPKG = tainted-main/glibc
 LICENSE = GPL2/LGPL2_1
 
 DESCRIPTION = 
@@ -10,16 +10,12 @@ endef
 
 ifneq ($(DESTIMG),build)
 DEPENDS = \
-	gcc-target/gcc-target \
-	tainted-target/tainted-target
+	tainted-main/tainted-main
 BUILDDEPS = \
 	native/native
 endif
 
 WORKBLD = $(WORKSRC)_build
-
-build_DESTDIR = $(gcc_build_DESTDIR)
-build_rootdir = $(gcc_build_rootdir)
 
 ifneq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = fix-configs custom
@@ -96,7 +92,7 @@ xbuild_CFLAGS += $(build_FLAGS)
 xbuild_CXXFLAGS += $(build_FLAGS)
 xbuild_LDFLAGS += $(build_FLAGS)
 
-GAR_EXTRA_CONF += gcc-target/glibc/package-api.mk
+GAR_EXTRA_CONF += tainted-main/glibc/package-api.mk
 include ../../gar.mk
 
 # glibc 2.30 fails to compile with gcc 9.2.0's link time optimization enabled.

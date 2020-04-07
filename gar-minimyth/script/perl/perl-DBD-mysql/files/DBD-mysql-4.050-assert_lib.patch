@@ -1,0 +1,11 @@
+diff -Naur DBD-mysql-4.050-old/Makefile.PL DBD-mysql-4.050-new/Makefile.PL
+--- DBD-mysql-4.050-old/Makefile.PL	2019-01-08 22:45:48.000000000 -0800
++++ DBD-mysql-4.050-new/Makefile.PL	2020-04-05 17:00:18.231910787 -0700
+@@ -209,6 +209,7 @@
+ 
+ assert_lib(
+   LIBS => ($opt->{'embedded'} ? $opt->{'embedded'} : $opt->{libs}),
++  not_execute => 1,
+ );
+ 
+ print "Looks good.\n\n";

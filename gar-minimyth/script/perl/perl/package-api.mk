@@ -1,4 +1,4 @@
-PERL_VERSION = 5.30.2
+PERL_VERSION = 5.12.3
 
 PERL_CONFIGURE_ENV = PERL5LIB="$(PERL_PERL5LIB)"
 PERL_BUILD_ENV     = PERL5LIB="$(PERL_PERL5LIB)"
@@ -28,7 +28,7 @@ PERL_sitelib   = $(PERL_libdir)/site_perl/$(PERL_VERSION)
 PERL_sitearch  = $(PERL_libdir)/site_perl/$(PERL_VERSION)/$(GARCH_FAMILY)-linux-thread-multi
 PERL_configdir = $(PERL_libdir)/config/$(PERL_VERSION)/$(GARCH_FAMILY)-linux-thread-multi
 
-# This is a hack for cross compilation, but it should does not break native compilation.
+# This is a hack for cross compilation, but it should/does not break native compilation.
 # Ensure that packages being built have the highest chance of finding the installed packages.
 # The the *.dynloader.patch file attempts to ensure that perl will look in these directories
 # last when looking for *.so files, making it less likely to break perl module execution.
