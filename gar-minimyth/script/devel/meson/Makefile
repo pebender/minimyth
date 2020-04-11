@@ -35,6 +35,8 @@ include ../../gar.mk
 CONFIGURE_ENV := \
 	XDG_DATA_HOME=$(build_DESTDIR)$(build_sharedir)
 
+GARCH_FAMILY := $(if $(filter i386,$(GARCH_FAMILY)),x86,$(GARCH_FAMILY))
+
 build-%/setup.py:
 	@echo " ==> Running setup.py build in $*"
 	@cd $* && $(CONFIGURE_ENV) $(BUILD_ENV) python3 setup.py $(CONFIGURE_ARGS) build $(BUILD_ARGS)

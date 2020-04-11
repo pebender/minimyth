@@ -1,9 +1,8 @@
 GARNAME = eventlircd
-GARVERSION = 20110816-8245391
+GARVERSION = 20200410-6522077
 CATEGORIES = system
-MASTER_SITES = git://github.com/pebender/$(GARNAME).git/
+MASTER_SITES = git://github.com/pebender/eventlircd.git/
 DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = $(DISTNAME)-missing_break.patch $(DISTNAME)-event_codes_header.patch
 LICENSE = GPL2
 
 DESCRIPTION =
@@ -20,6 +19,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-udev-dir=$(libdir)/udev
 
 include ../../gar.mk
+
+CFLAGS += -Wno-unused-command-line-argument
 
 git//%$(DISTNAME).tar.bz2:
 	@$(call FETCH_GIT, $*, $(word 2,$(subst -, ,$(GARVERSION))), $(DISTNAME))

@@ -8,8 +8,6 @@ endef
 BUILDDEPS = lang/c \
 	native/native \
 	toolchain-build \
-	lang/libc \
-	lang/libcxx \
 	utils/bash \
 	utils/coreutils \
 	devel/make \

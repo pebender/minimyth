@@ -1,5 +1,5 @@
 GARNAME = usb.ids
-GARVERSION = 20200307
+GARVERSION = 20200328
 CATEGORIES = data
 MASTER_SITES = http://www.linux-usb.org/
 DISTFILES = usb.ids

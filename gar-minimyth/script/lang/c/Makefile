@@ -7,8 +7,6 @@ endef
 
 DEPENDS = lang/c-build \
 	toolchain-$(DESTIMG) \
-	lang/libc \
-	lang/libcxx \
 	build-tool/make \
 	devel/pkg-config \
 	build-tool/ninja \

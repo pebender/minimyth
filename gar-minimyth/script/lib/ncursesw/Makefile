@@ -1,9 +1,7 @@
 GARNAME = ncurses
 GARVERSION = $(NCURSESW_VERSION)
 CATEGORIES = lib
-MASTER_SITES  = https://ftp.gnu.org/gnu/$(GARNAME)/
-MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/
-MASTER_SITES += https://invisible-mirror.net/archives/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://ftp.gnu.org/gnu/ncurses/
 DISTFILES = $(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).tar.gz 
 PATCHFILES = \
 	$(DISTNAME)-includesubdir.patch \

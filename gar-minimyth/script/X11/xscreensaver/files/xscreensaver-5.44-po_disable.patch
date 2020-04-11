@@ -1,0 +1,12 @@
+diff -Naur xscreensaver-5.44-old/Makefile.in xscreensaver-5.44-new/Makefile.in
+--- xscreensaver-5.44-old/Makefile.in	2020-03-15 11:52:45.000000000 -0700
++++ xscreensaver-5.44-new/Makefile.in	2020-04-07 21:07:37.803682140 -0700
+@@ -6,7 +6,7 @@
+ VPATH		= @srcdir@
+ 
+ SHELL		= /bin/sh
+-SUBDIRS 	= utils jwxyz hacks/images hacks hacks/glx driver po
++SUBDIRS 	= utils jwxyz hacks/images hacks hacks/glx driver
+ SUBDIRS2	= $(SUBDIRS) OSX android
+ TARFILES	= README README.hacking README.VMS INSTALL \
+ 		  configure configure.in Makefile.in config.h.in \

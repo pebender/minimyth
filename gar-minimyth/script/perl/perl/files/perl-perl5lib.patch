@@ -1,0 +1,51 @@
+diff -Naur perl-5.30.2-old/Makefile.SH perl-5.30.2-new/Makefile.SH
+--- perl-5.30.2-old/Makefile.SH	2020-04-10 10:50:40.670570462 -0700
++++ perl-5.30.2-new/Makefile.SH	2020-04-10 10:50:41.342570425 -0700
+@@ -1165,13 +1165,13 @@
+ 	done
+ 
+ extras.make: $(PERL_EXE)
+-	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib" $(RUN_PERL) -MCPAN -e '@ARGV&&make(@ARGV)' `cat extras.lst`
++	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) -MCPAN -e '@ARGV&&make(@ARGV)' `cat extras.lst`
+ 
+ extras.test: $(PERL_EXE)
+-	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib" $(RUN_PERL) -MCPAN -e '@ARGV&&test(@ARGV)' `cat extras.lst`
++	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) -MCPAN -e '@ARGV&&test(@ARGV)' `cat extras.lst`
+ 
+ extras.install: $(PERL_EXE)
+-	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib" $(RUN_PERL) -MCPAN -e '@ARGV&&install(@ARGV)' `cat extras.lst`
++	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) -MCPAN -e '@ARGV&&install(@ARGV)' `cat extras.lst`
+ 
+ .PHONY: install install-strip install-all install-verbose install-silent \
+ 	no-install install.perl install.man install.html
+@@ -1203,7 +1203,7 @@
+ EOT
+     fi
+ 
+-    test $name = notify || echo '	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib" $(RUN_PERL) -Ilib -MCPAN -e '\''@ARGV&&install(@ARGV)'\'' `cat extras.lst`' >>$Makefile
++    test $name = notify || echo '	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) -Ilib -MCPAN -e '\''@ARGV&&install(@ARGV)'\'' `cat extras.lst`' >>$Makefile
+ done
+ 
+ if test "X$hostperl" != X; then
+@@ -1218,7 +1218,7 @@
+ 	$spitshell >>$Makefile <<'!NO!SUBS!'
+ install.perl:	$(INSTALL_DEPENDENCE) installperl
+ 	$(RUN_PERL) installperl --destdir=$(DESTDIR) $(INSTALLFLAGS) $(STRIPFLAGS)
+-	-@test ! -s extras.lst || PATH="`pwd`:\${PATH}" PERL5LIB="`pwd`/lib" \$(RUN_PERL) -Ilib -MCPAN -e '@ARGV&&install(@ARGV)' `cat extras.lst`
++	-@test ! -s extras.lst || PATH="`pwd`:\${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" \$(RUN_PERL) -Ilib -MCPAN -e '@ARGV&&install(@ARGV)' `cat extras.lst`
+ 
+ !NO!SUBS!
+ fi
+@@ -1297,10 +1297,10 @@
+ regen_meta regen-meta:  META.yml META.json
+ 
+ META.yml:   FORCE
+-	PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib" $(RUN_PERL) Porting/makemeta -y
++	PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) Porting/makemeta -y
+ 
+ META.json:   FORCE
+-	PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib" $(RUN_PERL) Porting/makemeta -j
++	PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) Porting/makemeta -j
+ 
+ 
+ regen_all regen-all: regen regen_meta

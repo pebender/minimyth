@@ -1,7 +1,7 @@
 GARNAME = fakeroot
 GARVERSION = 1.22
 CATEGORIES = devel
-MASTER_SITES = https://mirrors.aliyun.com/oldubuntu-releases/ubuntu/pool/main/f/$(GARNAME)/
+MASTER_SITES = https://mirrors.aliyun.com/oldubuntu-releases/ubuntu/pool/main/f/fakeroot/
 DISTFILES = $(GARNAME)_$(GARVERSION).orig.tar.bz2
 LICENSE = GPL3
 

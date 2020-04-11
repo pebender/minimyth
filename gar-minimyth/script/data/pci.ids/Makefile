@@ -1,5 +1,5 @@
 GARNAME = pci.ids
-GARVERSION = 20200317
+GARVERSION = 20200408
 CATEGORIES = data
 MASTER_SITES = https://pci-ids.ucw.cz/v2.2/
 DISTFILES = pci.ids

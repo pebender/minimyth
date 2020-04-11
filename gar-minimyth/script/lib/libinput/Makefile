@@ -1,7 +1,7 @@
 GARNAME = libinput
-GARVERSION = 1.14.3
+GARVERSION = 1.15.4
 CATEGORIES = lib
-MASTER_SITES = https://www.freedesktop.org/software/$(GARNAME)/
+MASTER_SITES = https://www.freedesktop.org/software/libinput/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/COPYING

@@ -19,6 +19,7 @@ INSTALL_SCRIPTS = $(WORKSRC)/setup.py
 
 CONFIGURE_ARGS =
 BUILD_ARGS     = \
+	--with-openssl \
 	--openssl-dir="$(DESTDIR)$(prefix)" \
 	--curl-config="$(DESTDIR)$(bindir)/config/curl-config"
 INSTALL_ARGS   = \

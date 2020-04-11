@@ -1,6 +1,6 @@
 GARNAME = tainted-main
+GARVERSION =
 CATEGORIES = tainted-main
-GARVERSION = none
 LICENSE =
 
 DESCRIPTION = 
@@ -8,6 +8,8 @@ define BLURB
 endef
 
 DEPENDS = \
+	tainted-main/linux-headers \
+	tainted-main/glibc \
 	tainted-main/binutils \
 	tainted-main/gcc \
 	tainted-main/gcc-wrappers

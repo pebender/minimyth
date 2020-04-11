@@ -17,13 +17,13 @@ LINUX_MAKEFILE = $(DESTDIR)$(LINUX_SOURCEDIR)/Makefile
 
 LINUX_MAKE_ARGS = \
 	ARCH="$(GARCH_FAMILY)" \
-	HOSTCC="$(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-gcc" \
-	HOSTCXX="$(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-g++" \
 	HOSTCFLAGS="$(build_CPPFLAGS) $(build_CFLAGS)" \
 	HOSTCXXFLAGS="$(build_CPPFLAGS) $(build_CXXFLAGS)" \
 	HOSTLDFLAGS="$(build_LDFLAGS)" \
 	CROSS_COMPILE="$(GARHOST)-" \
 	$(if $(filter i386,$(GARCH_FAMILY)), \
+		HOSTCC="$(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-gcc" \
+		HOSTCXX="$(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-g++" \
 		CC="$(build_DESTDIR)$(build_bindir)/ccache.d/$(main_GARHOST)-gcc" \
 		CPP="$(build_DESTDIR)$(build_bindir)/wrapper.d/$(main_GARHOST)-cpp" \
 		LD="$(build_DESTDIR)$(build_bindir)/wrapper.d/$(main_GARHOST)-ld.bfd" \
@@ -36,6 +36,8 @@ LINUX_MAKE_ARGS = \
 		OBJDUMP="$(build_DESTDIR)$(build_bindir)/$(main_GARHOST)-objdump" \
 		OBJSIZE="size" \
 	, \
+		HOSTCC="$(build_CC)" \
+		HOSTCXX="$(build_CXX)" \
 		CC="$(CC)" \
 		CPP="$(CPP)" \
 		LD="$(LD)" \

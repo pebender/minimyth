@@ -1,7 +1,7 @@
 GARNAME = lame
 GARVERSION = 3.100
 CATEGORIES = lib
-MASTER_SITES = https://sourceforge.net/projects/$(GARNAME)/files/$(GARNAME)/$(GARVERSION)/
+MASTER_SITES = https://sourceforge.net/projects/lame/files/lame/$(GARVERSION)/
 DISTFILES  = $(DISTNAME).tar.gz
 DISTFILES += config.cache.$(GARCH_FAMILY)
 LICENSE = LGPL2

@@ -1,7 +1,7 @@
 GARNAME = llvm
 GARVERSION = $(LLVM_VERSION)
 CATEGORIES = toolchain-build
-SOURCEPKG = llvm/llvm
+SOURCEPKG = toolchain/llvm
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE.TXT
 LICENSE = $(GARNAME)
 
@@ -19,38 +19,11 @@ BUILDDEPS = \
 	native/native \
 	tainted-build/tainted-build
 
-WORKSRC = $(WORKDIR)/llvm-project-$(LLVM_VERSION)/llvm
-
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake
-INSTALL_SCRIPTS = $(WORKSRC)/cmake config links
+INSTALL_SCRIPTS = $(WORKSRC)/cmake config-$(DESTIMG) links-$(DESTIMG)
 
-CONFIGURE_ARGS  = \
-	-DCMAKE_BUILD_TYPE=RELEASE \
-	-DCMAKE_VERBOSE_MAKEFILE=ON \
-	-DCMAKE_SYSROOT="$(DESTDIR)" \
-	-DCMAKE_INSTALL_PREFIX="$(prefix)" \
-	-DCMAKE_STAGING_PREFIX="$(DESTDIR)$(prefix)" \
-	-DCMAKE_INSTALL_LIBDIR="lib" \
-	-DCMAKE_C_COMPILER="$(CC)" \
-	-DCMAKE_CXX_COMPILER="$(CXX)" \
-	-DCMAKE_ASM_COMPILER="$(CC)" \
-	-DCMAKE_C_COMPILER_TARGET="$(GARHOST)" \
-	-DCMAKE_CXX_COMPILER_TARGET="$(GARHOST)" \
-	-DCMAKE_ASM_COMPILER_TARGET="$(GARHOST)" \
-	-DCMAKE_LINKER="$(LD)" \
-	-DCMAKE_C_FLAGS="$(CFLAGS)" \
-	-DCMAKE_CXX_FLAGS="$(CXXFLAGS)" \
-	-DCMAKE_EXE_LINKER_FLAGS="$(LDFLAGS)" \
-	-DCMAKE_SHARED_LINKER_FLAGS="$(LDFLAGS)" \
-	-DCMAKE_AR="$(AR)" \
-	-DCMAKE_AS="$(AS)" \
-	-DCMAKE_NM="$(NM)" \
-	-DCMAKE_OBJCOPY="$(OBJCOPY)" \
-	-DCMAKE_OBJDUMP="$(OBJDUMP)" \
-	-DCMAKE_RANLIB="$(RANLIB)" \
-	-DCMAKE_STRIP="$(STRIP)" \
-	-DPYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python" \
+CONFIGURE_ARGS = $(LLVM_CONFIGURE_ARGS) \
 	-DLLVM_CCACHE_BUILD=ON \
 	-DLLVM_TARGETS_TO_BUILD="all" \
 	-DLLVM_HOST_TRIPLE="$(GARBUILD)" \
@@ -65,10 +38,9 @@ CONFIGURE_ARGS  = \
 	-DLLVM_ENABLE_LIBPFM=OFF \
 	-DLLVM_ENABLE_THREADS=ON \
 	-DLLVM_ENABLE_ZLIB=ON \
- 	-DCOMPILER_RT_BUILD_XRAY=OFF \
- 	-DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
 	-DLLVM_INSTALL_TOOLCHAIN_ONLY=OFF \
 	-DLLVM_INSTALL_BINUTILS_SYMLINKS=OFF \
+	-DLLVM_ENABLE_RTTI=ON \
 	-DLLVM_ENABLE_PROJECTS="lld;clang;polly;libcxx;libcxxabi;libunwind;compiler-rt" \
 	-DCLANG_DEFAULT_LINKER="lld" \
 	-DCLANG_DEFAULT_CXX_STDLIB="libc++" \
@@ -92,7 +64,7 @@ CONFIGURE_ARGS  = \
 
 GAR_EXTRA_CONF += toolchain-build/toolchain-build/toolchain.mk
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
-GAR_EXTRA_CONF += llvm/llvm/package-api.mk
+GAR_EXTRA_CONF += toolchain/llvm/package-api.mk
 include ../../gar.mk
 
 post-install: post-install-cc-links post-install-ccache-links

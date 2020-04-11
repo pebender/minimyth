@@ -1,0 +1,16 @@
+diff -Naur mame-mame0220-old/scripts/src/osd/sdl.lua mame-mame0220-new/scripts/src/osd/sdl.lua
+--- mame-mame0220-old/scripts/src/osd/sdl.lua	2020-04-07 20:37:58.373779141 -0700
++++ mame-mame0220-new/scripts/src/osd/sdl.lua	2020-04-07 20:39:15.854774917 -0700
+@@ -300,12 +300,6 @@
+ 	else
+ 		if _OPTIONS["NO_X11"]=="1" then
+ 			_OPTIONS["USE_QTDEBUG"] = "0"
+-		else
+-			libdirs {
+-				"/usr/X11/lib",
+-				"/usr/X11R6/lib",
+-				"/usr/openwin/lib",
+-			}
+ 		end
+ 		if _OPTIONS["with-bundled-sdl2"]~=nil then
+ 			if _OPTIONS["targetos"]~="android" then

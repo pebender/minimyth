@@ -1,5 +1,5 @@
 GARNAME = libaacs
-GARVERSION = 0.9.0
+GARVERSION = 0.10.0
 CATEGORIES = extras
 MASTER_SITES = https://download.videolan.org/pub/videolan/libaacs/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2

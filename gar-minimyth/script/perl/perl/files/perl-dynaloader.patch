@@ -1,0 +1,12 @@
+diff -Naur perl-5.30.2-old/ext/DynaLoader/DynaLoader_pm.PL perl-5.30.2-new/ext/DynaLoader/DynaLoader_pm.PL
+--- perl-5.30.2-old/ext/DynaLoader/DynaLoader_pm.PL	2020-04-10 10:50:42.228570377 -0700
++++ perl-5.30.2-new/ext/DynaLoader/DynaLoader_pm.PL	2020-04-10 10:50:42.763570348 -0700
+@@ -340,7 +340,7 @@
+ 	if $dl_debug;
+ 
+     my $dir;
+-    foreach (@INC) {
++    foreach (reverse(@INC)) {
+ 	<<$^O-eq-VMS>>chop($_ = VMS::Filespec::unixpath($_));<</$^O-eq-VMS>>
+ 	    $dir = "$_/auto/$modpname";
+ 	

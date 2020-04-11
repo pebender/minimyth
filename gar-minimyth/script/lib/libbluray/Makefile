@@ -1,5 +1,5 @@
 GARNAME = libbluray
-GARVERSION = 1.1.2
+GARVERSION = 1.2.0
 CATEGORIES = lib
 MASTER_SITES = https://download.videolan.org/pub/videolan/libbluray/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.bz2

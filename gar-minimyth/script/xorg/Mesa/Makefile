@@ -1,5 +1,5 @@
 GARNAME = mesa
-GARVERSION = 20.0.2
+GARVERSION = 20.0.4
 CATEGORIES = xorg
 MASTER_SITES  = https://mesa.freedesktop.org/archive/
 MASTER_SITES += https://mesa.freedesktop.org/archive/20.0.0/
@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/zlib utils/lm-sensors X11/libva-mini X11/libvdpau \
+DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/llvm lib/zlib utils/lm-sensors X11/libva-mini X11/libvdpau \
 	xorg/libdrm \
 	xorg/libpthread-stubs \
 	xorg/libX11 \
@@ -36,10 +36,9 @@ CONFIGURE_SCRIPTS = $(WORKBLD)/meson
 BUILD_SCRIPTS     = $(WORKBLD)/ninja
 INSTALL_SCRIPTS   = $(WORKBLD)/ninja source
 
-#LDFLAGS := $(LDFLAGS) -lLLVv
+# 20.0.4 fails to configure with meson 0.54.0
+#	-Dgallium-drivers='radeonsi,r300,r600,nouveau,swrast,svga'
 
-#	-Dgallium-drivers='radeonsi,r300,r600,nouveau,swrast,svga' \
-	#
 CONFIGURE_ARGS  = \
 	$(filter-out --exec_prefix=% --oldincludedir=%, $(DIRPATHS)) \
 	--buildtype=release \
@@ -62,6 +61,7 @@ CONFIGURE_ARGS  = \
 	-Dvulkan-drivers='' \
 	-Dshader-cache=false \
 	-Dshared-glapi=true \
+	-Dllvm=false \
 	-Dgles1=false \
 	-Dgles2=false \
 	-Dopengl=true \
@@ -71,7 +71,6 @@ CONFIGURE_ARGS  = \
 	-Dglvnd=false \
 	-Dasm=true \
 	-Dglx-read-only-text=false \
-	-Dllvm=false \
 	-Dvalgrind=false \
 	-Dlibunwind=true \
 	-Dlmsensors=true \
@@ -80,7 +79,8 @@ CONFIGURE_ARGS  = \
 	-Dosmesa='none' \
 	-Dtools='' \
 	-Dpower8=false \
-	-Dxlib-lease=false
+	-Dxlib-lease=false \
+	--native-file $(GARBUILD)
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--cross-file $(GARHOST) \
@@ -91,15 +91,13 @@ GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
 CONFIGURE_ENV := \
-	XDG_DATA_HOME=$(build_DESTDIR)$(build_datadir)
+	XDG_DATA_DIRS="$(build_DESTDIR)$(build_datadir)" \
+	XDG_DATA_HOME="$(build_DESTDIR)$(build_datadir)"
 
-# mesa 18.2.8 fails to compile with gcc 9.2.0's link time optimization enabled.
+# mesa 10.0.4 fails to compile with gcc 9.3.0's link time optimization enabled.
 CFLAGS   := $(filter-out -flto, $(CFLAGS))
 CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
 LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
-
-LDFLAGS  := $(LDFLAGS) -lXv
-LDFLAGS  := $(LDFLAGS) -lXv
 
 configure-%/meson:
 	@mkdir -pv $(WORKBLD)

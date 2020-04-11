@@ -1,5 +1,5 @@
 GARNAME = libwebp
-GARVERSION = 1.0.3
+GARVERSION = 1.1.0
 CATEGORIES = lib
 MASTER_SITES = https://chromium.googlesource.com/webm/libwebp/+archive/refs/tags/
 DISTFILES = v$(GARVERSION).tar.gz

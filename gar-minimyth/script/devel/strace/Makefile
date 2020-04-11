@@ -1,7 +1,7 @@
 GARNAME = strace
-GARVERSION = 5.4
+GARVERSION = 5.6
 CATEGORIES = devel
-MASTER_SITES = https://strace.io/files/$(GARVERSION)/
+MASTER_SITES = https://github.com/strace/strace/releases/download/v$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = BSD_3_Clause
 

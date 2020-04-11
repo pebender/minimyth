@@ -1,7 +1,7 @@
-diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/programs/mythfrontend/main.cpp mythtv-master-20191230-bafc80d-new/mythtv/programs/mythfrontend/main.cpp
---- mythtv-master-20191230-bafc80d-old/mythtv/programs/mythfrontend/main.cpp	2019-12-30 16:03:29.469999975 -0800
-+++ mythtv-master-20191230-bafc80d-new/mythtv/programs/mythfrontend/main.cpp	2019-12-30 16:03:30.780999975 -0800
-@@ -2148,6 +2148,18 @@
+diff -Naur mythtv-master-20200409-490e0b1-old/mythtv/programs/mythfrontend/main.cpp mythtv-master-20200409-490e0b1-new/mythtv/programs/mythfrontend/main.cpp
+--- mythtv-master-20200409-490e0b1-old/mythtv/programs/mythfrontend/main.cpp	2020-04-09 16:36:35.325148934 -0700
++++ mythtv-master-20200409-490e0b1-new/mythtv/programs/mythfrontend/main.cpp	2020-04-09 16:36:36.877148850 -0700
+@@ -2100,6 +2100,18 @@
                     .arg(port));
          }
      }

@@ -44,6 +44,10 @@ gconv/UNICODE.so
 gconv/UTF-16.so
 
 # Kernel
+
+# depmod: WARNING: could not open modules.order
+modules/*/modules.builtin
+modules/*/modules.order
 modules/*/kernel/arch/*/kernel/cpu/microcode/microcode.ko
 modules/*/kernel/arch/*/kernel/msr.ko
 modules/*/kernel/crypto/arc4.ko

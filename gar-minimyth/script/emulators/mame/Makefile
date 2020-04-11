@@ -1,5 +1,5 @@
 GARNAME = mame
-GARVERSION = 0.219
+GARVERSION = 0.220
 CATEGORIES = emulators
 MASTER_SITES = https://github.com/mamedev/mame/archive/
 DISTFILES = $(GARNAME)$(subst .,,$(GARVERSION)).tar.gz

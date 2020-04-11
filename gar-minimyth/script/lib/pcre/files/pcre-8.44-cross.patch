@@ -1,0 +1,24 @@
+diff -Naur pcre-8.44-old/Makefile.am pcre-8.44-new/Makefile.am
+--- pcre-8.44-old/Makefile.am	2016-03-02 10:56:27.000000000 -0800
++++ pcre-8.44-new/Makefile.am	2020-04-10 16:07:15.112535033 -0700
+@@ -207,7 +207,7 @@
+ dftables_SOURCES = dftables.c
+ 
+ pcre_chartables.c: dftables$(EXEEXT)
+-	./dftables$(EXEEXT) $@
++	pcre-dftables$(EXEEXT) $@
+ else
+ 
+ pcre_chartables.c: $(srcdir)/pcre_chartables.c.dist
+diff -Naur pcre-8.44-old/Makefile.in pcre-8.44-new/Makefile.in
+--- pcre-8.44-old/Makefile.in	2020-02-12 09:35:18.000000000 -0800
++++ pcre-8.44-new/Makefile.in	2020-04-10 16:07:15.113535033 -0700
+@@ -3411,7 +3411,7 @@
+ 	rm -rf _generic
+ 
+ @WITH_REBUILD_CHARTABLES_TRUE@pcre_chartables.c: dftables$(EXEEXT)
+-@WITH_REBUILD_CHARTABLES_TRUE@	./dftables$(EXEEXT) $@
++@WITH_REBUILD_CHARTABLES_TRUE@	pcre-dftables$(EXEEXT) $@
+ 
+ @WITH_REBUILD_CHARTABLES_FALSE@pcre_chartables.c: $(srcdir)/pcre_chartables.c.dist
+ @WITH_REBUILD_CHARTABLES_FALSE@	rm -f $@

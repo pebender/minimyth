@@ -1,0 +1,119 @@
+diff -Naur perl-5.30.2-old/installperl perl-5.30.2-new/installperl
+--- perl-5.30.2-old/installperl	2020-04-10 10:50:29.561571067 -0700
++++ perl-5.30.2-new/installperl	2020-04-10 10:50:30.236571031 -0700
+@@ -786,7 +786,7 @@
+ 		print " " if (@opts);
+ 		print "$file\n";
+ 	    }
+-	    system("strip", @opts, $file);
++	    system("@GAR_STRIP@", @opts, $file);
+ 	} else {
+ 	    print "# file '$file' skipped\n" if $opts{verbose};
+ 	}
+diff -Naur perl-5.30.2-old/Makefile.SH perl-5.30.2-new/Makefile.SH
+--- perl-5.30.2-old/Makefile.SH	2020-04-10 10:50:29.599571065 -0700
++++ perl-5.30.2-new/Makefile.SH	2020-04-10 10:50:30.237571031 -0700
+@@ -47,10 +47,10 @@
+ case "$useshrplib" in
+ true)
+ 	# Prefix all runs of 'miniperl' and 'perl' with
+-	# $ldlibpth so that ./perl finds *this* shared libperl.
++	# $ldlibpth so that perl finds *this* shared libperl.
+ 	case "$LD_LIBRARY_PATH" in
+-	'')  ldlibpth="LD_LIBRARY_PATH=` quote "$pwd" `" ;;
+-	*)   ldlibpth="LD_LIBRARY_PATH=` quote "$pwd" `:` quote "$LD_LIBRARY_PATH" `" ;;
++	'')  ldlibpth="LD_LIBRARY_PATH=" ;;
++	*)   ldlibpth="LD_LIBRARY_PATH=` quote "$LD_LIBRARY_PATH" `" ;;
+ 	esac
+ 
+ 	pldlflags="$cccdlflags"
+@@ -336,7 +336,7 @@
+ # Macros to invoke a copy of miniperl during the build.  Targets which
+ # are built using these macros should depend on \$(MINIPERL_EXE)
+ MINIPERL_EXE = miniperl\$(EXE_EXT)
+-MINIPERL = \$(LDLIBPTH) ./miniperl\$(EXE_EXT) -Ilib
++MINIPERL = \$(LDLIBPTH) ./miniperl\$(EXE_EXT)
+ 
+ # Macros to invoke sort the MANIFEST during build
+ MANIFEST_SRT = MANIFEST.srt
+@@ -363,7 +363,7 @@
+ 	$spitshell >>$Makefile <<!GROK!THIS!
+ # Macros to invoke a copy of our fully operational perl during the build.
+ PERL_EXE = perl\$(EXE_EXT)
+-RUN_PERL = \$(LDLIBPTH) \$(RUN) ./perl\$(EXE_EXT) -Ilib -I.
++RUN_PERL = \$(LDLIBPTH) \$(RUN) ./perl\$(EXE_EXT) -I.
+ !GROK!THIS!
+ 	;;
+ esac
+@@ -980,7 +980,7 @@
+ 	-@rm -f miniperl.xok
+ 	$(CC) $(CLDFLAGS) -o $(MINIPERL_EXE) \
+ 	    $(miniperl_objs) $(libs)
+-#	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Ilib -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
++#	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
+ 	$(MINIPERL) -f write_buildcustomize.pl
+ !NO!SUBS!
+ 		;;
+@@ -988,7 +988,7 @@
+ 		$spitshell >>$Makefile <<'!NO!SUBS!'
+ lib/buildcustomize.pl: $& $(miniperl_objs)
+ 	$(CC) -o $(MINIPERL_EXE) $(CLDFLAGS) $(miniperl_objs) $(libs)
+-	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Ilib -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
++	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
+ 	$(MINIPERL) -f write_buildcustomize.pl
+ !NO!SUBS!
+ 		;;
+@@ -996,7 +996,7 @@
+ 		$spitshell >>$Makefile <<'!NO!SUBS!'
+ lib/buildcustomize.pl: $& $(miniperl_objs) write    ldcustomize.pl
+ 	$(CC) -o $(MINIPERL_EXE) $(miniperl_objs    libs)
+-	$(LDLIBPTH) ./miniperl$(HOST    _EXT) -w -Ilib -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
++	$(LDLIBPTH) ./miniperl$(HOST    _EXT) -w -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
+ 	$(MINIPERL) -f write_buildcustomize.pl    
+ !NO!SUBS!
+ 		;;
+@@ -1018,7 +1018,7 @@
+ 	-@rm -f miniperl.xok
+ 	$(CC) $(CLDFLAGS) $(NAMESPACEFLAGS) -o $(MINIPERL_EXE) \
+ 	    $(miniperl_objs) $(libs)
+-	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Ilib -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
++	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
+ 	$(MINIPERL) -f write_buildcustomize.pl
+ !NO!SUBS!
+ 		;;
+@@ -1029,7 +1029,7 @@
+ 	-@rm -f miniperl.xok
+ 	-@rm \$(MINIPERL_EXE)
+ 	\$(LNS) \$(HOST_PERL) \$(MINIPERL_EXE)
+-	\$(LDLIBPTH) ./miniperl\$(HOST_EXE_EXT) -w -Ilib -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
++	\$(LDLIBPTH) ./miniperl\$(HOST_EXE_EXT) -w -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
+ 	\$(MINIPERL) -f write_buildcustomize.pl 'osname' "$osname"
+ !GROK!THIS!
+ 		else
+@@ -1038,7 +1038,7 @@
+ 	-@rm -f miniperl.xok
+ 	$(CC) $(CLDFLAGS) -o $(MINIPERL_EXE) \
+ 	    $(miniperl_objs) $(libs)
+-	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Ilib -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
++	$(LDLIBPTH) ./miniperl$(HOST_EXE_EXT) -w -Idist/Exporter/lib -MExporter -e '<?>' || sh -c 'echo >&2 Failed to build miniperl.  Please run make minitest; exit 1'
+ 	$(MINIPERL) -f write_buildcustomize.pl
+ !NO!SUBS!
+ 		fi
+@@ -1203,7 +1203,7 @@
+ EOT
+     fi
+ 
+-    test $name = notify || echo '	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) -Ilib -MCPAN -e '\''@ARGV&&install(@ARGV)'\'' `cat extras.lst`' >>$Makefile
++    test $name = notify || echo '	-@test ! -s extras.lst || PATH="`pwd`:${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" $(RUN_PERL) -MCPAN -e '\''@ARGV&&install(@ARGV)'\'' `cat extras.lst`' >>$Makefile
+ done
+ 
+ if test "X$hostperl" != X; then
+@@ -1218,7 +1218,7 @@
+ 	$spitshell >>$Makefile <<'!NO!SUBS!'
+ install.perl:	$(INSTALL_DEPENDENCE) installperl
+ 	$(RUN_PERL) installperl --destdir=$(DESTDIR) $(INSTALLFLAGS) $(STRIPFLAGS)
+-	-@test ! -s extras.lst || PATH="`pwd`:\${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" \$(RUN_PERL) -Ilib -MCPAN -e '@ARGV&&install(@ARGV)' `cat extras.lst`
++	-@test ! -s extras.lst || PATH="`pwd`:\${PATH}" PERL5LIB="`pwd`/lib:${PERL5LIB}" \$(RUN_PERL) -MCPAN -e '@ARGV&&install(@ARGV)' `cat extras.lst`
+ 
+ !NO!SUBS!
+ fi

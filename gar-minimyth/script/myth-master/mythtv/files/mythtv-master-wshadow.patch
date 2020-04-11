@@ -1,8 +1,8 @@
-diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/configure mythtv-master-20191230-bafc80d-new/mythtv/configure
---- mythtv-master-20191230-bafc80d-old/mythtv/configure	2019-12-31 15:15:23.000000000 -0800
-+++ mythtv-master-20191230-bafc80d-new/mythtv/configure	2019-12-31 15:30:41.798996994 -0800
-@@ -6486,17 +6486,17 @@
- esac
+diff -Naur mythtv-master-20200409-490e0b1-old/mythtv/configure mythtv-master-20200409-490e0b1-new/mythtv/configure
+--- mythtv-master-20200409-490e0b1-old/mythtv/configure	2020-04-09 16:36:39.984148680 -0700
++++ mythtv-master-20200409-490e0b1-new/mythtv/configure	2020-04-09 16:36:41.570148594 -0700
+@@ -6554,17 +6554,17 @@
+                 }
  
  enable enforce_wshadow
 -case $target_os in
@@ -11,7 +11,7 @@ diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/configure mythtv-master-201
 -        ;;
 -    linux)
 -        . /etc/os-release
--        if test $ID = "centos"; then
+-        if test $ID = "centos" && test $VERSION_ID -le 7; then
 -            disable enforce_wshadow
 -        fi
 -        ;;
@@ -22,7 +22,7 @@ diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/configure mythtv-master-201
 +#        ;;
 +#    linux)
 +#        . /etc/os-release
-+#        if test $ID = "centos"; then
++#        if test $ID = "centos" && test $VERSION_ID -le 7; then
 +#            disable enforce_wshadow
 +#        fi
 +#        ;;

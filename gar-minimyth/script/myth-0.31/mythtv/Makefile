@@ -12,7 +12,8 @@ PATCHFILES += \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-networkcontrol.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION))).patch.gar \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-init.patch \
-	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-programid.patch
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-programid.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-wshadow.patch
 LICENSE = GPL2
 
 DESCRIPTION = 

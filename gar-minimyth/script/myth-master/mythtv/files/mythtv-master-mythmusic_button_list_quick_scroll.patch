@@ -1,7 +1,7 @@
-diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/libs/libmythui/mythuibuttonlist.cpp mythtv-master-20191230-bafc80d-new/mythtv/libs/libmythui/mythuibuttonlist.cpp
---- mythtv-master-20191230-bafc80d-old/mythtv/libs/libmythui/mythuibuttonlist.cpp	2019-12-30 16:02:53.000000000 -0800
-+++ mythtv-master-20191230-bafc80d-new/mythtv/libs/libmythui/mythuibuttonlist.cpp	2019-12-30 16:03:25.823999975 -0800
-@@ -2618,6 +2618,12 @@
+diff -Naur mythtv-master-20200409-490e0b1-old/mythtv/libs/libmythui/mythuibuttonlist.cpp mythtv-master-20200409-490e0b1-new/mythtv/libs/libmythui/mythuibuttonlist.cpp
+--- mythtv-master-20200409-490e0b1-old/mythtv/libs/libmythui/mythuibuttonlist.cpp	2020-04-09 16:36:31.862149123 -0700
++++ mythtv-master-20200409-490e0b1-new/mythtv/libs/libmythui/mythuibuttonlist.cpp	2020-04-09 16:36:33.345149042 -0700
+@@ -2614,6 +2614,12 @@
          {
              ShowSearchDialog();
          }

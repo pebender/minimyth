@@ -1,7 +1,7 @@
 GARNAME = gcc
 GARVERSION = $(GCC_VERSION)
 CATEGORIES = tainted-main
-SOURCEPKG = tainted-build/gcc
+SOURCEPKG = toolchain/gcc
 LICENSE = GPL2/GPL3/LGPL2_1/LGPL3
 
 DESCRIPTION =
@@ -13,80 +13,14 @@ DESCRIPTION =
 define BLURB
 endef
 
-CROSSIMG ?= $(DESTIMG)
-GARTARGET = $($(CROSSIMG)_GARHOST)
-
 ifeq ($(DESTIMG),build)
 IMGDEPS += $(CROSSIMG)
 $(CROSSIMG)_DEPENDS = \
-	tainted-main/binutils \
 	tainted-main/glibc
-BUILDDEPS = \
-	native/native \
-	tainted-build/tainted-build
-else
-export CROSSIMG
-BUILDDEPS = \
-	tainted-main/gcc
 endif
 
-WORKDIR = $(WORKROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
-COOKIEDIR = $(COOKIEROOTDIR)/$(DESTIMG)_$(CROSSIMG).d
+CONFIGURE_ARGS = $(GCC_CONFIGURE_ARGS)
 
-WORKSRC = $(WORKDIR)/gcc-$(GARVERSION)
-
-WORKBLD = $(WORKSRC)_build
-
-ifeq ($(DESTIMG),build)
-CONFIGURE_SCRIPTS = custom
-BUILD_SCRIPTS = $(WORKBLD)/Makefile
-INSTALL_SCRIPTS = $(WORKBLD)/Makefile lib-wrappers ccache-links
-endif
-
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --target=$(GARTARGET) \
-	--enable-plugin \
-	--disable-gold \
-	--enable-ld=default \
-	--enable-__cxa_atexit \
-	--enable-clocale=gnu \
-	--enable-languages=c,c++ \
-	--disable-libgomp \
-	--disable-libquadmath \
-	--disable-libquadmath-support \
-	--disable-libada \
-	--disable-libssp \
-	--disable-libvtv \
-	--enable-libstdcxx \
-	--disable-multilib \
-	--disable-nls \
-	--enable-shared \
-	--enable-threads=posix \
-	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir)) \
-	--with-sysroot=$($(CROSSIMG)_DESTDIR)
-
+GAR_EXTRA_CONF += toolchain/gcc/package-api.mk
 GAR_EXTRA_CONF += tainted-main/tainted-main/toolchain.mk
-GAR_EXTRA_CONF += tainted-build/gcc/package-api.mk
 include ../../gar.mk
-
-configure-custom:
-	@mkdir -p $(WORKBLD)
-	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
-	@$(MAKECOOKIE)
-
-install-lib-wrappers:
-	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libasan.la
-	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libatomic.la
-	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libitm.la
-	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libstdc++.la
-	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libstdc++fs.la
-	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libsupc++.la
-	@rm -fv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libubsan.la
-	@rm -fv $(build_DESTDIR)$(build_libdir)/gcc/$(GCC_VERSION)/plugin/libcc1plugin.la
-	@rm -fv $(build_DESTDIR)$(build_libdir)/gcc/$(GCC_VERSION)/plugin/libcp1plugin.la
-	@rm -fv $(build_DESTDIR)$(build_execlibdir)/gcc/$(GCC_VERSION)/liblto_plugin.la
-	@$(MAKECOOKIE)
-
-install-ccache-links:
-	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARTARGET)-gcc
-	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARTARGET)-g++
-	@$(MAKECOOKIE)

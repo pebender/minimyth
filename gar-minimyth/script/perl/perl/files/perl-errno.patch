@@ -1,0 +1,13 @@
+diff -Naur perl-5.30.2-old/ext/Errno/Errno_pm.PL perl-5.30.2-new/ext/Errno/Errno_pm.PL
+--- perl-5.30.2-old/ext/Errno/Errno_pm.PL	2020-04-10 10:50:42.700570351 -0700
++++ perl-5.30.2-new/ext/Errno/Errno_pm.PL	2020-04-10 10:50:43.264570320 -0700
+@@ -300,9 +300,6 @@
+     if(!$ENV{'PERL_BUILD_EXPAND_CONFIG_VARS'}) {
+         print <<"CONFIG_CHECK_END";
+ use Config;
+-"\$Config{'archname'}-\$Config{'osvers'}" eq
+-"$archname-$Config{'osvers'}" or
+-	die "Errno architecture ($archname-$Config{'osvers'}) does not match executable architecture (\$Config{'archname'}-\$Config{'osvers'})";
+ 
+ CONFIG_CHECK_END
+ }

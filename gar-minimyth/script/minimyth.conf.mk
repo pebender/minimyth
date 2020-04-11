@@ -7,7 +7,6 @@
 # The version of MiniMyth.
 mm_VERSION                ?= $(mm_VERSION_MYTH)-$(mm_VERSION_MINIMYTH)$(mm_VERSION_EXTRA)
 mm_VERSION_MYTH           ?= $(strip \
-                                $(if $(filter 0.30  ,$(mm_MYTH_VERSION)),0.30.0) \
                                 $(if $(filter 0.31  ,$(mm_MYTH_VERSION)),0.31.0) \
                                 $(if $(filter master,$(mm_MYTH_VERSION)),master) \
                               )
@@ -52,6 +51,7 @@ mm_SOFTWARE               ?= mythbrowser \
                              mythweather \
                              mythzoneminder \
                              airplay \
+			     mame \
                              ps3remote \
                              wiimote \
                              cec \
@@ -112,7 +112,7 @@ mm_NVIDIA_VERSION         ?= 304.125
 # may no longer work. The version string format is:
 # master-<date>-<mythtv-git-commit>-<myththemes-git-commit>, where <date> has
 # the format YYYYMMDD.
-mm_MYTHTV_MASTER_VERSION  ?= master-20191230-bafc80d
+mm_MYTHTV_MASTER_VERSION  ?= master-20200409-490e0b1
 # Lists additional packages to build when minimyth is built.
 mm_USER_PACKAGES          ?=
 # Lists additional binaries to include in the MiniMyth image

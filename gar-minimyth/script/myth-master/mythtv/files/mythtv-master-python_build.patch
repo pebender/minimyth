@@ -1,6 +1,6 @@
-diff -Naur mythtv-master-20191230-bafc80d-old/mythplugins/configure mythtv-master-20191230-bafc80d-new/mythplugins/configure
---- mythtv-master-20191230-bafc80d-old/mythplugins/configure	2019-12-30 16:03:25.254999975 -0800
-+++ mythtv-master-20191230-bafc80d-new/mythplugins/configure	2019-12-30 16:03:27.067999975 -0800
+diff -Naur mythtv-master-20200409-490e0b1-old/mythplugins/configure mythtv-master-20200409-490e0b1-new/mythplugins/configure
+--- mythtv-master-20200409-490e0b1-old/mythplugins/configure	2020-04-09 16:36:32.888149067 -0700
++++ mythtv-master-20200409-490e0b1-new/mythplugins/configure	2020-04-09 16:36:34.513148979 -0700
 @@ -466,12 +466,15 @@
  check_py_lib(){
      log check_py_lib "$@"
@@ -20,9 +20,9 @@ diff -Naur mythtv-master-20191230-bafc80d-old/mythplugins/configure mythtv-maste
  try:
      import $lib
  except:
-diff -Naur mythtv-master-20191230-bafc80d-old/mythtv/bindings/python/Makefile mythtv-master-20191230-bafc80d-new/mythtv/bindings/python/Makefile
---- mythtv-master-20191230-bafc80d-old/mythtv/bindings/python/Makefile	2019-12-30 16:03:25.582999975 -0800
-+++ mythtv-master-20191230-bafc80d-new/mythtv/bindings/python/Makefile	2019-12-30 16:03:27.067999975 -0800
+diff -Naur mythtv-master-20200409-490e0b1-old/mythtv/bindings/python/Makefile mythtv-master-20200409-490e0b1-new/mythtv/bindings/python/Makefile
+--- mythtv-master-20200409-490e0b1-old/mythtv/bindings/python/Makefile	2020-04-09 16:36:33.104149055 -0700
++++ mythtv-master-20200409-490e0b1-new/mythtv/bindings/python/Makefile	2020-04-09 16:36:34.513148979 -0700
 @@ -1,15 +1,15 @@
  include ../../config.mak
  

@@ -1,5 +1,5 @@
 GARNAME = gawk
-GARVERSION = $(GAWK_VERSION)
+GARVERSION = 5.0.1
 CATEGORIES = utils
 MASTER_SITES = https://ftp.gnu.org/gnu/gawk/
 DISTFILES = $(DISTNAME).tar.xz

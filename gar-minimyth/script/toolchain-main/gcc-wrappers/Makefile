@@ -1,7 +1,7 @@
 GARNAME = gcc-wrappers
 GARVERSION = unknown
 CATEGORIES = toolchain-main
-SOURCEPKG = tainted-build/gcc-wrappers
+SOURCEPKG = toolchain/gcc-wrappers
 LICENSE = 
 
 DESCRIPTION =
@@ -15,6 +15,6 @@ DEPENDS = \
 BUILD_SCRIPTS = wrappers
 INSTALL_SCRIPTS = wrappers
 
-GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain.mk
-GAR_EXTRA_CONF += tainted-build/gcc-wrappers/package-api.mk
+GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain-gcc.mk
+GAR_EXTRA_CONF += toolchain/gcc-wrappers/package-api.mk
 include ../../gar.mk

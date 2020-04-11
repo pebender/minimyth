@@ -11,7 +11,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-#DEPENDS = lang/c
+DEPENDS = lang/c
 BUILDDEPS =
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure

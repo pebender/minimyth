@@ -1,59 +1,41 @@
 GARNAME = glibc
 GARVERSION = $(GLIBC_VERSION)
 CATEGORIES = tainted-main
-SOURCEPKG = tainted-main/glibc
+SOURCEPKG = toolchain/glibc
 LICENSE = GPL2/LGPL2_1/GPL3/LGPL3
 
 DESCRIPTION = 
 define BLURB
 endef
 
-WORKSRC = $(WORKDIR)/glibc-$(GARVERSION)
-WORKBLD = $(WORKSRC)_build
-
+ifneq ($(DESTIMG),build)
 DEPENDS = \
-	tainted-main/kernel-headers \
+	tainted-main/linux-headers \
 	tainted-main/binutils
 BUILDDEPS = \
 	native/native \
 	tainted-build/tainted-build
+endif
 
-CONFIGURE_SCRIPTS = custom
-INSTALL_SCRIPTS = custom
+CONFIGURE_SCRIPTS = $(GLIBC_CONFIGURE_SCRIPTS)
+INSTALL_SCRIPTS = headers additional-headers
 
-CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
+CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--cache-file=config.cache \
 	--disable-sanity-checks \
-	--enable-kernel=5.4.0 \
+	--enable-kernel=5.6.0 \
 	--disable-build-nscd \
 	--disable-nscd \
+	--disable-obsolete-rpc \
 	--without-cvs \
 	--with-headers=$(DESTDIR)$(includedir) \
 	--disable-add-ons \
 	--without-tls \
 	--without-__thread
-INSTALL_ARGS = \
-	cross-compiling=yes \
-	install_root=$(DESTDIR)
+INSTALL_ARGS = $(GLIBC_INSTALL_ARGS)
 
-CONFIGURE_ENV = \
-	BUILD_CC="$(build_CC)" \
-	BUILD_CPPFLAGS="$(build_CPPFLAGS)" \
-	BUILD_CFLAGS="$(build_CFLAGS)" \
-	BUILD_LDFLAGS="$(build_LDFLAGS)"
-BUILD_ENV    = \
-	BUILD_CC="$(build_CC)" \
-	BUILD_CPPFLAGS="$(build_CPPFLAGS)" \
-	BUILD_CFLAGS="$(build_CFLAGS)" \
-	BUILD_LDFLAGS="$(build_LDFLAGS)"
-INSTALL_ENV  = \
-	BUILD_CC="$(build_CC)" \
-	BUILD_CPPFLAGS="$(build_CPPFLAGS)" \
-	BUILD_CFLAGS="$(build_CFLAGS)" \
-	BUILD_LDFLAGS="$(build_LDFLAGS)"
-
+GAR_EXTRA_CONF += toolchain/glibc/package-api.mk
 GAR_EXTRA_CONF += tainted-main/tainted-main/toolchain.mk
-GAR_EXTRA_CONF += tainted-main/glibc/package-api.mk
 include ../../gar.mk
 
 CC := $(build_CC)
@@ -74,24 +56,11 @@ CFLAGS := $(build_CFLAGS)
 CXXFLAGS := $(build_CXXFLAGS)
 LDFLAGS := $(build_LDFLAGS)
 
-pre-configure:
-	@mkdir -p $(WORKBLD)
-	@rm -rf $(WORKBLD)/configparms
-	@echo "slibdir=$(elibdir)" >> $(WORKBLD)/configparms
-	@rm -rf $(WORKBLD)/config.cache
-	@echo "libc_cv_386_tls=yes" >> $(WORKBLD)/config.cache
-	@$(MAKECOOKIE)
-
-configure-custom:
-	@mkdir -p $(WORKBLD)
-	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
-	@$(MAKECOOKIE)
-
-install-custom:
+install-headers:
 	@$(INSTALL_ENV) $(MAKE) DESTDIR=$(DESTDIR) $(foreach TTT,$(INSTALL_OVERRIDE_DIRS),$(TTT)="$(DESTDIR)$($(TTT))") -C $(WORKBLD) $(INSTALL_ARGS) install-headers
 	@$(MAKECOOKIE)
 
-post-install:
+install-additional-headers:
 	@mkdir -p $(DESTDIR)$(includedir)/gnu
 	@mkdir -p $(DESTDIR)$(includedir)/bits
 	@touch $(DESTDIR)$(includedir)/gnu/stubs.h

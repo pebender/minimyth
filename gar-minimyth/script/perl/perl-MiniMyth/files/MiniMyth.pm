@@ -12,7 +12,7 @@ use File::Find ();
 use File::Path ();
 use File::Spec ();
 use Net::Telnet ();
-use WWW::Curl::Easy qw(CURLINFO_HTTP_CODE CURLOPT_FOLLOWLOCATION CURLOPT_HTTPHEADER CURLOPT_INFILE CURLOPT_INFILESIZE CURLOPT_UPLOAD CURLOPT_URL CURLOPT_VERBOSE CURLOPT_WRITEDATA);
+use Net::Curl::Easy qw(CURLINFO_HTTP_CODE CURLOPT_FOLLOWLOCATION CURLOPT_HTTPHEADER CURLOPT_INFILE CURLOPT_INFILESIZE CURLOPT_UPLOAD CURLOPT_URL CURLOPT_VERBOSE CURLOPT_WRITEDATA);
 
 sub new
 {
@@ -1271,7 +1271,7 @@ sub url_get
                 if (open(my $OUT_FILE, '>', $local_file))
                 {
                     chmod(00600, $local_file);
-                    my $curl = new WWW::Curl::Easy;
+                    my $curl = new Net::Curl::Easy;
                     $curl->setopt(CURLOPT_VERBOSE, 0);
                     $curl->setopt(CURLOPT_URL, $url_item);
                     $curl->setopt(CURLOPT_FOLLOWLOCATION, 1);
@@ -1291,7 +1291,7 @@ sub url_get
                 if (open(my $OUT_FILE, '>', $local_file))
                 {
                     chmod(00600, $local_file);
-                    my $curl = new WWW::Curl::Easy;
+                    my $curl = new Net::Curl::Easy;
                     $curl->setopt(CURLOPT_VERBOSE, 0);
                     $curl->setopt(CURLOPT_URL, $url_item);
                     $curl->setopt(CURLOPT_WRITEDATA, $OUT_FILE);
@@ -1393,7 +1393,7 @@ sub url_put
                     if (open(my $OUT_FILE, '>', File::Spec->devnull))
                     {
                         my $local_file_size = -s $local_file;
-                        my $curl = new WWW::Curl::Easy;
+                        my $curl = new Net::Curl::Easy;
                         $curl->setopt(CURLOPT_VERBOSE, 0);
                         $curl->setopt(CURLOPT_URL, $url_item);
                         $curl->setopt(CURLOPT_FOLLOWLOCATION, 1);
@@ -1420,7 +1420,7 @@ sub url_put
                     if (open(my $OUT_FILE, '>', File::Spec->devnull))
                     {
                         my $local_file_size = -s $local_file;
-                        my $curl = new WWW::Curl::Easy;
+                        my $curl = new Net::Curl::Easy;
                         $curl->setopt(CURLOPT_VERBOSE, 0);
                         $curl->setopt(CURLOPT_URL, $url_item);
                         $curl->setopt(CURLOPT_INFILE, $IN_FILE);

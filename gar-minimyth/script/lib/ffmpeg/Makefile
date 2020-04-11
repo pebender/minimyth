@@ -1,20 +1,16 @@
 GARNAME = ffmpeg
-GARVERSION = 1.1.16
+GARVERSION = 4.2.2
 CATEGORIES = lib
 MASTER_SITES = https://ffmpeg.org/releases/
-DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES = \
-	$(DISTNAME)-git_76d9012.patch \
-	$(DISTNAME)-pkg_config.patch \
-	$(DISTNAME)-uint64_c.patch
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2/LGPL2_1
 
 DESCRIPTION = 
 define BLURB
 endef
 
-DEPENDS   = lang/c build-tool/make lib/fontconfig lib/libbluray lib/SDL lib/zlib net/librtmp utils/bzip2 X11/libva X11/libvdpau
-BUILDDEPS = devel/yasm
+DEPENDS   = lang/c build-tool/make lib/fontconfig lib/freetype lib/zlib utils/bzip2 utils/xz X11/libva X11/libvdpau xorg/Mesa
+BUILDDEPS = devel/nasm
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -27,10 +23,12 @@ CONFIGURE_ARGS = \
 	--prefix=$(prefix) \
 	--bindir=$(bindir) \
 	--datadir=$(datadir)/ffmpeg \
+	--docdir=$(docdir)/ffmpeg \
 	--libdir=$(libdir) \
 	--shlibdir=$(libdir) \
 	--incdir=$(includedir) \
 	--mandir=$(mandir) \
+	--disable-rpath \
 	--enable-gpl \
 	--disable-version3 \
 	--disable-nonfree \
@@ -41,20 +39,16 @@ CONFIGURE_ARGS = \
 	--disable-gray \
 	--enable-swscale-alpha \
 	--disable-all \
+	--enable-autodetect \
 	--disable-programs \
-	--enable-ffmpeg \
-	--disable-ffplay \
-	--disable-ffprobe \
-	--disable-ffserver \
-	--enable-doc \
-	--enable-htmlpages \
-	--enable-manpages \
-	--enable-podpages \
-	--enable-txtpages \
+	--disable-doc \
+	--disable-htmlpages \
+	--disable-manpages \
+	--disable-podpages \
+	--disable-txtpages \
 	--enable-avdevice \
 	--enable-avcodec \
 	--enable-avformat \
-	--enable-avutil \
 	--enable-swresample \
 	--enable-swscale \
 	--enable-postproc \
@@ -63,18 +57,21 @@ CONFIGURE_ARGS = \
 	--enable-pthreads \
 	--disable-w32threads \
 	--disable-os2threads \
-	--enable-x11grab \
 	--enable-network \
 	--enable-dct \
 	--disable-dwt \
+	--enable-error-resilience \
 	--disable-lsp \
 	--enable-lzo \
 	--enable-mdct \
 	--enable-rdft \
 	--enable-fft \
+	--enable-faan \
+	--enable-pixalutils \
 	--disable-dxva2 \
 	--enable-vaapi \
 	--enable-vdpau \
+	\
 	--disable-everything \
 	--disable-encoders \
 	--enable-decoders \
@@ -87,53 +84,129 @@ CONFIGURE_ARGS = \
 	--enable-indevs \
 	--enable-outdevs \
 	--enable-filters \
+	\
+	--enable-alsa \
+	--disable-appkit \
+	--disable-avfoundation \
 	--disable-avisynth \
 	--enable-bzlib \
-	--enable-fontconfig \
+	--disable-coreimapge \
+	--disable-chromaprint \
 	--disable-frei0r \
+	--disable-gcrypt \
+	--disable-gmp \
 	--disable-gnutls \
-	--disable-libaacplus \
+	--disable-iconv \
+	--disable-jni \
+	--disable-ladspa \
+	--disable-libaribb24 \
 	--disable-libass \
-	--enable-libbluray \
+	--disable-libbluray \
+	--disable-libbbs2d \
 	--disable-libcaca \
 	--disable-libcelt \
 	--disable-libcdio \
+	--disable-libcodec2 \
+	--disable-libdav1d \
 	--disable-libdc1394 \
-	--disable-libfaac \
 	--disable-libfdk-aac \
 	--disable-libflite \
-	--disable-libfreetype \
+	--enable-fontconfig \
+	--enable-libfreetype \
+	--disable-libfribidi \
+	--disable-libgse \
 	--disable-libgsm \
 	--disable-libiec61883 \
 	--disable-libilbc \
+	--disable-libjack \
+	--disable-libklvanc \
+	--disable-libvazaar \
+	--disable-liblensfun \
 	--disable-libmodplug \
 	--disable-libmp3lame \
-	--disable-libnut \
 	--disable-libopencore-amrnb \
 	--disable-libopencore-amrwb \
 	--disable-libopencv \
+	--disable-libopenh264 \
 	--disable-libopenjpeg \
+	--disable-libopenmpt \
 	--disable-libopus \
 	--disable-libpulse \
-	--enable-librtmp \
-	--disable-libschroedinger \
+	--disable-rsvg \
+	--disable-librubberband \
+	--disable-librtmp \
+	--disable-libshine \
+	--disable-libsmbclient \
+	--disable-libsnappy \
 	--disable-libsoxr \
 	--disable-libspeex \
-	--disable-libstagefright-h264 \
+	--disable-libsrt \
+	--disable-libssh \
+	--disable-libtensorflow \
+	--disable-libtesseract \
 	--disable-libtheora \
+	--disable-libtls \
 	--disable-libtwolame \
-	--disable-libutvideo \
 	--disable-libv4l2 \
-	--disable-libvo-aacenc \
-	--disable-libvo-amrwbenc \
+	--disable-libvidstab \
+	--disable-libvmaf \
+	--disable-libvo-armwbenc \
 	--disable-libvorbis \
 	--disable-libvpx \
 	--disable-libx264 \
+	--disable-libx265 \
 	--disable-libxavs \
+	--disable-libxavs2 \
+	--enable-libxcb \
+	--enable-libxcb-shm \
+	--enable-libxcb-xfixes \
+	--enable-libxcb-shap \
 	--disable-libxvid \
+	--disable-libxml2 \
+	--disable-libzing \
+	--disable-libzmq \
+	--disable-libzvbi \
+	--disable-lv2 \
+	--enable-lzma \
+	--disable-decklink \
+	--disable-mbettls \
+	--disable-mediacodec \
+	--disable-libmysofa \
 	--disable-openal \
-	--disable-openssl \
+	--disable-opencl \
+	--enable-opengl \
+	--enable-openssl \
+	--disable-pocketsphinx \
+	--disable-sndio \
+	--disable-schannel \
+	--disable-sdl2 \
+	--disable-securetransport \
+	--disable-vapoursynth \
+	--disable-xlib \
 	--enable-zlib \
+	\
+	--disable-amf \
+	--disable-audiotoolbox \
+	--disable-cuda-nvcc \
+	--disable-d3d11va \
+	--disable-dxva \
+	--disable-ffnvcodec \
+	--enable-libdrm \
+	--disable-libmfx \
+	--disable-libnpp \
+	--disable-mmal \
+	--disable-nvdec \
+	--disable-nvenc \
+	--disable-omx \
+	--disable-omx-rpi \
+	--disable-rkmpp \
+	--disable-v4l2-m2m \
+	--enable-vaapi \
+	--enable-vdpau \
+	--disable-videotoolbox \
+	\
+	--arch=$(GARCH_FAMILY) \
+	--cpu=$(GARCH) \
 	--enable-cross-compile \
 	--sysroot="$(DESTDIR)$(rootdir)" \
 	--sysinclude="$(DESTDIR)$(includedir)" \
@@ -141,35 +214,40 @@ CONFIGURE_ARGS = \
 	--nm="$(NM)" \
 	--ar="$(AR)" \
 	--as="$(CC)" \
-	--yasmexe="yasm" \
+	--ln_s="ln -sfv" \
+	--strip="$(STRIP)" \
+	--x86asmexe="nasm" \
 	--cc="$(CC)" \
 	--cxx="$(CXX)" \
 	--ld="$(CC)" \
+	--pkg-config="$(build_DESTDIR)$(build_bindir)/pkg-config" \
+	--ranlib="$(RANLIB)" \
 	--host-cc="$(build_CC)" \
 	--host-cflags="$(build_CFLAGS)" \
+	--host-cppflags="$(build_CFPPLAGS)" \
 	--host-ld="$(build_CC)" \
 	--host-ldflags="$(build_LDFLAGS)" \
-	--host-libs="" \
+	--host-extralibs="" \
 	--host-os="linux" \
 	--extra-cflags="$(CFLAGS)" \
 	--extra-cxxflags="$(CXXFLAGS)" \
 	--extra-ldflags="$(LDFLAGS)" \
 	--extra-libs="" \
 	--extra-version="" \
+	--optflags="" \
+	--nvccflags="" \
 	--build-suffix="" \
-	--progs-suffix="" \
-	--arch=$(GARCH_FAMILY) \
-	--cpu=$(GARCH) \
 	--enable-pic \
-	--disable-sram \
 	--disable-thumb \
+	--enable-lto \
 	--disable-symver \
 	--disable-hardcoded-tables \
 	--enable-safe-bitstream-reader \
-	--disable-memalign-hack \
-	--disable-lto \
+	\
 	--enable-asm \
 	--disable-altivec \
+	--disable-vsx \
+	--disable-power8 \
 	--enable-amd3dnow \
 	--enable-amd3dnowext \
 	--enable-mmx \
@@ -181,21 +259,26 @@ CONFIGURE_ARGS = \
 	--disable-sse4 \
 	--disable-sse42 \
 	--disable-avx \
-	--disable-fma4  \
+	--disable-xop \
+	--disable-fma3 \
+	--disable-fma4 \
+	--disable-avx2 \
+	--disable-avx512 \
+	--disable-aesni \
 	--disable-armv5te \
 	--disable-armv6 \
 	--disable-armv6t2 \
 	--disable-vfp \
 	--disable-neon \
-	--disable-vis \
 	--enable-inline-asm \
-	--enable-yasm \
-	--disable-mips32r2 \
-	--disable-mipsdspr1 \
-	--disable-mipsdspr2 \
+	--enable-x86asm \
+	--disable-mipsdsp \
+	--disable-mipsdsp2 \
+	--disable-msa \
+	--disable-msa2 \
 	--disable-mipsfpu \
+	--disable-mmi \
 	--enable-fast-unaligned \
-	--disable-coverage \
 	--disable-debug \
 	--enable-optimizations \
 	--disable-extra-warnings \
@@ -207,11 +290,7 @@ INSTALL_ARGS   = \
 
 include ../../gar.mk
 
-# ffmpeg 1.1.6 fails to compile with asm and gcc 5.2.0's link time optimization enabled.
-#CFLAGS  := $(filter-out -flto, $(CFLAGS))
-#LDFLAGS := $(filter-out -flto, $(LDFLAGS))
-
-clean-all:
+xclean-all:
 	@$(MAKE) clean
 	@rm -rf $(DESTDIR)$(includedir)/libavcodec
 	@rm -rf $(DESTDIR)$(includedir)/libavdevice

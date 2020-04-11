@@ -1,0 +1,18 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/configure mythtv-0.31-20200322-c8c59f5-new/mythtv/configure
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/configure	2020-03-28 16:43:08.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/configure	2020-04-10 14:36:35.934831534 -0700
+@@ -6542,10 +6542,10 @@
+         disable enforce_wshadow
+         ;;
+     linux)
+-        . /etc/os-release
+-        if test $ID = "centos"; then
+-            disable enforce_wshadow
+-        fi
++#        . /etc/os-release
++#        if test $ID = "centos"; then
++#            disable enforce_wshadow
++#        fi
+         ;;
+ esac
+ 

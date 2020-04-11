@@ -1,7 +1,7 @@
 GARNAME = clang-wrappers
 GARVERSION = unknown
 CATEGORIES = toolchain-build
-SOURCEPKG = tainted-build/clang-wrappers
+SOURCEPKG = toolchain/clang-wrappers
 LICENSE =
 
 DESCRIPTION =
@@ -18,5 +18,5 @@ build_rootdir = $(build_rootdir_swapped)
 DESTDIR = $(build_DESTDIR_swapped)
 rootdir = $(build_rootdir_swapped)
 
-GAR_EXTRA_CONF += tainted-build/clang-wrappers/package-api.mk
+GAR_EXTRA_CONF += toolchain/clang-wrappers/package-api.mk
 include ../../gar.mk

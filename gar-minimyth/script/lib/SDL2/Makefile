@@ -22,7 +22,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--x-includes=$(DESTDIR)$(includedir) \
 	--x-libraries=$(DESTDIR)$(libdir) \
 	--enable-shared \
-	--enable-static \
+	--disable-static \
 	--enable-assertions="auto" \
 	--enable-libc \
 	--enable-gcc-atomics \

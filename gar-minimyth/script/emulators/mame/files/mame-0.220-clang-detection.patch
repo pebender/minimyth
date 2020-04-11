@@ -1,0 +1,16 @@
+diff -Naur mame-mame0220-old/makefile mame-mame0220-new/makefile
+--- mame-mame0220-old/makefile	2020-04-05 10:42:38.000000000 -0700
++++ mame-mame0220-new/makefile	2020-04-07 20:37:08.177781877 -0700
+@@ -1000,10 +1000,11 @@
+ else
+ ifdef OVERRIDE_CC
+ GCC_VERSION      := $(shell $(TOOLCHAIN)$(subst @,,$(OVERRIDE_CC)) -dumpversion 2> /dev/null)
++CLANG_VERSION    := $(shell $(TOOLCHAIN)$(subst @,,$(OVERRIDE_CC))  --version  2> /dev/null | head -n 1 | grep -e 'version [0-9]\+\.[0-9]\+\(\.[0-9]\+\)\?' -o | grep -e '[0-9]\+\.[0-9]\+\(\.[0-9]\+\)\?' -o | tail -n 1)
+ else
+ GCC_VERSION      := $(shell $(TOOLCHAIN)$(subst @,,$(CC)) -dumpversion 2> /dev/null)
+-endif
+ CLANG_VERSION    := $(shell $(TOOLCHAIN)$(subst @,,$(CC))  --version  2> /dev/null | head -n 1 | grep -e 'version [0-9]\+\.[0-9]\+\(\.[0-9]\+\)\?' -o | grep -e '[0-9]\+\.[0-9]\+\(\.[0-9]\+\)\?' -o | tail -n 1)
++endif
+ PYTHON_AVAILABLE := $(shell $(PYTHON) --version > /dev/null 2>&1 && echo python)
+ GIT_AVAILABLE := $(shell git --version > /dev/null 2>&1 && echo git)
+ endif

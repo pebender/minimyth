@@ -1,0 +1,124 @@
+GARNAME = perl
+GARVERSION = $(PERL_VERSION)
+CATEGORIES = perl
+MASTER_SITES = https://www.cpan.org/src/5.0/
+MASTER_SITES += https://github.com/arsv/perl-cross/releases/download/1.3.2/
+DISTFILES = $(DISTNAME).tar.gz
+DISTFILES += perl-cross-1.3.2.tar.gz
+PATCHFILES  = $(GARNAME)-dash.patch $(GARNAME)-perl.patch.gar $(GARNAME)-path.patch $(GARNAME)-perl5lib.patch
+#PATCHFILES  = $(DISTNAME)-dash.patch $(DISTNAME)-perl.patch.gar $(DISTNAME)-path.patch $(DISTNAME)-perl5lib.patch
+ifeq ($(DESTIMG),build)
+PATCHFILES += $(GARNAME)-cbuilder.patch $(GARNAME)-xsloader.patch $(GARNAME)-dynaloader.patch $(GARNAME)-errno.patch
+#PATCHFILES += $(DISTNAME)-cbuilder.patch $(DISTNAME)-xsloader.patch $(DISTNAME)-dynaloader.patch $(DISTNAME)-errno.patch
+else
+#PATCHFILES += $(GARNAME)-cross.patch.gar
+#PATCHFILES += $(DISTNAME)-cross.patch.gar
+endif
+LICENSE = Artistic
+
+DESCRIPTION = 
+define BLURB
+endef
+
+DEPENDS = lang/c
+BUILDDEPS = utils/bash
+ifneq ($(DESTIMG),build)
+BUILDDEPS += perl/perl
+endif
+
+CONFIGURE_SCRIPTS = $(WORKSRC)/configure
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = config $(WORKSRC)/Makefile
+
+CONFIGURE_ARGS = \
+	--prefix="$(prefix)" \
+	--html1dir="" \
+	--html3dir="" \
+	--man1dir="$(mandir)/man1" \
+	--man3dir="$(mandir)/man3" \
+	--build="$(GARBUILD)" \
+	--target="$(GARHOST)" \
+	--target-tools-prefix="$(GARHOST)-" \
+	--with-cc="$(CC)" \
+	--with-cpp="$(CPP)" \
+	--with-ranlib="$(RANLIB)" \
+	--with-objdump="$(OBJDUMP)" \
+	--host-cc="$(build_CC)" \
+	--host-cpp="$(build_CPP)" \
+	--host-ranlib="$(build_RANLIB)" \
+	--host-objdump="$(build_OBJDUMP)" \
+	--sysroot="$(DESTDIR)" \
+	--set userelocatableinc='true' \
+	--set initialinstalllocation="$(DESTDIR)$(bindir)"
+BUILD_ARGS =
+INSTALL_ARGS =
+
+CONFIGURE_ENV = $(PERL_CONFIGURE_ENV)
+BUILD_ENV = $(PERL_BUILD_ENV)
+INSTALL_ENV = $(PERL_INSTALL_ENV)
+
+GAR_EXTRA_CONF += tainted-build/gcc/package-api.mk
+GAR_EXTRA_CONF += tainted-main/glibc/package-api.mk
+GAR_EXTRA_CONF += kernel/linux/package-api.mk
+include ../../gar.mk
+
+# Perl insists on adding the path to AR.
+AR := $(notdir $(AR))
+
+CPPFLAGS := $(PERL_CPPFLAGS)
+CFLAGS := $(PERL_CFLAGS)
+CXXFLAGS := $(PERL_CXXFLAGS)
+LDFLAGS := $(PERL_LDFLAGS)
+
+extract-perl-cross-1.3.2.tar.gz:
+	@echo " ==> Extracting $(DOWNLOADDIR)/perl-cross-1.3.2.tar.gz"
+	@gzip -dc $(DOWNLOADDIR)/perl-cross-1.3.2.tar.gz | tar --strip-components=1 -xf - -C $(WORKSRC)
+	@$(MAKECOOKIE)
+
+x-pre-install:
+	@cd $(DESTDIR)$(libdir) ; rm -f libperl.so
+
+install-config:
+	@mkdir -p $(DESTDIR)$(PERL_configdir)
+	@cp -f $(WORKSRC)/lib/Config.pm       $(DESTDIR)$(PERL_configdir)
+	@cp -f $(WORKSRC)/lib/Config.pod      $(DESTDIR)$(PERL_configdir)
+	@cp -f $(WORKSRC)/lib/Config_heavy.pl $(DESTDIR)$(PERL_configdir)
+	@$(MAKECOOKIE)
+
+post-install:
+	@rm -f $(DESTDIR)$(PERL_archlib)/CORE/libperl.a
+	@$(MAKECOOKIE)
+
+source-update:
+	@$(MAKE) source-update-source
+	@$(MAKE) source-update-patches
+
+source-update-source:
+	@$(MAKE) clean
+	@$(MAKE) fetch
+	@$(MAKE) $(GARCHIVEDIR)/$(DISTNAME).tar.gz
+	@$(MAKE) clean
+
+source-update-patches:
+	@$(MAKE) clean
+	@$(MAKE) extract
+	@$(foreach PATCHFILE, $(PATCHFILES), \
+		echo "*** applying $(PATCHFILE) ***" ; \
+		cd $(WORKDIR) || exit 1 ; \
+		chmod -R u+w $(DISTNAME) ; \
+		mv $(DISTNAME) $(DISTNAME)-old || exit 1 ; \
+		cp -r $(DISTNAME)-old $(DISTNAME)-new || exit 1 ; \
+		cd $(DISTNAME)-new || exit 1 ; \
+		SIMPLE_BACKUP_SUFFIX=.gar-source-update-patches patch -p1 < ../../../files/$(PATCHFILE) || exit 1 ; \
+		cd ../ || exit 1 ; \
+		find $(DISTNAME)-new -name *.gar-source-update-patches -exec rm {} \; || exit 1 ; \
+		( diff -Naur $(DISTNAME)-old $(DISTNAME)-new > ../../files/$(PATCHFILE) ; test $$? -lt 2 ) || exit 1 ; \
+		rm -fr $(DISTNAME)-old || exit 1 ; \
+		mv $(DISTNAME)-new $(DISTNAME) || exit 1 ; \
+		cd ../../ || exit 1 ; \
+		rm -f checksums~ || exit 1 ; \
+		cat checksums | grep -v $(DOWNLOADDIR)/$(PATCHFILE) > checksums~ || true ; \
+		md5sum $(DOWNLOADDIR)/$(PATCHFILE) >> checksums~ || exit 1 ; \
+		rm -f checksums || exit 1 ; \
+		mv -f checksums~ checksums || exit 1 ; )
+	@$(MAKE) clean

@@ -1,22 +1,14 @@
 GARNAME = binutils
 GARVERSION = $(BINUTILS_VERSION)
 CATEGORIES = tainted-build
-MASTER_SITES  = https://ftp.gnu.org/gnu/binutils/
-MASTER_SITES += https://ftp.gnu.org/gnu/gmp/
-MASTER_SITES += http://isl.gforge.inria.fr/
-MASTER_SITES += https://ftp.gnu.org/gnu/mpc/
-MASTER_SITES += https://ftp.gnu.org/gnu/mpfr/
-DISTFILES  = $(DISTNAME).tar.xz
-DISTFILES += gmp-$(GMP_VERSION).tar.xz
-DISTFILES += isl-$(ISL_VERSION).tar.xz
-DISTFILES += mpc-$(MPC_VERSION).tar.gz
-DISTFILES += mpfr-$(MPFR_VERSION).tar.xz
+SOURCEPKG = toolchain/binutils
 LICENSE = GPL2/LGPL2/GPL3/LGPL3
 
 DESCRIPTION =
 define BLURB
 endef
 
+ifeq ($(DESTIMG),build)
 DEPENDS = \
 	tainted-build/libc-crt
 BUILDDEPS = \
@@ -26,27 +18,12 @@ BUILDDEPS = \
 	tainted-build/bash \
 	tainted-build/coreutils \
 	tainted-build/make
-
-ifeq ($(DESTIMG),build)
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS = $(WORKSRC)/Makefile lib-wrappers links
 endif
 
-CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--with-static-standard-libraries \
-	--enable-plugins \
-	--disable-gold \
-	--enable-ld=default \
-	--disable-libgomp \
-	--disable-libada \
-	--disable-libssp \
-	--disable-multilib \
-	--disable-nls \
-	--disable-werror \
-	--with-sysroot=/
+CONFIGURE_ARGS = $(BINUTILS_CONFIGURE_ARGS)
 
 GAR_EXTRA_CONF += tainted-build/tainted-build/toolchain.mk
+GAR_EXTRA_CONF += toolchain/binutils/package-api.mk
 include ../../gar.mk
 
 CC := $(build_DESTDIR)$(build_bindir)/ccache.d/cc
@@ -58,32 +35,3 @@ CPPFLAGS :=
 CFLAGS :=
 CXXFLAGS :=
 LDFLAGS :=
-
-post-extract:
-	@rm -rfv $(WORKSRC)/gmp
-	@mv -fv $(WORKDIR)/gmp-$(GMP_VERSION) $(WORKSRC)/gmp
-	@rm -rfv $(WORKSRC)/isl
-	@mv -fv $(WORKDIR)/isl-$(ISL_VERSION) $(WORKSRC)/isl
-	@rm -rfv $(WORKSRC)/mpc
-	@mv -fv $(WORKDIR)/mpc-$(MPC_VERSION) $(WORKSRC)/mpc
-	@rm -rfv $(WORKSRC)/mpfr
-	@mv -fv $(WORKDIR)/mpfr-$(MPFR_VERSION) $(WORKSRC)/mpfr
-	@$(MAKECOOKIE)
-
-install-lib-wrappers:
-	@rm -fv $(DESTDIR)$(libdir)/libbfd.la
-	@rm -fv $(DESTDIR)$(libdir)/libopcodes.la
-	@$(MAKECOOKIE)
-
-install-links:
-	@ln -sfv ld $(DESTDIR)$(bindir)/$(GARHOST)-ld
-	@ln -sfv ld.bfd $(DESTDIR)$(bindir)/$(GARHOST)-ld.bfd
-	@ln -sfv objdump $(DESTDIR)$(bindir)/$(GARHOST)-objdump
-	@ln -sfv objcopy $(DESTDIR)$(bindir)/$(GARHOST)-objcopy
-	@ln -sfv strip $(DESTDIR)$(bindir)/$(GARHOST)-strip
-	@ln -sfv ranlib $(DESTDIR)$(bindir)/$(GARHOST)-ranlib
-	@ln -sfv readelf $(DESTDIR)$(bindir)/$(GARHOST)-readelf
-	@ln -sfv nm $(DESTDIR)$(bindir)/$(GARHOST)-nm
-	@ln -sfv as $(DESTDIR)$(bindir)/$(GARHOST)-as
-	@ln -sfv ar $(DESTDIR)$(bindir)/$(GARHOST)-ar
-	@$(MAKECOOKIE)

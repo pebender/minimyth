@@ -1,5 +1,5 @@
 GARNAME = bison
-GARVERSION = 3.5.3
+GARVERSION = 3.5.4
 CATEGORIES = devel
 MASTER_SITES = https://ftp.gnu.org/gnu/bison/
 DISTFILES = $(DISTNAME).tar.gz

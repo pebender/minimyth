@@ -8,8 +8,8 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c build-tool/make
-BUILDDEPS = net/rsync utils/unifdef
+DEPENDS = tainted-$(DESTIMG)
+BUILDDEPS = toolchain-build/toolchain-build net/rsync utils/unifdef
 
 WORKSRC = $(WORKDIR)/linux-$(GARVERSION)
 

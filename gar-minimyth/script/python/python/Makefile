@@ -34,8 +34,6 @@ ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	--without-ensurepip
 CONFIGURE_ENV += \
-	_PYTHON_HOST_PLATFORM=$(GARHOST) \
-	HOSTPYTHON="$(build_DESTDIR)$(build_bindir)/python" \
 	ax_cv_c_float_words_bigendian=no \
 	ac_cv_file_dev_ptc=no \
 	ac_cv_file_dev_ptmx=yes \
