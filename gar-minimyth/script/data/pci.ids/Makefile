@@ -22,5 +22,5 @@ extract-pci.ids:
 
 install-pci.ids:
 	@rm -fv $(DESTDIR)$(datadir)/pci.ids
-	@cp -fv $(WORKSRC)/pci.ids $(DESTDIR)$(datadir)/pci.ids
+	@install -v -m 644 $(WORKSRC)/pci.ids $(DESTDIR)$(datadir)/pci.ids
 	@$(MAKECOOKIE)

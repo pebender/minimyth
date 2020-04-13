@@ -22,5 +22,5 @@ extract-usb.ids:
 
 install-usb.ids:
 	@rm -fv $(DESTDIR)$(datadir)/usb.ids
-	@cp -fv $(WORKSRC)/usb.ids $(DESTDIR)$(datadir)/usb.ids.
+	@install -v -m 0644 $(WORKSRC)/usb.ids $(DESTDIR)$(datadir)/usb.ids
 	@$(MAKECOOKIE)
