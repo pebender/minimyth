@@ -496,7 +496,7 @@ sub device_canonicalize
 #===============================================================================
 # splash screen functions
 #===============================================================================
-my $var_splash_command      = '/usr/sbin/fbsplashd';
+my $var_splash_command      = '/sbin/fbsplash';
 my $var_splash_command_dir  = File::Basename::dirname($var_splash_command);
 my $var_splash_command_base = File::Basename::basename($var_splash_command);
 my $var_splash_fifo         = '/lib/splash/cache/.splash';

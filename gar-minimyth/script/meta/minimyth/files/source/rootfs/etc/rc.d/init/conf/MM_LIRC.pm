@@ -714,33 +714,6 @@ $var_list{'MM_LIRC_FETCH_LIRCRC_MYTHTV'} =
                        name_local  => '/etc/lirc/lircrc.d/mythtv'}
 };
 
-$var_list{'MM_LIRC_FETCH_LIRCRC_MPLAYER'} =
-{
-    value_default  => 'no',
-    value_valid    => 'no|yes',
-    value_file     => 'yes',
-    file           => {name_remote => '/lircrc.mplayer',
-                       name_local  => '/etc/lirc/lircrc.d/mplayer'}
-};
-
-$var_list{'MM_LIRC_FETCH_LIRCRC_VLC'} =
-{
-    value_default  => 'no',
-    value_valid    => 'no|yes',
-    value_file     => 'yes',
-    file           => {name_remote => '/lircrc.vlc',
-                       name_local  => '/etc/lirc/lircrc.d/vlc'}
-};
-
-$var_list{'MM_LIRC_FETCH_LIRCRC_XINE'} =
-{
-    value_default  => 'no',
-    value_valid    => 'no|yes',
-    value_file     => 'yes',
-    file           => {name_remote => '/lircrc.xine',
-                       name_local  => '/etc/lirc/lircrc.d/xine'}
-};
-
 $var_list{'MM_LIRC_LIRCM_DEVICE'} =
 {
     prerequisite   => ['MM_LIRC_FETCH_LIRCMD_CONF'],

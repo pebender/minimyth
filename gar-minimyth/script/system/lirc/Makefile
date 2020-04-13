@@ -10,7 +10,6 @@ DESCRIPTION =
 define BLURB
 endef
 
-#DEPENDS = lang/c kernel/linux lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python system/iguanair xorg/libX11
 DEPENDS = lang/c kernel/linux lib/alsa-lib lib/libftdi lib/libirman lib/libusb-compat python/python xorg/libX11
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
@@ -37,12 +36,12 @@ INSTALL_ENV   = $(LINUX_MAKE_ENV)
 GAR_EXTRA_CONF += kernel/linux/package-api.mk
 include ../../gar.mk
 
-PARALLELMFLAGS := -j1
+#PARALLELMFLAGS := -j1
 
-# lirc 0.9.0 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
+# lirc 0.10.1 fails to compile with llvm 10.0.0 link time optimization enabled.
+CFLAGS   := $(CFLAGS) -fno-lto
+CXXFLAGS := $(CXXFLAGS) -fno-lto
+LDFLAGS  := $(LDFLAGS) -fno-lto
 
 pre-configure:
 	@$(call RUN_AUTOTOOLS)

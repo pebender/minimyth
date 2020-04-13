@@ -38,11 +38,9 @@ mm_GRAPHICS               ?= intel \
                              sis \
                              vmware
 # Lists the software to be supported.
-# Valid values for MM_SOFTWARE are zero or more of 'mythbrowser',
-# 'mythgame', 'mythmusic', 'mythnetvision', 'mythnews',
-# 'mythweather', 'mythzoneminder', 'airplay',
-# 'mame', 'ps3remote', 'wiimote',
-# 'cec', 'backend','python', 'debug'.
+# Valid values for MM_SOFTWARE are zero or more of 'mythbrowser', 'mythgame',
+# 'mythmusic', 'mythnetvision', 'mythnews', 'mythweather', 'mythzoneminder',
+# 'airplay', 'mame', 'ps3remote', 'wiimote', 'cec', 'backend','python', 'debug'.
 mm_SOFTWARE               ?= mythbrowser \
                              mythgame \
                              mythmusic \

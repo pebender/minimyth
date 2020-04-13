@@ -31,9 +31,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 include ../../gar.mk
 
 # flac 1.3.3 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS := $(filter-out -flto, $(CFLAGS))
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-LDFLAGS := $(filter-out -flto, $(LDFLAGS))
+#CFLAGS := $(filter-out -flto, $(CFLAGS))
+#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+#LDFLAGS := $(filter-out -flto, $(LDFLAGS))
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libFLAC.la

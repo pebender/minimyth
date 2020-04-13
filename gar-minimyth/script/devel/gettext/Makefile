@@ -50,6 +50,8 @@ BUILD_ARGS = DESTDIR="/"
 
 include ../../gar.mk
 
+LDFLAGS += -lm
+
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libasprintf.la
 	@rm -fv $(DESTDIR)$(libdir)/libgettextlib.la

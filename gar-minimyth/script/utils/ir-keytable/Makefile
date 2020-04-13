@@ -14,8 +14,10 @@ endef
 DEPENDS = lang/c lang/cxx system/udev
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/utils/keytable/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/utils/keytable/Makefile
+#BUILD_SCRIPTS     = $(WORKSRC)/utils/keytable/Makefile
+#INSTALL_SCRIPTS   = $(WORKSRC)/utils/keytable/Makefile
+BUILD_SCRIPTS     = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
@@ -31,16 +33,17 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-doxygen-html \
 	--disable-doxygen-ps \
 	--disable-doxygen-pdf \
+	--disable-nls \
 	--disable-rpath \
 	--disable-libdvbv5 \
-	--disable-libv4l \
+	--disable-dyn-libv4l \
+	--disable-v4l2-compliance-libv4l \
+	--disable-v4l2-ctl-libv4l \
+	--disable-v4l2-ctl-stream-to \
 	--disable-qv4l2 \
+	--disable-qvidcap \
+	--disable-bpf \
 	--without-jpeg \
 	--with-udevdir="$(libdir)/udev"
 
 include ../../gar.mk
-
-pre-configure:
-	@$(call RUN_AUTOTOOLS)
-	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
-	@$(MAKECOOKIE)

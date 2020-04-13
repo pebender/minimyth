@@ -45,7 +45,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-nls \
 	--disable-rpath \
 	--disable-fuse2fs \
-	--disable-lto \
+	--enable-lto \
 	--disable-ubsan \
 	--disable-addrsan \
 	--disable-threadsan \

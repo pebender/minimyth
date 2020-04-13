@@ -163,7 +163,7 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@cp -pdR $(DESTDIR)$(extras_licensedir)/* $@~$(extras_licensedir)
 	@# Install busybox.
 	@echo "installing busybox"
-	@main_DESTDIR=$@~ $(MAKE) -C $(mm_HOME)/script/utils/busybox DESTIMG=$(DESTIMG) install
+	@main_DESTDIR=$@~ $(MAKE) -C $(mm_HOME)/script/utils/busybox DESTDIR=$@~ DESTIMG=$(DESTIMG) install
 	@rm -rf $@~/var
 	@# Copy binaries.
 	@$(call COPY_FILES, "binaries", "binary", $(DESTDIR), $@~, $(bindirs), $(MM_BINS))
@@ -513,7 +513,7 @@ $(top_build)/stage/image/rootfs.fakeroot: $(top_build)/stage/image/rootfs
 	@mkdir -m 0755 -p $(@D)
 	@rm -rf $@ $@~
 	@fakeroot -s $@~ sh -c                                             " \
-		chmod    u+s     $</rootfs-ro/$(ebindir)/busybox           ; \
+		chmod    u+s     $</rootfs-ro/$(rootdir)/bin/busybox       ; \
 		chmod    u+s     $</rootfs-ro/$(ebindir)/ping              ; \
 		chmod    u+s     $</rootfs-ro/$(bindir)/pmount             ; \
 		chmod    u+s     $</rootfs-ro/$(esbindir)/poweroff         ; \

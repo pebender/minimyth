@@ -205,7 +205,6 @@ sub start
         $minimyth->mythdb_settings_set('DefaultVideoPlaybackProfile', $minimyth->var_get('MM_VIDEO_PLAYBACK_PROFILE'));
     }
 
-    my $mplayer;
     my $video_driver;
     my $vdpau_true;
     my $vdpau_false;
@@ -215,7 +214,6 @@ sub start
     {
         when (/^ffmpeg$/)
         {
-            $mplayer      = 'mplayer-new';
             $video_driver = 'xv';
             $vdpau_true   = '#';
             $vdpau_false  = '';
@@ -224,7 +222,6 @@ sub start
         }
         when (/^libmpeg2$/)
         {
-            $mplayer      = 'mplayer-new';
             $video_driver = 'xv';
             $vdpau_true   = '#';
             $vdpau_false  = '';
@@ -233,7 +230,6 @@ sub start
         }
         when (/^vdpau$/)
         {
-            $mplayer      = 'mplayer-new';
             $video_driver = 'vdpau';
             $vdpau_true   = '';
             $vdpau_false  = '#';
@@ -242,7 +238,6 @@ sub start
         }
         when (/^xvmc$/)
         {
-            $mplayer      = 'mplayer-new';
             $video_driver = 'xvmc';
             $vdpau_true   = '#';
             $vdpau_false  = '';
@@ -251,7 +246,6 @@ sub start
         }
         when (/^xvmc-vld$/)
         {
-            $mplayer      = 'mplayer-vld';
             $video_driver = 'xxmc';
             $vdpau_true   = '#';
             $vdpau_false  = '';
@@ -290,29 +284,6 @@ sub start
         }
     }
     my $monitoraspect = $minimyth->var_get('MM_VIDEO_ASPECT_RATIO');
-
-    if ( (! -e '/usr/bin/mplayer') && (qq(/usr/bin/$mplayer)) )
-    {
-        symlink($mplayer, '/usr/bin/mplayer');
-    }
-
-    $minimyth->file_replace_variable(
-        '/home/minimyth/.xine/config',
-        { '@VIDEO_DRIVER@'           => $video_driver,
-          '@DEINTERLACE_BY_DEFAULT@' => $deinterlace_by_default,
-          '@DEINTERLACE_PLUGIN@'     => $deinterlace_plugin });
-    $minimyth->file_replace_variable(
-        '/home/minimyth/.mplayer/config',
-        { '@VDPAU_TRUE@'    => $vdpau_true,
-          '@VDPAU_FALSE@'   => $vdpau_false,
-          '@XVMC_TRUE@'     => $xvmc_true,
-          '@XVMC_FALSE@'    => $xvmc_false,
-          '@BOBDEINT@'      => $bobdeint,
-          '@MONITORASPECT@' => $monitoraspect });
-    $minimyth->file_replace_variable(
-        '/home/minimyth/.config/vlc/vlcrc',
-        { '@VDPAU_TRUE@'    => $vdpau_true,
-          '@VDPAU_FALSE@'   => $vdpau_false });
 
     given ($minimyth->var_get('MM_VIDEO_RESIZE_ENABLED'))
     {
@@ -428,35 +399,6 @@ sub start
                 $minimyth->mythdb_settings_delete('TVVidModeForceAspect2');
             }
         }
-    }
-
-    # Configure CPU features.
-    if (-e '/usr/bin/vlc')
-    {
-        my %cpu_flags = ();
-        if (open(FILE, '<', '/proc/cpuinfo'))
-        {
-            foreach (grep(/^flags[[:cntrl:]]*:/, (<FILE>)))
-            {
-                chomp;
-                s/^flags[[:cntrl:]]*://;
-                s/[[:cntrl:]]/ /g;
-                s/ +/ /g;
-                s/^ //;
-                s/ $//;
-                foreach (split(/ /, $_))
-                {
-                    $cpu_flags{$_} = 1;
-                }
-            }
-        }
-        $minimyth->file_replace_variable(
-            '/home/minimyth/.config/vlc/vlcrc',
-            { '@MM_VLC_VLCRC_3DN@'    => exists($cpu_flags{'3dnow'}) ? 1 : 0,
-              '@MM_VLC_VLCRC_MMX@'    => exists($cpu_flags{'mmx'}) ? 1 : 0,
-              '@MM_VLC_VLCRC_MMXEXT@' => exists($cpu_flags{'mmxext'}) ? 1 : 0,
-              '@MM_VLC_VLCRC_SSE@'    => exists($cpu_flags{'sse'}) ? 1 : 0,
-              '@MM_VLC_VLCRC_SSE2@'   => exists($cpu_flags{'sse2'}) ? 1 : 0 });
     }
 
     return 1;

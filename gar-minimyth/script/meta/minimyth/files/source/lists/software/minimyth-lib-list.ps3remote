@@ -1,6 +1,7 @@
 dbus-daemon-launch-helper
 
 # Kernel
+bluetooth/bluetoothd
 firmware/ath3k-1.fw
 modules/*/kernel/drivers/bluetooth/ath3k.ko 
 modules/*/kernel/drivers/bluetooth/btusb.ko 

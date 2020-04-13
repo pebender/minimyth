@@ -17,7 +17,6 @@ fonts/X11/TTF/LiberationSerif-Bold.ttf
 fonts/X11/TTF/LiberationSerif-Italic.ttf
 fonts/X11/TTF/LiberationSerif-Regular.ttf
 irtrans/remotes/
-mythtv/*.ttf
 mythtv/*.xml
 mythtv/fonts/
 mythtv/internetcontent/

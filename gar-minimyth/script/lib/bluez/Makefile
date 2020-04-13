@@ -23,18 +23,39 @@ CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--disable-static \
 	--enable-shared \
+	--disable-optimization \
+	--disable-debug \
+	--enable-threads \
+	--disable-backtrace \
 	--enable-library \
+	--disable-test \
+	--enable-nfc \
+	--enable-sap \
+	--enable-a2dp \
+	--enable-avrcp \
+	--enable-network \
+	--enable-hid \
+	--enable-hog \
+	--enable-health \
+	--enable-tools \
+	--enable-monitor \
+	--enable-udev \
+	--disable-cups \
+	--disable-mesh \
+	--disable-midi \
 	--disable-obex \
-	--disable-systemd
-ifeq ($(DESTIMG),build)
-xCONFIGURE_ARGS += \
-	--disable-usb \
-	--disable-hid2hci
-else
-xCONFIGURE_ARGS += \
-	--enable-usb \
-	--enable-hid2hci
-endif
+	--enable-btpclient \
+	--disable-external-ell \
+	--enable-client \
+	--disable-systemd \
+	--enable-datafiles \
+	--disable-manpages \
+	--disable-testing \
+	--disable-experimental \
+	--enable-deprecated \
+	--enable-sixaxis \
+	--enable-logger \
+	--disable-android
 
 include ../../gar.mk
 

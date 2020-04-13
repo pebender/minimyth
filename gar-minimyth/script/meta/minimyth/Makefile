@@ -25,6 +25,7 @@ DEPENDS = \
 	net/curl \
 	disk/e2fsprogs \
 	utils/ethtool \
+	system/eventlircd \
 	utils/evtest \
 	devel/fakeroot \
 	system/g15daemon \
@@ -38,6 +39,8 @@ DEPENDS = \
 	system/lcdproc \
 	net/lighttpd \
 	fonts/liberation-fonts \
+	system/irclient \
+	system/irserver \
 	system/lirc \
 	utils/lm-sensors \
 	utils/lsdvd \
@@ -79,6 +82,7 @@ DEPENDS = \
 	X11/xosd \
 	X11/xscreensaver \
 	X11/xvattr \
+	utils/xwiimote \
 	system/zoneinfo \
 	$(if $(filter nvidia,$(mm_GRAPHICS)), \
 		nvidia/nvidia-$(mm_NVIDIA_VERSION)) \

@@ -31,7 +31,6 @@ MM_INIT_START := \
     video \
     ps3remote \
     wiimote \
-    iguanair \
     irtrans \
     lirc \
     bluetoothd \
@@ -51,7 +50,6 @@ MM_INIT_KILL := \
     bluetoothd \
     lirc \
     irtrans \
-    iguanair \
     wiimote \
     ps3remote \
     bluetooth \

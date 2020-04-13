@@ -170,8 +170,7 @@ main_CFLAGS ?= \
 main_CXXFLAGS ?= \
 	-pipe \
 	$(mm_CFLAGS)
-main_LDFLAGS ?= \
-	-fno-lto
+main_LDFLAGS ?=
 
 build_CPPFLAGS ?=
 build_CFLAGS ?= \

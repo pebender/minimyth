@@ -22,7 +22,7 @@ CONFIGURE_ARGS  = \
 	$(filter-out --exec_prefix=% --oldincludedir=%, $(DIRPATHS)) \
 	--buildtype=release \
 	-Db_asneeded=true \
-	-Db_lto=false \
+	-Db_lto=true \
 	-Denable-x11=false \
 	-Denable-docs=false \
 	-Denable-wayland=false \
@@ -37,9 +37,9 @@ endif
 include ../../gar.mk
 
 # libxkbcommon 0.9.1 fails to compile with gcc 9.2.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
+#CFLAGS   := $(filter-out -flto, $(CFLAGS))
+#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
+#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
 
 CONFIGURE_ENV += \
 	XDG_DATA_HOME=$(build_DESTDIR)$(build_datadir)

@@ -3,5 +3,5 @@
 8d3d4d0b34fe353bc49c5519ef635db1  download/linux-5.6.2-via_rhine_avoid_d3.patch
 e8a589ce6b282e02ff2eb6fb9ba964a8  download/linux-5.6.2-disable_dma_for_cfa.patch
 2c56b451bbae22d386d3bc1e15da990c  download/linux-5.6.2-defaults.patch
-5291451a1cb77a7b9d9ab86c11fb4027  download/linux-5.6.2-i386-pentium-mmx.config
-3b885fdc592f18722b024ee7f376ffed  download/linux-5.6-x86_64-x86-64.config
+8b03a853d82298893f9453fb8e13489d  download/linux-5.6.2-i386-pentium-mmx.config
+75649f0c9ee063bcedd4c9b481ba5240  download/linux-5.6.2-x86_64-x86-64.config

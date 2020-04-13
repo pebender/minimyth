@@ -125,8 +125,8 @@ INSTALL_ARGS   = \
 include ../../gar.mk
 
 # util-linux 2.26.2 fails to compile with gcc 5.2.0's link time optimization enabled.
-CFLAGS  := $(filter-out -flto, $(CFLAGS))
-LDFLAGS := $(filter-out -flto, $(LDFLAGS))
+#CFLAGS  := $(filter-out -flto, $(CFLAGS))
+#LDFLAGS := $(filter-out -flto, $(LDFLAGS))
 
 post-install:
 	@rm -f $(DESTDIR)$(elibdir)/libblkid.la

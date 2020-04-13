@@ -20,6 +20,10 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-rpath \
 	--with-baseruby=$(build_DESTDIR)$(build_bindir)/miniruby
+BUILD_ARGS = \
+	Q=""
+INSTALL_ARGS = \
+	Q=""
 
 include ../../gar.mk
 

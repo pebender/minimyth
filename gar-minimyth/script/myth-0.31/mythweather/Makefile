@@ -26,6 +26,9 @@ DEPENDS   = \
 	perl/perl-XML-SAX-Base \
 	perl/perl-XML-Simple \
 	perl/perl-XML-XPath
+BUILDDEPS =
+# Needed so the mythplugin configure script can detect DateTime::Format::ISO8601.
+BUILDDEPS += perl/perl-DateTime-Format-ISO8601
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 

@@ -22,7 +22,10 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-rpath
 BUILD_ARGS     = \
+	Q="" \
 	miniruby
+INSTALL_ARGS = \
+	Q=""
 
 include ../../gar.mk
 

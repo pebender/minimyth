@@ -39,6 +39,11 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
+# mesa 10.0.4 fails to compile with llvm 10.0.0 link time optimization enabled.
+CFLAGS   := $(CFLAGS) -fno-lto
+CXXFLAGS := $(CXXFLAGS) -fno-lto
+LDFLAGS  := $(LDFLAGS) -fno-lto
+
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libpixman-1.la
 	@$(MAKECOOKIE)

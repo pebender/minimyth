@@ -24,9 +24,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-static \
 	--enable-unversioned-links \
   	--enable-unversioned-libpng-pc \
-	--disable-unversioned-libpng-config \
+	--enable-unversioned-libpng-config \
 	--enable-hardware-optimizations \
-	--without-binconfigs
+	--with-binconfigs
 
 CONFIGURE_ENV = \
 	ac_cv_func_strtod="yes"
@@ -36,4 +36,13 @@ include ../../gar.mk
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libpng.la
 	@rm -fv $(DESTDIR)$(libdir)/libpng16.la
+	@mkdir -pv $(DESTDIR)$(bindir)/config
+	@rm -fv $(DESTDIR)$(bindir)/config/libpng16-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng16-config
+	@mv -v $(DESTDIR)$(bindir)/libpng16-config $(DESTDIR)$(bindir)/config/libpng16-config
+	@ln -sfv libpng16-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng16-config
+	@rm -fv $(DESTDIR)$(bindir)/config/libpng-config
+	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng-config
+	@mv -v $(DESTDIR)$(bindir)/libpng-config $(DESTDIR)$(bindir)/config/libpng-config
+	@ln -sfv libpng-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng-config
 	@$(MAKECOOKIE)

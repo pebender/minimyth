@@ -64,9 +64,9 @@ LD_LIBRARY_PATH :=
 GAR_EXTRA_CONF += lib/ncursesw/package-api.mk
 include ../../gar.mk
 
-CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
+#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
+#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
+#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
 
 pre-configure:
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)

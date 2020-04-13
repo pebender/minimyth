@@ -1,5 +1,4 @@
 bdremoteng
-bluetoothd
 dbus-uuidgen
 dbus-daemon
 hciconfig

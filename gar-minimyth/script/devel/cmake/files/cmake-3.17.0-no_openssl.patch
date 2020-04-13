@@ -1,7 +1,7 @@
-diff -Naur cmake-3.16.4-old/bootstrap cmake-3.16.4-new/bootstrap
---- cmake-3.16.4-old/bootstrap	2020-02-05 06:19:24.000000000 -0800
-+++ cmake-3.16.4-new/bootstrap	2020-02-25 16:30:08.656157589 -0800
-@@ -861,6 +861,8 @@
+diff -Naur cmake-3.17.0-old/bootstrap cmake-3.17.0-new/bootstrap
+--- cmake-3.17.0-old/bootstrap	2020-03-20 03:26:14.000000000 -0700
++++ cmake-3.17.0-new/bootstrap	2020-04-12 20:59:03.421160907 -0700
+@@ -863,6 +863,8 @@
      cmake_bootstrap_system_libs="${cmake_bootstrap_system_libs} -DCMAKE_USE_SYSTEM_LIBRARY_`cmake_toupper $lib`=0" ;;
    --qt-gui) cmake_bootstrap_qt_gui="1" ;;
    --no-qt-gui) cmake_bootstrap_qt_gui="0" ;;

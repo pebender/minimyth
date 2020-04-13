@@ -30,6 +30,7 @@ DEPENDS = \
 	xorg/libXt \
 	xorg/libXtst \
 	xorg/Mesa \
+	xorg/mesa-demos \
 	xorg/mkfontdir \
 	xorg/mkfontscale \
 	xorg/rgb \

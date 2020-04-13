@@ -1,4 +1,4 @@
-CMAKE_VERSION = 3.16.3
+CMAKE_VERSION = 3.17.0
 
 configure-%/cmake: 
 	@echo " ==> Running configure in $*"

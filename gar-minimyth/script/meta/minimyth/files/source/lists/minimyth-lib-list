@@ -2,7 +2,6 @@
 g15daemon/*/plugins/g15plugin_clock.so
 g15daemon/*/plugins/g15plugin_tcpserver.so
 g15daemon/*/plugins/g15plugin_uinput.so
-iguanaIR/
 lcdproc/
 libfakeroot.so
 libnss_dns.so.2
@@ -160,16 +159,16 @@ modules/*/kernel/sound/pci/snd-via82xx.ko
 modules/*/kernel/sound/usb/snd-usb-audio.ko
 
 modules/*/kernel/drivers/media/i2c/ir-kbd-i2c.ko
+
 modules/*/kernel/drivers/media/rc/ati_remote.ko
 modules/*/kernel/drivers/media/rc/ene_ir.ko
 modules/*/kernel/drivers/media/rc/fintek-cir.ko
-modules/*/kernel/drivers/media/rc/gpio-ir-recv.ko
+modules/*/kernel/drivers/media/rc/igorplugusb.ko
 modules/*/kernel/drivers/media/rc/iguanair.ko
-modules/*/kernel/drivers/media/rc/img-ir/img-ir.ko
 modules/*/kernel/drivers/media/rc/imon.ko
-modules/*/kernel/drivers/media/rc/ir-hix5hd2.ko
+modules/*/kernel/drivers/media/rc/imon_raw.ko
+modules/*/kernel/drivers/media/rc/ir-imon-decoder.ko
 modules/*/kernel/drivers/media/rc/ir-jvc-decoder.ko
-modules/*/kernel/drivers/media/rc/ir-lirc-codec.ko
 modules/*/kernel/drivers/media/rc/ir-mce_kbd-decoder.ko
 modules/*/kernel/drivers/media/rc/ir-nec-decoder.ko
 modules/*/kernel/drivers/media/rc/ir-rc5-decoder.ko
@@ -180,24 +179,17 @@ modules/*/kernel/drivers/media/rc/ir-sony-decoder.ko
 modules/*/kernel/drivers/media/rc/ir-xmp-decoder.ko
 modules/*/kernel/drivers/media/rc/ite-cir.ko
 modules/*/kernel/drivers/media/rc/keymaps/
-modules/*/kernel/drivers/media/rc/lirc_dev.ko
 modules/*/kernel/drivers/media/rc/mceusb.ko
 modules/*/kernel/drivers/media/rc/nuvoton-cir.ko
 modules/*/kernel/drivers/media/rc/rc-core.ko
 modules/*/kernel/drivers/media/rc/rc-loopback.ko
 modules/*/kernel/drivers/media/rc/redrat3.ko
+modules/*/kernel/drivers/media/rc/serial_ir.ko
+modules/*/kernel/drivers/media/rc/sir_ir.ko
 modules/*/kernel/drivers/media/rc/streamzap.ko
 modules/*/kernel/drivers/media/rc/ttusbir.ko
 modules/*/kernel/drivers/media/rc/winbond-cir.ko
-
-modules/*/kernel/drivers/staging/media/lirc/lirc_bt829.ko
-modules/*/kernel/drivers/staging/media/lirc/lirc_igorplugusb.ko
-modules/*/kernel/drivers/staging/media/lirc/lirc_imon.ko
-modules/*/kernel/drivers/staging/media/lirc/lirc_parallel.ko
-modules/*/kernel/drivers/staging/media/lirc/lirc_sasem.ko
-modules/*/kernel/drivers/staging/media/lirc/lirc_serial.ko
-modules/*/kernel/drivers/staging/media/lirc/lirc_sir.ko
-modules/*/kernel/drivers/staging/media/lirc/lirc_zilog.ko
+modules/*/kernel/drivers/media/rc/xbox_remote.ko
 
 # X11
 dri/swrast_dri.so

@@ -1,4 +1,4 @@
-# 2.31 fails to compile.
+# 2.31 fails to compile. (it thinks 'as' is too old).
 GLIBC_VERSION = 2.30
 
 GLIBC_ADD_LIB_PATH = \

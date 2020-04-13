@@ -3,6 +3,7 @@ GARVERSION = 8.4.0
 CATEGORIES = xorg
 MASTER_SITES  = https://mesa.freedesktop.org/archive/demos/
 DISTFILES = $(DISTNAME).tar.bz2
+PATCHFILES = $(DISTNAME).patch $(DISTNAME)-disable-tests.patch
 LICENSE = MIT
 
 DESCRIPTION = 
@@ -10,10 +11,11 @@ define BLURB
 endef
 
 DEPENDS = lang/c \
+	lib/freetype \
 	xorg/glew \
 	xorg/glu \
 	xorg/freeglut \
-	xorg/Mesa
+	xorg/Mesa \
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
@@ -38,3 +40,9 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 
 GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
+
+pre-configure:
+	@$(call RUN_AUTOTOOLS)
+	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
+	@$(MAKECOOKIE)
+

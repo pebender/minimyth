@@ -14,7 +14,6 @@ eventlircd
 evtest
 faked
 fakeroot
-fbsplashd
 fc-list
 g15daemon
 getopt
@@ -25,7 +24,6 @@ halt
 hdparm
 iconv
 ifplugstatus
-igdaemon
 init
 insmod
 intel-microcode2ucode

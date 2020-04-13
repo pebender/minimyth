@@ -44,20 +44,6 @@ sub start
         return 0;
     }
 
-    # Configure Xine audio.
-    if ($type =~ /^(.*\+)?digital(\+.*)?$/)
-    {
-        $minimyth->file_replace_variable(
-            '/home/minimyth/.xine/config',
-            { '@SPEAKER_ARRANGEMENT@' => 'Pass Through' });
-    }
-    if ($type =~ /^(.*\+)?analog(\+.*)?$/)
-    {
-        $minimyth->file_replace_variable(
-            '/home/minimyth/.xine/config',
-            { '@SPEAKER_ARRANGEMENT@' => 'Stereo 2.0' });
-    }
-
     # Unmute audio.
     if (system(qq($amixer_command > $devnull 2>&1)) == 0)
     {

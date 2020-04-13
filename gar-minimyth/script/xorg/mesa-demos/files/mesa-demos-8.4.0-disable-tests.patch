@@ -1,0 +1,22 @@
+diff -Naur mesa-demos-8.4.0-old/src/Makefile.am mesa-demos-8.4.0-new/src/Makefile.am
+--- mesa-demos-8.4.0-old/src/Makefile.am	2018-02-23 00:50:21.000000000 -0800
++++ mesa-demos-8.4.0-new/src/Makefile.am	2020-04-11 10:03:22.441015325 -0700
+@@ -38,7 +38,6 @@
+ 	redbook \
+ 	samples \
+ 	slang \
+-	tests \
+ 	tools \
+ 	trivial \
+ 	vp \
+diff -Naur mesa-demos-8.4.0-old/src/Makefile.in mesa-demos-8.4.0-new/src/Makefile.in
+--- mesa-demos-8.4.0-old/src/Makefile.in	2018-02-23 00:50:28.000000000 -0800
++++ mesa-demos-8.4.0-new/src/Makefile.in	2020-04-11 10:03:26.906015082 -0700
+@@ -379,7 +379,6 @@
+ 	redbook \
+ 	samples \
+ 	slang \
+-	tests \
+ 	tools \
+ 	trivial \
+ 	vp \

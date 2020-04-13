@@ -1,1 +1,3 @@
 6b65a02622765522176d00f553086fa3  download/mesa-demos-8.4.0.tar.bz2
+25c0ca5df3c94ca3ecc4e40375267e3c  download/mesa-demos-8.4.0.patch
+8e7ad31152240469ebd92cd7dd8c6fa4  download/mesa-demos-8.4.0-disable-tests.patch

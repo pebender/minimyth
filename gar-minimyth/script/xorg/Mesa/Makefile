@@ -94,10 +94,10 @@ CONFIGURE_ENV := \
 	XDG_DATA_DIRS="$(build_DESTDIR)$(build_datadir)" \
 	XDG_DATA_HOME="$(build_DESTDIR)$(build_datadir)"
 
-# mesa 10.0.4 fails to compile with gcc 9.3.0's link time optimization enabled.
-CFLAGS   := $(filter-out -flto, $(CFLAGS))
-CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
+# mesa 10.0.4 fails to compile with llvm 10.0.0 link time optimization enabled.
+CFLAGS   := $(CFLAGS) -fno-lto
+CXXFLAGS := $(CXXFLAGS) -fno-lto
+LDFLAGS  := $(LDFLAGS) -fno-lto
 
 configure-%/meson:
 	@mkdir -pv $(WORKBLD)
