@@ -31,6 +31,6 @@ LDFLAGS := $(LDFLAGS) -fwhole-program
 install-custom:
 	@mkdir -p $(DESTDIR)$(sbindir)
 	@rm -rf $(DESTDIR)$(sbindir)/irclient
-	@$(if $(filter i386,  $(GARCH_FAMILY)),cp $(WORKSRC)/irclient   $(DESTDIR)$(sbindir)/irclient)
-	@$(if $(filter x86_64,$(GARCH_FAMILY)),cp $(WORKSRC)/irclient64 $(DESTDIR)$(sbindir)/irclient)
+	@$(if $(filter i386,  $(GARCH_FAMILY)),install -v -m 755 $(WORKSRC)/irclient   $(DESTDIR)$(sbindir)/irclient)
+	@$(if $(filter x86_64,$(GARCH_FAMILY)),install -v -m 755 $(WORKSRC)/irclient64 $(DESTDIR)$(sbindir)/irclient)
 	@$(MAKECOOKIE)

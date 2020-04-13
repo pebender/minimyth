@@ -25,15 +25,20 @@ BUILD_ARGS = \
 	$(if $(filter i386,$(GARCH_FAMILY)),irserver) \
 	$(if $(filter x86_64,$(GARCH_FAMILY)),irserver64)
 
+
 include ../../gar.mk
 
+#CC := $(build_DESTDIR)$(build_bindir)/$(GARHOST)-gcc
+
+CPPFLAGS := $(CPPFLAGS) -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=1
+CFLAGS := $(CFLAGS) -Wno-return-type
 LDFLAGS := $(LDFLAGS) -fwhole-program
 
 install-custom:
 	@mkdir -p $(DESTDIR)$(sbindir)
 	@rm -rf $(DESTDIR)$(sbindir)/irserver
-	@$(if $(filter i386,  $(GARCH_FAMILY)),cp $(WORKSRC)/irserver   $(DESTDIR)$(sbindir)/irserver)
-	@$(if $(filter x86_64,$(GARCH_FAMILY)),cp $(WORKSRC)/irserver64 $(DESTDIR)$(sbindir)/irserver)
+	@$(if $(filter i386,  $(GARCH_FAMILY)),install -v -m 755 $(WORKSRC)/irserver   $(DESTDIR)$(sbindir)/irserver)
+	@$(if $(filter x86_64,$(GARCH_FAMILY)),install -v -m 755 $(WORKSRC)/irserver64 $(DESTDIR)$(sbindir)/irserver)
 	@mkdir -p $(DESTDIR)$(datadir)/irtrans
 	@rm -rf $(DESTDIR)$(datadir)/irtrans/remotes
 	@cp -r $(WORKSRC)/remotes $(DESTDIR)$(datadir)/irtrans
