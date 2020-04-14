@@ -13,7 +13,8 @@ DEPENDS = \
 	toolchain-build/gcc \
 	toolchain-build/gcc-wrappers \
 	toolchain-build/clang \
-	toolchain-build/clang-wrappers
+	toolchain-build/clang-wrappers \
+	toolchain-build/ccache
 
 GAR_EXTRA_CONF += toolchain-build/toolchain-build/toolchain.mk
 include ../../gar.mk

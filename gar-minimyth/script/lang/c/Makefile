@@ -6,7 +6,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c-build \
-	toolchain-$(DESTIMG) \
+	toolchain-$(DESTIMG)/toolchain-$(DESTIMG) \
 	build-tool/make \
 	devel/pkg-config \
 	build-tool/ninja \
