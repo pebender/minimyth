@@ -162,7 +162,7 @@ MM_CONFIG_VARS := $(sort \
 	mm_VERSION \
 	OBJDUMP \
 	PERL_libdir \
-	PYTHON_libdir \
+	PYTHON3_libdir \
 	qt5prefix \
 	rootdir \
 	sharedirs \

@@ -95,7 +95,7 @@ COPY_FILES = \
 						target_dir=`dirname $${target_file}` ; \
 						mkdir -p $${target_dir} ; \
 						cp $${cp_flags} $${source_file} $${target_file} ; \
-						while file $${target_file} | grep -i -q 'symbolic link to' ; do \
+						while [ -L $${target_file} ] ; do \
 							link="`readlink $${source_file}`" ; \
 							source_file="`dirname $${source_file}`/$${link}" ; \
 							target_file="`dirname $${target_file}`/$${link}" ; \
@@ -283,7 +283,7 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	 done
 	@# Remove unneeded python files.
 	@echo 'removing unneeded python files'
-	@dirs='$(PYTHON_libdir) $(datadir)/mythtv' ; \
+	@dirs='$(PYTHON3_libdir) $(datadir)/mythtv' ; \
 	 for dir in $${dirs} ; do \
 		if [ -e $@~$${dir} ] ; then \
 			cd $@~$${dir} ; \
@@ -422,7 +422,7 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@# Strip Python scripts
 	@#if [ ! $(mm_DEBUG) = yes ] ; then \
 	#	echo 'stripping python' ; \
-	#	dir_list="$@~$(PYTHON_libdir) $@~$(datadir)/mythtv" ; \
+	#	dir_list="$@~$(PYTHON3_libdir) $@~$(datadir)/mythtv" ; \
 	#	file_list=`find $${dir_list} -depth -name '*.py'` ; \
 	#	for file in $${file_list} ; do \
 	#		python $(build_DESTDIR)/$(build_bindir)/pyminifier.py "$${file}" 1> "$${file}~" 2> /dev/null ; \
