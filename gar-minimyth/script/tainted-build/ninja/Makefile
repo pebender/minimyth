@@ -31,7 +31,7 @@ include ../../gar.mk
 
 build-%/configure.py:
 	@echo " ==> Running configure.py in in $*"
-	@cd $* && $(BUILD_ENV) $(DESTDIR)$(bindir)/python configure.py $(BUILD_ARGS)
+	@cd $* && $(BUILD_ENV) $(DESTDIR)$(bindir)/python3 configure.py $(BUILD_ARGS)
 	@$(MAKECOOKIE)
 
 install-custom: 

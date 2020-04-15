@@ -1,6 +1,6 @@
 GARNAME = python-Mako
 GARVERSION = 1.1.0
-CATEGORIES = python
+CATEGORIES = python3
 MASTER_SITES = https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/
 DISTFILES = $(patsubst python-%,%,$(GARNAME))-$(GARVERSION).tar.gz
 LICENSE = $(GARNAME)
@@ -11,8 +11,8 @@ define BLURB
 endef
 
 DEPENDS   = lang/c
-#BUILDDEPS = python/python python/python-setuptools
-BUILDDEPS = python/python
+#BUILDDEPS = python3/python python3/python-setuptools
+BUILDDEPS = python3/python
 
 WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 
@@ -26,14 +26,14 @@ INSTALL_ARGS   = \
 CONFIGURE_ENV  =
 BUILD_ENV      =
 INSTALL_ENV    = \
-	PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
+	PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
 ifneq ($(DESTIMG),build)
 #BUILD_ARGS += --cross-compile
 #BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 endif
 
-GAR_EXTRA_CONF += python/python/package-api.mk
+GAR_EXTRA_CONF += python3/python/package-api.mk
 include ../../gar.mk
 
 CFLAGS  := $(CFLAGS)  -fPIC
@@ -46,10 +46,10 @@ LDFLAGS := $(LDFLAGS) -fPIC
 
 build-%/setup.py:
 	@echo " ==> Running setup.py build in $*"
-	@cd $* && $(CONFIGURE_ENV) $(BUILD_ENV) python setup.py $(CONFIGURE_ARGS) build $(BUILD_ARGS)
+	@cd $* && $(CONFIGURE_ENV) $(BUILD_ENV) python3 setup.py $(CONFIGURE_ARGS) build $(BUILD_ARGS)
 	@$(MAKECOOKIE)
 
 install-%/setup.py: 
 	@echo " ==> Running setup.py install in $*"
-	@cd $* && $(CONFIGURE_ENV) $(INSTALL_ENV) python setup.py $(CONFIGURE_ARGS) install --skip-build $(INSTALL_ARGS)
+	@cd $* && $(CONFIGURE_ENV) $(INSTALL_ENV) python3 setup.py $(CONFIGURE_ARGS) install --skip-build $(INSTALL_ARGS)
 	@$(MAKECOOKIE)

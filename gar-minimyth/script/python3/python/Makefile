@@ -1,7 +1,8 @@
 GARNAME = Python
-GARVERSION = $(PYTHON3_VERSION)
-CATEGORIES = tainted-build
-SOURCEPKG = python3/python
+GARVERSION =  $(PYTHON3_VERSION)
+CATEGORIES = python3
+MASTER_SITES = https://www.python.org/ftp/python/$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT = $(WORKSRC)/LICENSE
 
@@ -9,17 +10,12 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = \
-	tainted-build/libc-crt \
-	tainted-build/zlib \
-	tainted-build/libffi
-BUILDDEPS = \
-	native/native \
-	tainted-build/gcc-wrappers \
-	tainted-build/bash \
-	tainted-build/coreutils \
-	tainted-build/make \
-	tainted-build/pkg-config
+DEPENDS = lang/c lang/cxx lib/expat lib/libffi lib/ncursesw lib/openssl lib/readline lib/zlib utils/bzip2 utils/xz db/sqlite
+BUILDDEPS  =
+ifneq ($(DESTIMG),build)
+DEPENDS   += lib/bluez
+BUILDDEPS += python3/python
+endif
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
@@ -28,19 +24,32 @@ INSTALL_SCRIPTS = $(WORKSRC)/Makefile
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-ipv6 \
-	--without-system-expat \
+	--with-system-expat \
 	--with-system-ffi \
 	--without-system-libmpdec
 CONFIGURE_ENV += \
-	PKG_CONFIG="$(DESTDIR)$(bindir)/pkg-config"
+	PKG_CONFIG="$(build_DESTDIR)$(build_bindir)/pkg-config"
 
-GAR_EXTRA_CONF += tainted-build/tainted-build/toolchain.mk
-GAR_EXTRA_CONF += python3/python/package-api.mk
+ifneq ($(DESTIMG),build)
+CONFIGURE_ARGS += \
+	--without-ensurepip
+CONFIGURE_ENV += \
+	ax_cv_c_float_words_bigendian=no \
+	ac_cv_file_dev_ptc=no \
+	ac_cv_file_dev_ptmx=yes \
+	ac_cv_file__dev_ptc=no \
+	ac_cv_file__dev_ptmx=yes \
+	ac_cv_func_lchflags_works=no \
+	ac_cv_func_chflags_works=no \
+	ac_cv_func_printf_zd=yes \
+	ac_cv_header_stropts_h=no
+endif
+
 include ../../gar.mk
 
-# Python 3.8.1 cannot find zlib without this.
-CPPFLAGS += -I$(DESTDIR)$(includedir)
-LDFLAGS += -L$(DESTDIR)$(libdir)
+# Python 3.8.2 cannot find zlib without this.
+#CPPFLAGS += -I$(DESTDIR)$(includedir)
+#LDFLAGS += -L$(DESTDIR)$(libdir)
 
 post-install: post-install-configs
 

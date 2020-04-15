@@ -13,7 +13,7 @@ BUILDDEPS = lang/c \
 	devel/make \
 	devel/pkg-config \
 	perl/perl \
-	python/python \
+	python3/python \
 	utils/tar \
 	utils/gzip \
 	utils/bzip2 \

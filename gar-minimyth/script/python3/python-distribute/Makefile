@@ -1,6 +1,6 @@
 GARNAME = python-distribute
 GARVERSION = 0.7.3
-CATEGORIES = python
+CATEGORIES = python3
 MASTER_SITES = https://pypi.python.org/packages/source/d/distribute/
 DISTFILES = $(patsubst python-%,%,$(GARNAME))-$(GARVERSION).zip
 LICENSE =
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = python/python
+DEPENDS = python3/python
 
 WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 
@@ -23,17 +23,17 @@ INSTALL_ARGS   = \
 CONFIGURE_ENV  =
 BUILD_ENV      =
 INSTALL_ENV    = \
-	PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
+	PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
-GAR_EXTRA_CONF += python/python/package-api.mk
+GAR_EXTRA_CONF += python3/python/package-api.mk
 include ../../gar.mk
 
 build-%/setup.py:
 	@echo " ==> Running setup.py build in $*"
-	@cd $* && $(CONFIGURE_ENV) $(BUILD_ENV) python setup.py $(CONFIGURE_ARGS) build $(BUILD_ARGS)
+	@cd $* && $(CONFIGURE_ENV) $(BUILD_ENV) python3 setup.py $(CONFIGURE_ARGS) build $(BUILD_ARGS)
 	@$(MAKECOOKIE)
 
 install-%/setup.py: 
 	@echo " ==> Running setup.py install in $*"
-	@cd $* && $(CONFIGURE_ENV) $(INSTALL_ENV) python setup.py $(CONFIGURE_ARGS) install --skip-build $(INSTALL_ARGS)
+	@cd $* && $(CONFIGURE_ENV) $(INSTALL_ENV) python3 setup.py $(CONFIGURE_ARGS) install --skip-build $(INSTALL_ARGS)
 	@$(MAKECOOKIE)

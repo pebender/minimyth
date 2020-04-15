@@ -26,7 +26,7 @@ DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/llvm lib/zli
 	xorg/xorgproto
 BUILDDEPS = lib/libxml2 \
 	xorg/makedepend \
-	python/python-mako
+	python3/python-mako
 
 PWD := $(shell pwd)
 

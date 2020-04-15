@@ -13,7 +13,7 @@ endef
 
 
 DEPENDS = lang/c
-BUILDDEPS = python/python
+BUILDDEPS = python3/python
 ifneq ($(DESTIMG),build)
 BUILDDEPS = devel/meson
 endif
@@ -27,9 +27,9 @@ INSTALL_SCRIPTS += cross_file
 INSTALL_ARGS = \
 	--prefix=$(DESTDIR)$(prefix)
 INSTALL_ENV  = \
-	PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
+	PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
-GAR_EXTRA_CONF += python/python/package-api.mk
+GAR_EXTRA_CONF += python3/python/package-api.mk
 include ../../gar.mk
 
 CONFIGURE_ENV := \

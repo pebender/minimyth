@@ -11,7 +11,7 @@ endef
 
 DEPENDS  = lang/c lib/icu lib/zlib utils/xz
 ifeq ($(DESTIMG),build)
-DEPENDS += python/python
+DEPENDS += python3/python
 endif
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
@@ -34,13 +34,13 @@ CONFIGURE_ARGS += \
 endif
 
 ifeq ($(DESTIMG),build)
-GAR_EXTRA_CONF += python/python/package-api.mk
+GAR_EXTRA_CONF += python3/python/package-api.mk
 endif
 include ../../gar.mk
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libxml2.la
-	@rm -f $(DESTDIR)$(PYTHON_libdir)/site-packages/libxml2mod.la
+	@rm -f $(DESTDIR)$(PYTHON3_libdir)/site-packages/libxml2mod.la
 	@sed -i 's%-L$${libdir}%-L$(DESTDIR)$${libdir}%g'         $(DESTDIR)$(bindir)/xml2-config
 	@sed -i 's%-I$${includedir}%-I$(DESTDIR)$${includedir}%g' $(DESTDIR)$(bindir)/xml2-config
 	@sed -i 's%-L${libdir}%-L$(DESTDIR)${libdir}%g'           $(DESTDIR)$(libdir)/xml2Conf.sh

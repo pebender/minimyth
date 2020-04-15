@@ -11,12 +11,12 @@ endef
 DEPENDS = \
 	lang/cxx \
 	$(CATEGORY)/mythtv \
-	python/python
+	python3/python
 BUILDDEPS = \
-	python/python \
-	python/python-pycurl \
-	python/python-lxml \
-	python/python-oauth
+	python3/python \
+	python3/python-pycurl \
+	python3/python-lxml \
+	python3/python-oauth
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 

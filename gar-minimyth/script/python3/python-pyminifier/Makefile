@@ -1,6 +1,6 @@
 GARNAME = python-pyminifier
 GARVERSION = 1.3
-CATEGORIES = python
+CATEGORIES = python3
 MASTER_SITES = http://code.activestate.com/recipes/576704-python-code-minifier/download/1/
 DISTFILES = pyminifier.py
 LICENSE = GPL3
@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = python/python
+DEPENDS = python3/python
 
 DISTNAME = $(GARNAME)
 

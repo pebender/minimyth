@@ -66,8 +66,8 @@ DEPENDS = \
 	xorg/Mesa
 BUILDDEPS = \
 	devel/yasm \
-	python/python \
-	python/python-lxml
+	python3/python \
+	python3/python-lxml
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 
@@ -189,10 +189,10 @@ INSTALL_ENV    = $(MYTHTV_INSTALL_ENV)
 
 CONFIGURE_ENV += pkg_config=pkg-config
 BUILD_ENV     += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
-INSTALL_ENV   += PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
+INSTALL_ENV   += PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
 GAR_EXTRA_CONF += perl/perl/package-api.mk
-GAR_EXTRA_CONF += python/python/package-api.mk
+GAR_EXTRA_CONF += python3/python/package-api.mk
 include ../../gar.mk
 
 # MythTV does not look in the default include install directory for dns_sd.h.

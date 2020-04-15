@@ -14,7 +14,7 @@ define BLURB
 endef
 
 DEPENDS = lang/c lang/cxx build-tool/make db/sqlite lib/expat lib/flac lib/libjpeg lib/SDL2 lib/SDL2_ttf lib/zlib xorg/libXi xorg/libXinerama
-BUILDDEPS = python/python
+BUILDDEPS = python3/python
 
 WORKSRC = $(WORKDIR)/mame-$(GARNAME)$(subst .,,$(GARVERSION))
 

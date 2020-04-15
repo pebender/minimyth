@@ -66,7 +66,7 @@ DEPENDS = \
 	utils/pmount \
 	system/powernowd \
 	utils/procps \
-	python/python \
+	python3/python \
 	X11/ratpoison \
 	utils/regionset \
 	X11/rxvt \
@@ -110,9 +110,9 @@ DEPENDS = \
 	$(if $(filter mythnetvision,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnetvision),myth-$(mm_MYTH_VERSION)/mythnetvision) \
 		$(if $(filter python,$(mm_SOFTWARE)), \
-			python/python-lxml \
-			python/python-MySQL-python \
-			python/python-pycurl)) \
+			python3/python-lxml \
+			python3/python-MySQL-python \
+			python3/python-pycurl)) \
 	$(if $(filter mythnews,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythnews),myth-$(mm_MYTH_VERSION)/mythnews)) \
 	$(if $(filter mythphone,$(mm_SOFTWARE)), \
@@ -160,7 +160,7 @@ BUILDDEPS = \
 	xorg/mkfontdir \
 	xorg/mkfontscale \
 	perl/perlstrip \
-	python/python-pyminifier
+	python3/python-pyminifier
 
 CONFIGURE_SCRIPTS = custom
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

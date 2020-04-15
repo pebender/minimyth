@@ -11,7 +11,7 @@ endef
 
 ifeq ($(DESTIMG),build)
 DEPENDS   = lang/cxx
-BUILDDEPS = python/python
+BUILDDEPS = python3/python
 else
 BUILDDEPS = devel/ninja
 endif
@@ -38,7 +38,7 @@ include ../../gar.mk
 
 build-%/configure.py:
 	@echo " ==> Running configure.y in in $*"
-	@cd $* && $(BUILD_ENV) $(build_DESTDIR)$(build_bindir)/python configure.py $(BUILD_ARGS)
+	@cd $* && $(BUILD_ENV) $(build_DESTDIR)$(build_bindir)/python3 configure.py $(BUILD_ARGS)
 	@$(MAKECOOKIE)
 
 install-custom: 

@@ -34,13 +34,13 @@ DEPENDS = \
 	X11/libva-intel-driver \
 	net/inetutils \
 	utils/intel-microcode2ucode \
+	system/irclient \
+	system/irserver \
 	system/irxkeys \
 	kernel/kernel \
 	system/lcdproc \
 	net/lighttpd \
 	fonts/liberation-fonts \
-	system/irclient \
-	system/irserver \
 	system/lirc \
 	utils/lm-sensors \
 	utils/lsdvd \
@@ -62,7 +62,7 @@ DEPENDS = \
 	utils/pmount \
 	system/powernowd \
 	utils/procps \
-	python/python \
+	python3/python \
 	X11/ratpoison \
 	utils/regionset \
 	X11/rxvt \
@@ -129,7 +129,7 @@ BUILDDEPS = \
 	xorg/mkfontdir \
 	xorg/mkfontscale \
 	perl/perlstrip \
-	python/python-pyminifier
+	python3/python-pyminifier
 
 CONFIGURE_SCRIPTS = custom
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile

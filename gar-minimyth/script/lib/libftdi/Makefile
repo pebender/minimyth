@@ -40,7 +40,7 @@ CONFIGURE_ARGS = \
 	-DCMAKE_OBJDUMP="$(OBJDUMP)" \
 	-DCMAKE_RANLIB="$(RANLIB)" \
 	-DCMAKE_STRIP="$(STRIP)" \
-	-DPYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python"
+	-DPYTHON_EXECUTABLE="$(build_DESTDIR)$(build_bindir)/python3"
 
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk

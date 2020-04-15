@@ -41,7 +41,7 @@ DEPENDS = \
 	lib/libxml2 \
 	lib/openssl \
 	lib/zlib \
-	python/python \
+	python3/python \
 	qt/qtbase \
 	qt/qtscript \
 	system/lirc \
@@ -162,9 +162,9 @@ BUILD_ENV      = $(MYTHTV_BUILD_ENV)
 INSTALL_ENV    = $(MYTHTV_INSTALL_ENV)
 
 BUILD_ENV     += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
-INSTALL_ENV   += PYTHONPATH=$(DESTDIR)$(PYTHON_libdir)/site-packages
+INSTALL_ENV   += PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
-GAR_EXTRA_CONF += python/python/package-api.mk
+GAR_EXTRA_CONF += python3/python/package-api.mk
 include ../../gar.mk
 
 # MythTV does not look in the default include install directory for dns_sd.h.

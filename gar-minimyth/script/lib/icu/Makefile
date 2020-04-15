@@ -13,7 +13,7 @@ endef
 DEPENDS = lang/c build-tool/make lib/zlib
 BUILDDEPS =
 ifeq ($(DESTIMG),build)
-DEPENDS += python/python
+DEPENDS += python3/python
 else
 BUILDDEPS += lib/icu
 endif
