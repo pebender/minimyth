@@ -1,4 +1,5 @@
 GARNAME = jzintv
+# 20181225 does not compile with clang 10.0.0
 GARVERSION = 1.0-beta3
 CATEGORIES = emulators
 MASTER_SITES = http://spatula-city.org/~im14u2c/intv/dl/

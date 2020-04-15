@@ -1,0 +1,18 @@
+diff -Naur bash-5.0-old/support/checkbashisms bash-5.0-new/support/checkbashisms
+--- bash-5.0-old/support/checkbashisms	2008-08-17 12:02:14.000000000 -0700
++++ bash-5.0-new/support/checkbashisms	2020-04-14 15:25:06.971833429 -0700
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl -w
++#! @GAR_bindir@/perl -w
+ 
+ # This script is essentially copied from /usr/share/lintian/checks/scripts,
+ # which is:
+diff -Naur bash-5.0-old/support/texi2html bash-5.0-new/support/texi2html
+--- bash-5.0-old/support/texi2html	2008-08-13 05:32:57.000000000 -0700
++++ bash-5.0-new/support/texi2html	2020-04-14 15:25:25.941832395 -0700
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl
++#! @GAR_bindir@/perl
+ 'di ';
+ 'ig 00 ';
+ #+##############################################################################

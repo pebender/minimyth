@@ -1,0 +1,9 @@
+diff -Naur make-4.3-old/tests/run_make_tests.pl make-4.3-new/tests/run_make_tests.pl
+--- make-4.3-old/tests/run_make_tests.pl	2020-01-02 23:11:27.000000000 -0800
++++ make-4.3-new/tests/run_make_tests.pl	2020-04-14 16:25:16.745636652 -0700
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!env perl
+ # -*-perl-*-
+ 
+ # Test driver for the Make test suite

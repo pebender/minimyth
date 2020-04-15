@@ -2,8 +2,8 @@ GARNAME = make
 GARVERSION = $(MAKE_VERSION)
 CATEGORIES = devel
 MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.bz2
-PATCHFILES  = $(DISTNAME)-4.2.1.patch
+DISTFILES = $(DISTNAME).tar.gz
+PATCHFILES =
 ifneq ($(DESTIMG),build)
 PATCHFILES += $(DISTNAME)-perl.patch.gar
 endif

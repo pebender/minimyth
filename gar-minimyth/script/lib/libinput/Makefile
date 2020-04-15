@@ -1,5 +1,5 @@
 GARNAME = libinput
-GARVERSION = 1.15.4
+GARVERSION = 1.15.5
 CATEGORIES = lib
 MASTER_SITES = https://www.freedesktop.org/software/libinput/
 DISTFILES = $(DISTNAME).tar.xz

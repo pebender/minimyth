@@ -1,6 +1,6 @@
-diff -Naur gettext-0.20.1-old/gettext-tools/misc/gettextize.in gettext-0.20.1-new/gettext-tools/misc/gettextize.in
---- gettext-0.20.1-old/gettext-tools/misc/gettextize.in	2019-05-11 14:22:34.000000000 -0700
-+++ gettext-0.20.1-new/gettext-tools/misc/gettextize.in	2019-11-19 14:52:28.874003307 -0800
+diff -Naur gettext-0.20.2-old/gettext-tools/misc/gettextize.in gettext-0.20.2-new/gettext-tools/misc/gettextize.in
+--- gettext-0.20.2-old/gettext-tools/misc/gettextize.in	2020-04-13 18:32:21.000000000 -0700
++++ gettext-0.20.2-new/gettext-tools/misc/gettextize.in	2020-04-14 11:33:41.550590354 -0700
 @@ -1303,10 +1303,10 @@
      5) count="five paragraphs";;
      *) count="$count paragraphs";;

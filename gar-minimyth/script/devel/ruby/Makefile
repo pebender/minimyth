@@ -1,4 +1,5 @@
 GARNAME = ruby
+# 2.7.1 fails to compile
 GARVERSION = 2.6.5
 CATEGORIES = devel
 MASTER_SITES = https://cache.ruby-lang.org/pub/ruby/2.6/

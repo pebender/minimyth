@@ -1,5 +1,5 @@
 GARNAME = xorgproto
-GARVERSION = 2019.2
+GARVERSION = 2020.1
 CATEGORIES = xorg
 MASTER_SITES = https://www.x.org/releases/individual/proto/
 DISTFILES = $(DISTNAME).tar.bz2
