@@ -63,6 +63,7 @@ DIRSTODOTS = \
 # $6 = files.
 COPY_FILES = \
 	echo "copying $(strip $(1))" ; \
+	echo "directories: $(strip $(5))" ; \
 	for dir in $(strip $(5)) ; do \
 		mkdir -p $(strip $(4))/$${dir} ; \
 	done ; \
@@ -837,7 +838,7 @@ install: build
 	@if [ $(mm_INSTALL_RAM_BOOT) = yes ] || \
 	    [ $(mm_INSTALL_NFS_BOOT) = yes ] || \
 	    [ $(mm_INSTALL_LATEST)   = yes ] ; then \
-		su -c " \
+		/bin/sudo sh -c " \
 			if [ $(mm_INSTALL_RAM_BOOT) = yes ] ; then                                      \
 				rm -rf   $(mm_TFTP_ROOT)/$(mm_NAME)                                   ; \
 			fi                                                                            ; \

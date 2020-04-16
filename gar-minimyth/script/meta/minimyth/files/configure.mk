@@ -74,9 +74,7 @@ build_vars := $(filter-out mm_HOME mm_TFTP_ROOT mm_NFS_ROOT,$(sort $(shell cat $
 bindirs_base := \
 	$(extras_sbindir) \
 	$(extras_bindir) \
-	$(rootdir)/sbin \
 	$(esbindir) \
-	$(rootdir)/bin \
 	$(ebindir) \
 	$(sbindir) \
 	$(bindir) \
@@ -87,12 +85,12 @@ bindirs := \
 	$(libexecdir)
 libdirs_base := \
 	$(extras_libdir) \
-	$(rootdir)/lib \
 	$(elibdir) \
 	$(libdir) \
 	$(libexecdir) \
 	$(libdir)/mysql \
-	$(qt5libdir)
+	$(qt5libdir) \
+	$(qt5elibdir)
 libdirs := \
 	$(libdirs_base) \
 	$(libdir)/xorg/modules \
