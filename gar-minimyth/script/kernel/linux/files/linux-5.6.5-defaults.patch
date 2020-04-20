@@ -1,6 +1,6 @@
-diff -Naur linux-5.6.2-old/arch/x86/boot/Makefile linux-5.6.2-new/arch/x86/boot/Makefile
---- linux-5.6.2-old/arch/x86/boot/Makefile	2020-04-04 10:31:39.328891806 -0700
-+++ linux-5.6.2-new/arch/x86/boot/Makefile	2020-04-04 10:33:25.234886033 -0700
+diff -Naur linux-5.6.5-old/arch/x86/boot/Makefile linux-5.6.5-new/arch/x86/boot/Makefile
+--- linux-5.6.5-old/arch/x86/boot/Makefile	2020-04-17 07:13:49.000000000 -0700
++++ linux-5.6.5-new/arch/x86/boot/Makefile	2020-04-19 22:53:41.828816968 -0700
 @@ -24,7 +24,7 @@
  # Set it to -DSVGA_MODE=NORMAL_VGA if you just want the EGA/VGA mode.
  # The number is the same as you would ordinarily press at bootup.

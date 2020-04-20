@@ -91,7 +91,7 @@ mm_HOME                   ?= $(HOME)/git/minimyth/gar-minimyth
 # The MiniMyth kernel, the MiniMyth file system image and MiniMyth themes are
 # installed in this directory. The files will be installed in a subdirectory
 # named 'minimyth-$(mm_VERSION)'.
-mm_TFTP_ROOT              ?= /var/tftpboot/minimyth
+mm_TFTP_ROOT              ?= /var/lib/tftpboot
 # Indicates the directory in which the directory containing the MiniMyth root
 # file system for mounting using NFS. The MiniMyth root file system will be
 # installed in a subdirectory named 'minimyth-$(mm_VERSION)'.

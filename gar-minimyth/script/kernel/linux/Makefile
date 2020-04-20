@@ -4,8 +4,7 @@ CATEGORIES = kernel-5.5
 MASTER_SITES = https://cdn.kernel.org/pub/linux/kernel/v$(LINUX_MAJOR_VERSION).x/
 CONFIGFILE = $(DISTNAME)-$(GARCH_FAMILY)-$(GARCH).config
 DISTFILES = $(DISTNAME).tar.xz $(CONFIGFILE)
-PATCHFILES += $(DISTNAME)-disable_dma_for_cfa.patch
-PATCHFILES += $(DISTNAME)-defaults.patch
+PATCHFILES = $(DISTNAME)-defaults.patch
 LICENSE = GPL2
 
 DESCRIPTION = 

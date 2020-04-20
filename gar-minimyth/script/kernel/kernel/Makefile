@@ -7,6 +7,8 @@ DESCRIPTION =
 define BLURB
 endef
 
+DEPENDS = kernel/linux kernel/linux-firmware
+
 GAR_EXTRA_CONF += kernel/linux/package-api.mk
 include ../../gar.mk
 

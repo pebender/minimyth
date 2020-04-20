@@ -1,8 +1,8 @@
 GARNAME = libcap
 GARVERSION = 2.33
 CATEGORIES = lib
-MASTER_SITES = https://kernel.googlesource.com/pub/scm/libs/libcap/libcap/+archive/refs/tags/
-DISTFILES = $(DISTNAME).tar.gz
+MASTER_SITES = https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/
+DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = $(DISTNAME)-toolchain.patch $(DISTNAME)-no-static.patch
 LICENSE = GPL2/LGPL2_1
 
@@ -11,8 +11,6 @@ define BLURB
 endef
 
 DEPENDS = lang/c
-
-WORKSRC = $(WORKDIR)
 
 BUILD_SCRIPTS = $(WORKSRC)/libcap/Makefile
 INSTALL_SCRIPTS = $(WORKSRC)/libcap/Makefile

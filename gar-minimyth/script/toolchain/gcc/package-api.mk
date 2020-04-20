@@ -56,10 +56,6 @@ GCC_CONFIGURE_ARGS += \
 	--with-sysroot=$($(CROSSIMG)_DESTDIR)
 endif
 
-pre-everything:
-	echo "MY_PACKAGE_NAME $(MY_PACKAGE_NAME)"
-	echo "MY_PACKAGE_CATEGORY $(MY_PACKAGE_CATEGORY)"
-
 configure-custom:
 	@mkdir -pv $(WORKBLD)
 	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)

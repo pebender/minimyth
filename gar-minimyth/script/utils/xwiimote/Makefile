@@ -1,10 +1,8 @@
 GARNAME = xwiimote
 GARVERSION = 2
 CATEGORIES = utils
-MASTER_SITES = https://github.com/dvdhrm/xwiimote/
-DISTFILES = $(DISTNAME).tar.gz
-xPATCHFILES = \
-	$(DISTNAME)-am_prog_ar.patch
+MASTER_SITES = https://github.com/dvdhrm/xwiimote/releases/download/xwiimote-2/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = MIT
 
 DESCRIPTION = 
@@ -13,7 +11,7 @@ endef
 
 DEPENDS = lang/c lib/ncursesw system/udev
 
-WORKSRC = $(WORKDIR)/$(GARNAME)-$(DISTNAME)
+WORKSRC = $(WORKDIR)/$(DISTNAME)
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
