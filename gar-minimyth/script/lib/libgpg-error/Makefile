@@ -21,13 +21,13 @@ BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--disable-silent-rules \
 	--enable-shared \
 	--disable-static \
 	--disable-nls \
 	--disable-rpath \
-	--disable-languages \
-	--disable-doc
+	--disable-languages
+CONFIGURE_ENV = \
+	CC_FOR_BUILD="$(build_CC)"
 
 include ../../gar.mk
 
