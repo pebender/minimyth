@@ -22,6 +22,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-shared \
 	--disable-static \
 	--disable-asm
+CONFIGURE_ENV = \
+	CC_FOR_BUILD="$(build_CC)"
 
 include ../../gar.mk
 
