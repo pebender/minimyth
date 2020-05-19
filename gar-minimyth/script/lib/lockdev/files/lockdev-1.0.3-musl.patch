@@ -1,0 +1,29 @@
+diff -Naur lockdev-1.0.3-old/src/lockdev.c lockdev-1.0.3-new/src/lockdev.c
+--- lockdev-1.0.3-old/src/lockdev.c	2006-04-20 12:11:08.000000000 -0700
++++ lockdev-1.0.3-new/src/lockdev.c	2020-05-16 15:48:25.680041836 -0700
+@@ -123,13 +123,9 @@
+ #include <sys/param.h>
+ #include <sys/stat.h>
+ #include <sys/file.h>
+-#if defined (__GNU_LIBRARY__)
+-# include <sys/sysmacros.h>
+-# define MAJOR(dev) gnu_dev_major (dev)
+-# define MINOR(dev) gnu_dev_minor (dev)
+-#else
+-#  error "put here a define for MAJOR and MINOR"
+-#endif
++#include <sys/sysmacros.h>
++#define MAJOR(dev) major (dev)
++#define MINOR(dev) minor (dev)
+ 
+ #include "lockdev.h"
+ 
+@@ -189,7 +185,7 @@
+  * All types uses the macro LOCK_PATH
+  */
+ 
+-#if defined (__GNU_LIBRARY__) || defined (__FreeBSD_kernel__) || defined(__NetBSD_kernel__) || defined(__OpenBSD_kernel__)
++#if 1
+ 
+ /* for internal use */
+ static inline int

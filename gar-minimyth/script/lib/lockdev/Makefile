@@ -3,7 +3,7 @@ GARVERSION = 1.0.3
 CATEGORIES = lib
 MASTER_SITES = http://ftp.debian.org/debian/pool/main/l/lockdev/
 DISTFILES = $(GARNAME)_$(GARVERSION).orig.tar.gz
-PATCHFILES = $(DISTNAME)-makefile.patch
+PATCHFILES = $(DISTNAME)-musl.patch $(DISTNAME)-makefile.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION =

@@ -1,2 +1,3 @@
 64b9c1b87b125fc348e892e24625524a  download/lockdev_1.0.3.orig.tar.gz
+678f6da428c24efaaa7b953244028e0a  download/lockdev-1.0.3-musl.patch
 ab9a2b6b31d4569251b423233543b50f  download/lockdev-1.0.3-makefile.patch
