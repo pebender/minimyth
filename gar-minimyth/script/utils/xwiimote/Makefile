@@ -3,6 +3,7 @@ GARVERSION = 2
 CATEGORIES = utils
 MASTER_SITES = https://github.com/dvdhrm/xwiimote/releases/download/xwiimote-2/
 DISTFILES = $(DISTNAME).tar.xz
+PATCHFILES = $(DISTNAME)-event_input.patch
 LICENSE = MIT
 
 DESCRIPTION = 
