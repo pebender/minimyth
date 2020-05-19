@@ -1,0 +1,26 @@
+diff -Naur libelf-0.8.13-old/lib/Makefile.in libelf-0.8.13-new/lib/Makefile.in
+--- libelf-0.8.13-old/lib/Makefile.in	2009-11-01 05:04:19.000000000 -0800
++++ libelf-0.8.13-new/lib/Makefile.in	2020-05-17 10:46:24.169319825 -0700
+@@ -27,7 +27,7 @@
+ 
+ CC = @CC@
+ LD = @LD@
+-AR = ar
++AR = @GAR_AR@
+ MV = mv -f
+ RM = rm -f
+ LN_S = @LN_S@
+diff -Naur libelf-0.8.13-old/Makefile.in libelf-0.8.13-new/Makefile.in
+--- libelf-0.8.13-old/Makefile.in	2008-05-23 01:17:56.000000000 -0700
++++ libelf-0.8.13-new/Makefile.in	2020-05-17 10:49:49.456308634 -0700
+@@ -48,8 +48,8 @@
+ srcdir = @srcdir@
+ VPATH = @srcdir@
+ 
+-SUBDIRS = lib @POSUB@
+-DISTSUBDIRS = lib po
++SUBDIRS = lib
++DISTSUBDIRS = lib
+ 
+ DISTFILES = \
+ 	acconfig.h aclocal.m4 ChangeLog config.guess config.h.in \

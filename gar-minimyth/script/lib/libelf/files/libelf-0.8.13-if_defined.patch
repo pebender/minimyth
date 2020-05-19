@@ -1,0 +1,115 @@
+diff -Naur libelf-0.8.13-old/configure libelf-0.8.13-new/configure
+--- libelf-0.8.13-old/configure	2008-05-23 01:18:03.000000000 -0700
++++ libelf-0.8.13-new/configure	2020-05-08 20:03:46.529885499 -0700
+@@ -1916,7 +1916,7 @@
+ #line 1917 "configure"
+ #include "confdefs.h"
+ #include __LIBELF_HEADER_ELF_H
+-      #if __LIBELF_NEED_LINK_H
++      #if defined(__LIBELF_NEED_LINK_H)
+       #include <link.h>	/* Solaris wants this */
+       #endif
+ int main() {
+@@ -1951,7 +1951,7 @@
+ #line 1952 "configure"
+ #include "confdefs.h"
+ #include __LIBELF_HEADER_ELF_H
+-      #if __LIBELF_NEED_LINK_H
++      #if defined(__LIBELF_NEED_LINK_H)
+       #include <link.h>	/* Solaris wants this */
+       #endif
+ int main() {
+diff -Naur libelf-0.8.13-old/configure.in libelf-0.8.13-new/configure.in
+--- libelf-0.8.13-old/configure.in	2008-05-23 01:17:56.000000000 -0700
++++ libelf-0.8.13-new/configure.in	2020-05-08 20:03:02.739887886 -0700
+@@ -167,7 +167,7 @@
+   AC_CACHE_CHECK([for Elf32_Verdef], libelf_cv_verdef32,
+     AC_TRY_COMPILE(
+       [#include __LIBELF_HEADER_ELF_H
+-      #if __LIBELF_NEED_LINK_H
++      #if defined(__LIBELF_NEED_LINK_H)
+       #include <link.h>	/* Solaris wants this */
+       #endif],
+       [struct {
+@@ -182,7 +182,7 @@
+   AC_CACHE_CHECK([for Elf64_Verdef], libelf_cv_verdef64,
+     AC_TRY_COMPILE(
+       [#include __LIBELF_HEADER_ELF_H
+-      #if __LIBELF_NEED_LINK_H
++      #if defined(__LIBELF_NEED_LINK_H)
+       #include <link.h>	/* Solaris wants this */
+       #endif],
+       [struct {
+diff -Naur libelf-0.8.13-old/lib/gelf.h libelf-0.8.13-new/lib/gelf.h
+--- libelf-0.8.13-old/lib/gelf.h	2008-05-23 01:15:34.000000000 -0700
++++ libelf-0.8.13-new/lib/gelf.h	2020-05-08 20:04:43.517882393 -0700
+@@ -22,15 +22,15 @@
+ #ifndef _GELF_H
+ #define _GELF_H
+ 
+-#if __LIBELF_INTERNAL__
++#if defined(__LIBELF_INTERNAL__)
+ #include <libelf.h>
+ #else /* __LIBELF_INTERNAL__ */
+ #include <libelf/libelf.h>
+ #endif /* __LIBELF_INTERNAL__ */
+ 
+-#if __LIBELF_NEED_LINK_H
++#if defined(__LIBELF_NEED_LINK_H)
+ #include <link.h>
+-#elif __LIBELF_NEED_SYS_LINK_H
++#elif defined( __LIBELF_NEED_SYS_LINK_H)
+ #include <sys/link.h>
+ #endif /* __LIBELF_NEED_LINK_H */
+ 
+diff -Naur libelf-0.8.13-old/lib/libelf.h libelf-0.8.13-new/lib/libelf.h
+--- libelf-0.8.13-old/lib/libelf.h	2009-07-07 10:57:43.000000000 -0700
++++ libelf-0.8.13-new/lib/libelf.h	2020-05-08 20:04:29.332883166 -0700
+@@ -25,7 +25,7 @@
+ #include <stddef.h>	/* for size_t */
+ #include <sys/types.h>
+ 
+-#if __LIBELF_INTERNAL__
++#if defined(__LIBELF_INTERNAL__)
+ #include <sys_elf.h>
+ #else /* __LIBELF_INTERNAL__ */
+ #include <libelf/sys_elf.h>
+diff -Naur libelf-0.8.13-old/lib/private.h libelf-0.8.13-new/lib/private.h
+--- libelf-0.8.13-old/lib/private.h	2009-11-01 05:04:19.000000000 -0800
++++ libelf-0.8.13-new/lib/private.h	2020-05-08 20:02:28.177889771 -0700
+@@ -90,9 +90,9 @@
+ # define nlist __override_nlist_declaration
+ #endif /* HAVE_STRUCT_NLIST_DECLARATION */
+ 
+-#if __LIBELF_NEED_LINK_H
++#if defined(__LIBELF_NEED_LINK_H)
+ # include <link.h>
+-#elif __LIBELF_NEED_SYS_LINK_H
++#elif defined(__LIBELF_NEED_SYS_LINK_H)
+ # include <sys/link.h>
+ #endif /* __LIBELF_NEED_LINK_H */
+ 
+diff -Naur libelf-0.8.13-old/lib/sys_elf.h.in libelf-0.8.13-new/lib/sys_elf.h.in
+--- libelf-0.8.13-old/lib/sys_elf.h.in	2008-05-23 01:57:07.000000000 -0700
++++ libelf-0.8.13-new/lib/sys_elf.h.in	2020-05-08 20:04:17.788883795 -0700
+@@ -68,7 +68,7 @@
+ #ifdef __LIBELF_HEADER_ELF_H
+ # include __LIBELF_HEADER_ELF_H
+ #else /* __LIBELF_HEADER_ELF_H */
+-# if __LIBELF_INTERNAL__
++# if defined (__LIBELF_INTERNAL__)
+ #  include <elf_repl.h>
+ # else /* __LIBELF_INTERNAL__ */
+ #  include <libelf/elf_repl.h>
+diff -Naur libelf-0.8.13-old/lib/sys_elf.h.w32 libelf-0.8.13-new/lib/sys_elf.h.w32
+--- libelf-0.8.13-old/lib/sys_elf.h.w32	2006-09-07 08:55:42.000000000 -0700
++++ libelf-0.8.13-new/lib/sys_elf.h.w32	2020-05-08 20:04:53.380881855 -0700
+@@ -68,7 +68,7 @@
+ #ifdef __LIBELF_HEADER_ELF_H
+ # include __LIBELF_HEADER_ELF_H
+ #else /* __LIBELF_HEADER_ELF_H */
+-# if __LIBELF_INTERNAL__
++# if defined(__LIBELF_INTERNAL__)
+ #  include <elf_repl.h>
+ # else /* __LIBELF_INTERNAL__ */
+ #  include <libelf/elf_repl.h>
