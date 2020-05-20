@@ -9,7 +9,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c build-tool/meson
+DEPENDS = lang/c build-tool/meson xorg/libxcb
 BUILDDEPS =
 
 WORKBLD = $(WORKSRC)_build
@@ -23,7 +23,7 @@ CONFIGURE_ARGS  = \
 	--buildtype=release \
 	-Db_asneeded=true \
 	-Db_lto=true \
-	-Denable-x11=false \
+	-Denable-x11=true \
 	-Denable-docs=false \
 	-Denable-wayland=false \
 	-Dxkb-config-root=$(datadir)/X11/xkb \
@@ -35,11 +35,6 @@ CONFIGURE_ARGS += \
 endif
 
 include ../../gar.mk
-
-# libxkbcommon 0.9.1 fails to compile with gcc 9.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
 
 CONFIGURE_ENV += \
 	XDG_DATA_HOME=$(build_DESTDIR)$(build_datadir)
