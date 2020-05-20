@@ -1,9 +1,8 @@
-GARNAME = rxvt
-GARVERSION = 2.6.4
+GARNAME = rxvt-unicode
+GARVERSION = 9.22
 CATEGORIES = X11
-MASTER_SITES = https://sourceforge.net/projects/rxvt/files/rxvt/$(GARVERSION)/
-DISTFILES = $(DISTNAME).tar.gz config.cache.$(GARCH_FAMILY)
-PATCHFILES = $(DISTNAME).patch
+MASTER_SITES = http://dist.schmorp.de/rxvt-unicode/
+DISTFILES = $(DISTNAME).tar.bz2
 LICENSE = GPL2
 
 DESCRIPTION =
@@ -11,20 +10,25 @@ define BLURB
 endef
 
 DEPENDS = lang/c xorg/libICE xorg/libX11 xorg/libXpm
+BUILDDEPS = xorg/libXpm
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--cache-file=./config.cache \
 	--x-includes=$(DESTDIR)$(includedir) \
-	--x-libraries=$(DESTDIR)$(libdir)
+	--x-libraries=$(DESTDIR)$(libdir) \
+	--disable-perl \
+  	--disable-utmp \
+  	--disable-wtmp \
+  	--disable-lastlog
 
 include ../../gar.mk
 
 LDFLAGS := $(LDFLAGS) -fwhole-program
 
-extract-config.cache.$(GARCH_FAMILY):
-	@cp $(DOWNLOADDIR)/config.cache.$(GARCH_FAMILY) $(WORKSRC)/config.cache
+pre-configure:
+	@$(call RUN_AUTOTOOLS)
+	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)

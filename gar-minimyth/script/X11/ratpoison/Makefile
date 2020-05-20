@@ -11,7 +11,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c X11/rxvt xorg/libICE xorg/libX11 xorg/libXrandr xorg/libXtst
+DEPENDS = lang/c X11/urxvt xorg/libICE xorg/libX11 xorg/libXrandr xorg/libXtst
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS     = $(WORKSRC)/Makefile
 INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
@@ -22,7 +22,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-silent-rules \
 	--disable-debug \
 	--disable-history \
-	--with-xterm=rxvt \
+	--with-xterm=urxvt \
 	--with-xft \
 	--with-x
 
