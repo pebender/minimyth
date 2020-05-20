@@ -124,7 +124,6 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-xkb-path="$(datadir)/X11/xkb" \
 	--with-xkb-output="$(datadir)/X11/xkb/compiled" \
 	--with-serverconfig-path="$(libdir)/xserver" \
-	--without-xmlto \
 	--without-fop \
 	--with-sha1=libcrypto
 
