@@ -3,7 +3,7 @@ GARVERSION = 0.10.1
 CATEGORIES = system
 MASTER_SITES = https://sourceforge.net/projects/lirc/files/LIRC/$(GARVERSION)/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES = $(DISTNAME)-disable_python35.patch
+PATCHFILES = $(DISTNAME)-input_event_time.patch $(DISTNAME)-disable_python35.patch
 LICENSE = GPL2
 
 DESCRIPTION =
@@ -24,19 +24,17 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--enable-uinput \
 	--enable-devinput \
 	--with-x
-BUILD_ARGS     = $(LINUX_MAKE_ARGS)
-INSTALL_ARGS   = $(LINUX_MAKE_ARGS)
+BUILD_ARGS     =
+INSTALL_ARGS   =
 
-CONFIGURE_ENV = $(LINUX_MAKE_ENV) \
+CONFIGURE_ENV = \
 	DEVINPUT_HEADER="$(DESTDIR)$(includedir)/linux/input-event-codes.h"
-BUILD_ENV     = $(LINUX_MAKE_ENV) \
+BUILD_ENV     = \
 	HAVE_WORKING_POLL="1"
-INSTALL_ENV   = $(LINUX_MAKE_ENV)
+INSTALL_ENV   =
 
 GAR_EXTRA_CONF += kernel/linux/package-api.mk
 include ../../gar.mk
-
-#PARALLELMFLAGS := -j1
 
 # lirc 0.10.1 fails to compile with llvm 10.0.0 link time optimization enabled.
 CFLAGS   := $(CFLAGS) -fno-lto
