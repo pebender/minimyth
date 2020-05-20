@@ -60,10 +60,3 @@ INSTALL_ARGS = \
 
 GAR_EXTRA_CONF += kernel-$(mm_KERNEL_VERSION)/linux/package-api.mk
 include ../../gar.mk
-
-#CFLAGS  := $(CFLAGS)  -fPIC
-#LDFLAGS := $(LDFLAGS) -fPIC
-
-# pciutils 3.3.1 fails to compile with gcc 5.2.0's link time optimization enabled.
-#CFLAGS  := $(filter-out -flto, $(CFLAGS))
-#LDFLAGS := $(filter-out -flto, $(LDFLAGS))
