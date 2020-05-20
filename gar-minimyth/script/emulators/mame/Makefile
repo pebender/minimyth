@@ -4,6 +4,7 @@ CATEGORIES = emulators
 MASTER_SITES = https://github.com/mamedev/mame/archive/
 DISTFILES = $(GARNAME)$(subst .,,$(GARVERSION)).tar.gz
 PATCHFILES = \
+	$(DISTNAME)-musl.patch \
 	$(DISTNAME)-clang-detection.patch \
 	$(DISTNAME)-ar.patch \
 	$(DISTNAME).patch.gar
