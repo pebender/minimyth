@@ -4,6 +4,7 @@ CATEGORIES = utils
 MASTER_SITES = http://http.debian.net/debian/pool/main/p/pmount/
 DISTFILES = $(GARNAME)_$(GARVERSION).orig.tar.bz2
 PATCHFILES = \
+	$(DISTNAME)-posix_headers.patch \
 	$(DISTNAME)-automake_1.13.patch \
 	$(DISTNAME)-install.patch
 LICENSE = GPL3

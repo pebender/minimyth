@@ -1,0 +1,33 @@
+diff -Naur pmount-0.9.23-old/ltmain.sh pmount-0.9.23-new/ltmain.sh
+--- pmount-0.9.23-old/ltmain.sh	2010-05-04 13:56:25.000000000 -0700
++++ pmount-0.9.23-new/ltmain.sh	2020-05-16 20:02:58.147209300 -0700
+@@ -3149,6 +3149,7 @@
+ EOF
+ 	    cat <<"EOF"
+ #include <stdio.h>
++#include <limits.h>
+ #include <stdlib.h>
+ #ifdef _MSC_VER
+ # include <direct.h>
+diff -Naur pmount-0.9.23-old/src/policy.c pmount-0.9.23-new/src/policy.c
+--- pmount-0.9.23-old/src/policy.c	2010-06-07 11:32:41.000000000 -0700
++++ pmount-0.9.23-new/src/policy.c	2020-05-16 20:03:17.820208228 -0700
+@@ -13,6 +13,7 @@
+ #include "policy.h"
+ #include "utils.h"
+ 
++#include <limits.h>
+ #include <stdio.h>
+ #include <string.h>
+ #include <unistd.h>
+diff -Naur pmount-0.9.23-old/src/utils.c pmount-0.9.23-new/src/utils.c
+--- pmount-0.9.23-old/src/utils.c	2009-02-12 14:45:40.000000000 -0800
++++ pmount-0.9.23-new/src/utils.c	2020-05-16 20:03:26.323207764 -0700
+@@ -10,6 +10,7 @@
+ 
+ #include "utils.h"
+ 
++#include <limits.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <stdarg.h>
