@@ -2,3 +2,5 @@ d2f3b7d4627e69e13514a40e72a24d50  download/libtool-2.4.2.tar.gz
 8207e878c9e404a4b7d53ea533c5fa7d  download/libtool-2.4.2-no_use_linker_plugin.patch
 b69f739565586f98f380a3bf94046c57  download/libtool-2.4.2-bash.patch.gar
 93413ffdb1aa1abf355f8b9ef3fe2936  download/libtool-2.4.2-use_ld.patch
+467fb07b9fc0b8cf59750c8ca8b3f7d5  download/config.guess
+b92910e84d9c6d8d4ca71653b44667d0  download/config.sub

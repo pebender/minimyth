@@ -1,7 +1,7 @@
 GARNAME = automake
 GARVERSION = 1.16.2
 CATEGORIES = devel
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
+MASTER_SITES = https://ftp.gnu.org/gnu/automake/
 DISTFILES = $(DISTNAME).tar.gz
 LICENSE = GPL2
 
