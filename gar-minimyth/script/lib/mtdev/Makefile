@@ -1,5 +1,5 @@
 GARNAME = mtdev
-GARVERSION = 1.1.5
+GARVERSION = 1.1.6
 CATEGORIES = lib
 MASTER_SITES = https://bitmath.org/code/mtdev/
 DISTFILES = $(DISTNAME).tar.bz2
