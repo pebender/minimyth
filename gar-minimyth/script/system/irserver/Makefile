@@ -31,7 +31,7 @@ include ../../gar.mk
 
 CPPFLAGS := $(CPPFLAGS) -D_LARGEFILE64_SOURCE=1 -D_FILE_OFFSET_BITS=1 -DLINUX
 CFLAGS := $(CFLAGS) -Wno-return-type
-LDFLAGS := $(LDFLAGS) -fwhole-program 
+LDFLAGS := $(LDFLAGS) -fwhole-program
 
 install-custom:
 	@mkdir -p $(DESTDIR)$(sbindir)
