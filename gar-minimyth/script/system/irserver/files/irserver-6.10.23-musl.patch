@@ -1,0 +1,134 @@
+diff -Naur irserver-6.10.23-old/ascii.c irserver-6.10.23-new/ascii.c
+--- irserver-6.10.23-old/ascii.c	2013-12-11 07:02:11.000000000 -0800
++++ irserver-6.10.23-new/ascii.c	2020-05-16 13:59:54.847396756 -0700
+@@ -785,7 +785,6 @@
+ 
+ #ifdef LINUX
+     int fd,pos,lend;
+-    off64_t off = 0;
+ 	struct dirent64 *di;
+     char mem[2048];
+ #endif
+@@ -821,7 +820,7 @@
+ #ifdef LINUX
+         fd = open ("../html",0);
+         do {
+-			lend = getdirentries64 (fd,mem,2048,&off);
++			lend = getdents64 (fd,mem,2048);
+ 			pos = 0;
+ 			while (pos < lend) {
+ 				di = (struct dirent64 *)&mem[pos];
+diff -Naur irserver-6.10.23-old/fileio.c irserver-6.10.23-new/fileio.c
+--- irserver-6.10.23-old/fileio.c	2015-04-17 08:28:59.000000000 -0700
++++ irserver-6.10.23-new/fileio.c	2020-05-16 14:01:48.481390562 -0700
+@@ -93,7 +93,6 @@
+ {
+ 
+     int fd,i,len,pos,res,fl,dlen;
+-    off64_t off = 0;
+     char st[2048],msg[256];
+     struct dirent64 *di;
+ 
+@@ -111,7 +110,7 @@
+ 	cnt = cnt_total = 0;
+ 
+     do {
+-		len = getdirentries64 (fd,st,2048,&off);
++		len = getdents64 (fd,st,2048);
+ 
+ 		pos = 0;
+ 		while (pos < len) {
+diff -Naur irserver-6.10.23-old/firmware.c irserver-6.10.23-new/firmware.c
+--- irserver-6.10.23-old/firmware.c	2019-05-24 05:14:08.000000000 -0700
++++ irserver-6.10.23-new/firmware.c	2020-05-16 14:00:42.746394145 -0700
+@@ -226,7 +226,6 @@
+ 	FIRMWARE_INFO info;
+ 
+ #ifdef LINUX
+-	off64_t off = 0;
+ 	int fd,len,pos;
+     struct dirent64 *di;
+ 	char st[2048];
+@@ -260,7 +259,7 @@
+ 		fd = open ("../Firmware",0);
+ 
+ 		do {
+-			len = getdirentries64 (fd,st,2048,&off);
++			len = getdents64 (fd,st,2048);
+ 
+ 			pos = 0;
+ 			while (pos < len) {
+@@ -277,7 +276,7 @@
+ 		lseek (fd,0,SEEK_SET);
+ 		
+ 		do {
+-			len = getdirentries64 (fd,st,2048,&off);
++			len = getdents64 (fd,st,2048);
+ 
+ 			pos = 0;
+ 			while (pos < len) {
+@@ -2726,4 +2725,4 @@
+ 	memcpy (chainBlock,input,8);
+ }
+ 
+-#endif
+\ No newline at end of file
++#endif
+diff -Naur irserver-6.10.23-old/linuxserio.c irserver-6.10.23-new/linuxserio.c
+--- irserver-6.10.23-old/linuxserio.c	2012-10-20 08:18:14.000000000 -0700
++++ irserver-6.10.23-new/linuxserio.c	2020-05-16 12:52:26.982617414 -0700
+@@ -32,6 +32,7 @@
+ #include <sys/time.h>
+ #include <sys/types.h>
+ #include <stdint.h>
++#include <string.h>
+ #include <unistd.h>
+ #include <stdio.h>
+ #include <termios.h>
+@@ -43,6 +44,9 @@
+ #include <sys/un.h>
+ #include <arpa/inet.h>
+ #include <stdlib.h>
++#ifndef DBOX
++#include <sys/file.h>
++#endif
+ 
+ #include "remote.h"
+ #include "errcode.h"
+diff -Naur irserver-6.10.23-old/server.c irserver-6.10.23-new/server.c
+--- irserver-6.10.23-old/server.c	2019-05-24 05:14:11.000000000 -0700
++++ irserver-6.10.23-new/server.c	2020-05-16 14:01:32.500391433 -0700
+@@ -75,6 +75,8 @@
+ #include <signal.h>
+ #include <netdb.h>
+ #include <stdint.h>
++#include <string.h>
++#include <unistd.h>
+ #include <sys/utsname.h>
+ 
+ typedef int DWORD;
+@@ -1537,7 +1539,6 @@
+ 			fclose (stdin);
+ 			fclose (stdout);
+ 			fclose (stderr);
+-			stderr = NULL;
+ 			setsid ();
+ 			fp = fopen ("/tmp/.irserver.pid","w");
+ 			if (fp) {
+@@ -3018,7 +3019,6 @@
+ {
+ 
+         int fd,i,len,pos,res,fl;
+-        off64_t off = 0;
+         char st[2048],msg[256];
+         struct dirent64 *di;
+         char *home = getenv("HOME");
+@@ -3072,7 +3072,7 @@
+ 		log_print (msg,LOG_DEBUG);
+ 
+         do {
+-         len = getdirentries64 (fd,st,2048,&off);
++         len = getdents64 (fd,st,2048);
+ 
+ 		sprintf (msg,"Get Dirent: %d\n",len);
+ 		log_print (msg,LOG_DEBUG);
