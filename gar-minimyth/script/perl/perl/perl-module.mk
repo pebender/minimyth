@@ -82,8 +82,12 @@ configure-%/Makefile.PL:
 	@cd $* ; $(CONFIGURE_ENV) perl Makefile.PL $(CONFIGURE_ARGS)
 	@for file in `find $* -name Makefile` ; do \
 		sed -i 's%^PERL_INC *= *%PERL_INC = $$(DESTDIR)%' $${file} ; \
+		sed -i 's%^PERL_INCDEP *= *%PERL_INCDEP = $$(DESTDIR)%' $${file} ; \
+		sed -i 's%^PERL_LIB *= *%PERL_LIB = $$(DESTDIR)%' $${file} ; \
 		sed -i 's%^PERL_ARCHLIB *= *%PERL_ARCHLIB = $$(DESTDIR)%' $${file} ; \
-		sed -i 's% \($(PERL_privlib)/ExtUtils/typemap\)% $$(DESTDIR)\1%' $${file} ; \
+		sed -i 's%^PERL_ARCHLIBDEP *= *%PERL_ARCHLIBDEP = $$(DESTDIR)%' $${file} ; \
+		sed -i 's% $(PERL_privlib)/ExtUtils/typemap% $$(DESTDIR)$(PERL_privlib)/ExtUtils/typemap%' $${file} ; \
+		sed -i 's% \([^ ]\)$(PERL_privlib)/ExtUtils/typemap% \1$$(DESTDIR)$(PERL_privlib)/ExtUtils/typemap%' $${file} ; \
 	done
 	@$(MAKECOOKIE)
 

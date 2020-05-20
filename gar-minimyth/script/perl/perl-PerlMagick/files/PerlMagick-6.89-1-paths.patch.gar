@@ -1,0 +1,20 @@
+diff -Naur PerlMagick-6.89-old/Makefile.PL PerlMagick-6.89-new/Makefile.PL
+--- PerlMagick-6.89-old/Makefile.PL	2014-09-21 14:23:03.000000000 -0700
++++ PerlMagick-6.89-new/Makefile.PL	2020-05-17 07:02:51.001051006 -0700
+@@ -161,11 +161,11 @@
+ }
+ 
+ # defaults for LIBS & INC & CCFLAGS params that we later pass to Writemakefile
+-my $INC_magick = '-I/usr/local/include/ImageMagick-6 -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -I/usr/include/libxml2 -I"' . $Config{'usrinc'} . '/ImageMagick-6"';
+-my $LIBS_magick = '-L/usr/local/lib -lMagickCore-6.Q16 -lperl -lm';
+-my $CCFLAGS_magick = "$Config{'ccflags'} -I/usr/include/freetype2 -g -O2 -Wall -pthread -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16";
+-my $LDFLAGS_magick   = "-L/usr/local/lib -lMagickCore-6.Q16 $Config{'ldflags'} ";
+-my $LDDLFLAGS_magick = "-L/usr/local/lib -lMagickCore-6.Q16 $Config{'lddlflags'} ";
++my $INC_magick = '-I@GAR_DESTDIR@@GAR_includedir@/ImageMagick-6 -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -I@GAR_DESTDIR@@GAR_includedir@/libxml2';
++my $LIBS_magick = '-lMagickCore-6.Q16 -lperl -lm';
++my $CCFLAGS_magick = "$Config{'ccflags'} -I@GAR_DESTDIR@@GAR_includedir@/freetype2 -g -O2 -Wall -pthread -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16";
++my $LDFLAGS_magick   = "-lMagickCore-6.Q16 $Config{'ldflags'} ";
++my $LDDLFLAGS_magick = "-lMagickCore-6.Q16 $Config{'lddlflags'} ";
+ 
+ if (($^O eq 'MSWin32') && ($Config{cc} =~ /gcc/)) {
+   my($Ipaths, $Lpaths) = AutodetectWin32gcc();

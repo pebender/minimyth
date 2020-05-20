@@ -2,12 +2,14 @@ GARNAME = perl
 GARVERSION = $(PERL_VERSION)
 CATEGORIES = perl
 MASTER_SITES = https://www.cpan.org/src/
+MASTER_SITES += https://github.com/arsv/perl-cross/releases/download/$(PERL_CROSS_VERSION)/
 DISTFILES = $(DISTNAME).tar.gz
-PATCHFILES  = $(DISTNAME)-dash.patch $(DISTNAME)-perl.patch.gar $(DISTNAME)-path.patch $(DISTNAME)-perl5lib.patch
+ifneq ($(DESTIMG),build)
+DISTFILES += perl-cross-$(PERL_CROSS_VERSION).tar.gz
+endif
+PATCHFILES = $(GARNAME)-dash.patch $(GARNAME)-perl.patch.gar $(GARNAME)-path.patch $(GARNAME)-perl5lib.patch
 ifeq ($(DESTIMG),build)
-PATCHFILES += $(DISTNAME)-cbuilder.patch $(DISTNAME)-xsloader.patch $(DISTNAME)-dynaloader.patch $(DISTNAME)-errno.patch
-else
-PATCHFILES += $(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar $(DISTNAME)-cross.patch.gar
+PATCHFILES += $(GARNAME)-cbuilder.patch $(GARNAME)-xsloader.patch $(GARNAME)-dynaloader.patch $(GARNAME)-errno.patch
 endif
 LICENSE = Artistic
 
@@ -21,37 +23,21 @@ ifneq ($(DESTIMG),build)
 BUILDDEPS += perl/perl
 endif
 
-ifneq ($(DESTIMG),build)
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure check-version
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = config $(WORKSRC)/Makefile
-else
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = config $(WORKSRC)/Makefile miniperl generate_uudmap
-endif
-
-ifneq ($(DESTIMG),build)
-CONFIGURE_ARGS = \
-	-e \
-	-S
-else
+ifeq ($(DESTIMG),build)
+CONFIGURE_SCRIPTS = create $(WORKSRC)/configure cleanup
 CONFIGURE_ARGS = \
 	-d \
 	-e \
-	-Duserelocatableinc='true' \
-	-Dinitialinstalllocation="$(DESTDIR)$(bindir)" \
 	-Dprefix="$(prefix)" \
 	-Dman1dir='$(mandir)/man1' \
 	-Dman3dir='$(mandir)/man3' \
 	-Dpager='/bin/less -isR' \
-	-Darchname="$(GARCH_FAMILY)-linux" \
 	-Dusrinc="$(DESTDIR)$(includedir)" \
 	-Dlibpth="$(PERL_libpth)" \
 	-Dglibpth="$(PERL_libpth)" \
 	-Dldlibpthname='none' \
 	-Dshrpenv=' ' \
-	-Duseshrplib='false' \
+	-Duseshrplib='true' \
 	-Dcpp="$(CPP)" \
 	-Dcc="$(CC)" \
 	-Dld="$(CC)" \
@@ -69,7 +55,30 @@ CONFIGURE_ARGS = \
 	-Adefine:myhostname=' ' \
 	-Adefine:myuname=' ' \
 	-Adefine:optimize=' '
+else
+CONFIGURE_SCRIPTS = $(WORKSRC)/configure
+CONFIGURE_ARGS = \
+	--prefix="$(prefix)" \
+	--html1dir="$(docdir)/perl/html" \
+	--html3dir="$(docdir)/perl/html" \
+	--man1dir="$(mandir)/man1" \
+	--man3dir="$(mandir)/man3" \
+	--build="$(GARBUILD)" \
+	--target="$(GARHOST)" \
+	--with-cc="$(CC)" \
+	--with-cpp="$(CPP)" \
+	--with-ar="$(AR)" \
+	--with-ranlib="$(RANLIB)" \
+	--with-objdump="$(OBJDUMP)" \
+	--host-cc="$(build_CC)" \
+	--host-cpp="$(build_CPP)" \
+	--host-ar="$(build_AR)" \
+	--host-ranlib="$(build_RANLIB)" \
+	--host-objdump="$(build_OBJDUMP)" \
+	-Duseshrplib='true'
 endif
+BUILD_SCRIPTS = $(WORKSRC)/Makefile
+INSTALL_SCRIPTS = config $(WORKSRC)/Makefile
 
 CONFIGURE_ENV = $(PERL_CONFIGURE_ENV)
 BUILD_ENV     = $(PERL_BUILD_ENV)
@@ -81,7 +90,7 @@ GAR_EXTRA_CONF += kernel/linux/package-api.mk
 include ../../gar.mk
 
 # Perl insists on adding the path to AR.
-AR := $(notdir $(AR))
+#AR := $(notdir $(AR))
 
 CPPFLAGS := $(PERL_CPPFLAGS)
 CFLAGS   := $(PERL_CFLAGS)
@@ -90,7 +99,7 @@ LDFLAGS  := $(PERL_LDFLAGS)
 
 PERL_config_sh_check=$(if $(filter-out $(PERL_config_sh_$(2)),$($(2))), \
 	echo "warning: config.sh was generated using $(1) $(PERL_config_sh_$(2)) but you are using $(1) $($(2)).")
-PERL_config_sh_var=$(shell cat files/$(DISTNAME)-config_sh-$(GARCH_FAMILY).patch.gar \
+PERL_config_sh_var=$(shell cat files/$(GARNAME)-config_sh-$(GARCH_FAMILY).patch.gar \
 	| grep -e "^+$(1)=" | sed -e "s%^+$(1)='\(.*\)'%\1%")
 PERL_config_sh_GCC_VERSION=$(call PERL_config_sh_var,gccversion)
 PERL_config_sh_GLIBC_VERSION=$(call PERL_config_sh_var,gnulibc_version)
@@ -98,17 +107,16 @@ PERL_config_sh_LINUX_VERSION=$(call PERL_config_sh_var,osvers)
 
 PERL_libpth := $(LIBRARY_PATH)
 
-pre-configure:
+extract-perl-cross-$(PERL_CROSS_VERSION).tar.gz:
+	@echo " ==> Extracting $(DOWNLOADDIR)/perl-cross-$(PERL_CROSS_VERSION).tar.gz"
+	@gzip -dc $(DOWNLOADDIR)/perl-cross-$(PERL_CROSS_VERSION).tar.gz | tar --strip-components=1 -xf - -C $(WORKSRC)
+	@$(MAKECOOKIE)
+
+configure-create:
 	@ln -sf Configure $(WORKSRC)/configure
 	@$(MAKECOOKIE)
 
-configure-check-version:
-	@#$(call PERL_config_sh_check,gcc,GCC_VERSION)
-	@#$(call PERL_config_sh_check,glibc,GLIBC_VERSION)
-	@#$(call PERL_config_sh_check,linux,LINUX_VERSION)
-	@$(MAKECOOKIE)
-
-post-configure:
+configure-cleanup:
 	@$(BUILD_ENV) $(MAKE) $(PARALLELMFLAGS) $(foreach TTT,$(BUILD_OVERRIDE_DIRS),$(TTT)="$($(TTT))") -C $(WORKSRC) $(BUILD_ARGS) depend
 	@for file in `find $(WORKSRC) -name makefile` ; do \
 		sed -i 's%^[^:]*: *<command-line>$$%%' $${file} ; \
@@ -140,7 +148,7 @@ install-generate_uudmap:
 	@$(MAKECOOKIE)
 
 post-install:
-	@rm -f $(DESTDIR)$(PERL_archlib)/CORE/libperl.a
+	@mv -f $(DESTDIR)$(PERL_archlib)/CORE/libperl.so $(DESTDIR)$(libdir)/libperl.so
 	@$(MAKECOOKIE)
 
 source-update:

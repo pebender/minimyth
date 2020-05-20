@@ -1,8 +1,9 @@
-GARNAME        = perl-PerlMagick
-GARVERSION     = 6.89-1
-MASTER_SITES   = https://cpan.metacpan.org/authors/id/J/JC/JCRISTY/
-DEPENDS        = utils/ImageMagick
-PERL_MODULE_SO = true
+GARNAME             = perl-PerlMagick
+GARVERSION          = 6.89-1
+MASTER_SITES        = https://cpan.metacpan.org/authors/id/J/JC/JCRISTY/
+DEPENDS             = utils/ImageMagick
+PERL_MODULE_SO      = true
+PERL_MODULE_PATCHES = paths.patch.gar
 
 include ../../perl/perl/perl-module.mk
 

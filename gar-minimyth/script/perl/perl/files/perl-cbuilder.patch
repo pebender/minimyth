@@ -1,6 +1,18 @@
+diff -Naur perl-5.30.2-old/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm perl-5.30.2-new/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm
+--- perl-5.30.2-old/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm	2019-10-24 14:27:54.000000000 -0700
++++ perl-5.30.2-new/cpan/ExtUtils-MakeMaker/lib/ExtUtils/MM_Any.pm	2020-05-16 10:45:59.916031002 -0700
+@@ -3043,7 +3043,7 @@
+ sub _perl_header_files {
+     my $self = shift;
+ 
+-    my $header_dir = $self->{PERL_SRC} || $ENV{PERL_SRC} || $self->catdir($Config{archlibexp}, 'CORE');
++    my $header_dir = $self->{PERL_SRC} || $ENV{PERL_SRC} || $self->catdir($ENV{DESTDIR}, $Config{archlibexp}, 'CORE');
+     opendir my $dh, $header_dir
+         or die "Failed to opendir '$header_dir' to find header files: $!";
+ 
 diff -Naur perl-5.30.2-old/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Base.pm perl-5.30.2-new/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Base.pm
---- perl-5.30.2-old/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Base.pm	2020-04-10 10:50:41.172570434 -0700
-+++ perl-5.30.2-new/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Base.pm	2020-04-10 10:50:41.817570399 -0700
+--- perl-5.30.2-old/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Base.pm	2019-10-24 13:18:02.000000000 -0700
++++ perl-5.30.2-new/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Base.pm	2020-05-16 10:40:14.020049857 -0700
 @@ -391,7 +391,7 @@
  sub perl_inc {
    my $self = shift;
@@ -10,3 +22,60 @@ diff -Naur perl-5.30.2-old/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Base.pm 
  }
  
  sub DESTROY {
+diff -Naur perl-5.30.2-old/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Platform/Windows.pm perl-5.30.2-new/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Platform/Windows.pm
+--- perl-5.30.2-old/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Platform/Windows.pm	2019-10-24 13:18:02.000000000 -0700
++++ perl-5.30.2-new/dist/ExtUtils-CBuilder/lib/ExtUtils/CBuilder/Platform/Windows.pm	2020-05-16 10:52:34.002009519 -0700
+@@ -253,7 +253,7 @@
+   if ($perl_src) {
+     File::Spec->catdir($perl_src, "lib", "CORE");
+   } else {
+-    File::Spec->catdir($self->{config}{archlibexp},"CORE");
++    File::Spec->catdir($ENV{DESTDIR},$self->{config}{archlibexp},"CORE");
+   }
+ }
+ 
+diff -Naur perl-5.30.2-old/dist/Time-HiRes/Makefile.PL perl-5.30.2-new/dist/Time-HiRes/Makefile.PL
+--- perl-5.30.2-old/dist/Time-HiRes/Makefile.PL	2019-10-24 14:27:56.000000000 -0700
++++ perl-5.30.2-new/dist/Time-HiRes/Makefile.PL	2020-05-16 10:53:06.919007725 -0700
+@@ -102,7 +102,7 @@
+ 	    my $updir = File::Spec->updir;
+ 	    $COREincdir = File::Spec->catdir(($updir) x 2);
+ 	} else {
+-	    $COREincdir = File::Spec->catdir($Config{'archlibexp'}, 'CORE');
++	    $COREincdir = File::Spec->catdir($ENV{DESTDIR},$Config{'archlibexp'}, 'CORE');
+ 	}
+ 
+ 	if ($ENV{PERL_CORE}) {
+diff -Naur perl-5.30.2-old/ext/B/Makefile.PL perl-5.30.2-new/ext/B/Makefile.PL
+--- perl-5.30.2-old/ext/B/Makefile.PL	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.2-new/ext/B/Makefile.PL	2020-05-16 10:53:25.711006700 -0700
+@@ -11,7 +11,7 @@
+     $headerpath = File::Spec->catdir(File::Spec->updir, File::Spec->updir);
+ } else {
+ 	require Config;
+-    $headerpath = File::Spec->catdir($Config::Config{archlibexp}, "CORE");
++    $headerpath = File::Spec->catdir($ENV{DESTDIR},$Config::Config{archlibexp}, "CORE");
+ }
+ 
+ my @names = ({ name => 'HEf_SVKEY', macro => 1, type => "IV" },
+diff -Naur perl-5.30.2-old/lib/ExtUtils/Embed.pm perl-5.30.2-new/lib/ExtUtils/Embed.pm
+--- perl-5.30.2-old/lib/ExtUtils/Embed.pm	2019-10-24 13:18:04.000000000 -0700
++++ perl-5.30.2-new/lib/ExtUtils/Embed.pm	2020-05-16 10:53:50.540005347 -0700
+@@ -222,7 +222,7 @@
+ 		|| "-lperl";
+     }
+ 
+-    my $lpath = File::Spec->catdir($Config{archlibexp}, 'CORE');
++    my $lpath = File::Spec->catdir($ENV{DESTDIR},$Config{archlibexp}, 'CORE');
+     $lpath = qq["$lpath"] if $^O eq 'MSWin32';
+     my($extralibs, $bsloadlibs, $ldloadlibs, $ld_run_path) =
+ 	MM->ext(join ' ', "-L$lpath", $libperl, @potential_libs);
+@@ -249,7 +249,7 @@
+ }
+ 
+ sub perl_inc {
+-    my $dir = File::Spec->catdir($Config{archlibexp}, 'CORE');
++    my $dir = File::Spec->catdir($ENV{DESTDIR},$Config{archlibexp}, 'CORE');
+     $dir = qq["$dir"] if $^O eq 'MSWin32';
+     my_return(" -I$dir ");
+ }
