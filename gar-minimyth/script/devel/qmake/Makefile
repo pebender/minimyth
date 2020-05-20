@@ -9,7 +9,7 @@ define BLURB
 endef
 
 ifeq ($(DESTIMG),build)
-DEPENDS    = lang/c lang/cxx build-tool/make xorg/libdrm xorg/libxcb X11/libxkbcommon
+DEPENDS    = lang/c lang/cxx build-tool/make xorg/libdrm
 BUILDDEPS  = perl/perl devel/bison devel/flex
 else
 DEPENDS    =
@@ -86,14 +86,13 @@ CONFIGURE_ARGS = \
 	-no-gbm \
 	-no-kms \
 	-no-linuxfb \
-	-qt-xcb \
+	-no-xcb \
 	-no-libudev \
 	-no-evdev \
 	-no-libinput \
 	-no-mtdev \
 	-no-tslib \
-	-no-xcb-xinput \
-	-xkbcommon \
+	-no-xkbcommon \
 	-no-gif \
 	-no-ico \
 	-no-libpng \
@@ -103,12 +102,6 @@ CONFIGURE_ARGS = \
 
 GAR_EXTRA_CONF += qt/qtbase/package-api.mk
 include ../../gar.mk
-
-# qt 5.14.0 fails to compile with gcc 9.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-
-#LDFLAGS  :=
 
 MKSPECS_BUILD_DIR   = $(WORKSRC)/mkspecs
 MKSPECS_INSTALL_DIR = $(build_DESTDIR)$(build_qt5prefix)/mkspecs
@@ -153,7 +146,8 @@ configure-platform-mkspec:
 	@echo "QMAKE_LIBDIR_X11     ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
 	@echo "QMAKE_INCDIR_OPENGL  ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
 	@echo "QMAKE_LIBDIR_OPENGL  ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
-	@echo "load(qt_config)"                                      >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "QMAKE_CFLAGS_ISYSTEM ="                             >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
+	@echo "load(qt_config)"                                    >> $(MKSPECS_BUILD_DIR)/minimyth-$(DESTIMG)/qmake.conf
 	@$(MAKECOOKIE)
 
 $(WORKSRC)/configure: configure-platform-spec
