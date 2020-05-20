@@ -1,5 +1,5 @@
 GARNAME = eventlircd
-GARVERSION = 20200410-6522077
+GARVERSION = 20200518-7e8f5d7
 CATEGORIES = system
 MASTER_SITES = git://github.com/pebender/eventlircd.git/
 DISTFILES = $(DISTNAME).tar.bz2
