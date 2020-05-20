@@ -3,6 +3,7 @@ GARVERSION = 0.2
 CATEGORIES = utils
 MASTER_SITES = http://linvdr.org/download/regionset/
 DISTFILES = $(DISTNAME).tar.gz
+PATCHFILES = $(DISTNAME)-fpos64_t.patch
 LICENSE = GPL2
 
 DESCRIPTION =

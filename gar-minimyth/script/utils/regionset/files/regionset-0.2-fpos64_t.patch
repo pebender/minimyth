@@ -1,0 +1,21 @@
+diff -Naur regionset-0.2-old/dvd_udf.c regionset-0.2-new/dvd_udf.c
+--- regionset-0.2-old/dvd_udf.c	2012-12-30 06:31:15.000000000 -0800
++++ regionset-0.2-new/dvd_udf.c	2020-05-16 20:18:16.648159231 -0700
+@@ -177,7 +177,7 @@
+ // returns number of read bytes on success, 0 or negative error number on error
+ int UDFReadLB(unsigned long int lb_number, unsigned int block_count, unsigned char *data) 
+ {
+-#if defined off64_t
++#if 0
+ 	fpos64_t pos;
+ #else
+ 	u64 pos;  // 64 bit position
+@@ -218,7 +218,7 @@
+ 		}
+ 		return result;
+ 	} else if (dvdromfile != NULL) {  // block device or one image file
+-#if defined off64_t
++#if 0
+ 		pos = (fpos64_t)lb_number * (fpos64_t)DVD_VIDEO_LB_LEN;
+ 		if (fsetpos64(dvdromfile, &pos) < 0) return 0; // position not found
+ #else
