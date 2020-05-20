@@ -1,0 +1,957 @@
+diff -Naur xscreensaver-5.44-old/configure xscreensaver-5.44-new/configure
+--- xscreensaver-5.44-old/configure	2020-03-20 18:40:16.000000000 -0700
++++ xscreensaver-5.44-new/configure	2020-05-17 15:10:02.475457534 -0700
+@@ -7114,7 +7114,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -8450,7 +8450,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -8820,7 +8820,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -8845,13 +8845,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -8913,13 +8913,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9056,7 +9056,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -9080,13 +9080,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9148,13 +9148,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9290,7 +9290,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -9312,13 +9312,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9455,7 +9455,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -9477,13 +9477,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9624,7 +9624,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -9647,13 +9647,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9717,13 +9717,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9872,7 +9872,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -9896,13 +9896,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -9964,13 +9964,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -10032,13 +10032,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -10110,7 +10110,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -10168,13 +10168,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -10246,7 +10246,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -10540,7 +10540,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -10717,7 +10717,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -10741,7 +10741,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -10906,7 +10906,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -10939,7 +10939,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -10989,13 +10989,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -11075,13 +11075,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -11279,7 +11279,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -11333,7 +11333,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -11476,7 +11476,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -11604,7 +11604,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -12644,7 +12644,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -12668,7 +12668,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -12702,7 +12702,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -12745,7 +12745,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -12800,7 +12800,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -12863,13 +12863,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -12939,13 +12939,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -13075,7 +13075,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -13092,7 +13092,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -13127,7 +13127,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -13252,13 +13252,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -13319,13 +13319,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -13445,7 +13445,7 @@
+ 
+          ac_save_CPPFLAGS="$CPPFLAGS"
+          if test \! -z "$includedir" ; then
+-           CPPFLAGS="$CPPFLAGS -I$includedir"
++           CPPFLAGS="$CPPFLAGS"
+          fi
+          CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+@@ -13496,13 +13496,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -13638,7 +13638,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -13658,7 +13658,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -13676,7 +13676,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -13702,13 +13702,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -13783,13 +13783,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -13849,13 +13849,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -14073,7 +14073,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -14095,13 +14095,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -14291,7 +14291,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -14310,7 +14310,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -14330,7 +14330,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -14362,13 +14362,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -14428,13 +14428,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -14506,13 +14506,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -14642,7 +14642,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -14664,13 +14664,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -14742,13 +14742,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -14911,7 +14911,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -14939,13 +14939,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -15128,7 +15128,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -15156,13 +15156,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -15258,13 +15258,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -15327,13 +15327,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -15456,7 +15456,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -15475,7 +15475,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -15494,7 +15494,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -15523,13 +15523,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -15665,7 +15665,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -15758,7 +15758,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -16166,7 +16166,7 @@
+ 
+   ac_save_CPPFLAGS="$CPPFLAGS"
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+   CPPFLAGS=`eval eval eval eval eval eval eval eval eval echo $CPPFLAGS`
+@@ -16185,13 +16185,13 @@
+ #  ac_save_LIBS="$LIBS"
+ 
+   if test \! -z "$includedir" ; then
+-    CPPFLAGS="$CPPFLAGS -I$includedir"
++    CPPFLAGS="$CPPFLAGS"
+   fi
+   # note: $X_CFLAGS includes $x_includes
+   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+ 
+   if test \! -z "$libdir" ; then
+-    LDFLAGS="$LDFLAGS -L$libdir"
++    LDFLAGS="$LDFLAGS"
+   fi
+   # note: $X_LIBS includes $x_libraries
+   LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+@@ -16345,11 +16345,11 @@
+ 
+ 
+ if test \! -z "$includedir" ; then
+-  INCLUDES="$INCLUDES -I$includedir"
++  INCLUDES="$INCLUDES"
+ fi
+ 
+ if test \! -z "$libdir" ; then
+-  LDFLAGS="$LDFLAGS -L$libdir"
++  LDFLAGS="$LDFLAGS"
+ fi
+ 
+ 
