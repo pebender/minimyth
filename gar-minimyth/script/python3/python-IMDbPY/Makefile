@@ -1,7 +1,7 @@
 GARNAME = python-IMDbPY
-GARVERSION = 4.9
+GARVERSION = 6.8
 CATEGORIES = python3
-MASTER_SITES = http://downloads.sourceforge.net/project/imdbpy/IMDbPY/4.9/
+MASTER_SITES = https://sourceforge.net/projects/imdbpy/files/IMDbPY/$(GARVERSION)/
 DISTFILES = $(patsubst python-%,%,$(GARNAME))-$(GARVERSION).tar.gz
 LICENSE =
 
@@ -16,11 +16,7 @@ WORKSRC = $(WORKDIR)/$(patsubst python-%,%,$(GARNAME))-$(GARVERSION)
 BUILD_SCRIPTS   = $(WORKSRC)/setup.py
 INSTALL_SCRIPTS = $(WORKSRC)/setup.py
 
-CONFIGURE_ARGS = \
-      --without-lxml \
-      --without-sqlobject \
-      --without-sqlalchemy \
-      --without-sql
+CONFIGURE_ARGS =
 BUILD_ARGS     =
 INSTALL_ARGS   = \
 	--prefix=$(DESTDIR)$(prefix)
@@ -30,7 +26,6 @@ INSTALL_ENV    = \
 	PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
 ifneq ($(DESTIMG),build)
-BUILD_ARGS += --cross-compile
 BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 endif
 
