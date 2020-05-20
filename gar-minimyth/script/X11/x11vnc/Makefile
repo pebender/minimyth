@@ -2,9 +2,9 @@ GARNAME = x11vnc
 GARVERSION = 0.9.16
 CATEGORIES = X11
 MASTER_SITES = https://github.com/LibVNC/x11vnc/archive/
-http://downloads.sourceforge.net/project/libvncserver/$(GARNAME)/$(GARVERSION)/
 DISTFILES = $(GARVERSION).tar.gz
 PATCHFILES = \
+	$(DISTNAME)-input_event.patch \
 	$(DISTNAME)-automake_1.13.patch \
 	$(DISTNAME)-config_h.patch
 LICENSE = GPL2

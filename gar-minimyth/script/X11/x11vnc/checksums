@@ -1,3 +1,4 @@
 64172e8f896389ec963fff93415f0d93  download/0.9.16.tar.gz
+8dc7bb547cca72a303302c4cea9fb9b8  download/x11vnc-0.9.16-input_event.patch
 6914300c24905591cef0a9837ff419e0  download/x11vnc-0.9.16-automake_1.13.patch
 f30273ae288a3bdff913e68b9cf7f60d  download/x11vnc-0.9.16-config_h.patch
