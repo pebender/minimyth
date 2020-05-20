@@ -1,9 +1,12 @@
 GARNAME = qtbase-everywhere-src
 GARVERSION = $(QT5_VERSION)
 CATEGORIES = qt
-MASTER_SITES = https://download.qt.io/archive/qt/5.14/$(GARVERSION)/submodules/
+MASTER_SITES  = https://download.qt.io/archive/qt/$(word 1,$(subst ., ,$(GARVERSION))).$(word 2,$(subst ., ,$(GARVERSION)))/$(GARVERSION)/submodules/
+MASTER_SITES += https://download.qt.io/development_releases/qt/$(word 1,$(subst ., ,$(GARVERSION))).$(word 2,$(subst ., ,$(GARVERSION)))/$(GARVERSION)/submodules/
 DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = \
+	$(DISTNAME)-input_event.patch \
+	$(DISTNAME)-qt_socklen_t.patch \
 	$(DISTNAME).patch.gar
 LICENSE = LGPL2_1
 
@@ -84,20 +87,17 @@ CONFIGURE_ARGS = \
 	$(if $(filter $(GARBUILD),$(GARHOST)),-no-libinput,-libinput) \
 	-mtdev \
 	-no-tslib \
-	-xcb-xinput \
+	-no-xcb-xinput \
 	-xkbcommon \
 	-gif \
 	-ico \
 	-system-libpng \
 	-system-libjpeg \
 	-sql-mysql \
-	-mysql_config "$(DESTDIR)$(bindir)/config/mysql_config" \
+	-mysql_config "$(DESTDIR)$(bindir)/config.d/mysql_config" \
 	-sql-sqlite \
 	-qt-sqlite
-ifeq ($(DESTIMG),build)
-xBUILD_ENV = \
-	LD_LIBRARY_PATH="$(PWD)/$(WORKSRC)/lib:$(LD_LIBRARY_PATH)"
-else
+ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	-xplatform minimyth-main \
 	-hostprefix $(build_DESTDIR)$(build_qt5prefix) \
@@ -109,12 +109,6 @@ endif
 
 GAR_EXTRA_CONF += devel/gcc/package-api.mk devel/glibc/package-api.mk
 include ../../gar.mk
-
-# qt 5.12.6 fails to compile with gcc 9.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-
-#LDFLAGS  :=
 
 pre-configure:
 	@cp -rfv $(build_DESTDIR)$(build_qt5prefix)/mkspecs/minimyth-build $(WORKSRC)/mkspecs/minimyth-build

@@ -1,0 +1,68 @@
+diff -Naur qtbase-everywhere-src-5.14.2-old/mkspecs/linux-clang/qplatformdefs.h qtbase-everywhere-src-5.14.2-new/mkspecs/linux-clang/qplatformdefs.h
+--- qtbase-everywhere-src-5.14.2-old/mkspecs/linux-clang/qplatformdefs.h	2020-03-27 02:49:31.000000000 -0700
++++ qtbase-everywhere-src-5.14.2-new/mkspecs/linux-clang/qplatformdefs.h	2020-05-16 16:52:24.420832578 -0700
+@@ -81,10 +81,10 @@
+ 
+ #undef QT_SOCKLEN_T
+ 
+-#if defined(__GLIBC__) && (__GLIBC__ >= 2)
+-#define QT_SOCKLEN_T            socklen_t
+-#else
++#if defined(__GLIBC__) && (__GLIBC__ < 2)
+ #define QT_SOCKLEN_T            int
++#else
++#define QT_SOCKLEN_T            socklen_t
+ #endif
+ 
+ #if defined(_XOPEN_SOURCE) && (_XOPEN_SOURCE >= 500)
+diff -Naur qtbase-everywhere-src-5.14.2-old/mkspecs/linux-llvm/qplatformdefs.h qtbase-everywhere-src-5.14.2-new/mkspecs/linux-llvm/qplatformdefs.h
+--- qtbase-everywhere-src-5.14.2-old/mkspecs/linux-llvm/qplatformdefs.h	2020-03-27 02:49:31.000000000 -0700
++++ qtbase-everywhere-src-5.14.2-new/mkspecs/linux-llvm/qplatformdefs.h	2020-05-16 16:51:52.778834303 -0700
+@@ -82,10 +82,10 @@
+ 
+ #undef QT_SOCKLEN_T
+ 
+-#if defined(__GLIBC__) && (__GLIBC__ >= 2)
+-#define QT_SOCKLEN_T            socklen_t
+-#else
++#if defined(__GLIBC__) && (__GLIBC__ < 2)
+ #define QT_SOCKLEN_T            int
++#else
++#define QT_SOCKLEN_T            socklen_t
+ #endif
+ 
+ #if defined(_XOPEN_SOURCE) && (_XOPEN_SOURCE >= 500)
+diff -Naur qtbase-everywhere-src-5.14.2-old/mkspecs/linux-lsb-g++/qplatformdefs.h qtbase-everywhere-src-5.14.2-new/mkspecs/linux-lsb-g++/qplatformdefs.h
+--- qtbase-everywhere-src-5.14.2-old/mkspecs/linux-lsb-g++/qplatformdefs.h	2020-03-27 02:49:31.000000000 -0700
++++ qtbase-everywhere-src-5.14.2-new/mkspecs/linux-lsb-g++/qplatformdefs.h	2020-05-16 16:51:42.534834861 -0700
+@@ -89,10 +89,10 @@
+ 
+ #define QT_OPEN_LARGEFILE       0
+ 
+-#if defined(__GLIBC__) && (__GLIBC__ >= 2)
+-#define QT_SOCKLEN_T            socklen_t
+-#else
++#if defined(__GLIBC__) && (__GLIBC__ < 2)
+ #define QT_SOCKLEN_T            int
++#else
++#define QT_SOCKLEN_T            socklen_t
+ #endif
+ 
+ #ifndef SIOCGIFBRDADDR
+diff -Naur qtbase-everywhere-src-5.14.2-old/mkspecs/lynxos-g++/qplatformdefs.h qtbase-everywhere-src-5.14.2-new/mkspecs/lynxos-g++/qplatformdefs.h
+--- qtbase-everywhere-src-5.14.2-old/mkspecs/lynxos-g++/qplatformdefs.h	2020-03-27 02:49:31.000000000 -0700
++++ qtbase-everywhere-src-5.14.2-new/mkspecs/lynxos-g++/qplatformdefs.h	2020-05-16 16:52:14.682833109 -0700
+@@ -74,10 +74,10 @@
+ 
+ #undef QT_SOCKLEN_T
+ 
+-#if defined(__GLIBC__) && (__GLIBC__ >= 2)
+-#define QT_SOCKLEN_T            socklen_t
+-#else
++#if defined(__GLIBC__) && (__GLIBC__ < 2)
+ #define QT_SOCKLEN_T            int
++#else
++#define QT_SOCKLEN_T            socklen_t
+ #endif
+ 
+ #if defined(_XOPEN_SOURCE) && (_XOPEN_SOURCE >= 500)

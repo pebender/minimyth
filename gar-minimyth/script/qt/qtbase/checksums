@@ -1,2 +1,4 @@
 b6c14e01ff20925305be109785ed4aa4  download/qtbase-everywhere-src-5.14.2.tar.xz
+31a26ddd87c6e40728cff149ce695074  download/qtbase-everywhere-src-5.14.2-input_event.patch
+e01302cde65921733db9114686a99b48  download/qtbase-everywhere-src-5.14.2-qt_socklen_t.patch
 ef2f64d3db76abf30b5472ddb5d9d9ac  download/qtbase-everywhere-src-5.14.2.patch.gar

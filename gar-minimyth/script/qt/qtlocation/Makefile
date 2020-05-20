@@ -1,7 +1,8 @@
 GARNAME = qtlocation-everywhere-src
 GARVERSION = $(QT5_VERSION)
 CATEGORIES = qt
-MASTER_SITES = https://download.qt.io/archive/qt/5.14/$(GARVERSION)/submodules/
+MASTER_SITES  = https://download.qt.io/archive/qt/$(word 1,$(subst ., ,$(GARVERSION))).$(word 2,$(subst ., ,$(GARVERSION)))/$(GARVERSION)/submodules/
+MASTER_SITES += https://download.qt.io/development_releases/qt/$(word 1,$(subst ., ,$(GARVERSION))).$(word 2,$(subst ., ,$(GARVERSION)))/$(GARVERSION)/submodules/
 DISTFILES = $(DISTNAME).tar.xz
 LICENSE = LGPL2_1
 
