@@ -51,7 +51,8 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-lib-suffixes \
 	--disable-rpath-hack \
 	--enable-overwrite \
-	--enable-widec
+	--enable-widec \
+	--disable-stripping
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
 	TIC=$(build_DESTDIR)$(build_bindir)/tic
@@ -64,24 +65,20 @@ LD_LIBRARY_PATH :=
 GAR_EXTRA_CONF += lib/ncursesw/package-api.mk
 include ../../gar.mk
 
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))   -fno-lto
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS)) -fno-lto
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))  -fno-lto
-
 pre-configure:
 	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
 	@$(MAKECOOKIE)
 
 post-install:
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@rm -fv $(DESTDIR)$(bindir)/config/ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)/config/ncurses6-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
-	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)/config/ncurses6-config
-	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/ncursesw6-config
-	@ln -sfv ncursesw6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
-	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@rm -fv $(DESTDIR)$(bindir)/config.d/ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/ncurses6-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncurses6-config
+	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)/config.d/ncurses6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config.d/ncursesw6-config
+	@ln -sfv ncursesw6-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncursesw6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncurses6-config
 	@$(foreach lib, ncurses form panel menu, ln -sfv ${lib}.pc $(PKG_CONFIG_LIBDIR)/${lib}w.pc;)
 	@$(foreach lib, ncurses form panel menu, ln -sfv lib${lib}.so $(DESTDIR)$(libdir)/lib${lib}w.so;)
 	@#$(foreach lib, ncurses form panel menu, rm -fv $(DESTDIR)$(libdir)/lib${lib}.a $(DESTDIR)$(libdir)/lib${lib}_g.a;)

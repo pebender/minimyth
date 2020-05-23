@@ -694,10 +694,6 @@ prune-sources: \
 	prune-delete-$(WORKSRC)$(sourcedir)
 	$(MAKECOOKIE)
 
-# All the place where the compiler lives
-prune-compiler: $(addprefix prune-delete-$(WORKSRC),$(exec_prefix)/$(GARTARGET) $(libdir)/gcc-lib)
-	$(MAKECOOKIE)
-
 # Deletion of static libraries from various lib directories
 # XXX: Is there any reason to list /usr/*?
 prune-static-libraries:

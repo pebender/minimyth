@@ -126,9 +126,9 @@ post-install:
 	@rm -f $(DESTDIR)$(libdir)/libSDL2.a
 	@rm -f $(DESTDIR)$(libdir)/libSDL2main.a
 	@rm -f $(DESTDIR)$(libdir)/libSDL2_test.a
-	@rm -f $(DESTDIR)$(bindir)/config/sdl2-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-sdl2-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/sdl2-config $(DESTDIR)$(bindir)/config/sdl2-config
-	@ln -s sdl2-config $(DESTDIR)$(bindir)/config/$(GARHOST)-sdl2-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/sdl2-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-sdl2-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/sdl2-config $(DESTDIR)$(bindir)/config.d/sdl2-config
+	@ln -s sdl2-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-sdl2-config
 	@$(MAKECOOKIE)

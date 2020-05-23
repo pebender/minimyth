@@ -52,11 +52,19 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-libsndfile
 
 CONFIGURE_ENV = \
-	SDL_CONFIG=$(DESTDIR)$(bindir)/config/sdl2-config
+	SDL_CONFIG=$(DESTDIR)$(bindir)/config.d/sdl2-config
 
 include ../../gar.mk
 
-CPPFLAGS :=
-CFLAGS :=
-CXXFLAGS :=
-LDFLAGS :=
+#CPPFLAGS :=
+#CFLAGS :=
+#CXXFLAGS := 
+#LDFLAGS :=
+CFLAGS += -Wl,-z,notext
+CXXFLAGS += -Wl,-z,notext
+LDFLAGS += -Wl,-z,notext
+
+pre-configure:
+	@cp -fv $(build_DESTDIR)$(build_datadir)/libtool/config/config.guess $(WORKSRC)/config.guess
+	@cp -fv $(build_DESTDIR)$(build_datadir)/libtool/config/config.sub   $(WORKSRC)/config.sub
+	@$(MAKECOOKIE)

@@ -1,10 +1,13 @@
 GARNAME = linux
 GARVERSION = $(LINUX_MAJOR_VERSION).$(LINUX_MINOR_VERSION)$(if $(LINUX_TEENY_VERSION),$(if $(filter-out 0,$(LINUX_TEENY_VERSION)),.$(LINUX_TEENY_VERSION)))$(LINUX_EXTRA_VERSION)
-CATEGORIES = kernel-5.5
+CATEGORIES = kernel
 MASTER_SITES = https://cdn.kernel.org/pub/linux/kernel/v$(LINUX_MAJOR_VERSION).x/
-CONFIGFILE = $(DISTNAME)-$(GARCH_FAMILY)-$(GARCH).config
-DISTFILES = $(DISTNAME).tar.xz $(CONFIGFILE)
-PATCHFILES = $(DISTNAME)-defaults.patch
+MASTER_SITES += https://git.kernel.org/torvalds/t/
+DISTFILES = $(DISTNAME).tar.gz $(CONFIGFILE)
+CONFIGFILE = \
+	$(GARNAME)-$(LINUX_MAJOR_VERSION).$(LINUX_MINOR_VERSION)-$(GARCH_FAMILY)-$(GARCH).config
+PATCHFILES = \
+	$(GARNAME)-$(LINUX_MAJOR_VERSION).$(LINUX_MINOR_VERSION)-defaults.patch
 LICENSE = GPL2
 
 DESCRIPTION = 
@@ -28,6 +31,19 @@ INSTALL_ENV = $(LINUX_MAKE_ENV) INSTALL_PATH="$(DESTDIR)$(LINUX_DIR)" INSTALL_MO
 
 include ../../gar.mk
 
+CC := $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-gcc
+CXX := $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-g++
+CPP := $(build_DESTDIR)$(build_bindir)/$(GARHOST)-cpp
+LD := $(build_DESTDIR)$(build_bindir)/ld.lld
+OBJDUMP := $(build_DESTDIR)$(build_bindir)/llvm-objdump
+OBJCOPY := $(build_DESTDIR)$(build_bindir)/llvm-objcopy
+STRIP := $(build_DESTDIR)$(build_bindir)/llvm-strip
+RANLIB := $(build_DESTDIR)$(build_bindir)/llvm-ranlib
+READELF := $(build_DESTDIR)$(build_bindir)/llvm-readelf
+NM := $(build_DESTDIR)$(build_bindir)/llvm-nm
+AS := $(build_DESTDIR)$(build_bindir)/as
+AR := $(build_DESTDIR)$(build_bindir)/llvm-ar
+
 LDFLAGS += -Wl,-z,notext
 
 configure-custom:
@@ -49,3 +65,37 @@ install-custom:
 	@cp $(WORKSRC)/System.map                           $(DESTDIR)$(LINUX_DIR)/System.map
 	@$(INSTALL_ENV) $(MAKE) $(INSTALL_ARGS) -C $(WORKSRC) modules_install
 	@$(MAKECOOKIE)
+
+source-update:
+	@$(MAKE) source-update-source
+	@$(MAKE) source-update-patches
+
+source-update-source:
+	@$(MAKE) clean
+	@$(MAKE) fetch
+	@$(MAKE) $(GARCHIVEDIR)/$(DISTNAME).tar.gz
+	@$(MAKE) clean
+
+source-update-patches:
+	@$(MAKE) clean
+	@$(MAKE) extract
+	@$(foreach PATCHFILE, $(PATCHFILES), \
+		echo "*** applying $(PATCHFILE) ***" ; \
+		cd $(WORKDIR) || exit 1 ; \
+		chmod -R u+w $(DISTNAME) ; \
+		mv $(DISTNAME) $(DISTNAME)-old || exit 1 ; \
+		cp -r $(DISTNAME)-old $(DISTNAME)-new || exit 1 ; \
+		cd $(DISTNAME)-new || exit 1 ; \
+		SIMPLE_BACKUP_SUFFIX=.gar-source-update-patches patch -p1 < ../../../files/$(PATCHFILE) || exit 1 ; \
+		cd ../ || exit 1 ; \
+		find $(DISTNAME)-new -name *.gar-source-update-patches -exec rm {} \; || exit 1 ; \
+		( diff -Naur $(DISTNAME)-old $(DISTNAME)-new > ../../files/$(PATCHFILE) ; test $$? -lt 2 ) || exit 1 ; \
+		rm -fr $(DISTNAME)-old || exit 1 ; \
+		mv $(DISTNAME)-new $(DISTNAME) || exit 1 ; \
+		cd ../../ || exit 1 ; \
+		rm -f checksums~ || exit 1 ; \
+		cat checksums | grep -v $(DOWNLOADDIR)/$(PATCHFILE) > checksums~ || true ; \
+		md5sum $(DOWNLOADDIR)/$(PATCHFILE) >> checksums~ || exit 1 ; \
+		rm -f checksums || exit 1 ; \
+		mv -f checksums~ checksums || exit 1 ; )
+	@$(MAKE) clean

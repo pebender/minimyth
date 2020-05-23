@@ -166,6 +166,8 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@echo "installing busybox"
 	@main_DESTDIR=$@~ $(MAKE) -C $(mm_HOME)/script/utils/busybox DESTDIR=$@~ DESTIMG=$(DESTIMG) install
 	@rm -rf $@~/var
+	@# Copy loader link
+	@cp -Pf $(DESTDIR)/lib/ld-musl-*.so.1 $@~/lib
 	@# Copy binaries.
 	@$(call COPY_FILES, "binaries", "binary", $(DESTDIR), $@~, $(bindirs), $(MM_BINS))
 	@# Copy etcs.
@@ -220,10 +222,10 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 	@$(foreach build_var,$(build_vars), \
 		echo "$(build_var)='$(strip $($(build_var)))'" >> $@~$(versiondir)/minimyth.conf.mk ; )
 	@# Create the loader configuration file.
-	@rm -f $@~$(sysconfdir)/ld.so.conf
-	@$(foreach dir, $(libdirs_base), \
-		echo $(dir) >> $@~$(sysconfdir)/ld.so.conf ; )
-	@rm -f $@~$(sysconfdir)/ld.so.cache{,~}
+	@cd $@~/lib ; \
+		conf=`ls ld-musl-*.so.1 | sed -e 's%\.so\.1$$%.path%'` ; \
+		rm -f $@~$(sysconfdir)/$${conf} ; \
+		$(foreach item, $(libdirs_base), echo $(item) >> $@~$(sysconfdir)/$${conf} ; )
 	@# Make documentation links.
 	@mkdir -m 0755 -p $@~/srv/www/software
 	@ln -sf $(patsubst /%,%,$(call DIRSTODOTS,/srv/www/software))$(sourcedir)/gar-$(mm_NAME).tar.bz2 \
@@ -451,18 +453,20 @@ $(top_build)/image/rootfs: $(build_DESTDIR)$(build_rootdir) $(DESTDIR)$(rootdir)
 		fi ; \
 	 fi
 	@# Clean up permissions (at least somewhat)
-	@find $@~ -depth -exec file '{}' \; \
-		| grep -i 'ELF ..-bit LSB executable' \
-		| sed -e 's%:.*%%' \
-		| xargs chmod 0755
-	@find $@~ -depth -exec file '{}' \; \
-		| grep -i 'ELF ..-bit LSB shared object' \
-		| sed -e 's%:.*%%' \
-		| grep -v '*' \
-		| grep -v '/libc.so.[0-9]\+$$' \
-		| grep -v '/ld-linux.so.[0-9]\+$$' \
-		| grep -v '/ld-linux-x86-64.so.[0-9]\+$$' \
-		| xargs chmod 0644
+	@#find $@~ -depth -exec file '{}' \; \
+	#	| grep -E -i 'ELF ..-bit LSB executable' \
+	#	| sed -e 's%:.*%%' \
+	#	| xargs chmod 0755
+	@#find $@~ -depth -exec file '{}' \; \
+	#	| grep -i 'ELF ..-bit LSB shared object' \
+	#	| sed -e 's%:.*%%' \
+	#	| grep -v '*' \
+	#	| grep -v '/libc.so$$' \
+	#	| grep -v '/ld-musl-.*.so.[0-9]\+$$' \
+	#	| grep -v '/libc.so.[0-9]\+$$' \
+	#	| grep -v '/ld-linux.so.[0-9]\+$$' \
+	#	| grep -v '/ld-linux-x86-64.so.[0-9]\+$$' \
+	#	| xargs chmod 0644
 	@$(call SET_PERMISSIONS,$@~)
 	@touch $@~
 	@mv $@~ $@
@@ -494,6 +498,7 @@ $(top_build)/stage/image/rootfs: $(top_build)/image/rootfs
 	@ln -s rootfs-ro/dev                $@~/dev
 	@ln -s rootfs-ro/lib                $@~/lib
 	@ln -s rootfs-ro/usr                $@~/usr
+	@ln -s ../rootfs-ro/bin/echo        $@~/bin/echo
 	@ln -s ../rootfs-ro/bin/mkdir       $@~/bin/mkdir
 	@ln -s ../rootfs-ro/sbin/modprobe   $@~/sbin/modprobe
 	@ln -s ../rootfs-ro/bin/mount       $@~/bin/mount

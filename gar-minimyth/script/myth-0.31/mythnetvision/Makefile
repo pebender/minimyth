@@ -11,12 +11,16 @@ endef
 DEPENDS = \
 	lang/cxx \
 	$(CATEGORY)/mythtv \
-	python3/python
+	python3/python \
+	python3/python-pycurl \
+	python3/python-lxml \
+	python3/python-oauth
 BUILDDEPS = \
 	python3/python \
 	python3/python-pycurl \
 	python3/python-lxml \
 	python3/python-oauth
+
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 
@@ -30,7 +34,7 @@ CONFIGURE_ARGS = \
 	$(MYTHTV_PLUGINS_CONFIGURE_ARGS) \
 	--enable-mythnetvision
 
-CONFIGURE_ENV = $(MYTHTV_CONFIGURE_ENV) PYTHONXCPREFIX=$(DESTDIR)$(prefix)
+CONFIGURE_ENV = $(MYTHTV_CONFIGURE_ENV)
 BUILD_ENV     = $(MYTHTV_BUILD_ENV)
 INSTALL_ENV   = $(MYTHTV_INSTALL_ENV)
 

@@ -54,21 +54,21 @@ include ../../gar.mk
 post-install: post-install-configs
 
 post-install-configs:
-	@rm -fv $(DESTDIR)$(libdir)/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)/config/libpython$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR).a
-	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
-	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON3_VERSION_MAJOR)-config
-	@rm -fv $(DESTDIR)$(bindir)/config/python-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR)-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python-config
-	@mkdir -pv $(DESTDIR)$(bindir)/config
-	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config $(DESTDIR)$(bindir)/config/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
-	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON3_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config/python$(PYTHON3_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(libdir)/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)/config.d/libpython$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR).a
+	@rm -fv $(DESTDIR)$(bindir)/config.d/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/python$(PYTHON3_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/python-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
+	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config $(DESTDIR)$(bindir)/config.d/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
+	@mv -fv $(DESTDIR)$(bindir)/python$(PYTHON3_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config.d/python$(PYTHON3_VERSION_MAJOR)-config
 	@rm -fv $(DESTDIR)$(bindir)/python-config
-	@ln -sfv python$(PYTHON3_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config/python-config
-	@ln -sfv python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
-	@ln -sfv python$(PYTHON3_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR)-config
-	@ln -sfv python-config $(DESTDIR)$(bindir)/config/$(GARHOST)-python-config
+	@ln -sfv python$(PYTHON3_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config.d/python-config
+	@ln -sfv python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
+	@ln -sfv python$(PYTHON3_VERSION_MAJOR)-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR)-config
+	@ln -sfv python-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python-config
 	@rm -fv $(DESTDIR)$(bindir)/python
 	@ln -sfv python$(PYTHON3_VERSION_MAJOR) $(DESTDIR)$(bindir)/python
 	@$(MAKECOOKIE)
@@ -79,10 +79,10 @@ clean-all:
 	@rm -fv $(DESTDIR)$(bindir)/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)
 	@rm -fv $(DESTDIR)$(bindir)/python$(PYTHON3_VERSION_MAJOR)
 	@rm -fv $(DESTDIR)$(bindir)/python
-	@rm -fv $(DESTDIR)$(bindir)/config/python-config
-	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON3_VERSION_MAJOR)-config
-	@rm -fv $(DESTDIR)$(bindir)/config/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR)-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/python-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/python$(PYTHON3_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR)-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-python$(PYTHON3_VERSION_MAJOR).$(PYTHON3_VERSION_MINOR)-config
 	@$(MAKE) clean-image

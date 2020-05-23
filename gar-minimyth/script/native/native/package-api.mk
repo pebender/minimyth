@@ -2,6 +2,7 @@ native_bins = $(strip $(sort \
 	bash \
 	bison \
 	bzip2 \
+	cmake \
 	coreutils \
 	diffutils \
 	file \
@@ -15,6 +16,8 @@ native_bins = $(strip $(sort \
 	m4 \
 	make \
 	patch \
+	pkg_config \
+	python3 \
 	sed \
 	tar \
 	wget \
@@ -33,6 +36,10 @@ native_bins_bison = \
 # Overridden by binaries from package utils/bzip2.
 native_bins_bzip2 = \
 	bzip2
+
+# Overridden by binaries from package devel/cmake.
+native_bins_cmake = \
+	cmake
 
 # Overridden by binaries from package utils/coreutils, except 'su'.
 native_bins_coreutils = \
@@ -129,6 +136,14 @@ native_bins_make = \
 # Overridden by binaries from package devel/patch.
 native_bins_patch = \
 	patch
+
+# Overridden by binaries from package devel/pkg-config.
+native_bins_pkg_config = \
+	pkg-config
+
+# Overridden by binaries from package python3/python.
+native_bins_python3 = \
+	python3
 
 # Overridden by binaries from package utils/sed.
 native_bins_sed = \

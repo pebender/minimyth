@@ -115,6 +115,8 @@ pre-configure:
 	@cd $(WORKSRC) ; touch INSTALL
 	@cd $(WORKSRC) ; touch NEWS
 	@cd $(WORKSRC) ; touch README
+	@cp -fv $(build_DESTDIR)$(build_datadir)/libtool/config/config.guess $(WORKSRC)/build-scripts/config.guess
+	@cp -fv $(build_DESTDIR)$(build_datadir)/libtool/config/config.sub   $(WORKSRC)/build-scripts/config.sub
 	@# Skip autoheader because there is a problem with AC_DEFINE's in the configure.in of SDL 1.2.15.
 	@# Add include directory 'acinclude' because SDL 1.2.15 has no Makefile.am in which to specify it.
 	@$(call RUN_AUTOTOOLS, \
@@ -127,9 +129,9 @@ post-install:
 	@rm -f $(DESTDIR)$(libdir)/libSDL.la
 	@rm -f $(DESTDIR)$(libdir)/libSDLmain.la
 	@rm -f $(DESTDIR)$(libdir)/libSDLmain.a
-	@rm -f $(DESTDIR)$(bindir)/config/sdl-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-sdl-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/sdl-config $(DESTDIR)$(bindir)/config/sdl-config
-	@ln -s sdl-config $(DESTDIR)$(bindir)/config/$(GARHOST)-sdl-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/sdl-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-sdl-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/sdl-config $(DESTDIR)$(bindir)/config.d/sdl-config
+	@ln -s sdl-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-sdl-config
 	@$(MAKECOOKIE)

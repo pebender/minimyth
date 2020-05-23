@@ -1,4 +1,4 @@
-build_DESTDIR = $(tainted_build_DESTDIR)
-build_rootdir = $(tainted_build_rootdir)
+build_DESTDIR = $(dirty_DESTDIR)
+build_rootdir = $(dirty_rootdir)
 DESTDIR = $(build_DESTDIR_swapped)
 rootdir = $(build_rootdir_swapped)

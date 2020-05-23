@@ -34,23 +34,14 @@ build_rootdir ?= $(mm_HOME)/images/build
 build_DESTDIR_swapped ?= $(mm_HOME)/images/build
 build_rootdir_swapped ?=
 
-tainted_main_DESTDIR ?= $(mm_HOME)/images/tainted-main
-tainted_main_rootdir ?=
-tainted_main_prefix ?= $(tainted_main_rootdir)/usr
-tainted_main_bindir ?= $(tainted_main_prefix)/bin
-tainted_main_libdir ?= $(tainted_main_prefix)/lib
-tainted_main_includedir ?= $(tainted_main_prefix)/include
-tainted_main_exec_prefix ?= $(tainted_main_rootdir)/usr
-tainted_main_libexecdir ?= $(tainted_main_exec_prefix)/lib
-
-tainted_build_DESTDIR ?= $(mm_HOME)/images/tainted-build
-tainted_build_rootdir ?=
-tainted_build_prefix ?= $(tainted_build_rootdir)/usr
-tainted_build_bindir ?= $(tainted_build_prefix)/bin
-tainted_build_libdir ?= $(tainted_build_prefix)/lib
-tainted_build_includedir ?= $(tainted_build_prefix)/include
-tainted_build_exec_prefix ?= $(tainted_build_rootdir)/usr
-tainted_build_libexecdir ?= $(tainted_build_exec_prefix)/lib
+dirty_DESTDIR ?= $(mm_HOME)/images/dirty
+dirty_rootdir ?=
+dirty_prefix ?= $(dirty_rootdir)/usr
+dirty_bindir ?= $(dirty_prefix)/bin
+dirty_libdir ?= $(dirty_prefix)/lib
+dirty_includedir ?= $(dirty_prefix)/include
+dirty_exec_prefix ?= $(dirty_rootdir)/usr
+dirty_libexecdir ?= $(dirty_exec_prefix)/lib
 
 native_DESTDIR ?= $(mm_HOME)/images/native
 native_rootdir ?=
@@ -143,7 +134,7 @@ main_OBJDUMP ?= $(build_DESTDIR)$(build_bindir)/llvm-objdump
 main_OBJCOPY ?= $(build_DESTDIR)$(build_bindir)/llvm-objcopy
 main_STRIP ?= $(build_DESTDIR)$(build_bindir)/llvm-strip
 main_RANLIB ?= $(build_DESTDIR)$(build_bindir)/llvm-ranlib
-main_READELF ?= $(build_DESTDIR)$(build_bindir)/lvm-readelf
+main_READELF ?= $(build_DESTDIR)$(build_bindir)/llvm-readelf
 main_NM ?= $(build_DESTDIR)$(build_bindir)/llvm-nm
 main_AS ?= $(build_DESTDIR)$(build_bindir)/llvm-as
 main_AR ?= $(build_DESTDIR)$(build_bindir)/llvm-ar
@@ -212,7 +203,7 @@ STAGE_EXPORTS = DESTDIR prefix exec_prefix bindir sbindir libexecdir datadir
 STAGE_EXPORTS += sysconfdir sharedstatedir localstatedir libdir infodir lispdir
 STAGE_EXPORTS += includedir oldincludedir mandir docdir sourcedir
 STAGE_EXPORTS += CPPFLAGS CFLAGS LDFLAGS CXXFLAGS
-STAGE_EXPORTS += CC CXX LD CPP AR AS NM RANLIB STRIP OBJCOPY OBJDUMP
+STAGE_EXPORTS += CC CXX LD CPP AR AS NM RANLIB READELF STRIP OBJCOPY OBJDUMP
 
 CONFIGURE_ENV += $(foreach TTT,$(STAGE_EXPORTS),$(TTT)="$($(TTT))")
 BUILD_ENV += $(foreach TTT,$(STAGE_EXPORTS),$(TTT)="$($(TTT))")

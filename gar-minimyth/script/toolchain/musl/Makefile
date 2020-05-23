@@ -3,6 +3,7 @@ GARVERSION = $(MUSL_VERSION)
 CATEGORIES = toolchain
 MASTER_SITES = https://www.musl-libc.org/releases/
 DISTFILES = $(DISTNAME).tar.gz
+PATCHFILES = $(DISTNAME)-symlink.patch
 LICENSE = MIT
 
 DESCRIPTION =

@@ -21,7 +21,7 @@ CONFIGURE_ARGS =
 BUILD_ARGS     = \
 	--with-openssl \
 	--openssl-dir="$(DESTDIR)$(prefix)" \
-	--curl-config="$(DESTDIR)$(bindir)/config/curl-config"
+	--curl-config="$(DESTDIR)$(bindir)/config.d/curl-config"
 INSTALL_ARGS   = \
 	--prefix=$(DESTDIR)$(prefix)
 CONFIGURE_ENV  =

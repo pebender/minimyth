@@ -13,7 +13,7 @@ DEPENDS = \
 	toolchain-build/libc-crt
 BUILDDEPS = \
 	native/native \
-	tainted-build/tainted-build
+	toolchain-dirty/toolchain-dirty
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile

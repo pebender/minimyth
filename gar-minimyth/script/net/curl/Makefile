@@ -119,9 +119,9 @@ pre-configure:
 
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libcurl.la
-	@rm -fv $(DESTDIR)$(bindir)/config/curl-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-curl-config
-	@mkdir -pv $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/curl-config $(DESTDIR)$(bindir)/config/curl-config
-	@ln -sfv curl-config $(DESTDIR)$(bindir)/config/$(GARHOST)-curl-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/curl-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-curl-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/curl-config $(DESTDIR)$(bindir)/config.d/curl-config
+	@ln -sfv curl-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-curl-config
 	@$(MAKECOOKIE)

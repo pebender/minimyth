@@ -172,17 +172,6 @@ CPPFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CFLAGS   += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CXXFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 
-# mythtv master's ffmpeg fails to compile with gcc 9.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
-
-# <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63745>
-# <http://www.gossamer-threads.com/lists/mythtv/users/584449>
-CFLAGS   += -fno-devirtualize
-CXXFLAGS += -fno-devirtualize
-LDFLAGS  += -fno-devirtualize
-
 git//%/$(DISTNAME).tar.bz2:
 	$(call FETCH_GIT, $*/mythtv.git, $(word 3,$(subst -, ,$(GARVERSION))), $(DISTNAME))
 

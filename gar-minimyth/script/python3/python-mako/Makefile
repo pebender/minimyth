@@ -29,8 +29,7 @@ INSTALL_ENV    = \
 	PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
 ifneq ($(DESTIMG),build)
-#BUILD_ARGS += --cross-compile
-#BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
+BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 endif
 
 GAR_EXTRA_CONF += python3/python/package-api.mk

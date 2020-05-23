@@ -36,13 +36,13 @@ include ../../gar.mk
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libpng.la
 	@rm -fv $(DESTDIR)$(libdir)/libpng16.la
-	@mkdir -pv $(DESTDIR)$(bindir)/config
-	@rm -fv $(DESTDIR)$(bindir)/config/libpng16-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng16-config
-	@mv -v $(DESTDIR)$(bindir)/libpng16-config $(DESTDIR)$(bindir)/config/libpng16-config
-	@ln -sfv libpng16-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng16-config
-	@rm -fv $(DESTDIR)$(bindir)/config/libpng-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng-config
-	@mv -v $(DESTDIR)$(bindir)/libpng-config $(DESTDIR)$(bindir)/config/libpng-config
-	@ln -sfv libpng-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libpng-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
+	@rm -fv $(DESTDIR)$(bindir)/config.d/libpng16-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libpng16-config
+	@mv -v $(DESTDIR)$(bindir)/libpng16-config $(DESTDIR)$(bindir)/config.d/libpng16-config
+	@ln -sfv libpng16-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libpng16-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/libpng-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libpng-config
+	@mv -v $(DESTDIR)$(bindir)/libpng-config $(DESTDIR)$(bindir)/config.d/libpng-config
+	@ln -sfv libpng-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libpng-config
 	@$(MAKECOOKIE)

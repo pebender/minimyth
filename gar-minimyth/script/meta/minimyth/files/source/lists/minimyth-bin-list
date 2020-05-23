@@ -22,7 +22,6 @@ glxinfo
 gtf
 halt
 hdparm
-iconv
 ifplugstatus
 init
 insmod
@@ -37,7 +36,6 @@ irw
 irxevent
 irxkeys
 LCDd
-ldconfig
 lighttpd
 lircd
 lircmd
@@ -77,7 +75,6 @@ renice
 rmmod
 rpcbind
 rpcinfo
-rxvt
 SDL-Test
 sensors
 sftp-server
@@ -89,8 +86,10 @@ test_io
 top
 tput
 udevadm
+udevd
 umount
 unclutter
+urxvt
 vdpauinfo
 wakelan
 X

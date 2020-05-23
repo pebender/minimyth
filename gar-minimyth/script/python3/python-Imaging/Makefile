@@ -28,7 +28,6 @@ INSTALL_ENV    = \
 	PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
 ifneq ($(DESTIMG),build)
-BUILD_ARGS += --cross-compile
 BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 endif
 

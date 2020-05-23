@@ -1,7 +1,5 @@
 LLVM_VERSION = 10.0.0
 
-WORKSRC = $(WORKDIR)/llvm-project-$(LLVM_VERSION)/$(GARNAME)
-
 LLVM_CONFIGURE_ARGS  = \
 	-DCMAKE_BUILD_TYPE=RELEASE \
 	-DCMAKE_VERBOSE_MAKEFILE=ON \
@@ -35,20 +33,20 @@ LLVM_CONFIGURE_ARGS += \
 endif
 
 install-config-build:
-	@rm -fv $(DESTDIR)$(bindir)/config/llvm-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-llvm-config
-	@mkdir -pv $(DESTDIR)$(bindir)/config
-	@cp -afv $(WORKSRC)_build/bin/llvm-config $(DESTDIR)$(bindir)/config/llvm-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/llvm-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-llvm-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
+	@cp -afv $(WORKSRC)_build/bin/llvm-config $(DESTDIR)$(bindir)/config.d/llvm-config
 	@$(MAKECOOKIE)
 
 install-config-main:
-	@rm -fv $(DESTDIR)$(bindir)/config/llvm-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-llvm-config
-	@mkdir -pv $(DESTDIR)$(bindir)/config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/llvm-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-llvm-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
 	@$(MAKECOOKIE)
 
 install-links-build:
-	@ln -sfv llvm-config $(DESTDIR)$(bindir)/config/$(GARHOST)-llvm-config
+	@ln -sfv llvm-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-llvm-config
 	@$(if $(wildcard $(DESTDIR)$(bindir)/clang), \
 		rm -fv $(DESTDIR)$(bindir)/cc ; \
 		ln -sfv clang $(DESTDIR)$(bindir)/cc ; \
@@ -59,7 +57,7 @@ install-links-build:
 	)
 	@ln -sfv clang $(DESTDIR)$(bindir)/$(GARHOST)-clang
 	@ln -sfv clang++ $(DESTDIR)$(bindir)/$(GARHOST)-clang++
-	@ln -sfv clang-cpp $(DESTDIR)$(bindir)/$(GARHOST)-clang++
+	@ln -sfv clang-cpp $(DESTDIR)$(bindir)/$(GARHOST)-clang-cpp
 	@ln -sfv ld.lld $(DESTDIR)$(bindir)/$(GARHOST)-ld.lld
 	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-clang
 	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-clang++
@@ -70,7 +68,7 @@ install-links-build:
 	@$(MAKECOOKIE)
 
 install-links-main:
-	@ln -sfv llvm-config $(DESTDIR)$(bindir)/config/$(GARHOST)-llvm-config
+	@ln -sfv llvm-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-llvm-config
 	@ln -sfv clang $(DESTDIR)$(bindir)/$(GARHOST)-clang
 	@ln -sfv clang++ $(DESTDIR)$(bindir)/$(GARHOST)-clang++
 	@ln -sfv clang-cpp $(DESTDIR)$(bindir)/$(GARHOST)-clang++

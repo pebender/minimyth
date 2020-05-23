@@ -35,7 +35,6 @@ DEPENDS = \
 	net/inetutils \
 	utils/intel-microcode2ucode \
 	system/irclient \
-	system/irserver \
 	system/irxkeys \
 	kernel/kernel \
 	system/lcdproc \
@@ -65,12 +64,12 @@ DEPENDS = \
 	python3/python \
 	X11/ratpoison \
 	utils/regionset \
-	X11/rxvt \
 	utils/SDL-Test \
 	utils/squashfs \
 	system/sysvinit \
 	system/udev \
 	X11/unclutter \
+	X11/urxvt \
 	utils/usbutils \
 	utils/util-linux \
 	X11/vdpauinfo \
@@ -94,8 +93,7 @@ DEPENDS = \
 		emulators/jzintv \
 		emulators/mednafen \
 		emulators/stella \
-		$(if $(filter mame,$(mm_SOFTWARE)),emulators/mame) \
-		$(if $(filter i386,$(mm_GARCH_FAMILY)),emulators/zsnes)) \
+		$(if $(filter mame,$(mm_SOFTWARE)),emulators/mame)) \
 	$(if $(filter mythmusic,$(mm_SOFTWARE)), \
 		$(if $(wildcard ../../myth-$(mm_MYTH_VERSION)/mythmusic),myth-$(mm_MYTH_VERSION)/mythmusic)) \
 	$(if $(filter mythnetvision,$(mm_SOFTWARE)), \

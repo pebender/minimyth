@@ -33,9 +33,9 @@ post-install:
 	@sed -i 's%-I$${includedir}%-I$(DESTDIR)$${includedir}%g' $(DESTDIR)$(bindir)/xslt-config
 	@sed -i 's%-L${libdir}%-L$(DESTDIR)${libdir}%g'           $(DESTDIR)$(libdir)/xsltConf.sh
 	@sed -i 's%-I${includedir}%-I$(DESTDIR)${includedir}%g'   $(DESTDIR)$(libdir)/xsltConf.sh
-	@rm -f $(DESTDIR)$(bindir)/config/xslt-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-xslt-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/xslt-config $(DESTDIR)$(bindir)/config/xslt-config
-	@ln -s xslt-config $(DESTDIR)$(bindir)/config/$(GARHOST)-xslt-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/xslt-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-xslt-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/xslt-config $(DESTDIR)$(bindir)/config.d/xslt-config
+	@ln -s xslt-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-xslt-config
 	@$(MAKECOOKIE)

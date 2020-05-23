@@ -44,9 +44,9 @@ pre-configure:
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libfreetype.la
 	@ln -sf freetype2/freetype $(DESTDIR)$(includedir)/freetype
-	@rm -f $(DESTDIR)$(bindir)/config/freetype-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-freetype-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/freetype-config $(DESTDIR)$(bindir)/config/freetype-config
-	@ln -s freetype-config $(DESTDIR)$(bindir)/config/$(GARHOST)-freetype-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/freetype-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-freetype-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/freetype-config $(DESTDIR)$(bindir)/config.d/freetype-config
+	@ln -s freetype-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-freetype-config
 	@$(MAKECOOKIE)

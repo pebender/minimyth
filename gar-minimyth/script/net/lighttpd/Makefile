@@ -44,7 +44,7 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	CFLAGS_FOR_BUILD="$(build_CFLAGS)" \
 	LDFLAGS_FOR_BUILD="$(build_LDFLAGS)"
 CONFIGURE_ENV = \
-	PCRECONFIG="$(DESTDIR)$(bindir)/config/pcre-config"
+	PCRECONFIG="$(DESTDIR)$(bindir)/config.d/pcre-config"
 
 include ../../gar.mk
 

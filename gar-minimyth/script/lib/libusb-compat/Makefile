@@ -33,9 +33,9 @@ pre-configure:
 
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libusb.la
-	@rm -fv $(DESTDIR)$(bindir)/config/libusb-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-libusb-config
-	@mkdir -pv $(DESTDIR)$(bindir)/config
-	@mv -v $(DESTDIR)$(bindir)/libusb-config $(DESTDIR)$(bindir)/config/libusb-config
-	@ln -sfv libusb-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libusb-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/libusb-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libusb-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
+	@mv -v $(DESTDIR)$(bindir)/libusb-config $(DESTDIR)$(bindir)/config.d/libusb-config
+	@ln -sfv libusb-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libusb-config
 	@$(MAKECOOKIE)

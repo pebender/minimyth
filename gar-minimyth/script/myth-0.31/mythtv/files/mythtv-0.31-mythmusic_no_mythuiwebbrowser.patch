@@ -1,0 +1,36 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/editmetadata.cpp mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/editmetadata.cpp
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/editmetadata.cpp	2020-04-17 14:47:25.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/editmetadata.cpp	2020-05-18 13:15:41.309121697 -0700
+@@ -16,7 +16,7 @@
+ #include <mythuibuttonlist.h>
+ #include <mythuispinbox.h>
+ #include <mythuiimage.h>
+-#include <mythuiwebbrowser.h>
++// #include <mythuiwebbrowser.h>
+ #include <mythuifilebrowser.h>
+ #include <musicutils.h>
+ #include <mythprogressdialog.h>
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/mythmusic.pro mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/mythmusic.pro
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/mythmusic.pro	2020-04-17 14:47:28.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/mythmusic.pro	2020-05-18 13:16:06.742120311 -0700
+@@ -3,7 +3,7 @@
+ include ( ../../programs-libs.pro )
+ include (config.pro)
+ 
+-QT += xml sql opengl network widgets webkitwidgets
++QT += xml sql opengl network widgets
+ 
+ !exists( config.pro ) {
+    error(Missing config.pro: please run the configure script)
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/visualizerview.cpp mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/visualizerview.cpp
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/mythmusic/mythmusic/visualizerview.cpp	2020-04-17 14:47:25.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/mythmusic/mythmusic/visualizerview.cpp	2020-05-18 13:15:41.309121697 -0700
+@@ -10,7 +10,7 @@
+ #include <mythdbcon.h>
+ #include <mythmainwindow.h>
+ #include <mythuibuttonlist.h>
+-#include <mythuiwebbrowser.h>
++// #include <mythuiwebbrowser.h>
+ #include <mythuitext.h>
+ #include <mythuiimage.h>
+ #include <mythuistatetype.h>

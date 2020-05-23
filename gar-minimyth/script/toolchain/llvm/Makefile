@@ -23,6 +23,8 @@ DEPENDS = lang/c lang/cxx build-tool/cmake \
 	lib/zlib \
 	lib/ncursesw
 
+WORKSRC = $(WORKDIR)/llvm-project-$(GARVERSION)/$(GARNAME)
+
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake
 INSTALL_SCRIPTS = $(WORKSRC)/cmake config-$(DESTIMG) links-$(DESTIMG)

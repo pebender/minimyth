@@ -45,7 +45,6 @@ install-wrappers:
 	@install -v --mode=0755 $(WORKSRC)/$(GARHOST)-gcc $(build_DESTDIR)$(build_bindir)/wrapper.d/$(GARHOST)-gcc
 	@install -v --mode=0755 $(WORKSRC)/$(GARHOST)-g++ $(build_DESTDIR)$(build_bindir)/wrapper.d/$(GARHOST)-g++
 	@install -v --mode=0755 $(WORKSRC)/$(GARHOST)-ld.bfd $(build_DESTDIR)$(build_bindir)/wrapper.d/$(GARHOST)-ld.bfd
-	@install -v --mode=0755 $(WORKSRC)/$(GARHOST)-ld.bfd $(build_DESTDIR)$(build_bindir)/wrapper.d/$(GARHOST)-ld
 	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-gcc
 	@ln -sfv ../ccache $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-g++
 	@$(MAKECOOKIE)

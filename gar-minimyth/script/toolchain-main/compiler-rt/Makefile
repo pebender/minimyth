@@ -12,9 +12,10 @@ endef
 ifndef ($(DESTIMG),build)
 DEPENDS = \
 	toolchain-main/libcxx
-BUILDEPS = \
-	toolchain-build/toolchain-build
+BUILDDEPS =
 endif
+
+WORKSRC = $(WORKDIR)/llvm-project-$(GARVERSION)/$(GARNAME)
 
 ifndef ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
@@ -33,16 +34,16 @@ CONFIGURE_ARGS = $(LLVM_CONFIGURE_ARGS) \
 	-DCOMPILER_RT_USE_BUILTINS_LIBRARY=ON \
 	-DCOMPILER_RT_BUILD_CRT=ON \
 	-DCOMPILER_RT_BUILD_BUILTINS=ON \
-	-DCOMPILER_RT_BUILD_SANITIZERS=ON \
+	-DCOMPILER_RT_BUILD_SANITIZERS=OFF \
 	-DSANITIZER_CXX_ABI="libcxxabi" \
-	-DCOMPILER_RT_BUILD_XRAY=ON \
-	-DCOMPILER_RT_BUILD_LIBFUZZER=ON \
+	-DCOMPILER_RT_BUILD_XRAY=OFF \
+	-DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
 	-DCOMPILER_RT_BUILD_PROFILE=ON \
 	-DCOMPILER_RT_EXCLUDE_ATOMIC_BUILTIN=OFF \
 	-DCOMPILER_RT_HAS_ATOMIC_KEYWORD=ON \
 	-DCOMPILER_RT_CAN_EXECUTE_TESTS=OFF
 
-GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain-clang.mk
+GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain.mk
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 GAR_EXTRA_CONF += toolchain/llvm/package-api.mk
 include ../../gar.mk

@@ -18,7 +18,6 @@ sub start
         $minimyth->message_output('info', "installing extras ...");
 
         $minimyth->url_mount($minimyth->var_get('MM_EXTRAS_URL'), '@EXTRAS_ROOTDIR@');
-        system(qq(/sbin/ldconfig));
     }
 
     return 1;

@@ -1,0 +1,26 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/configure mythtv-0.31-20200322-c8c59f5-new/mythplugins/configure
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/configure	2020-04-17 14:47:28.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/configure	2020-05-18 10:42:44.602621940 -0700
+@@ -671,14 +671,14 @@
+         disable weather
+     }
+ 
+-    check_pl_lib "Date::Manip"  || disable_weather "Date::Manip"
+-    check_pl_lib "XML::Simple"  || disable_weather "XML::Simple"
+-    check_pl_lib "XML::XPath"  || disable_weather "XML::XPath"
+-    check_pl_lib "Image::Size"  || disable_weather "Image::Size"
+-    check_pl_lib "DateTime::Format::ISO8601" ||
+-        disable_weather "DateTime::Format::ISO8601"
+-    check_pl_lib "SOAP::Lite"  || disable_weather "SOAP::Lite"
+-    check_pl_lib "JSON"  || disable_weather "JSON"
++#    check_pl_lib "Date::Manip"  || disable_weather "Date::Manip"
++#    check_pl_lib "XML::Simple"  || disable_weather "XML::Simple"
++#    check_pl_lib "XML::XPath"  || disable_weather "XML::XPath"
++#    check_pl_lib "Image::Size"  || disable_weather "Image::Size"
++#    check_pl_lib "DateTime::Format::ISO8601" ||
++#        disable_weather "DateTime::Format::ISO8601"
++#    check_pl_lib "SOAP::Lite"  || disable_weather "SOAP::Lite"
++#    check_pl_lib "JSON"  || disable_weather "JSON"
+ 
+     disabled weather && echo "Disabling MythWeather due to missing dependencies."
+ fi

@@ -11,10 +11,11 @@ endef
 
 ifndef ($(DESTIMG),build)
 DEPENDS = \
-	toolchain-main/glibc
-BUILDEPS = \
-	toolchain-build/toolchain-build
+	toolchain-main/musl-static
+BUILDDEPS =
 endif
+
+WORKSRC = $(WORKDIR)/llvm-project-$(GARVERSION)/$(GARNAME)
 
 ifndef ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
@@ -41,7 +42,7 @@ CONFIGURE_ARGS = $(LLVM_CONFIGURE_ARGS) \
 	-DCOMPILER_RT_HAS_ATOMIC_KEYWORD=ON \
 	-DCOMPILER_RT_CAN_EXECUTE_TESTS=OFF
 
-GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain-clang.mk
+GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain.mk
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 GAR_EXTRA_CONF += toolchain/llvm/package-api.mk
 include ../../gar.mk

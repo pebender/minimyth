@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/llvm lib/zlib utils/lm-sensors X11/libva-mini X11/libvdpau \
+DEPENDS = lang/c lang/cxx build-tool/meson lib/expat lib/libelf lib/zlib utils/lm-sensors X11/libva-mini X11/libvdpau \
 	xorg/libdrm \
 	xorg/libpthread-stubs \
 	xorg/libX11 \
@@ -72,7 +72,7 @@ CONFIGURE_ARGS  = \
 	-Dasm=true \
 	-Dglx-read-only-text=false \
 	-Dvalgrind=false \
-	-Dlibunwind=true \
+	-Dlibunwind=false \
 	-Dlmsensors=true \
 	-Dbuild-tests=false \
 	-Dselinux=false \
@@ -83,8 +83,7 @@ CONFIGURE_ARGS  = \
 	--native-file $(GARBUILD)
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
-	--cross-file $(GARHOST) \
-	-Dlibunwind=false
+	--cross-file $(GARHOST)
 endif
 
 GAR_EXTRA_CONF += xorg/xorg/package-api.mk

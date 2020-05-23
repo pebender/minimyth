@@ -7,18 +7,8 @@ GAR_EXTRA_CONF += kernel/linux/package-api.mk devel/build-system-bins/package-ap
 include ../../gar.mk
 
 mm-all:
-
-x-mm-all:
 	@echo "checking ..."
 	@# Check build environment.
-	@echo "  checking for problematic binaries ..."
-	@$(foreach bin,'ccache', \
-		which $(bin) > /dev/null 2>&1 ; \
-		if [ "$$?" = "0" ] ; then \
-			echo "error: your system contains the program '$(bin)', which might cause build failure." ; \
-			exit 1 ; \
-		fi ; \
-	)
 	@echo "  build system binaries ..."
 	@$(foreach pkg,$(build_system_bins), \
 		$(foreach bin,$(sort $(build_system_bins_$(subst -,_,$(pkg)))), \
@@ -136,7 +126,7 @@ x-mm-all:
 	done
 	@echo "    mm_SOFTWARE"
 	@for software in $(mm_SOFTWARE) ; do \
-		   [ ! "$${software}" = "mythbrowser"    ] && \
+		if [ ! "$${software}" = "mythbrowser"    ] && \
 		   [ ! "$${software}" = "mythgame"       ] && \
 		   [ ! "$${software}" = "mythmusic"      ] && \
 		   [ ! "$${software}" = "mythnetvision"  ] && \

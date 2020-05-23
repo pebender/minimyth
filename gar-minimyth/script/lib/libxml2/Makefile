@@ -45,9 +45,9 @@ post-install:
 	@sed -i 's%-I$${includedir}%-I$(DESTDIR)$${includedir}%g' $(DESTDIR)$(bindir)/xml2-config
 	@sed -i 's%-L${libdir}%-L$(DESTDIR)${libdir}%g'           $(DESTDIR)$(libdir)/xml2Conf.sh
 	@sed -i 's%-I${includedir}%-I$(DESTDIR)${includedir}%g'   $(DESTDIR)$(libdir)/xml2Conf.sh
-	@rm -f $(DESTDIR)$(bindir)/config/xml2-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-xml2-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/xml2-config $(DESTDIR)$(bindir)/config/xml2-config
-	@ln -s xml2-config $(DESTDIR)$(bindir)/config/$(GARHOST)-xml2-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/xml2-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-xml2-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/xml2-config $(DESTDIR)$(bindir)/config.d/xml2-config
+	@ln -s xml2-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-xml2-config
 	@$(MAKECOOKIE)

@@ -54,9 +54,9 @@ GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk
 
 post-install:
-	@rm -f $(DESTDIR)$(bindir)/config/taglib-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-taglib-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/taglib-config $(DESTDIR)$(bindir)/config/taglib-config
-	@ln -s taglib-config $(DESTDIR)$(bindir)/config/$(GARHOST)-taglib-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/taglib-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-taglib-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/taglib-config $(DESTDIR)$(bindir)/config.d/taglib-config
+	@ln -s taglib-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-taglib-config
 	@$(MAKECOOKIE)

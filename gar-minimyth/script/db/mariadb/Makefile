@@ -10,7 +10,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx build-tool/cmake lib/cracklib lib/libaio lib/ncursesw lib/openssl lib/pcre2 lib/readline lib/zlib
+DEPENDS = lang/c lang/cxx build-tool/cmake lib/libaio lib/ncursesw lib/openssl lib/pcre2 lib/readline lib/zlib
 BUILDDEPS = utils/procps
 ifneq ($(DESTIMG),build)
 BUILDDEPS += db/mariadb
@@ -119,11 +119,11 @@ post-install:
 	@rm -f $(DESTDIR)$(libdir)/mysql/libmysqlclient.a
 	@rm -f $(DESTDIR)$(libdir)/mysql/libmysqlclient_r.a
 	@rm -f $(DESTDIR)$(libdir)/mysql/libmysqlservices.a
-	@rm -f $(DESTDIR)$(bindir)/config/mysql_config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-mysql_config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/mysql_config $(DESTDIR)$(bindir)/config/mysql_config
-	@ln -s mysql_config $(DESTDIR)$(bindir)/config/$(GARHOST)-mysql_config
+	@rm -f $(DESTDIR)$(bindir)/config.d/mysql_config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-mysql_config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/mysql_config $(DESTDIR)$(bindir)/config.d/mysql_config
+	@ln -s mysql_config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-mysql_config
 	@$(MAKECOOKIE)
 
 clean-all:

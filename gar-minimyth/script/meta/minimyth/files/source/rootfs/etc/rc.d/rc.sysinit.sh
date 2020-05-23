@@ -47,7 +47,7 @@
 /bin/echo -e '\000\000\000\000' > /proc/sys/kernel/hotplug
 
 # Start udev userspace daemon of listening to events.
-/usr/lib/udev/udevd -d
+/usr/sbin/udevd -d
 # Regenerate the events that have already happened.
 /usr/bin/udevadm trigger --action=add
 # Wait for udev to process all the regenerated events.
@@ -81,9 +81,5 @@ MM_ROOTFS_IMAGE="${initrd}"
 /bin/echo -n "'"                  >> /etc/conf.d/core
 /bin/echo -n "${MM_ROOTFS_TYPE}"  >> /etc/conf.d/core
 /bin/echo    "'"                  >> /etc/conf.d/core
-
-# Create shared library cache.
-# This is needed so the MySQL perl modules will load correctly.
-/sbin/ldconfig
 
 exit 0

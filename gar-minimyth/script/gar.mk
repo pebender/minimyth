@@ -22,7 +22,7 @@ GARDIR ?= ../..
 # GARBUILD is the platform on which you're running GAR.  If you want to
 # override it with a value other than what GCC thinks it's running on that's
 # ok, but the results will be very... VERY ...strange.
-GARBUILD ?= $(shell gcc -dumpmachine)
+GARBUILD ?= $(shell cc -dumpmachine)
 
 # include the configuration file to override any of these variables
 # no variable expansions or targets are allowed in these files.
@@ -174,7 +174,7 @@ STAGINGDIR ?= $(build_DESTDIR)$(build_prefix)/staging
 BUILD_SYSTEM_PATH := $(if $(BUILD_SYSTEM_PATH),$(BUILD_SYSTEM_PATH),$(PATH))
 GAR_SYSTEM_PATH = $(strip $(build_DESTDIR)$(build_bindir)/ccache.d)$(strip \
 	:$(build_DESTDIR)$(build_bindir)/wrapper.d)$(strip \
-	:$(DESTDIR)$(bindir)/config)$(strip \
+	:$(DESTDIR)$(bindir)/config.d)$(strip \
 	:$(build_DESTDIR)$(build_esbindir):$(build_DESTDIR)$(build_ebindir):$(build_DESTDIR)$(build_sbindir):$(build_DESTDIR)$(build_bindir))$(strip \
 	:$(native_DESTDIR)/$(native_bindir))
 NATIVE_LINKTIME_PATH = /lib/$(GARBUILD):/usr/lib/$(GARBUILD)$(strip \

@@ -1,11 +1,4 @@
-# Binutils 2.34 fails to compile
-BINUTILS_VERSION = 2.33.1
-
-GMP_VERSION = 6.2.0
-# ISL 0.22.1 fails to build when used as part of GCC 9.3.0
-ISL_VERSION = 0.21
-MPC_VERSION = 1.1.0
-MPFR_VERSION = 4.0.2
+BINUTILS_VERSION = 2.34
 
 CROSSIMG ?= $(DESTIMG)
 GARTARGET = $($(CROSSIMG)_GARHOST)
@@ -40,15 +33,12 @@ BINUTILS_CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) --ta
 	--disable-multilib \
 	--disable-nls \
 	--disable-werror \
-	--with-lib-path="=$($(CROSSIMG)_elibdir):=$($(CROSSIMG)_libdir)"
-ifeq ($(CROSSIMG),build)
-BINUTILS_CONFIGURE_ARGS +=
-	--with-sysroot=/ \
-	--with-build-time-tools="$(tainted_build_DESTDIR)$(tainted_build_bindir)"
-else
-BINUTILS_CONFIGURE_ARGS +=
-	--with-sysroot=$($(CROSSIMG)_DESTDIR)
-endif
+	--with-lib-path="=$($(CROSSIMG)_elibdir):=$($(CROSSIMG)_libdir)" \
+	--with-sysroot=$($(CROSSIMG)_DESTDIR) \
+	--with-gmp=$(DESTDIR)$(prefix) \
+	--with-isl=$(DESTDIR)$(prefix) \
+	--with-mpc=$(DESTDIR)$(prefix) \
+	--with-mpfr=$(DESTDIR)$(prefix)
 
 configure-custom:
 	@mkdir -pv $(WORKBLD)

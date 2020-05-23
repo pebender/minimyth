@@ -5,8 +5,11 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c-build \
-	toolchain-$(DESTIMG)/toolchain-$(DESTIMG) \
+DEPENDS = lang/c-build
+ifneq ($(DESTIMG),build)
+DEPENDS += \
+	toolchain-main/toolchain-main \
+	toolchain-main-gcc/toolchain-main-gcc \
 	build-tool/make \
 	devel/pkg-config \
 	build-tool/ninja \
@@ -14,6 +17,7 @@ DEPENDS = lang/c-build \
 	build-tool/cmake \
 	build-tool/meson \
 	build-tool/qmake
+endif
 
 GAR_EXTRA_CONF += lang/lang/toolchain.mk
 include ../../gar.mk

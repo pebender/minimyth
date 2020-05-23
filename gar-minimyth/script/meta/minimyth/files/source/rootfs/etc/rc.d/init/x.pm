@@ -301,8 +301,6 @@ sub start
                     }
                 }
             }
-            # Rebuild library cache.
-            system(qq(/sbin/ldconfig));
         }
         when (/^(openchrome)$/)
         {

@@ -28,7 +28,6 @@ INSTALL_ENV    = \
 	PYTHONPATH=$(DESTDIR)$(PYTHON3_libdir)/site-packages
 
 ifneq ($(DESTIMG),build)
-BUILD_ARGS += --cross-compile
 BUILD_ENV  += PYTHONXCPREFIX=$(DESTDIR)$(prefix)
 endif
 
@@ -37,8 +36,6 @@ include ../../gar.mk
 
 build-%/setup.py:
 	@echo " ==> Running setup.py build in $*"
-	@cd $* && $(CONFIGURE_ENV) $(BUILD_ENV) python3 setup.py --help-commands
-	exit 1
 	@cd $* && $(CONFIGURE_ENV) $(BUILD_ENV) python3 setup.py $(CONFIGURE_ARGS) build $(BUILD_ARGS)
 	@$(MAKECOOKIE)
 

@@ -1,5 +1,5 @@
 GARNAME = toolchain-main
-VERSION = none
+VERSION =
 CATEGORIES = toolchain-main
 LICENSE =
 
@@ -9,14 +9,11 @@ endef
 
 DEPENDS = \
 	toolchain-main/linux-headers \
-	toolchain-main/glibc \
+	toolchain-main/musl \
 	toolchain-main/compiler-rt \
-	toolchain-main/libunwind \
+	toolchain-main/libunwind  \
 	toolchain-main/libcxxabi \
 	toolchain-main/libcxx \
-	toolchain-main/binutils \
-	toolchain-main/gcc \
-	toolchain-main/gcc-wrappers \
-	toolchain-main/clang-wrappers
+	toolchain-main/clang-wrappers \
 
 include ../../gar.mk

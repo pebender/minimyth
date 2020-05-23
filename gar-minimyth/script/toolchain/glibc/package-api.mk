@@ -1,5 +1,4 @@
-# 2.31 fails to compile. (it thinks 'as' is too old).
-GLIBC_VERSION = 2.30
+GLIBC_VERSION = 2.31
 
 GLIBC_ADD_LIB_PATH = \
 	mkdir -p $(DESTDIR)$(sysconfdir) ; \
@@ -51,13 +50,13 @@ INSTALL_ENV += \
 	BUILD_LDFLAGS="$(build_LDFLAGS)"
 
 # glibc 2.30 fails to compile with gcc 9.2.0's link time optimization enabled.
-build_CFLAGS  += -fno-lto
-build_LDFLAGS += -fno-lto
-main_CFLAGS  += -fno-lto
-main_LDFLAGS += -fno-lto
+#build_CFLAGS  += -fno-lto
+#build_LDFLAGS += -fno-lto
+#main_CFLAGS  += -fno-lto
+#main_LDFLAGS += -fno-lto
 
-build_CFLAGS += -fno-fast-math -O3
-main_CFLAGS += -fno-fast-math -O3
+#build_CFLAGS += -fno-fast-math -O3
+#main_CFLAGS += -fno-fast-math -O3
 
 configure-custom:
 	@mkdir -p $(WORKBLD)

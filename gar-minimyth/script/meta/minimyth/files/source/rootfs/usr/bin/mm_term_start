@@ -16,7 +16,7 @@ if (! @command)
 
 my $devnull = File::Spec->devnull;
 
-@command = ('/usr/bin/mm_run_without_ss', '/usr/bin/rxvt', '-display', ':0.0', '-e', @command);
+@command = ('/usr/bin/mm_run_without_ss', '/usr/bin/urxvt', '-display', ':0.0', '-e', @command);
 
 system(@command);
 

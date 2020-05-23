@@ -7,6 +7,6 @@ use MiniMyth ();
 
 my $minimyth = new MiniMyth;
 
-$minimyth->application_stop('rxvt');
+$minimyth->application_stop('urxvt');
 
 1;

@@ -8,10 +8,12 @@ DESCRIPTION =
 define BLURB
 endef
 
-BUILDDEPS = toolchain-build/clang
+DEPENDS = \
+	toolchain-build/clang
 
 BUILD_SCRIPTS = wrappers
 INSTALL_SCRIPTS = wrappers
+
 
 build_DESTDIR = $(build_DESTDIR_swapped)
 build_rootdir = $(build_rootdir_swapped)

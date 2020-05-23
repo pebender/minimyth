@@ -34,9 +34,9 @@ pre-configure:
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libcdaudio.la
-	@rm -f $(DESTDIR)$(bindir)/config/libcdaudio-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-libcdaudio-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/libcdaudio-config $(DESTDIR)$(bindir)/config/libcdaudio-config
-	@ln -s libcdaudio-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libcdaudio-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/libcdaudio-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libcdaudio-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/libcdaudio-config $(DESTDIR)$(bindir)/config.d/libcdaudio-config
+	@ln -s libcdaudio-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libcdaudio-config
 	@$(MAKECOOKIE)

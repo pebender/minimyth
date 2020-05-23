@@ -13,7 +13,6 @@ use MiniMyth ();
 
 my @script_list_start =
 (
-    'ld',
     'loopback',
     'conf',
     'log'

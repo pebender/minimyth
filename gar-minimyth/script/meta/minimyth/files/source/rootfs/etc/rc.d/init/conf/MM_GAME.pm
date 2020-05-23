@@ -41,7 +41,6 @@ $var_list{'MM_GAME_SAVE_LIST'} =
                       ':' . '.stella' .
                       ':' . '.mame' .
                       ':' . '.vba' .
-                      ':' . '.zsnes' .
                       ':' . 'VisualBoyAdvance.cfg'
 };
 $var_list{'MM_GAME_BIOS_ROOT'} =

@@ -4,15 +4,11 @@ g15daemon/*/plugins/g15plugin_tcpserver.so
 g15daemon/*/plugins/g15plugin_uinput.so
 lcdproc/
 libfakeroot.so
-libnss_dns.so.2
-libnss_files.so.2
-libthread_db.so.1
 mythtv/filters/
 perl5/
 udev/cdrom_id
 udev/lircd_helper
 udev/rc_keymaps/
-udev/udevd
 udev/wakeup_enable
 
 # http
@@ -21,26 +17,6 @@ mod_cgi.so
 mod_dirlisting.so
 mod_indexfile.so
 mod_staticfile.so
-
-# i18n
-locale/en_US.UTF-8/
-
-# iconv
-gconv/gconv-modules
-gconv/CP1250.so
-gconv/ISO8859-1.so
-gconv/ISO8859-2.so
-gconv/ISO8859-3.so
-gconv/ISO8859-4.so
-gconv/ISO8859-5.so
-gconv/ISO8859-8.so
-gconv/ISO8859-9.so
-gconv/ISO8859-10.so
-gconv/ISO8859-15.so
-gconv/KOI8-R.so
-gconv/KOI8-U.so
-gconv/UNICODE.so
-gconv/UTF-16.so
 
 # Kernel
 
@@ -62,9 +38,7 @@ modules/*/kernel/drivers/acpi/thermal.ko
 modules/*/kernel/drivers/block/loop.ko
 modules/*/kernel/drivers/cdrom/cdrom.ko
 modules/*/kernel/drivers/char/agp/amd64-agp.ko
-modules/*/kernel/drivers/char/agp/ati-agp.ko
 modules/*/kernel/drivers/char/agp/intel-agp.ko
-modules/*/kernel/drivers/char/agp/nvidia-agp.ko
 modules/*/kernel/drivers/char/agp/sis-agp.ko
 modules/*/kernel/drivers/char/agp/via-agp.ko
 modules/*/kernel/drivers/char/ppdev.ko

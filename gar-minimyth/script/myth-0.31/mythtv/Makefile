@@ -5,7 +5,11 @@ MASTER_SITES = git://github.com/MythTV/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES  =
 PATCHFILES += \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-posix_headers.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-disable_fstab.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-disable_perl_checks.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-disable_perl_inet6_check.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythmusic_no_mythuiwebbrowser.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythmusic_button_list_quick_scroll.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-python_build.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-sysroot.patch \
@@ -51,7 +55,6 @@ DEPENDS = \
 		perl/perl-XML-Simple \
 	qt/qtbase \
 	qt/qtscript \
-	qt/qtwebkit \
 	system/lirc \
 	system/udev \
 	utils/util-linux \
@@ -183,7 +186,7 @@ $(if $(filter -Os,$(CFLAGS)),--enable-small) \
 BUILD_ARGS = \
 	Q=""
 
-CONFIGURE_ENV  = $(MYTHTV_CONFIGURE_ENV) PERL5LIB=$(PERL_PERL5LIB)
+CONFIGURE_ENV  = $(MYTHTV_CONFIGURE_ENV)
 BUILD_ENV      = $(MYTHTV_BUILD_ENV)
 INSTALL_ENV    = $(MYTHTV_INSTALL_ENV)
 
@@ -200,16 +203,9 @@ CPPFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CFLAGS   += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 CXXFLAGS += -I$(DESTDIR)$(includedir)/avahi-compat-libdns_sd
 
-# mythtv 0.30's ffmpeg fails to compile with gcc 9.2.0's link time optimization enabled.
-#CFLAGS   := $(filter-out -flto, $(CFLAGS))
-#CXXFLAGS := $(filter-out -flto, $(CXXFLAGS))
-#LDFLAGS  := $(filter-out -flto, $(LDFLAGS))
-
-# <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=63745>
-# <http://www.gossamer-threads.com/lists/mythtv/users/584449>
-CFLAGS   += -fno-devirtualize
-CXXFLAGS += -fno-devirtualize
-LDFLAGS  += -fno-devirtualize
+CPPFLAGS += -D_GNU_SOURCE
+CFLAGS += -D_GNU_SOURCE
+CXXFLAGS += -D_GNU_SOURCE
 
 LDFLAGS  += -Wl,-z,notext
 

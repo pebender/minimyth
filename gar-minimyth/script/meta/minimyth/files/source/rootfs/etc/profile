@@ -8,7 +8,7 @@ if /usr/bin/test ! `/usr/bin/id -u -n` = 'minimyth' ; then
         # Give user a warning when starting X.
 	alias xinit="/bin/echo -e '\nerror: application xinit must be run as user minimyth.\n' && /bin/false"
         # Give user a warning when starting X based basic applications.
-	alias rxvt="/bin/echo -e '\nerror: application rxvt must be run as user minimyth.\n' && /bin/false"
+	alias urxvt="/bin/echo -e '\nerror: application urxvt must be run as user minimyth.\n' && /bin/false"
 	alias x11vnc="/bin/echo -e '\nerror: application x11vnc must be run as user minimyth.\n' && /bin/false"
 	alias xscreensaver="/bin/echo -e '\nerror: application xscreensaver must be run as user minimyth.\n' && /bin/false"
 	alias xscreensaver-command="/bin/echo -e '\nerror: application xscreensaver-command must be run as user minimyth.\n' && /bin/false"
@@ -22,5 +22,4 @@ if /usr/bin/test ! `/usr/bin/id -u -n` = 'minimyth' ; then
 	alias mednafen="/bin/echo -e '\nerror: application mednafen must be run as user minimyth.\n' && /bin/false"
 	alias stella="/bin/echo -e '\nerror: application stella must be run as user minimyth.\n' && /bin/false"
 	alias VisualBoyAdvance="/bin/echo -e '\nerror: application VisualBoyAdvance must be run as user minimyth.\n' && /bin/false"
-	alias zsnes="/bin/echo -e '\nerror: application zsnes must be run as user minimyth.\n' && /bin/false"
 fi

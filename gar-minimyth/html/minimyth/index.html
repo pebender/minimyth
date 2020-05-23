@@ -23,45 +23,6 @@
       <div class="middle">
         <div class="heading" title="The report of our death was an exaggeration">MiniMyth</div>
         <div class="section">
-          <div class="heading">Upgrading</div>
-          <p>
-            If you are upgrading to a new version of MiniMyth (e.g. from -82 to -83),
-            then please save your old version of MiniMyth until you are sure that you are not having any problems with the new version of MiniMyth.
-            Generally, old versions of MiniMyth are deleted from <a href="http://www.minimyth.org/">minimyth.org</a>.
-            Therefore,
-            if you run into problems with the new version of MiniMyth and you have not saved your old version of MiniMyth,
-            then returning your system to a working state will likely take more time than would have otherwise been required.
-          </p>
-          <p>
-            If you are upgrading to a new version of MythTV (e.g. from 0.26 to 0.27), please do the following:
-          </p>
-          <ol>
-            <li>
-              Read and follow the instructions in the
-              "<a href="http://www.gossamer-threads.com/lists/mythtv/users/405443">warning before upgrading</a>"
-              thread, and
-            </li>
-            <li>
-              Upgrade MiniMyth in two steps:
-              <ol>
-                <li>
-                  upgrade to the latest MiniMyth containing the same MythTV version (e.g. MiniMyth 0.26.2-83)
-                  and test for any problems, and
-                </li>
-                <li>
-                  upgrade to the latest MiniMyth containing the new MythTV version (e.g. MiniMyth 0.27.5-83) and
-                  test for any problems.
-                </li>
-              </ol>
-            </li>
-          </ol>
-          <p>
-            If you rely on the XvMC acceleration provided by your graphics hardware (e.g. VIA graphics hardware),
-            then do not upgrade to MythTV 0.25 as 
-            <a href="http://www.gossamer-threads.com/lists/mythtv/users/462864#462864">support for XvMC (including XvMC-VLD) has been dropped from MythTV 0.25</a>.
-          </p>
-        </div>
-        <div class="section">
           <div class="heading">Overview</div>
           <p>
             MiniMyth is a small
@@ -75,12 +36,11 @@
           </p>
           <ul>
             <li>
-              <a href="http://www.mythtv.org/">MythTV</a> <strong>0.27.5</strong> with
-              <a href="https://github.com/MythTV/mythtv/tree/fixes/0.27">fixes</a> through Git commit ad97d24 from date 2015.06.16,
+              <a href="http://www.mythtv.org/">MythTV</a> <strong>0.31.0</strong> with
+              <a href="https://github.com/MythTV/mythtv/tree/fixes/0.31">fixes</a> through Git commit c8c59f5 from date 2020.03.22.
               including the following plugins:
               <ul>
                 <li><a href="http://www.mythtv.org/wiki/MythBrowser">MythBrowser</a></li>
-                <li><a href="http://www.mythtv.org/wiki/MythGallery">MythGallery</a></li>
                 <li>
                   <a href="http://www.mythtv.org/wiki/MythGame">MythGame</a>
                   (not integrated with MiniMyth configuration)
@@ -91,12 +51,6 @@
                 <li><a href="http://www.mythtv.org/wiki/MythWeather">MythWeather</a></li>
                 <li><a href="http://www.mythtv.org/wiki/MythZoneMinder">MythZoneMinder</a></li>
               </ul>
-            </li>
-            <li>
-              <a href="http://www.hulu.com/">Hulu&#8482; Desktop</a> support (MiniMyth does not include the Hulu Desktop binary)
-            </li>
-            <li>
-              <a href="http://www.adobe.com/">Adobe&#174; Flash&#174; Player</a> support (MiniMyth does not include the Adobe Flash Player binary)
             </li>
             <li>
               <a href="http://fceultra.sourceforge.net/download.php">FCE Ultra</a> <strong>0.98.13-pre</strong>
@@ -131,241 +85,10 @@
             <li><a href="http://www.lcdproc.org/">LCDproc</a> <strong>0.5.6</strong></li>
             <li><a href="https://code.google.com/p/eventlircd/">eventlircd</a> <strong>SVN 44</strong></li>
             <li>
-              <a href="http://www.kernel.org/">Linux</a> <strong>3.18.18</strong> with patches to add
-              <ul>
-                <li><a href="http://code.google.com/p/r8168/">r8168 Ethernet driver</a> <strong>8.040.00</strong></li>
-              </ul>
-            </li>
-          </ul>
-          <p>
-            In addition to the latest version of MiniMyth,
-            there are five legacy <a href="http://www.mythtv.org/">MythTV</a> versions of MiniMyth
-            that differ from the latest version of MiniMyth only in their version of <a href="http://www.mythtv.org/">MythTV</a> and (in the case of 0.22, 0.23 and 0.24) their inclusion of MythStream, MPlayer, VLC, Xine and a version of MPlayer with XvMC-VLD support:
-          </p>
-          <ul>
-            <li>
-              <p>
-                There is a <a href="http://www.mythtv.org/">MythTV</a> 0.26 version of MiniMyth that contains:
-              </p>
-              <ul>
-                <li>
-                  <a href="http://www.mythtv.org/">MythTV</a> <strong>0.26.2</strong> with
-                  <a href="https://github.com/MythTV/mythtv/tree/fixes/0.26">fixes</a> through Git commit 7e9a205 from date 2014.10.23,
-                  including the following plugins:
-                  <ul>
-                    <li>MythBrowser</li>
-                    <li>MythGallery</li>
-                    <li>
-                      MythGame
-                      (not integrated with MiniMyth configuration)
-                    </li>
-                    <li>MythMusic</li>
-                    <li>MythNetvision</li>
-                    <li>MythNews</li>
-                    <li>MythZoneMinder</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <p>
-                There is a <strong>deprecated</strong> <a href="http://www.mythtv.org/">MythTV</a> 0.25 version of MiniMyth that contains:
-              </p>
-              <ul>
-                <li>
-                  <a href="http://www.mythtv.org/">MythTV</a> <strong>0.25.3</strong> with
-                  <a href="https://github.com/MythTV/mythtv/tree/fixes/0.25">fixes</a> through Git commit b5adf03 from date 2013.08.11,
-                  including the following plugins:
-                  <ul>
-                    <li>MythBrowser</li>
-                    <li>MythGallery</li>
-                    <li>
-                      MythGame
-                      (not integrated with MiniMyth configuration)
-                    </li>
-                    <li>MythMusic</li>
-                    <li>MythNetvision</li>
-                    <li>MythNews</li>
-                    <li>MythZoneMinder</li>
-                  </ul>
-                </li>
-              </ul>
-              <p>
-                The version of MiniMyth containing MythTV 0.25 is deprecated.
-                If you want to continue to use newer versions of MiniMyth,
-                then you should upgrade your MythTV system to 0.26 or 0.27 while MiniMyth -83 is still available.
-                Of course, if you have some reason that you need to keep runnng 0.25, then let me know.
-                As long as keeping them as part of the build system is not too difficult, I can keep them around.
-              </>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <p>
-                There is a <strong>deprecated</strong> <a href="http://www.mythtv.org/">MythTV</a> 0.24 version of MiniMyth that contains:
-              </p>
-              <ul>
-                <li>
-                  <a href="http://www.mythtv.org/">MythTV</a> <strong>0.24.3</strong> with
-                  <a href="https://github.com/MythTV/mythtv/tree/fixes/0.24">fixes</a> through Git commit cbf4d8d from date 2012.07.25,
-                  including the following plugins:
-                  <ul>
-                    <li>MythBrowser</li>
-                    <li>MythGallery</li>
-                    <li>
-                      MythGame
-                      (not integrated with MiniMyth configuration)
-                    </li>
-                    <li>MythMusic</li>
-                    <li>MythNews</li>
-                    <li>MythNetvision</li>
-                    <li><a href="http://www.mythtv.org/wiki/MythVideo">MythVideo</a></li>
-                    <li>MythWeather</li>
-                    <li>MythZoneMinder</li>
-                  </ul>
-                </li>
-                <li><a href="http://home.kabelfoon.nl/~moongies/streamtuned.html">MythStream</a> <strong>mythtv-r21640</strong></li>
-                <li>
-                  <a href="http://www.mplayerhq.hu/">MPlayer</a> <strong>1.1.1</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  <a href="http://www.videolan.org/">VLC</a> <strong> 2.0.5</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  <a href="http://www.xine-project.org/home">xine-ui</a> <strong>0.99.9</strong>,
-                  <a href="http://www.xine-project.org/home">xine-lib</a> <strong>1.2.6</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  (deprecated) <a href="http://www.mplayerhq.hu/">MPlayer</a> <strong>1.0rc2</strong> with patches to add
-                  <ul>
-                    <li><a href="http://www.openchrome.org/trac/wiki/Configuration#mplayer">XvMC-VLD hardware acceleration</a></li>
-                    <li><a href="http://onebithq.com/root/mplayer/dvdnav">DVD navigation fixes</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <p>
-                The version of MiniMyth containing MythTV 0.24 is deprecated.
-                If you want to continue to use newer versions of MiniMyth,
-                then you should upgrade your MythTV system to 0.26 or 0.27 while MiniMyth -83 is still available.
-                Of course, if you have some reason that you need to keep runnng 0.24, then let me know.
-                As long as keeping them as part of the build system is not too difficult, I can keep them around.
-              </>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <p>
-                There is a <strong>deprecated</strong> <a href="http://www.mythtv.org/">MythTV</a> 0.23 version of MiniMyth that contains:
-              </p>
-              <ul>
-                <li>
-                  <a href="http://www.mythtv.org/">MythTV</a> <strong>0.23.1</strong> with
-                  <a href="https://github.com/MythTV/mythtv/tree/fixes/0.23">fixes</a> through Git commit 4f31db5 from date 2012.04.02,
-                  including the following plugins:
-                  <ul>
-                    <li>MythBrowser</li>
-                    <li>MythGallery</li>
-                    <li>
-                      MythGame
-                      (not integrated with MiniMyth configuration)
-                    </li>
-                    <li>MythMusic</li>
-                    <li>MythNews</li>
-                    <li>MythNetvision</li>
-                    <li>MythVideo</li>
-                    <li>MythWeather</li>
-                    <li>MythZoneMinder</li>
-                  </ul>
-                </li>
-                <li><a href="http://home.kabelfoon.nl/~moongies/streamtuned.html">MythStream</a> <strong>mythtv-r21640</strong></li>
-                <li>
-                  <a href="http://www.mplayerhq.hu/">MPlayer</a> <strong>1.1.1</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  <a href="http://www.videolan.org/">VLC</a> <strong> 2.0.5</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  <a href="http://www.xine-project.org/home">xine-ui</a> <strong>0.99.9</strong>,
-                  <a href="http://www.xine-project.org/home">xine-lib</a> <strong>1.2.6</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  (deprecated) <a href="http://www.mplayerhq.hu/">MPlayer</a> <strong>1.0rc2</strong> with patches to add
-                  <ul>
-                    <li><a href="http://www.openchrome.org/trac/wiki/Configuration#mplayer">XvMC-VLD hardware acceleration</a></li>
-                    <li><a href="http://onebithq.com/root/mplayer/dvdnav">DVD navigation fixes</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <p>
-                The version of MiniMyth containing MythTV 0.23 is deprecated.
-                If you want to continue to use newer versions of MiniMyth,
-                then you should upgrade your MythTV system to 0.26 or 0.27 while MiniMyth -83 is still available.
-                Of course, if you have some reason that you need to keep runnng 0.23, then let me know.
-                As long as keeping them as part of the build system is not too difficult, I can keep them around.
-              </p>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <p>
-                There is a <strong>deprecated</strong> <a href="http://www.mythtv.org/">MythTV</a> 0.22 version of MiniMyth that contains:
-              </p>
-              <ul>
-                <li>
-                  <a href="http://www.mythtv.org/">MythTV</a> <strong>0.22.0</strong> with
-                  <a href="https://github.com/MythTV/mythtv/tree/fixes/0.22">fixes</a> through Git commit 3c6ce60 from date 2010.07.11,
-                  including the following plugins:
-                  <ul>
-                    <li>MythBrowser</li>
-                    <li>MythGallery</li>
-                    <li>
-                      MythGame
-                      (not integrated with MiniMyth configuration)
-                    </li>
-                    <li>MythMusic</li>
-                    <li>MythNews</li>
-                    <li>MythVideo</li>
-                    <li>MythWeather</li>
-                    <li>MythZoneMinder</li>
-                  </ul>
-                </li>
-                <li><a href="http://home.kabelfoon.nl/~moongies/streamtuned.html">MythStream</a> <strong>mythtv-r21640</strong></li>
-                <li>
-                  <a href="http://www.mplayerhq.hu/">MPlayer</a> <strong>1.1.1</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  <a href="http://www.videolan.org/">VLC</a> <strong> 2.0.5</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  <a href="http://www.xine-project.org/home">xine-ui</a> <strong>0.99.9</strong>,
-                  <a href="http://www.xine-project.org/home">xine-lib</a> <strong>1.2.6</strong> and
-                  <a href="http://www.ffmpeg.org/">FFmpeg</a> <strong>1.1.16</strong>
-                </li>
-                <li>
-                  (deprecated) <a href="http://www.mplayerhq.hu/">MPlayer</a> <strong>1.0rc2</strong> with patches to add
-                  <ul>
-                    <li><a href="http://www.openchrome.org/trac/wiki/Configuration#mplayer">XvMC-VLD hardware acceleration</a></li>
-                    <li><a href="http://onebithq.com/root/mplayer/dvdnav">DVD navigation fixes</a></li>
-                  </ul>
-                </li>
-              </ul>
-              <p>
-                The version of MiniMyth containing MythTV 0.22 is deprecated.
-                If you want to continue to use newer versions of MiniMyth,
-                then you should upgrade your MythTV system to 0.26 or 0.27 while MiniMyth -83 is still available.
-                Of course, if you have some reason that you need to keep runnng 0.22, then let me know.
-                As long as keeping them as part of the build system is not too difficult, I can keep them around.
-              </p>
+              <a href="http://www.kernel.org/">Linux</a> <strong>3.16.82</strong> with patches to add
+	      <ul>
+                <li><a href="https://unionfs.filesystems.org">Unionfs</a> <strong>2.6</strong></li>
+	      </ul>
             </li>
           </ul>
         </div>
@@ -437,13 +160,13 @@
               alt="Valid CSS3!" /></a>
         </div>
         <div class="version">
-          Last Updated on 2015-08-16
+          Last Updated on 2020-04-17
         </div>
         <div class="address">
           &#60;&#160;mailto&#160;:&#160;webmaster&#160;at&#160;minimyth&#160;dot&#160;org&#160;&#62;
         </div>
         <div class="copyright">
-          &#169; 2006-2015 Paul Bender
+          &#169; 2006-2020 Paul Bender
         </div>
       </div>
     </div>

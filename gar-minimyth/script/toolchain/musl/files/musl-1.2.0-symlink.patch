@@ -1,0 +1,12 @@
+diff -Naur musl-1.2.0-old/Makefile musl-1.2.0-new/Makefile
+--- musl-1.2.0-old/Makefile	2020-02-20 16:37:02.000000000 -0800
++++ musl-1.2.0-new/Makefile	2020-05-17 07:37:43.525936938 -0700
+@@ -209,7 +209,7 @@
+ 	$(INSTALL) -D -m 644 $< $@
+ 
+ $(DESTDIR)$(LDSO_PATHNAME): $(DESTDIR)$(libdir)/libc.so
+-	$(INSTALL) -D -l $(libdir)/libc.so $@ || true
++	$(INSTALL) -D -l ..$(libdir)/libc.so $@ || true
+ 
+ install-libs: $(ALL_LIBS:lib/%=$(DESTDIR)$(libdir)/%) $(if $(SHARED_LIBS),$(DESTDIR)$(LDSO_PATHNAME),)
+ 

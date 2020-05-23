@@ -1,0 +1,66 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmyth/mediamonitor-unix.cpp mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmyth/mediamonitor-unix.cpp
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmyth/mediamonitor-unix.cpp	2020-04-17 14:47:27.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmyth/mediamonitor-unix.cpp	2020-05-16 19:03:06.391405095 -0700
+@@ -8,7 +8,7 @@
+ #include <dirent.h>
+ #include <unistd.h>
+ #include <fcntl.h>
+-#ifndef ANDROID
++#if 0
+ #include <fstab.h>
+ #endif
+ 
+@@ -93,7 +93,7 @@
+ 
+ static const QString LOC = QString("MMUnix:");
+ 
+-#ifndef Q_OS_ANDROID
++#if 0
+ // TODO: are these used?
+ static void fstabError(const QString &methodName)
+ {
+@@ -142,7 +142,7 @@
+ // Loop through the file system table and add any supported devices.
+ bool MediaMonitorUnix::CheckFileSystemTable(void)
+ {
+-#ifndef Q_OS_ANDROID
++#if 0
+     struct fstab * mep = nullptr;
+ 
+     // Attempt to open the file system descriptor entry.
+@@ -616,13 +616,14 @@
+     return true;
+ }
+ 
++#if 0
+ // Given a fstab entry to a media device determine what type of device it is
+ bool MediaMonitorUnix::AddDevice(struct fstab * mep)
+ {
+     if (!mep)
+         return false;
+ 
+-#ifndef Q_OS_ANDROID
++#if 0
+     QString devicePath( mep->fs_spec );
+ #if 0
+     LOG(VB_GENERAL, LOG_DEBUG, "AddDevice - " + devicePath);
+@@ -711,6 +712,7 @@
+ 
+     return false;
+ }
++#endif
+ 
+ #if CONFIG_QTDBUS
+ /*
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmyth/mediamonitor-unix.h mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmyth/mediamonitor-unix.h
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmyth/mediamonitor-unix.h	2020-04-17 14:47:27.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmyth/mediamonitor-unix.h	2020-05-16 19:01:50.724409220 -0700
+@@ -42,7 +42,7 @@
+ #endif
+ 
+     bool AddDevice(MythMediaDevice* pDevice) override; // MediaMonitor
+-    bool AddDevice(struct fstab* mep);
++//    bool AddDevice(struct fstab* mep);
+ 
+ #if !CONFIG_QTDBUS
+     QString GetDeviceFile(const QString &sysfs);

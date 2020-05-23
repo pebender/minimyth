@@ -1,4 +1,6 @@
 6409173882e85eddf8064eedbb4a196a  download/mythtv-0.31-mythmusic_button_list_quick_scroll.patch
+37ac3af7c714d76fd9b6cd3500717a16  download/mythtv-0.31-mythmusic_no_mythuiwebbrowser.patch
+7ca9ff7675b7c3c6d395b47af8062fd5  download/mythtv-0.31-disable_perl_checks.patch
 44fa8484719db2bf32639f12f3fe0d50  download/mythtv-0.31-disable_perl_inet6_check.patch
 9d18a831022f12a8fab7fb0f538a52d9  download/mythtv-0.31-python_build.patch
 2aedd7818beb078cb8a7a1bf18165744  download/mythtv-0.31-sysroot.patch
@@ -7,3 +9,5 @@ e4321312cdee439ae86181209b06fe75  download/mythtv-0.31-networkcontrol.patch
 21522da886c2a3f344bd534107d4cb41  download/mythtv-0.31-init.patch
 f55a64493f6303915c332005352fcfce  download/mythtv-0.31-programid.patch
 f47e13e0557e0c6a9f7bb8d59902222b  download/mythtv-0.31-wshadow.patch
+7d134d8cf2fb8c7e9835fe1a5bfaa88c  download/mythtv-0.31-posix_headers.patch
+c81abd265b12aee523c61a977444a855  download/mythtv-0.31-disable_fstab.patch

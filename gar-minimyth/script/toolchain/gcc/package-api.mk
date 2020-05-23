@@ -1,11 +1,5 @@
 GCC_VERSION = 9.3.0
 
-GMP_VERSION = 6.2.0
-# ISL 0.22.1 fails to build when used as part of GCC 9.3.0
-ISL_VERSION = 0.21
-MPC_VERSION = 1.1.0
-MPFR_VERSION = 4.0.2
-
 CROSSIMG ?= $(DESTIMG)
 GARTARGET = $($(CROSSIMG)_GARHOST)
 
@@ -30,8 +24,7 @@ endif
 
 GCC_CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARBUILD) --target=$(GARTARGET) \
 	--enable-__cxa_atexit \
-	--enable-clocale=gnu \
-	--enable-plugin \
+	--disable-plugin \
 	--disable-gold \
 	--enable-ld=default \
 	--enable-languages=c,c++ \
@@ -46,15 +39,12 @@ GCC_CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARBUILD) --target
 	--disable-multilib \
 	--disable-nls \
 	--disable-werror \
-	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir))
-ifeq ($(CROSSIMG),build)
-GCC_CONFIGURE_ARGS += \
-	--with-sysroot=/ \
-	--with-build-time-tools="$($(CROSSIMG)_DESTDIR)$(bindir)"
-else
-GCC_CONFIGURE_ARGS += \
-	--with-sysroot=$($(CROSSIMG)_DESTDIR)
-endif
+	--with-local-prefix=$(patsubst %/include,%,$($(CROSSIMG)_includedir)) \
+	--with-sysroot=$($(CROSSIMG)_DESTDIR) \
+	--with-gmp=$(DESTDIR)$(prefix) \
+	--with-isl=$(DESTDIR)$(prefix) \
+	--with-mpc=$(DESTDIR)$(prefix) \
+	--with-mpfr=$(DESTDIR)$(prefix)
 
 configure-custom:
 	@mkdir -pv $(WORKBLD)

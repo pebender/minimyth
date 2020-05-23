@@ -1,0 +1,45 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/external/FFmpeg/libavfilter/af_afftdn.c mythtv-0.31-20200322-c8c59f5-new/mythtv/external/FFmpeg/libavfilter/af_afftdn.c
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/external/FFmpeg/libavfilter/af_afftdn.c	2020-04-17 14:47:26.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/external/FFmpeg/libavfilter/af_afftdn.c	2020-05-16 18:16:53.597556246 -0700
+@@ -19,6 +19,7 @@
+  */
+ 
+ #include <float.h>
++#include <math.h>
+ 
+ #include "libavutil/audio_fifo.h"
+ #include "libavutil/avstring.h"
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/external/FFmpeg/libavfilter/af_surround.c mythtv-0.31-20200322-c8c59f5-new/mythtv/external/FFmpeg/libavfilter/af_surround.c
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/external/FFmpeg/libavfilter/af_surround.c	2020-04-17 14:47:26.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/external/FFmpeg/libavfilter/af_surround.c	2020-05-16 18:16:53.597556246 -0700
+@@ -18,6 +18,8 @@
+  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+  */
+ 
++#include <math.h>
++
+ #include "libavutil/avassert.h"
+ #include "libavutil/audio_fifo.h"
+ #include "libavutil/channel_layout.h"
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythupnp/mmulticastsocketdevice.cpp mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythupnp/mmulticastsocketdevice.cpp
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythupnp/mmulticastsocketdevice.cpp	2020-04-17 14:47:27.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythupnp/mmulticastsocketdevice.cpp	2020-05-16 18:37:56.582487398 -0700
+@@ -19,6 +19,7 @@
+ # define GET_SOCKET_ERROR    WSAGetLastError()
+ #else
+ # include <sys/socket.h>
++# include <sys/types.h>
+ # include <netinet/in.h>
+ # include <arpa/inet.h>
+ # define GET_SOCKET_ERROR    errno
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythupnp/mmulticastsocketdevice.h mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythupnp/mmulticastsocketdevice.h
+--- mythtv-0.31-20200322-c8c59f5-old/mythtv/libs/libmythupnp/mmulticastsocketdevice.h	2020-04-17 14:47:28.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythtv/libs/libmythupnp/mmulticastsocketdevice.h	2020-05-16 18:44:07.438467182 -0700
+@@ -21,6 +21,7 @@
+ # include <ws2tcpip.h>
+ #else
+ # include <sys/socket.h>
++# include <sys/types.h>
+ # include <netinet/in.h>
+ # include <netinet/ip.h>
+ #endif

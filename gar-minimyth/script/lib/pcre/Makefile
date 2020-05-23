@@ -42,9 +42,9 @@ post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libpcre.la
 	@rm -fv $(DESTDIR)$(libdir)/libpcrecpp.la
 	@rm -fv $(DESTDIR)$(libdir)/libpcreposix.la
-	@rm -fv $(DESTDIR)$(bindir)/config/pcre-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-pcre-config
-	@mkdir -pv $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/pcre-config $(DESTDIR)$(bindir)/config/pcre-config
-	@ln -sfv pcre-config $(DESTDIR)$(bindir)/config/$(GARHOST)-pcre-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/pcre-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-pcre-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/pcre-config $(DESTDIR)$(bindir)/config.d/pcre-config
+	@ln -sfv pcre-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-pcre-config
 	@$(MAKECOOKIE)

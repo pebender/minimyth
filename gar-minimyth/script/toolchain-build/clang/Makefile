@@ -13,11 +13,12 @@ DEPENDS= \
 	toolchain-build/libc-crt \
 	toolchain-build/libffi \
 	toolchain-build/ncursesw \
-	toolchain-build/zlib \
-	toolchain-build/gcc
+	toolchain-build/zlib
 BUILDDEPS = \
 	native/native \
-	tainted-build/tainted-build
+	toolchain-dirty/toolchain-dirty
+
+WORKSRC = $(WORKDIR)/llvm-project-$(GARVERSION)/$(GARNAME)
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake

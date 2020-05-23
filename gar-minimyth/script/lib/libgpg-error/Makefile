@@ -33,10 +33,10 @@ include ../../gar.mk
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
-	@rm -f $(DESTDIR)$(bindir)/config/gpg-error-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-gpg-error-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/gpg-error-config $(DESTDIR)$(bindir)/config/gpg-error-config
-	@ln -sf gpg-error-config $(DESTDIR)$(bindir)/config/$(GARHOST)-gpg-error-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/gpg-error-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-gpg-error-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/gpg-error-config $(DESTDIR)$(bindir)/config.d/gpg-error-config
+	@ln -sf gpg-error-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-gpg-error-config
 	@$(MAKECOOKIE)
 	@$(MAKECOOKIE)

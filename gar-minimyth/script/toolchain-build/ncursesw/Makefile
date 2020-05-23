@@ -14,7 +14,7 @@ DEPENDS = \
 	toolchain-build/libc-crt
 BUILDDEPS = \
 	native/native \
-	tainted-build/tainted-build
+	toolchain-dirty/toolchain-dirty
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 BUILD_SCRIPTS = $(WORKSRC)/Makefile
@@ -58,15 +58,15 @@ include ../../gar.mk
 post-install: post-install-configs
 
 post-install-configs:
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@rm -fv $(DESTDIR)$(bindir)/config/ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)/config/ncurses6-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
-	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)/config/ncurses6-config
-	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/ncursesw6-config
-	@ln -sfv ncursesw6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncursesw6-config
-	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config/$(GARHOST)-ncurses6-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@rm -fv $(DESTDIR)$(bindir)/config.d/ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/ncurses6-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncursesw6-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncurses6-config
+	@mv -fv $(DESTDIR)$(bindir)/ncurses6-config $(DESTDIR)$(bindir)/config.d/ncurses6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config.d/ncursesw6-config
+	@ln -sfv ncursesw6-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncursesw6-config
+	@ln -sfv ncurses6-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-ncurses6-config
 	@$(foreach lib, ncurses form panel menu, ln -sfv ${lib}.pc $(PKG_CONFIG_LIBDIR)/${lib}w.pc;)
 	@$(foreach lib, ncurses form panel menu, ln -sfv lib${lib}.so $(DESTDIR)$(libdir)/lib${lib}w.so;)
 	@$(foreach lib, ncurses form panel menu, rm -fv $(DESTDIR)$(libdir)/lib${lib}.a;)

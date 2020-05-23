@@ -111,12 +111,6 @@ my %emulator = ();
                         '--no-debug'
                       ]
     };
-    $emulator{'zsnes'} =
-    {
-        'program'  => '/usr/bin/zsnes',
-        'argument' => [
-                      ]
-    };
 }
 
 ################################################################################
@@ -168,13 +162,6 @@ my %console = ();
         'emulator'    => [
                            $emulator{'fceu'},
                            $emulator{'mednafen'}
-                         ]
-    };
-    $console{'snes'} =
-    {
-        'description' => 'Super Nintendo Entertainment System',
-        'emulator'    => [
-                           $emulator{'zsnes'}
                          ]
     };
 }

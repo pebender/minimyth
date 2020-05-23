@@ -130,6 +130,7 @@ mm_USER_REMOVE_LIST       ?=
 mm_USER_SHARE_LIST        ?=
 #
 mm_CCACHE_MAXSIZE         ?= 128
+mm_TOOLCHAIN              ?= clang
 
 #-------------------------------------------------------------------------------
 # Variables that you are not likely to override.
@@ -145,12 +146,11 @@ mm_GARCH_FAMILY           ?= $(strip \
 mm_GARHOST                ?= $(strip \
                                  $(if $(filter armv8-a+crc+simd,$(mm_GARCH)),arm8a ) \
                                  $(if $(filter atom            ,$(mm_GARCH)),x86_64) \
-                                 $(if $(filter c3              ,$(mm_GARCH)),i586  ) \
-                                 $(if $(filter c3-2            ,$(mm_GARCH)),i586  ) \
-                                 $(if $(filter pentium-mmx     ,$(mm_GARCH)),i586  ) \
+                                 $(if $(filter c3              ,$(mm_GARCH)),i386  ) \
+                                 $(if $(filter c3-2            ,$(mm_GARCH)),i386  ) \
+                                 $(if $(filter pentium-mmx     ,$(mm_GARCH)),i386  ) \
                                  $(if $(filter x86-64          ,$(mm_GARCH)),x86_64) \
-                                 $(if $(filter x86-64          ,$(mm_GARCH)),x86_64) \
-                              )-minimyth-linux-gnu
+                              )-minimyth-linux-musl
 mm_CFLAGS                 ?= $(strip \
                                  $(if $(filter atom            ,$(mm_GARCH)),-march=atom        -mtune=atom    -O2 -mfpmath=sse -ftree-vectorize -mmovbe                          ) \
                                  $(if $(filter c3              ,$(mm_GARCH)),-march=c3          -mtune=c3      -O2             ) \

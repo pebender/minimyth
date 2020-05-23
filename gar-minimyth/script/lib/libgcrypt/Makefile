@@ -29,10 +29,10 @@ include ../../gar.mk
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
-	@rm -f $(DESTDIR)$(bindir)/config/libgcrypt-config
-	@rm -f $(DESTDIR)$(bindir)/config/$(GARHOST)-libgcrypt-config
-	@mkdir -p $(DESTDIR)$(bindir)/config
-	@mv $(DESTDIR)$(bindir)/libgcrypt-config $(DESTDIR)$(bindir)/config/libgcrypt-config
-	@ln -sf libgcrypt-config $(DESTDIR)$(bindir)/config/$(GARHOST)-libgcrypt-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/libgcrypt-config
+	@rm -f $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libgcrypt-config
+	@mkdir -p $(DESTDIR)$(bindir)/config.d
+	@mv $(DESTDIR)$(bindir)/libgcrypt-config $(DESTDIR)$(bindir)/config.d/libgcrypt-config
+	@ln -sf libgcrypt-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-libgcrypt-config
 	@$(MAKECOOKIE)
 	@$(MAKECOOKIE)

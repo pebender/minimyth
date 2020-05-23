@@ -36,11 +36,17 @@ include ../../gar.mk
 
 LDFLAGS := $(LDFLAGS) -fwhole-program
 
+pre-configure:
+	@cp -fv $(build_DESTDIR)$(build_datadir)/libtool/config/config.guess $(WORKSRC)/config.guess
+	@cp -fv $(build_DESTDIR)$(build_datadir)/libtool/config/config.sub   $(WORKSRC)/config.sub
+	@$(call FIX_LIBTOOL,$(WORKSRC)/configure)
+	@$(MAKECOOKIE)
+
 post-install:
 	@rm -fv $(DESTDIR)$(libdir)/libxosd.la
-	@rm -fv $(DESTDIR)$(bindir)/config/xosd-config
-	@rm -fv $(DESTDIR)$(bindir)/config/$(GARHOST)-xosd-config
-	@mkdir -pv $(DESTDIR)$(bindir)/config
-	@mv -fv $(DESTDIR)$(bindir)/xosd-config $(DESTDIR)$(bindir)/config/xosd-config
-	@ln -sfv xosd-config $(DESTDIR)$(bindir)/config/$(GARHOST)-xosd-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/xosd-config
+	@rm -fv $(DESTDIR)$(bindir)/config.d/$(GARHOST)-xosd-config
+	@mkdir -pv $(DESTDIR)$(bindir)/config.d
+	@mv -fv $(DESTDIR)$(bindir)/xosd-config $(DESTDIR)$(bindir)/config.d/xosd-config
+	@ln -sfv xosd-config $(DESTDIR)$(bindir)/config.d/$(GARHOST)-xosd-config
 	@$(MAKECOOKIE)

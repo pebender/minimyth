@@ -11,11 +11,11 @@ endef
 
 ifneq ($(DESTIMG),build)
 DEPENDS = \
-	toolchain-main/glibc \
+	toolchain-main/musl \
 	toolchain-main/libunwind
-BUILDDEPS = \
-	toolchain-build/toolchain-build
 endif
+
+WORKSRC = $(WORKDIR)/llvm-project-$(GARVERSION)/$(GARNAME)
 
 ifneq ($(DESTIMG),build)
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
@@ -31,14 +31,14 @@ CONFIGURE_ARGS = $(LLVM_CONFIGURE_ARGS) \
 	-DLIBCXX_INCLUDE_BENCHMARKS=OFF
 ifneq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
-	-DxLIBCXX_HAS_MUSL_LIBC=ON
+	-DLIBCXX_HAS_MUSL_LIBC=ON
 endif
 
 build_CPPFLAGS = \
 	-idirafter /usr/include
 main_CPPFLAGS =
 
-GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain-clang.mk
+GAR_EXTRA_CONF += toolchain-main/toolchain-main/toolchain.mk
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
 GAR_EXTRA_CONF += toolchain/llvm/package-api.mk
 include ../../gar.mk
