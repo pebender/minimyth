@@ -55,16 +55,11 @@ CONFIGURE_ENV = $(DEFAULT_ARGS)
 BUILD_ENV = $(DEFAULT_ARGS)
 INSTALL_ENV = $(DEFAULT_ARGS)
 
+GAR_EXTRA_CONF += toolchain/toolchain/toolchain-gcc.mk
 include ../../gar.mk
 
-LDFLAGS += -Wno-constant-logical-operand
-LDFLAGS += -Wno-format-security
-LDFLAGS += -Wno-ignored-attributes
-LDFLAGS += -Wno-string-plus-int
-build_CFLAGS += $(LDFLAGS)
-build_CXXFLAGS += $(LDFLAGS)
-CFLAGS += $(LDFLAGS)
-CXXFLAGS += $(LDFLAGS)
+# Build system includes LDFLAGS in HOST flags.
+LDFLAGS :=
 
 extract-$(CONFIGFILE):
 	@cat $(DOWNLOADDIR)/$(CONFIGFILE) \

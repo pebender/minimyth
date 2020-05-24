@@ -15,5 +15,8 @@ DEPENDS = \
 	toolchain-main/libcxxabi \
 	toolchain-main/libcxx \
 	toolchain-main/clang-wrappers \
+	toolchain-main/binutils \
+	toolchain-main/gcc \
+	toolchain-main/gcc-wrappers
 
 include ../../gar.mk

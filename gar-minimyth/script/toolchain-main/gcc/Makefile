@@ -14,9 +14,11 @@ GARTARGET = $($(CROSSIMG)_GARHOST)
 ifeq ($(DESTIMG),build)
 IMGDEPS = $(CROSSIMG)
 $(CROSSIMG)_DEPENDS += \
-	toolchain-main-gcc/binutils
+	toolchain-main/binutils \
+	toolchain-main/musl \
+	toolchain-main/libunwind
 DEPENDS = lang/c lang/cxx lib/gmp lib/isl lib/mpc lib/mpfr
-BUILDDEPS = toolchain-build-gcc/toolchain-build-gcc
+BUILDDEPS =
 endif
 
 CONFIGURE_ARGS = $(GCC_CONFIGURE_ARGS) \

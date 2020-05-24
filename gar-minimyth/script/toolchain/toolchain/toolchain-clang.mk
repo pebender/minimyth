@@ -1,0 +1,25 @@
+main_CC = $(build_DESTDIR)$(build_bindir)/ccache.d/$(main_GARHOST)-clang
+main_CXX = $(build_DESTDIR)$(build_bindir)/ccache.d/$(main_GARHOST)-clang++
+main_CPP = $(build_DESTDIR)$(build_bindir)/wrapper.d/$(main_GARHOST)-clang-cpp
+main_LD = $(build_DESTDIR)$(build_bindir)/wrapper.d/$(main_GARHOST)-ld.lld
+main_OBJDUMP = $(build_DESTDIR)$(build_bindir)/llvm-objdump
+main_OBJCOPY = $(build_DESTDIR)$(build_bindir)/llvm-objcopy
+main_STRIP = $(build_DESTDIR)$(build_bindir)/llvm-strip
+main_RANLIB = $(build_DESTDIR)$(build_bindir)/llvm-ranlib
+main_READELF = $(build_DESTDIR)$(build_bindir)/llvm-readelf
+main_NM = $(build_DESTDIR)$(build_bindir)/llvm-nm
+main_AS = $(build_DESTDIR)$(build_bindir)/llvm-as
+main_AR = $(build_DESTDIR)$(build_bindir)/llvm-ar
+
+build_CC = $(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-clang
+build_CXX = $(build_DESTDIR)$(build_bindir)/ccache.d/$(build_GARHOST)-clang++
+build_CPP = $(build_DESTDIR)$(build_bindir)/wrapper.d/$(build_GARHOST)-clang-cpp
+build_LD = $(build_DESTDIR)$(build_bindir)/wrapper.d/$(build_GARHOST)-ld.lld
+build_OBJDUMP = $(build_DESTDIR)$(build_bindir)/llvm-objdump
+build_OBJCOPY = $(build_DESTDIR)$(build_bindir)/llvm-objcopy
+build_STRIP = $(build_DESTDIR)$(build_bindir)/llvm-strip
+build_RANLIB = $(build_DESTDIR)$(build_bindir)/llvm-ranlib
+build_READELF = $(build_DESTDIR)$(build_bindir)/llvm-readelf
+build_NM = $(build_DESTDIR)$(build_bindir)/llvm-nm
+build_AS = $(build_DESTDIR)$(build_bindir)/llvm-as
+build_AR = $(build_DESTDIR)$(build_bindir)/llvm-ar

@@ -9,7 +9,6 @@ DEPENDS = lang/c-build
 ifneq ($(DESTIMG),build)
 DEPENDS += \
 	toolchain-main/toolchain-main \
-	toolchain-main-gcc/toolchain-main-gcc \
 	build-tool/make \
 	devel/pkg-config \
 	build-tool/ninja \

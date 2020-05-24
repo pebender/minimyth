@@ -85,16 +85,12 @@ install-lib-locations-build:
 	@$(MAKECOOKIE)
 
 install-lib-locations-main:
-	@mkdir -pv $(DESTDIR)$(elibdir)
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc.a   ),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc.so  ),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc.so.*),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc_s.so  ),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc_s.so.*),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc_eh.a   ),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc_eh.so  ),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libgcc_eh.so.*),cp -afv $(file) $(DESTDIR)$(elibdir) ; )
-	@$(foreach file,$(wildcard $(build_DESTDIR)$(build_prefix)$(GARTARGET)/lib/libstdc++.so  ),cp -afv $(file) $(DESTDIR)$(libdir) ; )
+	@mkdir -pv $(main_DESTDIR)$(main_libdir)
+	@cp -afv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libatomic.so.* $(main_DESTDIR)$(main_libdir)
+	@cp -afv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libgcc_s.so.* $(main_DESTDIR)$(main_libdir)
+	@cp -afv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libitm.so.* $(main_DESTDIR)$(main_libdir)
+	@cp -afv $(build_DESTDIR)$(build_prefix)/$(GARTARGET)/lib/libstdc++.so.* $(main_DESTDIR)$(main_libdir)
+	@$(MAKECOOKIE)
 
 install-links-build:
 	@ln -sfv cpp $(build_DESTDIR)$(build_bindir)/ccache.d/c++

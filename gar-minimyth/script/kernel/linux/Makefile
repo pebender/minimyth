@@ -29,22 +29,8 @@ CONFIGURE_ENV = $(LINUX_MAKE_ENV)
 BUILD_ENV = $(LINUX_MAKE_ENV)
 INSTALL_ENV = $(LINUX_MAKE_ENV) INSTALL_PATH="$(DESTDIR)$(LINUX_DIR)" INSTALL_MOD_PATH="$(DESTDIR)$(rootdir)"
 
+GAR_EXTRA_CONF += toolchain/toolchain/toolchain-gcc.mk
 include ../../gar.mk
-
-CC := $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-gcc
-CXX := $(build_DESTDIR)$(build_bindir)/ccache.d/$(GARHOST)-g++
-CPP := $(build_DESTDIR)$(build_bindir)/$(GARHOST)-cpp
-LD := $(build_DESTDIR)$(build_bindir)/ld.lld
-OBJDUMP := $(build_DESTDIR)$(build_bindir)/llvm-objdump
-OBJCOPY := $(build_DESTDIR)$(build_bindir)/llvm-objcopy
-STRIP := $(build_DESTDIR)$(build_bindir)/llvm-strip
-RANLIB := $(build_DESTDIR)$(build_bindir)/llvm-ranlib
-READELF := $(build_DESTDIR)$(build_bindir)/llvm-readelf
-NM := $(build_DESTDIR)$(build_bindir)/llvm-nm
-AS := $(build_DESTDIR)$(build_bindir)/as
-AR := $(build_DESTDIR)$(build_bindir)/llvm-ar
-
-LDFLAGS += -Wl,-z,notext
 
 configure-custom:
 	@$(CONFIGURE_ENV) $(MAKE) $(CONFIGURE_ARGS) -C $(WORKSRC) mrproper

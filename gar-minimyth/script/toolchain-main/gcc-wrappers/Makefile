@@ -9,8 +9,8 @@ define BLURB
 endef
 
 DEPENDS = \
-	toolchain-main-gcc/binutils \
-	toolchain-main-gcc/gcc
+	toolchain-main/binutils \
+	toolchain-main/gcc
 
 BUILD_SCRIPTS = wrappers
 INSTALL_SCRIPTS = wrappers
