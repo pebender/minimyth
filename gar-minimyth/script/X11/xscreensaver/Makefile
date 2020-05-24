@@ -4,6 +4,7 @@ CATEGORIES = X11
 MASTER_SITES = https://www.jwz.org/xscreensaver/
 DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = \
+	$(DISTNAME)-gcc.patch \
 	$(DISTNAME)-no_system.patch \
 	$(DISTNAME).patch.gar
 LICENSE = MIT

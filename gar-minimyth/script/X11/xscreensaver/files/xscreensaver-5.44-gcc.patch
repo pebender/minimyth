@@ -1,0 +1,51 @@
+diff -Naur xscreensaver-5.44-old/configure xscreensaver-5.44-new/configure
+--- xscreensaver-5.44-old/configure	2020-03-20 18:40:16.000000000 -0700
++++ xscreensaver-5.44-new/configure	2020-05-23 19:45:36.247297114 -0700
+@@ -4430,7 +4430,7 @@
+ else
+   rm -rf conftest.$ac_ext
+      touch conftest.$ac_ext
+-     if ( ( gcc -c -Wno-overlength-strings conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
++     if ( ( $CC -c -Wno-overlength-strings conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
+           grep unrecognized >/dev/null ); then
+        ac_cv_gcc_accepts_no_overlength=no
+      else
+@@ -4451,7 +4451,7 @@
+ else
+   rm -rf conftest.$ac_ext
+      touch conftest.$ac_ext
+-     if ( ( gcc -c -Wdeclaration-after-statement conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
++     if ( ( $CC -c -Wdeclaration-after-statement conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
+           grep unrecognized >/dev/null ); then
+        ac_cv_gcc_accepts_no_decl_after=no
+      else
+@@ -4472,7 +4472,7 @@
+ else
+   rm -rf conftest.$ac_ext
+      touch conftest.$ac_ext
+-     if ( ( gcc -c -no-cpp-precomp conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
++     if ( ( $CC -c -no-cpp-precomp conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
+           grep unrecognized >/dev/null ); then
+        ac_cv_gcc_accepts_no_cpp_precomp=no
+      else
+@@ -4501,7 +4501,7 @@
+ else
+   rm -rf conftest.$ac_ext
+      touch conftest.$ac_ext
+-     if ( ( gcc -c -std=c89 conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
++     if ( ( $CC -c -std=c89 conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
+           grep unrecognized >/dev/null ); then
+        ac_cv_gcc_accepts_std=no
+      else
+diff -Naur xscreensaver-5.44-old/configure.in xscreensaver-5.44-new/configure.in
+--- xscreensaver-5.44-old/configure.in	2019-07-01 14:01:01.000000000 -0700
++++ xscreensaver-5.44-new/configure.in	2020-05-23 19:44:40.260300166 -0700
+@@ -478,7 +478,7 @@
+      ac_cv_gcc_accepts_[$1],
+     [rm -rf conftest.$ac_ext
+      touch conftest.$ac_ext
+-     if ( ( gcc -c [$2] conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
++     if ( ( $CC -c [$2] conftest.$ac_ext -o/dev/null >/dev/null ) 2>&1 | \
+           grep unrecognized >/dev/null ); then
+        ac_cv_gcc_accepts_[$1]=no
+      else
