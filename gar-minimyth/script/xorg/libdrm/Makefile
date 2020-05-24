@@ -1,8 +1,8 @@
 GARNAME = libdrm
-GARVERSION = 2.4.100
+GARVERSION = 2.4.101
 CATEGORIES = xorg
 MASTER_SITES = https://dri.freedesktop.org/libdrm/
-DISTFILES = $(DISTNAME).tar.bz2
+DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = $(DISTNAME)-o_cloexec.patch
 LICENSE = MIT
 
@@ -10,52 +10,72 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c build-tool/make \
+DEPENDS = lang/c \
+	devel/meson \
 	xorg/libpciaccess \
 	xorg/libpthread-stubs
 ifneq ($(DESTIMG),build)
 DEPENDS += system/udev
 endif
 
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+WORKBLD = $(WORKSRC)_build
 
-CONFIGURE_ARGS  = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
-	--disable-silent-rules \
-	--disable-static \
-	--enable-shared \
-	--enable-libkms \
-	--enable-intel \
-	--enable-radeon \
-	--enable-nouveau \
-	--disable-vmwgfx \
-	--disable-omap-experimental-api \
-	--disable-exynos-experimental-api \
-	--disable-freedreno \
-	--disable-freedreno-kgsl \
-	--disable-tegra-experimental-api \
-	--disable-install-test-programs \
-	--disable-cairo-tests \
-	--disable-manpages \
-	--disable-valgrind \
-	--without-xsltproc
+CONFIGURE_SCRIPTS = $(WORKBLD)/meson
+BUILD_SCRIPTS     = $(WORKBLD)/ninja
+INSTALL_SCRIPTS   = $(WORKBLD)/ninja
+
+CONFIGURE_ARGS  = \
+	$(filter-out --exec_prefix=% --oldincludedir=%, $(DIRPATHS)) \
+	--buildtype=release \
+	-Db_asneeded=true \
+	-Db_lto=false \
+	-Dlibkms=true \
+	-Dintel=true \
+	-Dradeon=true \
+	-Damdgpu=true \
+	-Dnouveau=true \
+	-Dvmwgfx=false \
+	-Domap=false \
+	-Dexynos=false \
+	-Dfreedreno=false \
+	-Dtegra=false \
+	-Dvc4=false \
+	-Detnaviv=false \
+	-Dcairo-tests=false \
+	-Dman-pages=false \
+	-Dvalgrind=false \
+	-Dfreedreno-kgsl=false \
+	-Dinstall-test-programs=false \
+	--native-file $(GARBUILD)
+ifneq ($(DESTIMG),build)
+CONFIGURE_ARGS += \
+	--cross-file $(GARHOST)
+endif
 ifeq ($(DESTIMG),build)
 CONFIGURE_ARGS += \
-	--disable-udev
+	-Dudev=false
 else
 CONFIGURE_ARGS += \
-	--enable-udev
+	-Dudev=true
 endif
+CONFIGURE_ENV = \
+	XDG_DATA_DIRS="$(build_DESTDIR)$(build_datadir)" \
+	XDG_DATA_HOME="$(build_DESTDIR)$(build_datadir)"
 
 GAR_EXTRA_CONF += xorg/xorg/package-api.mk
 include ../../gar.mk
 
-post-install:
-	@rm -f $(DESTDIR)$(libdir)/$(GARNAME).la
-	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_amdgpu.la
-	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_intel.la
-	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_nouveau.la
-	@rm -f $(DESTDIR)$(libdir)/$(GARNAME)_radeon.la
-	@rm -f $(DESTDIR)$(libdir)/libkms.la
+configure-%/meson:
+	@mkdir -pv $(WORKBLD)
+	@$(CONFIGURE_ENV) meson setup $(WORKSRC) $* $(CONFIGURE_ARGS)
+	@$(MAKECOOKIE)
+
+build-%/ninja:
+	@echo " ==> Running ninja in $*"
+	@$(BUILD_ENV) ninja -C $* -v $(BUILD_ARGS)
+	@$(MAKECOOKIE)
+
+install-%/ninja: 
+	@echo " ==> Running ninja install in $*"
+	@$(INSTALL_ENV) ninja -C $* -v install $(INSTALL_ARGS)
 	@$(MAKECOOKIE)
