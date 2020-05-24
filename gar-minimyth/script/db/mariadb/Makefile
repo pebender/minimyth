@@ -109,7 +109,6 @@ CONFIGURE_ARGS += \
 endif
 
 GAR_EXTRA_CONF += devel/cmake/package-api.mk
-GAR_EXTRA_CONF += devel/glibc/package-api.mk
 include ../../gar.mk
 
 PWD := $(shell pwd)
