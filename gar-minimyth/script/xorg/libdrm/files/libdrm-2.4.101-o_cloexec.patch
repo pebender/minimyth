@@ -1,0 +1,15 @@
+diff -Naur libdrm-2.4.101-old/include/drm/drm.h libdrm-2.4.101-new/include/drm/drm.h
+--- libdrm-2.4.101-old/include/drm/drm.h	2020-04-03 05:28:15.412752400 -0700
++++ libdrm-2.4.101-new/include/drm/drm.h	2020-05-10 10:31:18.566338173 -0700
+@@ -699,7 +699,11 @@
+ };
+ 
+ #define DRM_RDWR O_RDWR
++#ifdef O_CLOEXEC
+ #define DRM_CLOEXEC O_CLOEXEC
++#else
++#define DRM_CLOEXEC 0
++#endif
+ struct drm_prime_handle {
+ 	__u32 handle;
+ 
