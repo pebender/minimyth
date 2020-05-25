@@ -1,5 +1,5 @@
 GARNAME = mpc
-GARVERSION = $(MPC_VERSION)
+GARVERSION = 1.1.0
 CATEGORIES = lib
 MASTER_SITES = https://ftp.gnu.org/gnu/mpc/
 DISTFILES = $(DISTNAME).tar.gz

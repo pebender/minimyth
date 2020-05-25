@@ -1,0 +1,9 @@
+diff -Naur flex-2.6.4-old/tools/git2cl flex-2.6.4-new/tools/git2cl
+--- flex-2.6.4-old/tools/git2cl	2016-10-20 17:43:44.000000000 -0700
++++ flex-2.6.4-new/tools/git2cl	2020-05-24 14:44:55.614570695 -0700
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!@GAR_build_DESTDIR@@GAR_build_bindir@/perl
+ 
+ # Copyright (C) 2007, 2008 Simon Josefsson <simon@josefsson.org>
+ # Copyright (C) 2007 Luis Mondesi <lemsx1@gmail.com>

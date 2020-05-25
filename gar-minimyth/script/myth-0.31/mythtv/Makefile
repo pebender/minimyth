@@ -11,6 +11,7 @@ PATCHFILES += \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-disable_perl_inet6_check.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythmusic_no_mythuiwebbrowser.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythmusic_button_list_quick_scroll.patch \
+	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-mythnetvision_oauth.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-python_build.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-sysroot.patch \
 	$(GARNAME)-$(word 1,$(subst -, ,$(GARVERSION)))-networkcontrol.patch \

@@ -13,13 +13,11 @@ DEPENDS = \
 	$(CATEGORY)/mythtv \
 	python3/python \
 	python3/python-pycurl \
-	python3/python-lxml \
-	python3/python-oauth
+	python3/python-lxml
 BUILDDEPS = \
 	python3/python \
 	python3/python-pycurl \
-	python3/python-lxml \
-	python3/python-oauth
+	python3/python-lxml
 
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))

@@ -1,4 +1,5 @@
 GARNAME = curl
+# 7.70.0 breaks compilation of perl-Net-Curl
 GARVERSION = 7.69.1
 CATEGORIES = net
 MASTER_SITES = https://curl.haxx.se/download/

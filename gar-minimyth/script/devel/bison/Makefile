@@ -1,8 +1,8 @@
 GARNAME = bison
-GARVERSION = 3.5.4
+GARVERSION = 3.6.2
 CATEGORIES = devel
 MASTER_SITES = https://ftp.gnu.org/gnu/bison/
-DISTFILES = $(DISTNAME).tar.gz
+DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = $(DISTNAME)-perl.patch.gar
 LICENSE = GPL3
 

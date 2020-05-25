@@ -1,6 +1,6 @@
-diff -Naur pcre2-10.34-old/pcre2-config.in pcre2-10.34-new/pcre2-config.in
---- pcre2-10.34-old/pcre2-config.in	2016-11-22 01:54:06.000000000 -0800
-+++ pcre2-10.34-new/pcre2-config.in	2019-12-16 12:20:22.027013129 -0800
+diff -Naur pcre2-10.35-old/pcre2-config.in pcre2-10.35-new/pcre2-config.in
+--- pcre2-10.35-old/pcre2-config.in	2016-11-22 01:54:06.000000000 -0800
++++ pcre2-10.35-new/pcre2-config.in	2020-05-24 17:21:41.311057969 -0700
 @@ -30,16 +30,16 @@
  libR=
  case `uname -s` in

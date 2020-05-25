@@ -1,5 +1,5 @@
 GARNAME = gdb
-GARVERSION = 9.1
+GARVERSION = 9.2
 CATEGORIES = devel
 MASTER_SITES = https://ftp.gnu.org/gnu/gdb/
 DISTFILES = $(DISTNAME).tar.xz
@@ -9,17 +9,24 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c build-tool/make lib/ncursesw
+DEPENDS = lang/c build-tool/make lib/ncursesw lib/gmp lib/isl lib/mpc lib/mpfr
 
-CONFIGURE_SCRIPTS = $(WORKSRC)/configure
-BUILD_SCRIPTS     = $(WORKSRC)/Makefile
-INSTALL_SCRIPTS   = $(WORKSRC)/Makefile
+WORKBLD = $(WORKSRC)_build
+
+CONFIGURE_SCRIPTS = custom
+BUILD_SCRIPTS = $(WORKBLD)/Makefile
+INSTALL_SCRIPTS = $(WORKBLD)/Makefile
 
 CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--disable-werror \
 	--with-build-sysroot=$(DESTDIR)$(rootdir)
 
 include ../../gar.mk
+
+configure-custom:
+	@mkdir -pv $(WORKBLD)
+	@cd $(WORKBLD) && $(CONFIGURE_ENV) ./$(call DIRSTODOTS,$(WORKBLD))/$(WORKSRC)/configure $(CONFIGURE_ARGS)
+	@$(MAKECOOKIE)
 
 post-install:
 	@rm -f $(DESTDIR)$(libdir)/libbfd.la

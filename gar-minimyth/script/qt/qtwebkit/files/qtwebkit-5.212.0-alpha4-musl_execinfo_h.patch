@@ -1,0 +1,21 @@
+diff -Naur qtwebkit-5.212.0-alpha4-old/Source/JavaScriptCore/inspector/JSGlobalObjectInspectorController.cpp qtwebkit-5.212.0-alpha4-new/Source/JavaScriptCore/inspector/JSGlobalObjectInspectorController.cpp
+--- qtwebkit-5.212.0-alpha4-old/Source/JavaScriptCore/inspector/JSGlobalObjectInspectorController.cpp	2020-03-04 09:16:37.000000000 -0800
++++ qtwebkit-5.212.0-alpha4-new/Source/JavaScriptCore/inspector/JSGlobalObjectInspectorController.cpp	2020-05-24 17:43:44.958985814 -0700
+@@ -49,7 +49,7 @@
+ #include <wtf/Stopwatch.h>
+ 
+ #include <cxxabi.h>
+-#if OS(DARWIN) || (OS(LINUX) && !PLATFORM(GTK))
++#if OS(DARWIN) || (OS(LINUX) && !PLATFORM(GTK) && defined(__GLIBC__) && !defined(__UCLIBC__))
+ #include <dlfcn.h>
+ #include <execinfo.h>
+ #endif
+@@ -187,7 +187,7 @@
+ 
+ void JSGlobalObjectInspectorController::appendAPIBacktrace(ScriptCallStack* callStack)
+ {
+-#if OS(DARWIN) || (OS(LINUX) && !PLATFORM(GTK))
++#if OS(DARWIN) || (OS(LINUX) && !PLATFORM(GTK) && defined(__GLIBC__) && !defined(__UCLIBC__))
+     static const int framesToShow = 31;
+     static const int framesToSkip = 3; // WTFGetBacktrace, appendAPIBacktrace, reportAPIException.
+ 

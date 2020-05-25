@@ -1,0 +1,11 @@
+diff -Naur mariadb-10.4.13-old/wsrep-lib/include/wsrep/gtid.hpp mariadb-10.4.13-new/wsrep-lib/include/wsrep/gtid.hpp
+--- mariadb-10.4.13-old/wsrep-lib/include/wsrep/gtid.hpp	2020-05-24 14:03:27.452706330 -0700
++++ mariadb-10.4.13-new/wsrep-lib/include/wsrep/gtid.hpp	2020-05-24 14:08:01.745691377 -0700
+@@ -24,6 +24,7 @@
+ #include "seqno.hpp"
+ #include "compiler.hpp"
+ 
++#include <sys/types.h>
+ #include <iosfwd>
+ 
+ /**

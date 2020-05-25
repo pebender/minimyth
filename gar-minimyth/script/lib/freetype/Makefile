@@ -1,5 +1,5 @@
 GARNAME = freetype
-GARVERSION = 2.10.1
+GARVERSION = 2.10.2
 CATEGORIES = lib
 MASTER_SITES = https://download.savannah.gnu.org/releases/freetype/
 DISTFILES = $(DISTNAME).tar.xz

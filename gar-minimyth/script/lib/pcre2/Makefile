@@ -1,12 +1,9 @@
 GARNAME = pcre2
-GARVERSION = 10.34
+GARVERSION = 10.35
 CATEGORIES = lib
 MASTER_SITES = https://ftp.pcre.org/pub/pcre/
 DISTFILES = $(DISTNAME).tar.bz2
 PATCHFILES  = $(DISTNAME).patch.gar
-ifneq ($(DESTIMG),build)
-xPATCHFILES += $(DISTNAME)-cross.patch
-endif
 LICENSE = BSD_3_Clause
 
 DESCRIPTION = 

@@ -1,5 +1,5 @@
 GARNAME = isl
-GARVERSION = $(ISL_VERSION)
+GARVERSION = 0.22.1
 CATEGORIES = lib
 MASTER_SITES = http://isl.gforge.inria.fr/
 DISTFILES = $(DISTNAME).tar.xz

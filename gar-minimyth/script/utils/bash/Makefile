@@ -20,7 +20,8 @@ PATCHFILES  = \
 	$(GARNAME)$(subst .,,$(GARVERSION))-013 \
 	$(GARNAME)$(subst .,,$(GARVERSION))-014 \
 	$(GARNAME)$(subst .,,$(GARVERSION))-015 \
-	$(GARNAME)$(subst .,,$(GARVERSION))-016
+	$(GARNAME)$(subst .,,$(GARVERSION))-016 \
+	$(GARNAME)$(subst .,,$(GARVERSION))-017
 LICENSE = GPL3
 
 DESCRIPTION = 

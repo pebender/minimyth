@@ -2,17 +2,8 @@ GARNAME = visualboyadvance-m
 GARVERSION = 20200412-9e03af8
 CATEGORIES = emulators
 MASTER_SITES = git://github.com/visualboyadvance-m/visualboyadvance-m.git/
-#https://github.com/visualboyadvance-m/visualboyadvance-m/archive/
 DISTFILES = $(DISTNAME).tar.bz2
-#PATCHFILES = \
-	$(DISTNAME)-libpng_1.5.patch \
-	$(DISTNAME)-zlib_1.2.6.patch \
-	$(DISTNAME)-configure.patch \
-	$(DISTNAME)-strrchr.patch \
-	$(DISTNAME)-x86_64.patch \
-	$(DISTNAME)-cheats_cpp.patch \
-	$(DISTNAME)-debugger.patch
-LICENSE = GPL2
+LCENSE = GPL2
 
 DESCRIPTION = 
 define BLURB
@@ -23,7 +14,7 @@ BUILDDEPS = devel/nasm
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/cmake
 BUILD_SCRIPTS = $(WORKSRC)/cmake
-INSTALL_SCRIPTS = $(WORKSRC)/cmake
+INSTALL_SCRIPTS = custom
 
 CONFIGURE_ARGS  = \
 	-DCMAKE_BUILD_TYPE=RELEASE \
@@ -63,8 +54,12 @@ GAR_EXTRA_CONF += devel/cmake/package-api.mk
 include ../../gar.mk
 
 git//%/$(DISTNAME).tar.bz2:
-	$(call FETCH_GIT, $*, $(word 2,$(subst -, ,$(GARVERSION))), $(DISTNAME))
+	@$(call FETCH_GIT, $*, $(word 2,$(subst -, ,$(GARVERSION))), $(DISTNAME))
 	@$(MAKECOOKIE)
 
 checksum-$(DISTNAME).tar.bz2:
+	@$(MAKECOOKIE)
+
+install-custom:
+	@install -v -m 0755 $(WORKSRC)_build/vbam $(DESTDIR)$(bindir)/vbam
 	@$(MAKECOOKIE)

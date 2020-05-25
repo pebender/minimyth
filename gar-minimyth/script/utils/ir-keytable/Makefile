@@ -1,5 +1,5 @@
 GARNAME = v4l-utils
-GARVERSION = 1.18.0
+GARVERSION = 1.20.0
 CATEGORIES = utils
 MASTER_SITES = https://linuxtv.org/downloads/v4l-utils/
 DISTFILES = $(DISTNAME).tar.bz2
@@ -11,7 +11,7 @@ DESCRIPTION =
 define BLURB
 endef
 
-DEPENDS = lang/c lang/cxx system/udev
+DEPENDS = lang/c lang/cxx system/udev lib/libargp
 
 CONFIGURE_SCRIPTS = $(WORKSRC)/configure
 #BUILD_SCRIPTS     = $(WORKSRC)/utils/keytable/Makefile
@@ -47,3 +47,5 @@ CONFIGURE_ARGS = $(DIRPATHS) --build=$(GARBUILD) --host=$(GARHOST) \
 	--with-udevdir="$(libdir)/udev"
 
 include ../../gar.mk
+
+LDFLAGS := -largp

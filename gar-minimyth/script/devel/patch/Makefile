@@ -1,8 +1,8 @@
 GARNAME = patch
-GARVERSION = 2.7.1
+GARVERSION = 2.7.6
 CATEGORIES = devel
-MASTER_SITES = https://ftp.gnu.org/gnu/$(GARNAME)/
-DISTFILES = $(DISTNAME).tar.gz
+MASTER_SITES = https://ftp.gnu.org/gnu/patch/
+DISTFILES = $(DISTNAME).tar.xz
 LICENSE = GPL2
 
 DESCRIPTION = 

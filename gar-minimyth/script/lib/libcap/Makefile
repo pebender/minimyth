@@ -1,10 +1,11 @@
 GARNAME = libcap
-GARVERSION = 2.33
+GARVERSION = 2.34
 CATEGORIES = lib
 MASTER_SITES = https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/
 DISTFILES = $(DISTNAME).tar.xz
 PATCHFILES = $(DISTNAME)-toolchain.patch $(DISTNAME)-no-static.patch
-LICENSE = GPL2/LGPL2_1
+LICENSE = $(GARNAME)
+$(GARNAME)_LICENSE_TEXT = $(WORKSRC)/License
 
 DESCRIPTION = 
 define BLURB

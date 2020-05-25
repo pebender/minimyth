@@ -1,4 +1,4 @@
-0f18f22375c4542b6b567e83c911e9c1  download/linux-5.6.13.tar.gz
-d714a9ea665aa8561f8284bc4ed4b4aa  download/linux-5.6-defaults.patch
 441f7a2d494a519d98c97dc7830b521d  download/linux-5.6-i386-pentium-mmx.config
 e6e65577c3fbf0063b50d2acd0c32731  download/linux-5.6-x86_64-x86-64.config
+267ae8a723dd4b0a144e587b8100116e  download/linux-5.6.14.tar.gz
+5d11a54d9519c579091ac5bc31452f9c  download/linux-5.6-defaults.patch

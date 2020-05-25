@@ -1,5 +1,5 @@
 GARNAME = mpfr
-GARVERSION = $(MPFR_VERSION)
+GARVERSION = 4.0.2
 CATEGORIES = lib
 MASTER_SITES = https://ftp.gnu.org/gnu/mpfr/
 DISTFILES = $(DISTNAME).tar.xz

@@ -10,7 +10,8 @@ endef
 
 DEPENDS = \
 	lang/cxx \
-	$(CATEGORY)/mythtv
+	$(CATEGORY)/mythtv \
+	qt/qtwebkit
 
 CATEGORY := $(shell basename $(shell dirname $(shell pwd)))
 

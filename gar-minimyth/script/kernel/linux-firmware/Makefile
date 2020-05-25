@@ -1,5 +1,5 @@
 GARNAME = linux-firmware
-GARVERSION = 20200316
+GARVERSION = 20200519
 CATEGORIES = kernel
 MASTER_SITES = https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/
 DISTFILES = $(DISTNAME).tar.gz

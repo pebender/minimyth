@@ -1,5 +1,5 @@
 GARNAME = util-linux
-GARVERSION = 2.35.1
+GARVERSION = 2.35.2
 CATEGORIES = utils
 MASTER_SITES = https://www.kernel.org/pub/linux/utils/util-linux/v2.35/
 DISTFILES = $(DISTNAME).tar.xz

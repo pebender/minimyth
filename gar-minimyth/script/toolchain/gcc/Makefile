@@ -3,7 +3,7 @@ GARVERSION = $(GCC_VERSION)
 CATEGORIES = toolchain
 MASTER_SITES = https://ftp.gnu.org/gnu/gcc/gcc/
 DISTFILES = $(DISTNAME).tar.xz
-PATCHFILES = $(DISTNAME)-disable_multilib_i386_linux64.patch
+PATCHFILES = $(DISTNAME)-disable_multilib_i386_linux64.patch $(DISTNAME)-perl.patch.gar
 LICENSE = GPL2/GPL3/LGPL2_1/LGPL3
 
 DESCRIPTION =

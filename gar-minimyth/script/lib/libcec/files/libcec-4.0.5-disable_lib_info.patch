@@ -1,0 +1,12 @@
+diff -Naur libcec-libcec-4.0.5-old/src/libcec/CMakeLists.txt libcec-libcec-4.0.5-new/src/libcec/CMakeLists.txt
+--- libcec-libcec-4.0.5-old/src/libcec/CMakeLists.txt	2020-04-27 04:36:45.000000000 -0700
++++ libcec-libcec-4.0.5-new/src/libcec/CMakeLists.txt	2020-05-24 21:30:01.483245728 -0700
+@@ -133,7 +133,7 @@
+ source_group("Header Files" FILES ${CEC_HEADERS})
+ 
+ # platform and device specific
+-include(cmake/SetBuildInfo.cmake)
++#include(cmake/SetBuildInfo.cmake)
+ include(cmake/CheckPlatformSupport.cmake)
+ 
+ ## create project groups

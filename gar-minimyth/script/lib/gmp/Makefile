@@ -1,5 +1,5 @@
 GARNAME = gmp
-GARVERSION = $(GMP_VERSION)
+GARVERSION = 6.2.0
 CATEGORIES = lib
 MASTER_SITES = https://ftp.gnu.org/gnu/gmp/
 DISTFILES = $(DISTNAME).tar.xz

@@ -1,5 +1,5 @@
 GARNAME = ImageMagick
-GARVERSION = 6.9.11-5
+GARVERSION = 6.9.11-14
 CATEGORIES = utils
 MASTER_SITES = https://imagemagick.org/download/releases/
 DISTFILES = $(DISTNAME).tar.xz

@@ -1,6 +1,6 @@
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/af9005.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/af9005.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/af9005.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/af9005.toml	2019-12-16 23:46:42.876004313 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/af9005.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/af9005.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/af9005.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/af9005.toml	2020-05-24 16:30:55.036224028 -0700
 @@ -8,17 +8,17 @@
  0x017f = "KEY_MUTE"
  0x01bf = "KEY_VOLUMEDOWN"
@@ -55,9 +55,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/af9005.toml v4l-utils-
 -0x0055 = "KEY_0"
 +0x0055 = "KEY_NUMERIC_0"
  0x00d5 = "KEY_GOTO"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml	2019-09-01 05:48:32.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml	2019-12-16 23:47:12.226984702 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml	2020-05-02 05:16:20.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_box.toml	2020-05-24 16:30:55.036224028 -0700
 @@ -4,18 +4,18 @@
  [protocols.scancodes]
  0x00 = "KEY_7"
@@ -85,9 +85,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/allwinner_i12_a20_tv_b
  0x0e = "KEY_BACKSPACE"
  0x40 = "KEY_VOLUMEUP"
  0x41 = "KEY_LEFT"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/az6027.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/az6027.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/az6027.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/az6027.toml	2019-12-16 23:47:26.170003945 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/az6027.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/az6027.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/az6027.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/az6027.toml	2020-05-24 16:30:55.036224028 -0700
 @@ -2,5 +2,5 @@
  name = "az6027"
  protocol = "unknown"
@@ -96,9 +96,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/az6027.toml v4l-utils-
 -0x02 = "KEY_2"
 +0x01 = "KEY_NUMERIC_1"
 +0x02 = "KEY_NUMERIC_2"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/cinergyt2.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/cinergyt2.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/cinergyt2.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/cinergyt2.toml	2019-12-16 23:47:52.061004089 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/cinergyt2.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/cinergyt2.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/cinergyt2.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/cinergyt2.toml	2020-05-24 16:30:55.036224028 -0700
 @@ -3,16 +3,16 @@
  protocol = "unknown"
  [protocols.scancodes]
@@ -126,9 +126,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/cinergyt2.toml v4l-uti
  0x040b = "KEY_VIDEO"
  0x040d = "KEY_REFRESH"
  0x040e = "KEY_SELECT"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/dibusb.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/dibusb.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/dibusb.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/dibusb.toml	2019-12-16 23:48:52.552975349 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/dibusb.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/dibusb.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/dibusb.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/dibusb.toml	2020-05-24 16:30:55.037224028 -0700
 @@ -4,16 +4,16 @@
  [protocols.scancodes]
  0x0016 = "KEY_POWER"
@@ -213,9 +213,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/dibusb.toml v4l-utils-
 +0x804d = "KEY_NUMERIC_0"
  0x804e = "KEY_ENTER"
  0x804f = "KEY_VOLUMEDOWN"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/digitv.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/digitv.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/digitv.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/digitv.toml	2019-12-16 23:49:08.093995186 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/digitv.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/digitv.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/digitv.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/digitv.toml	2020-05-24 16:30:55.037224028 -0700
 @@ -2,16 +2,16 @@
  name = "digitv"
  protocol = "unknown"
@@ -243,9 +243,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/digitv.toml v4l-utils-
  0x9f59 = "KEY_TV"
  0xaf59 = "KEY_AUX"
  0x5f5a = "KEY_DVD"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/haupp.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/haupp.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/haupp.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/haupp.toml	2019-12-16 23:49:19.109000309 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/haupp.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/haupp.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/haupp.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/haupp.toml	2020-05-24 16:30:55.037224028 -0700
 @@ -2,16 +2,16 @@
  name = "haupp"
  protocol = "unknown"
@@ -273,9 +273,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/haupp.toml v4l-utils-1
  0x1e0a = "KEY_KPASTERISK"
  0x1e0b = "KEY_RED"
  0x1e0c = "KEY_RADIO"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/opera1.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/opera1.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/opera1.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/opera1.toml	2019-12-16 23:49:25.948999523 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/opera1.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/opera1.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/opera1.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/opera1.toml	2020-05-24 16:30:55.037224028 -0700
 @@ -2,16 +2,16 @@
  name = "opera1"
  protocol = "unknown"
@@ -303,9 +303,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/opera1.toml v4l-utils-
  0x09f6 = "KEY_CHANNELUP"
  0x1be5 = "KEY_CHANNELDOWN"
  0x5da3 = "KEY_VOLUMEDOWN"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/pinnacle310e.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/pinnacle310e.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/pinnacle310e.toml	2019-09-01 05:48:32.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/pinnacle310e.toml	2019-12-16 23:49:37.467003407 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/pinnacle310e.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/pinnacle310e.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/pinnacle310e.toml	2020-05-02 05:16:20.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/pinnacle310e.toml	2020-05-24 16:30:55.037224028 -0700
 @@ -8,16 +8,16 @@
  0x48 = "KEY_PROGRAM"
  0x1c = "KEY_EPG"
@@ -333,9 +333,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/pinnacle310e.toml v4l-
  0x0c = "KEY_CANCEL"
  0x4a = "KEY_CLEAR"
  0x13 = "KEY_BACK"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/vp702x.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/vp702x.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/vp702x.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps/vp702x.toml	2019-12-16 23:50:06.875991417 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/vp702x.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/vp702x.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps/vp702x.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps/vp702x.toml	2020-05-24 16:30:55.038224028 -0700
 @@ -2,5 +2,5 @@
  name = "vp702x"
  protocol = "unknown"
@@ -344,9 +344,9 @@ diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps/vp702x.toml v4l-utils-
 -0x0002 = "KEY_2"
 +0x0001 = "KEY_NUMERIC_1"
 +0x0002 = "KEY_NUMERIC_2"
-diff -Naur v4l-utils-1.18.0-old/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml v4l-utils-1.18.0-new/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml
---- v4l-utils-1.18.0-old/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml	2019-09-01 05:41:14.000000000 -0700
-+++ v4l-utils-1.18.0-new/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml	2019-12-16 23:49:58.055999414 -0800
+diff -Naur v4l-utils-1.20.0-old/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml v4l-utils-1.20.0-new/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml
+--- v4l-utils-1.20.0-old/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml	2019-09-01 05:41:14.000000000 -0700
++++ v4l-utils-1.20.0-new/utils/keytable/rc_keymaps_userspace/allwinner_i12_a20_tv_box.toml	2020-05-24 16:30:55.038224028 -0700
 @@ -2,20 +2,20 @@
  name = "allwinner_i12_a20_tv_box"
  protocol = "nec"

@@ -1,0 +1,32 @@
+diff -Naur mame-mame0221-old/3rdparty/genie/build/gmake.linux/genie.make mame-mame0221-new/3rdparty/genie/build/gmake.linux/genie.make
+--- mame-mame0221-old/3rdparty/genie/build/gmake.linux/genie.make	2020-05-24 15:42:40.066381840 -0700
++++ mame-mame0221-new/3rdparty/genie/build/gmake.linux/genie.make	2020-05-24 15:43:44.897378306 -0700
+@@ -28,9 +28,9 @@
+   RM    = $(SILENT) del /F "$(subst /,\\,$(1))" 2> nul || exit 0
+ endif
+ 
+-CC  = gcc
+-CXX = g++
+-AR  = ar
++CC  = @GAR_build_CC@
++CXX = @GAR_build_CXX@
++AR  = @GAR_build_AR@
+ 
+ ifndef RESCOMP
+   ifdef WINDRES
+diff -Naur mame-mame0221-old/scripts/src/osd/sdl.lua mame-mame0221-new/scripts/src/osd/sdl.lua
+--- mame-mame0221-old/scripts/src/osd/sdl.lua	2020-05-24 15:42:40.371381823 -0700
++++ mame-mame0221-new/scripts/src/osd/sdl.lua	2020-05-24 15:43:44.897378306 -0700
+@@ -300,12 +300,6 @@
+ 	else
+ 		if _OPTIONS["NO_X11"]=="1" then
+ 			_OPTIONS["USE_QTDEBUG"] = "0"
+-		else
+-			libdirs {
+-				"/usr/X11/lib",
+-				"/usr/X11R6/lib",
+-				"/usr/openwin/lib",
+-			}
+ 		end
+ 		if _OPTIONS["with-bundled-sdl2"]~=nil then
+ 			if _OPTIONS["targetos"]~="android" then

@@ -1,0 +1,12 @@
+diff -Naur mythtv-0.31-20200322-c8c59f5-old/mythplugins/configure mythtv-0.31-20200322-c8c59f5-new/mythplugins/configure
+--- mythtv-0.31-20200322-c8c59f5-old/mythplugins/configure	2020-04-17 14:47:28.000000000 -0700
++++ mythtv-0.31-20200322-c8c59f5-new/mythplugins/configure	2020-05-25 09:49:44.820826294 -0700
+@@ -655,7 +655,7 @@
+     check_py_lib xml     || disable_netvision "Python XML library (xml)"
+     check_py_lib urllib  || disable_netvision "Python URL library (urllib)"
+     check_py_lib urllib2 || disable_netvision "Python URL library 2 (urllib2)"
+-    check_py_lib oauth   || disable_netvision "Python OAuth library (oauth)"
++#    check_py_lib oauth   || disable_netvision "Python OAuth library (oauth)"
+ 
+     disabled netvision && echo "Disabling MythNetvision due to missing dependencies."
+ fi

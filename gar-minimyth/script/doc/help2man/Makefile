@@ -1,5 +1,5 @@
 GARNAME = help2man
-GARVERSION = 1.47.13
+GARVERSION = 1.47.15
 CATEGORIES = doc
 MASTER_SITES = https://ftp.gnu.org/gnu/help2man/
 DISTFILES = $(DISTNAME).tar.xz

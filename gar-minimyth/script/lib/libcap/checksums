@@ -1,3 +1,3 @@
-dcc6220b4a9bf260050b20c07edcddf4  download/libcap-2.33.tar.xz
-fb6d617f3a154d570c24743de8989d64  download/libcap-2.33-toolchain.patch
-b9c083fa3edded2af43a63a23340d7fc  download/libcap-2.33-no-static.patch
+66028a8080a0891c54b202bb5e749035  download/libcap-2.34.tar.xz
+75fad5a6e1cf7896179f0d8c207efa91  download/libcap-2.34-toolchain.patch
+4a772262a705be47ec7b3dbdc14eaa37  download/libcap-2.34-no-static.patch

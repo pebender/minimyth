@@ -1,6 +1,6 @@
 GARNAME = icu
-# 66.1 fails to compile with llvm 10.0.0
-GARVERSION = 65.1
+# 66.1 and 67.1 fail to compile with llvm 10.0.0
+GARVERSION = 67.1
 CATEGORIES = lib
 MASTER_SITES = https://github.com/unicode-org/icu/releases/download/release-$(subst .,-,$(GARVERSION))/
 DISTFILES = $(GARNAME)4c-$(subst .,_,$(GARVERSION))-src.tgz

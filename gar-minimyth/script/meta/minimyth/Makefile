@@ -35,6 +35,7 @@ DEPENDS = \
 	net/inetutils \
 	utils/intel-microcode2ucode \
 	system/irclient \
+	utils/ir-keytable \
 	system/irxkeys \
 	kernel/kernel \
 	system/lcdproc \

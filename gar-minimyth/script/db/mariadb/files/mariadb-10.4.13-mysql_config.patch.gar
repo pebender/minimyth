@@ -1,6 +1,6 @@
-diff -Naur mariadb-10.4.12-old/scripts/mysql_config.sh mariadb-10.4.12-new/scripts/mysql_config.sh
---- mariadb-10.4.12-old/scripts/mysql_config.sh	2020-01-26 12:43:53.000000000 -0800
-+++ mariadb-10.4.12-new/scripts/mysql_config.sh	2020-03-30 13:54:20.897778125 -0700
+diff -Naur mariadb-10.4.13-old/scripts/mysql_config.sh mariadb-10.4.13-new/scripts/mysql_config.sh
+--- mariadb-10.4.13-old/scripts/mysql_config.sh	2020-05-09 12:28:00.000000000 -0700
++++ mariadb-10.4.13-new/scripts/mysql_config.sh	2020-05-24 14:03:00.687707789 -0700
 @@ -60,20 +60,20 @@
  # Script might have been renamed but assume mysql_<something>config<something>
  basedir=`echo $me | sed -e 's;/bin/mysql_.*config.*;;'`

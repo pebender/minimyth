@@ -7,6 +7,7 @@ DISTFILES = $(DISTNAME).tar.xz \
 	qt_lib_webkit_private.pri \
 	qt_lib_webkitwidgets.pri \
 	qt_lib_webkitwidgets_private.pri
+PATCHFILES = $(DISTNAME)-musl_mcontext.patch $(DISTNAME)-musl_execinfo_h.patch
 LICENSE = LGPL2_1
 
 DESCRIPTION = 

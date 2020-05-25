@@ -1,5 +1,5 @@
 GARNAME = mednafen
-GARVERSION = 1.24.1
+GARVERSION = 1.24.3
 CATEGORIES = emulators
 MASTER_SITES = https://mednafen.github.io/releases/files/
 DISTFILES = $(DISTNAME).tar.xz
@@ -56,10 +56,6 @@ CONFIGURE_ENV = \
 
 include ../../gar.mk
 
-#CPPFLAGS :=
-#CFLAGS :=
-#CXXFLAGS := 
-#LDFLAGS :=
 CFLAGS += -Wl,-z,notext
 CXXFLAGS += -Wl,-z,notext
 LDFLAGS += -Wl,-z,notext

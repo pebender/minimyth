@@ -1,5 +1,5 @@
 GARNAME = mesa
-GARVERSION = 20.0.4
+GARVERSION = 20.0.7
 CATEGORIES = xorg
 MASTER_SITES  = https://mesa.freedesktop.org/archive/
 MASTER_SITES += https://mesa.freedesktop.org/archive/20.0.0/

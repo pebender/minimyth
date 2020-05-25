@@ -1,5 +1,5 @@
-169aa22572ac5dd36f417727d6527bc9  download/mame0220.tar.gz
-60d749d4a6ad0938124a4acf970a9a3b  download/mame-0.220-musl.patch
-1a3239fe3e3785c0841cd37950926c57  download/mame-0.220-clang-detection.patch
-f537cc2ad7ebac134b476377359b4ec9  download/mame-0.220-ar.patch
-c1cab91392a95e37a87263074685660f  download/mame-0.220.patch.gar
+391fbc9d9b7f1afb2af7dd9aeaedc9f6  download/mame0221.tar.gz
+16d2ec9191332ab260bbfa0e912d29e3  download/mame-0.221-clang-detection.patch
+a430aa07b301586e01853b6d7fbe7b1a  download/mame-0.221-musl.patch
+bc6900b9da91f611142754fab1c6f19b  download/mame-0.221-ar.patch
+409892048d376d92deddb8cefa3a3e6c  download/mame-0.221.patch.gar

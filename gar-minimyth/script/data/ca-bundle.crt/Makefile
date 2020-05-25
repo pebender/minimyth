@@ -1,5 +1,5 @@
 GARNAME = nss
-GARVERSION = 3.51
+GARVERSION = 3.52
 CATEGORIES = data
 MASTER_SITES = https://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/$(shell echo $(DISTNAME) | sed -e 's/-/_/g' -e 's/\./_/g' -e 'y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/')_RTM/src/
 DISTFILES = $(DISTNAME).tar.gz

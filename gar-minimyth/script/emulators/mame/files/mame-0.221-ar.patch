@@ -1,6 +1,6 @@
-diff -Naur mame-mame0220-old/makefile mame-mame0220-new/makefile
---- mame-mame0220-old/makefile	2020-04-07 20:37:08.177781877 -0700
-+++ mame-mame0220-new/makefile	2020-04-07 20:38:12.871778350 -0700
+diff -Naur mame-mame0221-old/makefile mame-mame0221-new/makefile
+--- mame-mame0221-old/makefile	2020-05-24 15:42:06.800383653 -0700
++++ mame-mame0221-new/makefile	2020-05-24 15:42:56.702380933 -0700
 @@ -563,6 +563,14 @@
  LD := $(OVERRIDE_LD)
  endif
@@ -16,9 +16,9 @@ diff -Naur mame-mame0220-old/makefile mame-mame0220-new/makefile
  
  #-------------------------------------------------
  # sanity check the configuration
-diff -Naur mame-mame0220-old/scripts/genie.lua mame-mame0220-new/scripts/genie.lua
---- mame-mame0220-old/scripts/genie.lua	2020-04-07 20:36:59.057782374 -0700
-+++ mame-mame0220-new/scripts/genie.lua	2020-04-07 20:38:12.871778350 -0700
+diff -Naur mame-mame0221-old/scripts/genie.lua mame-mame0221-new/scripts/genie.lua
+--- mame-mame0221-old/scripts/genie.lua	2020-05-24 15:41:28.837385723 -0700
++++ mame-mame0221-new/scripts/genie.lua	2020-05-24 15:42:56.735380931 -0700
 @@ -195,6 +195,11 @@
  }
  
@@ -31,9 +31,9 @@ diff -Naur mame-mame0220-old/scripts/genie.lua mame-mame0220-new/scripts/genie.l
  	trigger = "TOOLCHAIN",
  	description = "Toolchain prefix"
  }
-diff -Naur mame-mame0220-old/scripts/toolchain.lua mame-mame0220-new/scripts/toolchain.lua
---- mame-mame0220-old/scripts/toolchain.lua	2020-04-07 20:36:59.062782374 -0700
-+++ mame-mame0220-new/scripts/toolchain.lua	2020-04-07 20:38:12.904778349 -0700
+diff -Naur mame-mame0221-old/scripts/toolchain.lua mame-mame0221-new/scripts/toolchain.lua
+--- mame-mame0221-old/scripts/toolchain.lua	2020-05-24 15:41:28.837385723 -0700
++++ mame-mame0221-new/scripts/toolchain.lua	2020-05-24 15:42:56.735380931 -0700
 @@ -488,6 +488,9 @@
  	if (_OPTIONS["LD"] ~= nil) then
  		premake.gcc.ld  = _OPTIONS["LD"]

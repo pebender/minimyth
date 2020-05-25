@@ -1,0 +1,25 @@
+diff -Naur curl-7.70.0-old/curl-config.in curl-7.70.0-new/curl-config.in
+--- curl-7.70.0-old/curl-config.in	2020-04-22 05:47:53.000000000 -0700
++++ curl-7.70.0-new/curl-config.in	2020-05-24 19:04:51.029720554 -0700
+@@ -147,19 +147,11 @@
+         else
+           CPPFLAG_CURL_STATICLIB=""
+         fi
+-        if test "X@includedir@" = "X/usr/include"; then
+-          echo "$CPPFLAG_CURL_STATICLIB"
+-        else
+-          echo "${CPPFLAG_CURL_STATICLIB}-I@includedir@"
+-        fi
++        echo "$CPPFLAG_CURL_STATICLIB"
+         ;;
+ 
+     --libs)
+-        if test "X@libdir@" != "X/usr/lib" -a "X@libdir@" != "X/usr/lib64"; then
+-           CURLLIBDIR="-L@libdir@ "
+-        else
+-           CURLLIBDIR=""
+-        fi
++        CURLLIBDIR=""
+         if test "X@REQUIRE_LIB_DEPS@" = "Xyes"; then
+           echo ${CURLLIBDIR}-lcurl @LIBCURL_LIBS@
+         else

@@ -1,8 +1,8 @@
 GARNAME = flex
-GARVERSION = 2.6.0
+GARVERSION = 2.6.4
 CATEGORIES = devel
-MASTER_SITES = https://sourceforge.net/projects/flex/files/
-DISTFILES = $(DISTNAME).tar.xz
+MASTER_SITES = https://github.com/westes/flex/releases/download/v$(GARVERSION)/
+DISTFILES = $(DISTNAME).tar.gz
 PATCHFILES = $(DISTNAME)-perl.patch.gar
 LICENSE = $(GARNAME)
 $(GARNAME)_LICENSE_TEXT=$(WORKSRC)/COPYING

@@ -1,5 +1,5 @@
 GARNAME = stella
-GARVERSION = 6.1.1
+GARVERSION = 6.1.2
 CATEGORIES = emulators
 MASTER_SITES = https://github.com/stella-emu/stella/releases/download/$(GARVERSION)/
 DISTFILES = $(DISTNAME)-src.tar.xz
